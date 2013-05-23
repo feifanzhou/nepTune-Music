@@ -1,3 +1,50 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+@import "fonts";
+@import "variables";
+
+/***** Typography *****/
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'PT Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+p {
+	font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+/***** Home page *****/
+div#signup {
+	background-color: $lightGrayBkg;
+	height: 960px;
+	min-height: 720px;
+	div#homeRight {
+		margin-top: 20%;
+		h1#heroTagline {
+			color: white;
+			font-size: 48px;
+			margin-bottom: 24px;
+			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+		}
+		p#heroBlurb {
+			line-height: 28px;
+		}
+	}
+}
+div#marketplace {
+	display: none;
+}
+div#artists {
+	display: none;
+}
+div#consumers {
+	display: none;
+}
+div#partners {
+	display: none;
+}
+footer {
+	display: none;
+}
