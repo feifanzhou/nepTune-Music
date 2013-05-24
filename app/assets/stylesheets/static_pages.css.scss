@@ -123,11 +123,12 @@ div#signup {
 }
 h1#heroTagline {
 	color: $nepTuneOrange;
-	font-size: 48px;
+	font-size: 44px;
 	margin-bottom: 24px;
 	text-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25);
 }
 p#heroBlurb {
+	font-size: 18px;
 	line-height: 28px;
 	margin-bottom: 24px;
 }
@@ -317,6 +318,18 @@ div#team {
 }
 div#mission {
 	@include BackBottom;
+}
+
+div#news {
+	// Order of includes matter. We want the drop shadow on top
+	@include BackBottom;
+	@include BackTop;
+	div#press {
+		background-color: #333;
+		border-radius: 3px;
+		color: $white;
+		padding: 18px;
+	}
 }
 
 /***** Miscellaneous *****/
