@@ -1,22 +1,27 @@
-<%= render 'layouts/page_hero', tagline: "A farmer's market for a world of music" %>
-<div class='row' id='market'>
-	<div class='span5 offset1'>
-		<h2 class='BackHeader'>Market</h2>
-		<p class='BackBlurb'>nepTune is a marketplace where buyers and sellers get together. Discussions happen, ideas flow, and connections are formed. Great artists from around the world come together to share their work with a global audience. And unlike most stores, everyone has the opportunity to engage with the artists and makers. nepTune is a farmer's market for a world of music</p>
+<% provide(:title, "nepTune — Team") %>
+<%= render 'layouts/page_hero', tagline: "Liberate human creativity" %>
+<div class='row' id='team'>
+	<div class='container'>
+		<div class='span10 offset1' id='teamBlock'>
+			<h2 class='BackHeader'>Our team</h2>
+			<div id='gridBlock'>
+				<ul class='IconGrid' id='teamGrid'>
+					<li class='IconGridItem TeamGridItem' data-placement='top' data-trigger='hover' data-title='Feifan Zhou'><%= image_tag('team_feifan.png', size:"100x100", alt:'Feifan Zhou') %></li>
+					<li class='IconGridItem TeamGridItem' data-placement='top' data-trigger='hover' data-title='Robert Robertson'><%= image_tag('team_bobby.jpg', size:"100x100",  alt:'Robert C. Robertson III') %></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
-<div class='row' id='artists'>
-	<div class='span5 offset7'>
-		<h2 class='BackHeader'>Artists</h2>
-		<p class='BackBlurb'>Every artist has a story to tell. Every song has its inspiration. And for the first time, nepTune allows artists to tell that story. nepTune isn't just about amazing music &mdash; it's also about the people and experiences behind the music.</p>
-		<p class='BackBlurb'>nepTune's community and powerful social interactions connect artists with creatives from around the world. Album, music videos, and live events come together with a diverse range of skills, and nepTune allows artists to find the resources they need to create awesome music.</p>
-	</div>
-</div>
-<div class='row' id='consumers'>
-	<div class='span5 offset1'>
-		<h2 class='BackHeader'>Consumers</h2>
-		<p class='BackBlurb'>Great music is everywhere. And yet, it's often difficult to find, buried behind machine-processed songs, technical hurdles and advertisements. nepTune provides a beautiful, accessible platform to discover, share, and enjoy great music, without DRM, restrictions, or ads. By putting the focus on the art, everything on nepTune goes to supporting the artists who produce great music.</p>
-		<p class='BackBlurb'>Hear a song you like? Find an artist with a unique sound? With one tap or click, instantly share it with a friend, or let all your friends know. And when you do, the artist knows too. The next time you check out that artist, you might just find a special discount, VIP access, or new mix, just for you. So go ahead &mdash; discover, listen, share, and buy. And every time you do, you might just get a little something in return.</p>
+<div class='row' id='mission'>
+	<div class='container'>
+		<div class='span7 offset5'>
+			<h2 class='BackHeader'>Our mission</h2>
+			<p class='BackBlurb'>Humans are not machines. We live, breathe, and are capable of coming up with innovative new ideas and incredible works of art. But too often our environment stifles our ability to do great things. Tradition, regulation, and excessive commercialization have slowed the rate of progress in our world.</p>
+			<p class='BackBlurb'>nepTune's mission is to liberate human creativity. We're creating a world where people want to push boundaries. We're bringing people together from all over the world, so that great creations are shared with a global audience.</p>
+			<p class='BackBlurb'>We start with music because it's a creative field ravaged by bureaucracy and generic content. Music is an art that touches everyone, and for centuries it evolved through many different styles. Musicians dared to push boundaries and experiment with new sounds. But now we find music manufactured to be catchy, to generate the most sales. Instead, we're creating nepTune Music to bring the art back into music. It's an incredible first step into the future of the creative world.</p>
+			<p class='BackBlurb'>At nepTune Music, we envision a world where people are able to explore, create, and make a career out of it. We envision a world where people can discover and enjoy great music from around the globe, a world where artists deserve to make a living from the work. We envision a world where people have the freedom to do great things.</p>
+		</div>
 	</div>
 </div>
 <%= render 'layouts/footer' %>

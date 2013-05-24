@@ -79,7 +79,7 @@ p {
 }
 
 .row {
-	margin-left: 0 !important;
+	// margin-left: 0 !important;
 }
 
 a {
@@ -253,6 +253,13 @@ footer {
 }
 
 /***** Back pages *****/
+#headerLogo {
+	display: block;
+	height: 50px;
+	margin: 60px auto 20px auto;
+	text-align: center;
+	width: 259px;
+}
 div#pageHero {
 	background-color: $lightGrayBkg;
 	padding-bottom: 42px;
@@ -269,13 +276,47 @@ div#pageHero {
 p.BackBlurb {
 	font-size: 18px;
 }
-div#market {
+@mixin BackTop {
 	@include RowShadowTop;
 	padding-top: 32px;
 }
-div#consumers {
+@mixin BackBottom {
 	@include RowShadowBottom;
 	padding-bottom: 48px;
+}
+div#market {
+	@include BackTop;
+}
+div#consumers {
+	@include BackBottom;
+}
+
+div#team {
+	@include BackTop;
+	div#teamBlock {
+		// margin: auto;
+		div#gridBlock {
+			width: 100%;
+			ul.IconGrid {
+				list-style: none;
+				margin: auto;
+				padding: 0;
+				li.IconGridItem {
+					background-color: $lightGrayBkg;
+					box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.25);
+					cursor: pointer;
+					display: inline-block;
+					float: left;
+					height: 100px;
+					margin: 10px;
+					width: 100px;
+				}
+			}
+		}
+	}
+}
+div#mission {
+	@include BackBottom;
 }
 
 /***** Miscellaneous *****/

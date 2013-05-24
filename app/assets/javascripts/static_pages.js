@@ -9,6 +9,10 @@ $(function() {
   $('.AppearCard').appear({force_process: true});
 });
 
+$(function() {
+	$(".TeamGridItem").popover();
+});
+
 function getScrollXY() {
     var x = 0, y = 0;
     if( typeof( window.pageYOffset ) == 'number' ) {
