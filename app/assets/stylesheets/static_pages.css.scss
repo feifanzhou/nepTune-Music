@@ -15,7 +15,7 @@ $btnPrimaryBackgroundHighlight: $nepTuneOrange;
 /***** Typography *****/
 h1, h2, h3, h4, h5, h6 {
 	font-family: $PTSans;
-	line-height: 1.5em;
+	line-height: 1.15em;
 }
 
 h1 {
@@ -36,6 +36,23 @@ p {
 }
 
 /***** Shared styles *****/
+.AppearCard {
+	-webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  -webkit-transform:  translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  opacity: 0;
+}
+.AppearCard.appeared {
+	-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  opacity: 1;
+}
+
 .btn {
 	font-family: $Signika !important;
 	font-size: 1.25em;
@@ -63,20 +80,6 @@ p {
 
 .row {
 	margin-left: 0 !important;
-	-webkit-transition: all 400ms ease;
-  -moz-transition: all 400ms ease;
-  -o-transition: all 400ms ease;
-  transition: all 400ms ease;
-  -webkit-transform:  translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  opacity: 0;
-}
-.row.appeared {
-	-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  opacity: 1;
 }
 
 a {
@@ -116,42 +119,47 @@ div#signup {
 		position: absolute;
 		right: 18%;
 		top: 150px;
-		h1#heroTagline {
-			color: $nepTuneOrange;
-			font-size: 48px;
-			margin-bottom: 24px;
-			text-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25);
-		}
-		p#heroBlurb {
-			line-height: 28px;
-			margin-bottom: 24px;
-		}
-		form#new_user {
-			input#user_fname, input#user_lname {
-				width: 150px;
-			}
-			input#user_email {
-				margin-bottom: 9px;
-				width: 322px;
-			}
-			div#signupChecks {
-				// display: none;
-				margin-bottom: 4px;
-				top: -2px;
-			}
-			input#joinButton {
-				box-sizing: content-box;
-				padding: 9px 8px;
-				width: 322px;
-			}
-		}
 	}
 }
-@mixin HomeSectionShadow {
+h1#heroTagline {
+	color: $nepTuneOrange;
+	font-size: 48px;
+	margin-bottom: 24px;
+	text-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25);
+}
+p#heroBlurb {
+	line-height: 28px;
+	margin-bottom: 24px;
+}
+
+form#new_user {
+	input#user_fname, input#user_lname {
+		width: 150px;
+	}
+	input#user_email {
+		margin-bottom: 9px;
+		width: 322px;
+	}
+	div#signupChecks {
+		// display: none;
+		margin-bottom: 4px;
+		top: -2px;
+	}
+	input#joinButton {
+		box-sizing: content-box;
+		padding: 9px 8px;
+		width: 322px;
+	}
+}
+
+@mixin RowShadowBottom {
 	box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
 }
+@mixin RowShadowTop {
+	box-shadow: 0px -6px 10px rgba(0, 0, 0, 0.25);
+}
 .HomeSection {
-	@include HomeSectionShadow;
+	@include RowShadowBottom;
 	padding-bottom: 48px;
 	text-align: center;
 	z-index: 1;
@@ -159,12 +167,16 @@ div#signup {
 		color: $nepTuneTeal;
 	}
 }
+p.HomeMore {
+	font-weight: 700;
+	margin-top: 42px;
+}
 div#marketplace {
 	background-image: image-url('wallhash.png');
-	box-shadow: 0px -6px 10px rgba(0, 0, 0, 0.25);
+	@include RowShadowTop;
 	// margin-top: 900px;
 }
-div#artists {
+div#h_artists {
 	background-color: #333;
 	h1 {
 		color: $white;
@@ -174,7 +186,7 @@ div#artists {
 		letter-spacing: 0.02em;
 	}
 }
-div#consumers {
+div#h_consumers {
 	background-image: image-url('wallhash.png');
 }
 div#partners {
@@ -210,7 +222,7 @@ div#aboutus {
 	}
 }
 footer {
-	@include HomeSectionShadow;
+	@include RowShadowBottom;
 	background-color: #333;
 	color: $white;
 	padding: 30px;
@@ -238,6 +250,32 @@ footer {
 		text-align: center;
 		width: 259px;
 	}
+}
+
+/***** Back pages *****/
+div#pageHero {
+	background-color: $lightGrayBkg;
+	padding-bottom: 42px;
+	div#heroSignup {
+		margin-top: 52px;
+	}
+}
+.BackHeader {
+	color: $nepTuneTeal;
+	font-size: 32px;
+	font-weight: 400;
+	margin: 16px 0 8px 0;
+}
+p.BackBlurb {
+	font-size: 18px;
+}
+div#market {
+	@include RowShadowTop;
+	padding-top: 32px;
+}
+div#consumers {
+	@include RowShadowBottom;
+	padding-bottom: 48px;
 }
 
 /***** Miscellaneous *****/

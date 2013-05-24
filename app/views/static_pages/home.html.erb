@@ -1,61 +1,41 @@
 <% provide(:title, "nepTune Music") %>
-<div class='row hero-unit' id='signup'>
+<div class='row hero-unit AppearCard' id='signup'>
 	<div class='' id='homeRight'>
 		<h1 id='heroTagline'><%= @tagline %></h1>
 		<p id='heroBlurb'>
 			nepTune will be launching later this year.<br />
 			Sign up for exclusive access to our platform.
 		</p>
-		<%= form_for(@user) do |f| %>
-			<%= f.label :fname %>
-			<%= f.text_field :fname, placeholder: "First name" %>
-			
-			<%= f.label :lname %>
-			<%= f.text_field :lname, placeholder: "Last name" %>
-			
-			<br />
-			
-			<%= f.label :email %>
-			<%= f.email_field :email, placeholder: "Email address" %>
-			
-			<div id='signupChecks'>
-				<%= f.label :willingToBetaTest %>
-				<%= f.check_box :willingToBetaTest %><span class='CheckboxLabel'>I'm willing to beta test</span>
-			
-				<%= f.label :isArtist %>
-				<%= f.check_box :isArtist %><span class='CheckboxLabel'>I'm an artist</span>
-			</div>
-			
-			<br />
-			
-			<%= f.submit "Join", class: "btn btn-large btn-primary", id: "joinButton" %>
-		<% end %>
+		<%= render partial: 'shared/hero_signup' %>
 	</div>
 </div>
-<div class='row HomeSection' id='marketplace'>
+<div class='row HomeSection AppearCard' id='marketplace'>
 	<h1>Marketplace</h1>
 	<p>
 		nepTune is a meeting place for artists and consumers.<br />
 		A place where ideas are developed, communication flow, and music is enjoyed.<br />
 		It's a farmer's market for music around the world.
 	</p>
+	<p class='HomeMore'><%= link_to "Find out more", market_url %></p>
 </div>
-<div class='row HomeSection' id='artists'>
+<div class='row HomeSection AppearCard' id='h_artists'>
 	<h1>Artists</h1>
 	<p>
 		Music is made by people, not machines.<br />
 		nepTune gives every artist the opportunity to tell their story.
 	</p>
+	<p class='HomeMore'><%= link_to "Find out more", market_url(anchor: "artists") %></p>
 </div>
-<div class='row HomeSection' id='consumers'>
+<div class='row HomeSection AppearCard' id='h_consumers'>
 	<h1>Consumers</h1>
 	<p>
 		nepTune gives you access to the best music from around the world.<br />
 		Support the artists you love, and become their #1 fan.<br />
 		No ads, no limits. Just music. Everywhere.
 	</p>
+	<p class='HomeMore'><%= link_to "Find out more", market_url(anchor: "consumers") %></p>
 </div>
-<div class='row HomeSection' id='partners'>
+<div class='row HomeSection AppearCard' id='partners'>
 	<h1>Partners</h1>
 	<p>
 		We're looking for talented artists and enthusiastic consumers<br />
@@ -63,7 +43,7 @@
 		Sign up <span class='link' onclick="scrollToPartnerSignup()">above</span> and we'll let you know when nepTune is ready!
 	</p>
 </div>
-<div class='row HomeSection' id='aboutus'>
+<div class='row HomeSection AppearCard' id='aboutus'>
 	<h1>About Us</h1>
 	<div class='span4 CenterColumn' id='aboutMission'>
 		<h2>Our Mission</h2>
@@ -84,31 +64,5 @@
 		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary' id='feedbackSurvey'>Feedback survey</button></a>
 	</div>
 </div>
-<footer class='row'>
-	<ul class='span2 offset2' id='footerProduct'>
-		<li class='FooterColHeading'>nepTune</li>
-		<li><%= link_to "Marketplace", market_url %></li>
-		<li><%= link_to "For artists", market_url(anchor: "artists") %></li>
-		<li><%= link_to "For consumers", market_url(anchor: "consumers") %></li>
-	</ul>
-	<ul class='span2' id='footerAbout'>
-		<li class='FooterColHeading'>About</li>
-		<li><%= link_to "Our mission", team_url(anchor: "mission") %></li>
-		<li><%= link_to "Our team", team_url %></li>
-		<li><%= link_to "Press and news", news_url %></li>
-	</ul>
-	<ul class='span2' id='footerConnect'>
-		<li class='FooterColHeading'>Connect</li>
-		<li><%= link_to "Facebook", "http://fb.com/neptunetech" %></li>
-		<li><%= link_to "Twitter", "http://www.twitter.com/neptuneTech" %></li>
-		<li><%= link_to "Careers", jobs_url %></li>
-	</ul>
-	<ul class='span2' id='footerSupport'>
-		<li class='FooterColHeading'>Support</li>
-		<li><%= link_to "Help and contact", contact_url %></li>
-		<li><%= link_to "Beta access", beta_url %></li>
-		<li><%= link_to "Terms", terms_url %></li>
-	</ul>
-	<%= image_tag('logo.png', size:"259x50", id:'footerLogo', alt:'nepTune') %>
-</footer>
+<%= render 'layouts/footer' %>
 <script type="text/javascript">setHeroHeight()</script>

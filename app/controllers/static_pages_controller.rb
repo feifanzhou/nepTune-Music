@@ -7,6 +7,7 @@ class StaticPagesController < ApplicationController
   end
 
   def market
+    @user = User.new
   end
 
   def team

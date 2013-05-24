@@ -1,2 +1,22 @@
-<h1>StaticPages#about</h1>
-<p>Find me in app/views/static_pages/about.html.erb</p>
+<%= render 'layouts/page_hero', tagline: "A farmer's market for a world of music" %>
+<div class='row' id='market'>
+	<div class='span5 offset1'>
+		<h2 class='BackHeader'>Market</h2>
+		<p class='BackBlurb'>nepTune is a marketplace where buyers and sellers get together. Discussions happen, ideas flow, and connections are formed. Great artists from around the world come together to share their work with a global audience. And unlike most stores, everyone has the opportunity to engage with the artists and makers. nepTune is a farmer's market for a world of music</p>
+	</div>
+</div>
+<div class='row' id='artists'>
+	<div class='span5 offset7'>
+		<h2 class='BackHeader'>Artists</h2>
+		<p class='BackBlurb'>Every artist has a story to tell. Every song has its inspiration. And for the first time, nepTune allows artists to tell that story. nepTune isn't just about amazing music &mdash; it's also about the people and experiences behind the music.</p>
+		<p class='BackBlurb'>nepTune's community and powerful social interactions connect artists with creatives from around the world. Album, music videos, and live events come together with a diverse range of skills, and nepTune allows artists to find the resources they need to create awesome music.</p>
+	</div>
+</div>
+<div class='row' id='consumers'>
+	<div class='span5 offset1'>
+		<h2 class='BackHeader'>Consumers</h2>
+		<p class='BackBlurb'>Great music is everywhere. And yet, it's often difficult to find, buried behind machine-processed songs, technical hurdles and advertisements. nepTune provides a beautiful, accessible platform to discover, share, and enjoy great music, without DRM, restrictions, or ads. By putting the focus on the art, everything on nepTune goes to supporting the artists who produce great music.</p>
+		<p class='BackBlurb'>Hear a song you like? Find an artist with a unique sound? With one tap or click, instantly share it with a friend, or let all your friends know. And when you do, the artist knows too. The next time you check out that artist, you might just find a special discount, VIP access, or new mix, just for you. So go ahead &mdash; discover, listen, share, and buy. And every time you do, you might just get a little something in return.</p>
+	</div>
+</div>
+<%= render 'layouts/footer' %>

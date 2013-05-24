@@ -1,0 +1,27 @@
+<footer class='row'>
+	<ul class='span2 offset2' id='footerProduct'>
+		<li class='FooterColHeading'>nepTune</li>
+		<li><%= link_to "Marketplace", market_url %></li>
+		<li><%= link_to "For artists", market_url(anchor: "artists") %></li>
+		<li><%= link_to "For consumers", market_url(anchor: "consumers") %></li>
+	</ul>
+	<ul class='span2' id='footerAbout'>
+		<li class='FooterColHeading'>About</li>
+		<li><%= link_to "Our mission", team_url(anchor: "mission") %></li>
+		<li><%= link_to "Our team", team_url %></li>
+		<li><%= link_to "Press and news", news_url %></li>
+	</ul>
+	<ul class='span2' id='footerConnect'>
+		<li class='FooterColHeading'>Connect</li>
+		<li><%= link_to "Facebook", "http://fb.com/neptunetech" %></li>
+		<li><%= link_to "Twitter", "http://www.twitter.com/neptuneTech" %></li>
+		<li><%= link_to "Careers", jobs_url %></li>
+	</ul>
+	<ul class='span2' id='footerSupport'>
+		<li class='FooterColHeading'>Support</li>
+		<li><%= link_to "Help and contact", contact_url %></li>
+		<li><%= link_to "Beta access", beta_url %></li>
+		<li><%= link_to "Terms", terms_url %></li>
+	</ul>
+	<%= image_tag('logo.png', size:"259x50", id:'footerLogo', alt:'nepTune') %>
+</footer>

@@ -2,11 +2,11 @@
    All this logic will automatically be available in application.js. */
 
 $(function() {
-  $(document.body).on('appear', '.row', function(e, $affected) {
+  $(document.body).on('appear', '.AppearCard', function(e, $affected) {
     // add class called “appeared” for each appeared element
     $(this).addClass("appeared");
   });
-  $('.row').appear({force_process: true});
+  $('.AppearCard').appear({force_process: true});
 });
 
 function getScrollXY() {

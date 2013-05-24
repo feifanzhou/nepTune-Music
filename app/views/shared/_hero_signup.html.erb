@@ -1,0 +1,24 @@
+<%= form_for(@user) do |f| %>
+	<%= f.label :fname %>
+	<%= f.text_field :fname, placeholder: "First name" %>
+	
+	<%= f.label :lname %>
+	<%= f.text_field :lname, placeholder: "Last name" %>
+	
+	<br />
+	
+	<%= f.label :email %>
+	<%= f.email_field :email, placeholder: "Email address" %>
+	
+	<div id='signupChecks'>
+		<%= f.label :willingToBetaTest %>
+		<%= f.check_box :willingToBetaTest %><span class='CheckboxLabel'>I'm willing to beta test</span>
+	
+		<%= f.label :isArtist %>
+		<%= f.check_box :isArtist %><span class='CheckboxLabel'>I'm an artist</span>
+	</div>
+	
+	<br />
+	
+	<%= f.submit "Join", class: "btn btn-large btn-primary", id: "joinButton" %>
+<% end %>
