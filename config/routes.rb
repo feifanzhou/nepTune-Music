@@ -1,4 +1,10 @@
 NeptuneMusic::Application.routes.draw do
+  get "users/new"
+
+  get "users/create"
+
+  resources :users
+  
   root to: 'static_pages#home'
   
   match '/market', to: 'static_pages#market'

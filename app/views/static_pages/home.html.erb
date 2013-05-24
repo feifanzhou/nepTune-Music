@@ -1,25 +1,90 @@
 <% provide(:title, "nepTune Music") %>
 <div class='row hero-unit' id='signup'>
-	<div class='offset5' id='homeRight'>
+	<div class='' id='homeRight'>
 		<h1 id='heroTagline'><%= @tagline %></h1>
 		<p id='heroBlurb'>
 			nepTune will be launching later this year.<br />
 			Sign up for exclusive access to our platform.
 		</p>
+		<%= form_for(@user) do |f| %>
+			<%= f.label :fname %>
+			<%= f.text_field :fname, placeholder: "First name" %>
+			
+			<%= f.label :lname %>
+			<%= f.text_field :lname, placeholder: "Last name" %>
+			
+			<br />
+			
+			<%= f.label :email %>
+			<%= f.email_field :email, placeholder: "Email address" %>
+			
+			<div id='signupChecks'>
+				<%= f.label :willingToBetaTest %>
+				<%= f.check_box :willingToBetaTest %><span class='CheckboxLabel'>I'm willing to beta test</span>
+			
+				<%= f.label :isArtist %>
+				<%= f.check_box :isArtist %><span class='CheckboxLabel'>I'm an artist</span>
+			</div>
+			
+			<br />
+			
+			<%= f.submit "Join", class: "btn btn-large btn-primary", id: "joinButton" %>
+		<% end %>
 	</div>
 </div>
-<div class='row' id='marketplace'>
-	Marketplace
+<div class='row HomeSection' id='marketplace'>
+	<h1>Marketplace</h1>
+	<p>
+		nepTune is a meeting place for artists and consumers.<br />
+		A place where ideas are developed, communication flow, and music is enjoyed.<br />
+		It's a farmer's market for music around the world.
+	</p>
 </div>
-<div class='row' id='artists'>
-	Artists
+<script type="text/javascript">setHeroHeight()</script>
+<div class='row HomeSection' id='artists'>
+	<h1>Artists</h1>
+	<p>
+		Music is made by people, not machines.<br />
+		nepTune gives every artist the opportunity to tell their story.
+	</p>
 </div>
-<div class='row' id='consumers'>
-	Consumers
+<div class='row HomeSection' id='consumers'>
+	<h1>Consumers</h1>
+	<p>
+		nepTune gives you access to the best music from around the world.<br />
+		Support the artists you love, and become their #1 fan.<br />
+		No ads, no limits. Just music. Everywhere.
+	</p>
 </div>
-<div class='row' id='partners'>
-	Partners
+<div class='row HomeSection' id='partners'>
+	<h1>Partners</h1>
+	<p>
+		We're looking for talented artists and enthusiastic consumers<br />
+		to be the first community on nepTune.<br />
+		Sign up <span class='link' onclick="scrollToPartnerSignup()">above</span> and we'll let you know when nepTune is ready!
+	</p>
+</div>
+<div class='row HomeSection' id='aboutus'>
+	<h1>About Us</h1>
+	<div class='span4 CenterColumn' id='aboutMission'>
+		<h2>Our Mission</h2>
+		<p>nepTune's mission is to liberate human creativity. We're creating a world where people are no longer content to push papers all day, a world of people who dare to push boundaries. We're turning traditional business models inside-out by creating an incredible community that helps artists create amazing work.</p>
+	</div>
+	<div class='span4 CenterColumn' id='aboutTeam'>
+		<h2>Our Team</h2>
+		<p>nepTune's team is a talented group of people passionate about making an impact on our world.</p>
+		<p><strong>Feifan Zhou (Co-Founder)</strong><br /> is studying Computer Science and Entrepreneurship at Cornell University.</p>
+		<p><strong>Robert Robertson III (Co-Founder)</strong><br /> is studying Music and Entrepreneurship at High Point University.</p>
+	</div>
+	<div class='span4 CenterColumn' id='aboutContact'>
+		<h2>Contact Us</h2>
+		<p>The nepTune team is hard at work building the future of creativity. Please get in touch with us if you have questions about nepTune or impromevements that would make our product better.</p>
+		<p id='contactEmail'><a href="mailto:future@neptunemusic.co">future@neptunemusic.co</a></p>
+		<p id='contactFB'><a href='http://fb.com/neptunetech'>fb.com/neptunetech</a></p>
+		<p id='contactTwitter'><a href='http://twitter.com/neptuneTech'>@neptuneTech</a></p>
+		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary'>Feedback survey</button></a>
+	</div>
 </div>
 <footer class='row'>
-	Footer
+	<h1>Footer</h1>
 </footer>

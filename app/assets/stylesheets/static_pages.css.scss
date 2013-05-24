@@ -2,49 +2,214 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "bootstrap";
 @import "fonts";
 @import "variables";
 
+/***** Custom Bootstrap variables *****/
+$btnPrimaryBackground: lighten($nepTuneOrange, 15%);
+$btnPrimaryBackgroundHighlight: $nepTuneOrange;
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
 /***** Typography *****/
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'PT Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	font-family: $PTSans;
+	line-height: 1.5em;
+}
+
+h1 {
+	font-size: 64px;
+	margin: 48px 0;
+}
+
+h2 {
+	font-size: 48px;
+	margin: 36px 0;
 }
 
 p {
-	font-family: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+	font-family: $Lato;
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 1.5em;
+}
+
+/***** Shared styles *****/
+.CheckboxLabel {
+	display: inline-block;
+	font-family: $Lato;
+	font-size: 16px;
+	line-height: 22px;
+	margin: 5px 10px 0 5px;
+	position: relative;
+	top: 3px;
+}
+
+.link {
+	color: $nepTuneBlue;
+	text-decoration: none;
+	&:hover {
+		color: $nepTuneBlue;
+		cursor: pointer;
+		text-decoration: none;
+	}
+}
+
+.row {
+	margin-left: 0 !important;
+	-webkit-transition: all 400ms ease;
+  -moz-transition: all 400ms ease;
+  -o-transition: all 400ms ease;
+  transition: all 400ms ease;
+  -webkit-transform:  translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+  opacity: 0;
+}
+.row.appeared {
+	-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+  opacity: 1;
+}
+
+a {
+	@extend link;
+	&:hover {
+		text-decoration: none;
+	}
+	&:visited {
+		color: $nepTuneBlue;
+		text-decoration: none;
+	}
+}
+
+input[type='text'], input[type='password'], input[type='email'] {
+	border-radius: 3px;
+	font-family: $Lato;
+	font-size: 18px;
+	font-weight: 400;
+	padding: 8px;
+}
+input[type='submit'] {
+	font-family: $Lato;
+	font-weight: bold;
 }
 
 /***** Home page *****/
 div#signup {
 	background-color: $lightGrayBkg;
-	height: 960px;
-	min-height: 720px;
+	margin-bottom: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: -2;
 	div#homeRight {
-		margin-top: 20%;
+		position: absolute;
+		right: 18%;
+		top: 150px;
 		h1#heroTagline {
-			color: white;
+			color: $nepTuneOrange;
 			font-size: 48px;
 			margin-bottom: 24px;
-			text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+			text-shadow: 0 -1px 1px rgba(255, 255, 255, 0.25);
 		}
 		p#heroBlurb {
 			line-height: 28px;
+			margin-bottom: 24px;
+		}
+		form#new_user {
+			input#user_fname, input#user_lname {
+				width: 150px;
+			}
+			input#user_email {
+				margin-bottom: 9px;
+				width: 322px;
+			}
+			div#signupChecks {
+				// display: none;
+				margin-bottom: 4px;
+				top: -2px;
+			}
+			input#joinButton {
+				box-sizing: content-box;
+				padding: 9px 8px;
+				width: 322px;
+			}
 		}
 	}
 }
+.HomeSection {
+	box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+	padding-bottom: 48px;
+	text-align: center;
+	z-index: 1;
+	h1 {
+		color: $nepTuneTeal;
+	}
+}
 div#marketplace {
-	display: none;
+	background-image: image-url('wallhash.png');
+	box-shadow: 0px -6px 10px rgba(0, 0, 0, 0.25);
+	// margin-top: 900px;
 }
 div#artists {
-	display: none;
+	background-color: #333;
+	h1 {
+		color: $white;
+	}
+	p {
+		color: $white;
+		letter-spacing: 0.02em;
+	}
 }
 div#consumers {
-	display: none;
+	background-image: image-url('wallhash.png');
 }
 div#partners {
-	display: none;
+	background-color: #333;
+	h1 {
+		color: $white;
+	}
+	p {
+		color: $white;
+		letter-spacing: 0.02em;
+	}
+}
+div#aboutus {
+	background-image: image-url('wallhash.png');
+	div.CenterColumn {
+		border-right: 1px solid #ccc;
+		box-sizing: border-box;
+		display: inline-block;
+		float: none;
+		height: 480px;
+		margin: 0 auto;
+		padding: 0 12px;
+		vertical-align: top;
+		p {
+			font-size: 18px;
+		}
+	}
+	div#aboutContact {
+		border-right: none;
+	}
 }
 footer {
-	display: none;
+	background-color: #333;
+	color: $white;
+	z-index: -1;
+}
+
+/***** Miscellaneous *****/
+.debug_dump {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	clear: both;
+	float: left;
+	width: 100%;
+	margin-top: 45px;
+	z-index: 1;
 }

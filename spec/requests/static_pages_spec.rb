@@ -11,6 +11,26 @@ describe "Static pages" do
     it { should have_selector('h1', id: "heroTagline") }
     it { should have_selector('p', id: "heroBlurb") }
     
+    describe "signup" do
+      let(:submit) { "Join" }
+      
+      describe "with blank information" do
+        it "should not create a user" do
+          expect { click_button submit }.not_to change(User, :count)
+        end
+      end
+      describe "with valid information" do
+        before do
+          fill_in 'user_fname', with: "John"
+          fill_in 'user_lname', with: "Smith"
+          fill_in 'user_email', with: 'john@example.com'
+        end
+        it "should create a user" do
+          expect { click_button submit }.to change(User, :count).by(1)
+        end
+      end
+    end
+    
     it { should have_selector('div', id: "marketplace") }
     it { should have_selector('div', id: "artists") }
     it { should have_selector('div', id: "consumers") }

@@ -1,5 +1,85 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                :integer          not null, primary key
+#  fname             :string(255)
+#  lname             :string(255)
+#  email             :string(255)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  willingToBetaTest :boolean
+#  isBetaTester      :boolean
+#  isArtist          :boolean
+#
+
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @user = User.new(fname: 'John', lname: 'Smith', email: 'john@example.com') }
+  
+  subject { @user }
+  
+  it { should respond_to(:fname) }
+  it { should respond_to(:lname) }
+  it { should respond_to(:email) }
+  
+  it { should be_valid }
+  
+  describe "first name" do
+    describe "is not present" do
+      before { @user.fname = " " }
+      it { should_not be_valid }
+    end
+    describe "is too long" do
+      before { @user.fname = 'a' * 51 }
+      it { should_not be_valid }
+    end
+  end
+  
+  describe "last name" do
+    describe "is not present" do
+      before { @user.lname = " " }
+      it { should_not be_valid }
+    end
+    describe "is too long" do
+      before { @user.lname = 'a' * 51 }
+      it { should_not be_valid }
+    end
+  end
+  
+  describe "email" do
+    describe "is not present" do
+      before { @user.email = " " }
+      it { should_not be_valid }
+    end
+    describe "is not valid" do
+      it "should be invalid" do
+        addresses = %w[user@foo,com user_at_foo.org example.user@foo.
+                       foo@bar_baz.com foo@bar+baz.com]
+        addresses.each do |invalid_address|
+          @user.email = invalid_address
+          @user.should_not be_valid
+        end      
+      end
+    end
+    describe "is valid" do
+      it "should be valid" do
+        addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+        addresses.each do |valid_address|
+          @user.email = valid_address
+          @user.should be_valid
+        end      
+      end
+    end
+    describe "is already taken" do
+      before do
+        user_same_email = @user.dup
+        user_same_email.email = @user.email.upcase
+        user_same_email.save
+      end
+      it { should_not be_valid }
+    end
+  end
+  
 end
