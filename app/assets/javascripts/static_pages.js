@@ -33,6 +33,9 @@ function setHeroHeight() {
 	var heroHeight = cHeight - 155;
 	$("#signup").css('height', (heroHeight + 'px'));
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
+	
+	// Set margin on footer to reveal signup
+	$("footer").css('margin-bottom', (heroHeight - 20 + 'px'));
 }
 
 function scrollToTop() {
@@ -44,3 +47,13 @@ function scrollToPartnerSignup() {
 	scrollToTop();
 	return false;
 }
+
+function onResize() {
+	setHeroHeight();
+}
+
+var resizeTimer;
+$(window).resize(function() {
+	clearTimeout(resizeTimer);
+	resizeTimer = setTimeout(onResize, 50);
+})

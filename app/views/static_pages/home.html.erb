@@ -40,7 +40,6 @@
 		It's a farmer's market for music around the world.
 	</p>
 </div>
-<script type="text/javascript">setHeroHeight()</script>
 <div class='row HomeSection' id='artists'>
 	<h1>Artists</h1>
 	<p>
@@ -82,9 +81,34 @@
 		<p id='contactEmail'><a href="mailto:future@neptunemusic.co">future@neptunemusic.co</a></p>
 		<p id='contactFB'><a href='http://fb.com/neptunetech'>fb.com/neptunetech</a></p>
 		<p id='contactTwitter'><a href='http://twitter.com/neptuneTech'>@neptuneTech</a></p>
-		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary'>Feedback survey</button></a>
+		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary' id='feedbackSurvey'>Feedback survey</button></a>
 	</div>
 </div>
 <footer class='row'>
-	<h1>Footer</h1>
+	<ul class='span2 offset2' id='footerProduct'>
+		<li class='FooterColHeading'>nepTune</li>
+		<li>Marketplace</li>
+		<li>For artists</li>
+		<li>For consumers</li>
+	</ul>
+	<ul class='span2' id='footerAbout'>
+		<li class='FooterColHeading'>About</li>
+		<li>Our mission</li>
+		<li>Our team</li>
+		<li>Press and news</li>
+	</ul>
+	<ul class='span2' id='footerConnect'>
+		<li class='FooterColHeading'>Connect</li>
+		<li>Facebook</li>
+		<li>Twitter</li>
+		<li>Careers</li>
+	</ul>
+	<ul class='span2' id='footerSupport'>
+		<li class='FooterColHeading'>Support</li>
+		<li>Help and contact</li>
+		<li>Beta Access</li>
+		<li>Terms</li>
+	</ul>
+	<%= image_tag('logo.png', size:"259x50", id:'footerLogo', alt:'nepTune') %>
 </footer>
+<script type="text/javascript">setHeroHeight()</script>
