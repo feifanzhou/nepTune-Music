@@ -1,21 +1,16 @@
 NeptuneMusic::Application.routes.draw do
-  get "users/new"
-
-  get "users/create"
-
   resources :users
   
   root to: 'static_pages#home'
   
-  match '/market', to: 'static_pages#market'
-  match '/about', to: 'static_pages#about'
+  match '/market', to: 'static_pages#market', as: :market
+  match '/team', to: 'static_pages#team', as: :team
+  match '/news', to: 'static_pages#news', as: :news
+  match '/jobs', to: 'static_pages#jobs', as: :jobs
+  match '/contact', to: 'static_pages#contact', as: :contact
+  match '/beta', to: 'static_pages#beta', as: :beta
+  match '/terms', to: 'static_pages#terms', as: :terms
   
-  get "static_pages/home"
-
-  get "static_pages/market"
-
-  get "static_pages/about"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -37,8 +37,8 @@ describe "Static pages" do
     it { should have_selector('div', id: "partners") }
     
     it { should have_selector('footer') }
-    ["Marketplace", "Artists", "Consumers", "Mission", "Team", "News", "Facebook", "Twitter", "Jobs", "Help", "Beta Access", "Terms"].each do |t|
-      it { should have_selector('li', text: t) }
+    ["Marketplace", "For artists", "For consumers", "Our mission", "Our team", "Press and news", "Facebook", "Twitter", "Careers", "Help and contact", "Beta access", "Terms"].each do |t|
+      it { should have_selector('a', text: t) }
     end
   end
 end

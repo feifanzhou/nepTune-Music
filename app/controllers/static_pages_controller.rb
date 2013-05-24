@@ -9,6 +9,21 @@ class StaticPagesController < ApplicationController
   def market
   end
 
-  def about
+  def team
+  end
+  
+  def news
+  end
+  
+  def jobs
+  end
+  
+  def contact
+  end
+  
+  def beta
+  end
+  
+  def terms
   end
 end

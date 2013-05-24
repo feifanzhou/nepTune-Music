@@ -226,6 +226,9 @@ footer {
 			&.FooterColHeading {
 				font-weight: 600;
 			}
+			a {
+				color: $white !important;
+			}
 		}
 	}
 	#footerLogo {
