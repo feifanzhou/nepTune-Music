@@ -34,7 +34,7 @@ function getScrollXY() {
 function setHeroHeight() {
 	var cHeight = window.innerHeight;
 	console.log(window.innerHeight);
-	var heroHeight = cHeight;
+	var heroHeight = cHeight - 80;
 	$("#signup").css('height', (heroHeight + 'px'));
 	if (heroHeight < 430)
 		heroHeight = 430;
