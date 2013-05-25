@@ -3,10 +3,16 @@
 	<div class='' id='homeRight'>
 		<h1 id='heroTagline'><%= @tagline %></h1>
 		<p id='heroBlurb'>
-			nepTune will be launching later this year.<br />
-			Sign up for exclusive access to our platform.
+			<% if cookies[:new_user] %>
+				<%= @user.fname %>, thanks for signing up!<br />
+				We'll let you know when nepTune is ready.<br />
+				<span class='WrongLogin'><%= link_to "I'm not #{ @user.fname }", logout_url %></span>
+			<% else %>
+				nepTune will be launching later this year.<br />
+				Sign up for exclusive access to our platform.
+			<% end%>
 		</p>
-		<%= render partial: 'shared/hero_signup' %>
+		<%= render 'shared/hero_signup' %>
 	</div>
 </div>
 <div class='row HomeSection AppearCard' id='marketplace'>
@@ -64,7 +70,7 @@
 		<p id='contactFB'><a href='http://fb.com/neptunetech'>fb.com/neptunetech</a></p>
 		<p id='contactTwitter'><a href='http://twitter.com/neptuneTech'>@neptuneTech</a></p>
 		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary' id='feedbackSurvey'>Feedback survey</button></a>
-		<p class='HomeMore'><%= link_to "Find out more", contact_url %></p>
+		<p class='HomeMore'><%= link_to "See more options", contact_url %></p>
 	</div>
 </div>
 <%= render 'layouts/footer' %>

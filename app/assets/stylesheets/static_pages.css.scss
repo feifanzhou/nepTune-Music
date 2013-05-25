@@ -37,10 +37,10 @@ p {
 
 /***** Shared styles *****/
 .AppearCard {
-	-webkit-transition: all 400ms ease;
-  -moz-transition: all 400ms ease;
-  -o-transition: all 400ms ease;
-  transition: all 400ms ease;
+	-webkit-transition: all 400ms ease 0s;
+  -moz-transition: all 400ms ease 0s;
+  -o-transition: all 400ms ease 0s;
+  transition: all 400ms ease 0s;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility:    hidden;
 	-ms-backface-visibility:     hidden;
@@ -64,6 +64,12 @@ p {
 .btn {
 	font-family: $Signika !important;
 	font-size: 1.25em;
+	a {
+		color: inherit;
+		&:visited {
+			color: inherit;
+		}
+	}
 }
 
 .CheckboxLabel {
@@ -74,6 +80,18 @@ p {
 	margin: 5px 10px 0 5px;
 	position: relative;
 	top: 3px;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
 }
 
 .link {
@@ -187,7 +205,7 @@ p.HomeMore {
 	margin-top: 42px;
 }
 div#marketplace {
-	background-image: image-url('wallhash.png');
+	background-image: $Wallhash;
 	@include RowShadowTop;
 	// margin-top: 900px;
 }
@@ -202,7 +220,7 @@ div#h_artists {
 	}
 }
 div#h_consumers {
-	background-image: image-url('wallhash.png');
+	background-image: $Wallhash;
 }
 div#partners {
 	background-color: #333;
@@ -228,7 +246,7 @@ div.CenterColumn {
 	}
 }
 div#aboutus {
-	background-image: image-url('wallhash.png');
+	background-image: $Wallhash;
 	div.AboutColumn {
 		height: 530px;
 		// padding: 20px auto;
@@ -415,6 +433,11 @@ div.modal-header {
 	li {
 		margin-bottom: 0.25em;
 	}
+}
+
+div#beta {
+	@include BackBottom;
+	background-image: $Wallhash;
 }
 
 /***** Miscellaneous *****/

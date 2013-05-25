@@ -14,7 +14,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :fname, :lname, :willingToBetaTest
+  attr_accessible :email, :fname, :lname, :willingToBetaTest, :isArtist
   
   before_save { |user| user.email = email.downcase }
   

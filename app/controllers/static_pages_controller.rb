@@ -1,36 +1,51 @@
 class StaticPagesController < ApplicationController
+  def set_user
+    if cookies[:new_user]
+      @user = User.find_by_id(cookies[:new_user])
+    elsif session[:new_user]
+      @user = session[:new_user]
+    else
+      @user = User.new
+    end
+    
+    reset_session
+  end
+  
   def home
     @taglines = ["A tapestry of sound", "The art of music", "Language of the soul", "Let's make music", "A world of music"]
     @tagline = @taglines[rand(@taglines.length)]
     
-    @user = User.new
+    set_user
+    logger.debug "Static pages user: #{ @user }"
+    logger.debug "Static pages user error: #{ @user.errors.full_messages }"
+    # @has_new_user = session[:did_create_new_user]
   end
 
   def market
-    @user = User.new
+    set_user
   end
 
   def team
-    @user = User.new
+    set_user
   end
   
   def news
-    @user = User.new
+    set_user
   end
   
   def careers
-    @user = User.new
+    set_user
   end
   
   def contact
-    @user = User.new
+    set_user
   end
   
   def beta
-    @user = User.new
+    set_user
   end
   
   def terms
-    @user = User.new
+    set_user
   end
 end

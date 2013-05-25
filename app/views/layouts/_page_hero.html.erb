@@ -4,8 +4,14 @@
 		<div class='span5' id='heroText'>
 			<h1 id='heroTagline'><%= tagline %></h1>
 			<p id='heroBlurb'>
-				nepTune will be launching later this year.<br />
-				Sign up for exclusive access to our platform.
+				<% if cookies[:new_user] %>
+					<%= @user.fname %>, thanks for signing up!<br />
+					We'll let you know when nepTune is ready.<br />
+					<span class='WrongLogin'><%= link_to "I'm not #{ @user.fname }", logout_url %></span>
+				<% else %>
+					nepTune will be launching later this year.<br />
+					Sign up for exclusive access to our platform.
+				<% end%>
 			</p>
 		</div>
 		<div class='span5 offset1' id='heroSignup'>

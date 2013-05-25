@@ -1,4 +1,11 @@
 NeptuneMusic::Application.routes.draw do
+  get "login/destroy"
+
+  get "login_controller/destroy"
+  
+  match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
+  # post 'users/make-beta-tester' => 'users#make_beta_tester', as: :make_beta_tester
+
   resources :users
   
   root to: 'static_pages#home'
@@ -10,6 +17,8 @@ NeptuneMusic::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', as: :contact
   match '/beta', to: 'static_pages#beta', as: :beta
   match '/terms', to: 'static_pages#terms', as: :terms
+  
+  match '/logout', to: 'login_#destroy', as: :logout
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

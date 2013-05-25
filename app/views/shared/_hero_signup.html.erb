@@ -1,4 +1,7 @@
+<%= render 'shared/error_messages' %>
+<% @user = User.new %>
 <%= form_for(@user) do |f| %>
+	
 	<%= f.label :fname %>
 	<%= f.text_field :fname, placeholder: "First name" %>
 	
@@ -12,7 +15,12 @@
 	
 	<div id='signupChecks'>
 		<%= f.label :willingToBetaTest %>
-		<%= f.check_box :willingToBetaTest %><span class='CheckboxLabel'>I'm willing to beta test</span>
+		<% if (defined?(wants_to_beta_test) && wants_to_beta_test) %>
+			<%= f.check_box :willingToBetaTest, checked: true %>
+		<% else %>
+			<%= f.check_box :willingToBetaTest %>
+		<% end %>
+		<span class='CheckboxLabel'>I'm willing to beta test</span>
 	
 		<%= f.label :isArtist %>
 		<%= f.check_box :isArtist %><span class='CheckboxLabel'>I'm an artist</span>
