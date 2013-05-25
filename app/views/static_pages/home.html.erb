@@ -45,23 +45,26 @@
 </div>
 <div class='row HomeSection AppearCard' id='aboutus'>
 	<h1>About Us</h1>
-	<div class='span4 CenterColumn' id='aboutMission'>
+	<div class='span4 CenterColumn AboutColumn' id='aboutMission'>
 		<h2>Our Mission</h2>
 		<p>nepTune's mission is to liberate human creativity. We're creating a world where people are no longer content to push papers all day, a world of people who dare to push boundaries. We're turning traditional business models inside-out by creating an incredible community that helps artists create amazing work.</p>
+		<p class='HomeMore'><%= link_to "Find out more", team_url(anchor: "mission") %></p>
 	</div>
-	<div class='span4 CenterColumn' id='aboutTeam'>
+	<div class='span4 CenterColumn AboutColumn' id='aboutTeam'>
 		<h2>Our Team</h2>
 		<p>nepTune's team is a talented group of people passionate about making an impact on our world.</p>
 		<p><strong>Feifan Zhou (Co-Founder)</strong><br /> is studying Computer Science and Entrepreneurship at Cornell University.</p>
 		<p><strong>Robert Robertson III (Co-Founder)</strong><br /> is studying Music and Entrepreneurship at High Point University.</p>
+		<p class='HomeMore'><%= link_to "Find out more", team_url %></p>
 	</div>
-	<div class='span4 CenterColumn' id='aboutContact'>
+	<div class='span4 CenterColumn AboutColumn' id='aboutContact'>
 		<h2>Contact Us</h2>
 		<p>The nepTune team is hard at work building the future of creativity. Please get in touch with us if you have questions about nepTune or impromevements that would make our product better.</p>
 		<p id='contactEmail'><a href="mailto:future@neptunemusic.co">future@neptunemusic.co</a></p>
 		<p id='contactFB'><a href='http://fb.com/neptunetech'>fb.com/neptunetech</a></p>
 		<p id='contactTwitter'><a href='http://twitter.com/neptuneTech'>@neptuneTech</a></p>
 		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary' id='feedbackSurvey'>Feedback survey</button></a>
+		<p class='HomeMore'><%= link_to "Find out more", contact_url %></p>
 	</div>
 </div>
 <%= render 'layouts/footer' %>

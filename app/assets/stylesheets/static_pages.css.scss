@@ -41,12 +41,20 @@ p {
   -moz-transition: all 400ms ease;
   -o-transition: all 400ms ease;
   transition: all 400ms ease;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+	-webkit-perspective: 1000;
   -webkit-transform:  translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
   -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
   transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
   opacity: 0;
 }
 .AppearCard.appeared {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+	-webkit-perspective: 1000;
 	-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
   -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
   transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
@@ -104,6 +112,12 @@ input[type='submit'] {
 	font-family: $Lato;
 	font-weight: bold;
 }
+ul {
+	font-family: $Lato;
+}
+ol {
+	font-family: $Lato;
+}
 
 /***** Home page *****/
 div#signup {
@@ -118,7 +132,7 @@ div#signup {
 	div#homeRight {
 		position: absolute;
 		right: 18%;
-		top: 150px;
+		top: 0;
 	}
 }
 h1#heroTagline {
@@ -200,20 +214,24 @@ div#partners {
 		letter-spacing: 0.02em;
 	}
 }
+div.CenterColumn {
+	border-right: 1px solid #ccc;
+	box-sizing: border-box;
+	display: inline-block;
+	float: none;
+	margin: 0 auto 0 0;
+	padding: 0 12px;
+	text-align: center;
+	vertical-align: top;
+	p {
+		font-size: 17px;
+	}
+}
 div#aboutus {
 	background-image: image-url('wallhash.png');
-	div.CenterColumn {
-		border-right: 1px solid #ccc;
-		box-sizing: border-box;
-		display: inline-block;
-		float: none;
-		height: 480px;
-		margin: 0 auto;
-		padding: 0 12px;
-		vertical-align: top;
-		p {
-			font-size: 18px;
-		}
+	div.AboutColumn {
+		height: 530px;
+		// padding: 20px auto;
 	}
 	div#aboutContact {
 		border-right: none;
@@ -274,8 +292,14 @@ div#pageHero {
 	font-weight: 400;
 	margin: 16px 0 8px 0;
 }
-p.BackBlurb {
+h3.SectionHeader {
+	font-family: $Lato;
 	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+p.BackBlurb {
+	font-size: 17px;
 }
 @mixin BackTop {
 	@include RowShadowTop;
@@ -329,6 +353,67 @@ div#news {
 		border-radius: 3px;
 		color: $white;
 		padding: 18px;
+	}
+}
+
+div#contact {
+	// Order of includes matter. We want the drop shadow on top
+	@include BackBottom;
+	@include BackTop;
+	font-family: $Lato;
+	font-size: 16px;
+	div#contactLinks {
+		ul {
+			list-style: none;
+			margin-top: 32px;
+			text-align: right;
+			li {
+				font-weight: bold;
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+	div#contactDetails {
+		ul {
+			list-style: none;
+			margin: 32px auto auto 0;
+			li {
+				font-weight: 300;
+				margin-bottom: 1.5em;
+			}
+		}
+	}
+}
+
+div#terms {
+	@include BackBottom;
+	@include BackTop;
+}
+
+div#workPhilosophy {
+	@include BackTop;
+}
+div#openPositions {
+	@include BackBottom;
+}
+div.modal-header {
+	h3 {
+		color: $nepTuneOrange;
+	}
+}
+.JobRequirements {
+	li {
+		margin-bottom: 0.25em;
+	}
+}
+.JobDesirables {
+	li {
+		margin-bottom: 0.25em;
+	}
+}
+.JobAppSteps {
+	li {
+		margin-bottom: 0.25em;
 	}
 }
 

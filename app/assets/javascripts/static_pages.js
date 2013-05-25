@@ -36,6 +36,8 @@ function setHeroHeight() {
 	console.log(window.innerHeight);
 	var heroHeight = cHeight - 155;
 	$("#signup").css('height', (heroHeight + 'px'));
+	if (heroHeight < 430)
+		heroHeight = 430;
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
 	
 	// Set margin on footer to reveal signup

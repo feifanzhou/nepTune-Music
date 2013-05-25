@@ -18,7 +18,7 @@ class StaticPagesController < ApplicationController
     @user = User.new
   end
   
-  def jobs
+  def careers
     @user = User.new
   end
   

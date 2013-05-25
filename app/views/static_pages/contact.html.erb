@@ -1,0 +1,22 @@
+<% provide(:title, "nepTune — Help") %>
+<%= render 'layouts/page_hero', tagline: "Let's make music" %>
+<div class='row' id='contact'>
+	<div class='container'>
+		<h2 class='BackHeader'>Contact nepTune</h2>
+		<div class='span3' id='contactLinks'>
+			<ul>
+				<li><a href="mailto:future@neptunemusic.co">General requsts</a></li>
+				<li><%= link_to "Beta access", beta_url %></li>
+				<li><a href="mailto:press@neptunemusic.co">Press inquiries</a></li>
+				<li><%= link_to "Jobs and careers", jobs_url %></li>
+		</div>
+		<div class='span8' id='contactDetails'>
+			<ul>
+				<li>Send us any questions or comments you have about nepTune.</li>
+				<li>Join our select group of beta testers as the first members of the nepTune community.</li>
+				<li>Contact our press and media team.</li>
+				<li>Join our team and help us build the future of creativity.</li>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/footer' %>

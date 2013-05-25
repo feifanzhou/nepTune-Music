@@ -6,7 +6,7 @@ NeptuneMusic::Application.routes.draw do
   match '/market', to: 'static_pages#market', as: :market
   match '/team', to: 'static_pages#team', as: :team
   match '/news', to: 'static_pages#news', as: :news
-  match '/jobs', to: 'static_pages#jobs', as: :jobs
+  match '/careers', to: 'static_pages#careers', as: :jobs
   match '/contact', to: 'static_pages#contact', as: :contact
   match '/beta', to: 'static_pages#beta', as: :beta
   match '/terms', to: 'static_pages#terms', as: :terms
