@@ -169,7 +169,7 @@ div#signup {
 		top: 80px;
 	}
 }
-div#scroll {
+div.ScrollIndicator {
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 40px;
 	color: rgba(0, 0, 0, 0.6);
@@ -185,6 +185,9 @@ div#scroll {
 		color: rgba(0, 0, 0, 0.4);
 		cursor: pointer;
 	}
+}
+div#scrollBottom {
+	display: none;
 }
 h1#heroTagline {
 	color: $nepTuneOrange;

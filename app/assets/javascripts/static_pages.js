@@ -15,6 +15,19 @@ $(function() {
 	$(".TeamGridItem").tooltip();
 });
 
+$(window).scroll(function() {
+	if ($(window).scrollTop() > ($(document).height() / 2)) {
+		$("#scrollTop").animate({ rotate: '180deg' }, 0);
+		$("#scrollBottom").css('display', 'block');
+		$("#scrollTop").css('display', 'none');
+	}
+	else {
+		$("#scrollBottom").animate({ rotate: '-180deg' }, 0)
+		$("#scrollBottom").css('display', 'none');
+		$("#scrollTop").css('display', 'block');
+	}
+});
+
 function getScrollXY() {
     var x = 0, y = 0;
     if( typeof( window.pageYOffset ) == 'number' ) {
@@ -67,4 +80,4 @@ var resizeTimer;
 $(window).resize(function() {
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(onResize, 50);
-})
+});
