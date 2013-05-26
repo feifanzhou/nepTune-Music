@@ -7,6 +7,9 @@
 			<p class='BackBlurb'>Work isn't about walking in to a cubicle and pushing papers all day. Work is being empowered to help build something extraordinary, where one person can make a difference that touches the lives of millions. We don't know if we'll succeed and reach all of our goals. But it would be a shame to not try and create something amazing.</p>
 			<p class='BackBlurb'>Our team is at the intersection of passion and impact. We are passionate about <%= link_to "liberating human creativity", team_url(anchor: "mission") %>, and we know that building a sustainable, global business allows us to make the greatest impact. We work to build an incredibly successful business, knowing that profit can be reinvested to compound our contribution to the world.</p>
 		</div>
+		<div class='span5'>
+			<%= image_tag("build.png", size: "400x300", alt: "Help us create something amazing", class: 'BackImage') %>
+		</div>
 	</div>
 </div>
 <div class='row' id='workDetails'>
@@ -14,7 +17,7 @@
 		<div class='span4 offset4'>
 			<h2 class='BackHeader'>What we look for</h2>
 			<h3 class='SectionHeader'>Passion</h3>
-			<p class='BackBlurb'>You're driven by the desire to design, create, and make an impact on the world. You solve problems in your sleep (and in the shower) and can't wait to implement your solution.</p>
+			<p class='BackBlurb'>You're driven by the desire to design, create, and make an impact on the world. You solve problems in your sleep and in the shower, and can't wait to implement your solution.</p>
 			<h3 class='SectionHeader'>Initiative</h3>
 			<p class='BackBlurb'>You don't wait for someone to tell you what to do. You take on projects because they seem interesting, and you take pride in the finished product. You identify things that need to be done, and you own those tasks.</p>
 			<h3 class='SectionHeader'>Maverick</h3>
@@ -57,85 +60,49 @@
 		</div>
 	</div>
 </div>
-<div class='modal hide fade' id='devDetails' tabindex='2' role='dialog' aria-labelledby='devDetailsLabel' aria-hidden='true' data-backdrop='static'>
-	<div class='modal-header'>
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id='devDetailsLabel'>Software developer</h3>
-	</div>
-	<div class='modal-body'>
-		<h3 class='SectionHeader'>Requirements</h3>
-		<ul class='JobRequirements'>
-			<li>Fluent in HTML, CSS, and Javascript (jQuery)</li>
-			<li>Enjoy the latest advances in HTML5 and CSS3</li>
-			<li>Familiar with Ruby on Rails and RESTful APIs</li>
-			<li>Experience using git (Github) and coding in a team environment</li>
-			<li>Desire to create a great user experience, and an eye for detail</li>
-		</ul>
-		<h3 class='SectionHeader'>Desirables</h3>
-		<ul class='JobDesirables'>
-			<li>Strong background in computer science</li>
-			<li>Experience developing and understanding user metrics and analytics</li>
-			<li><strong>iOS developer:</strong> Experience building native iOS apps with great UIs</li>
-			<li><strong>Android developer:</strong> Experience building native Android apps with great UIs across various devices</li>
-			<li><strong>Windows developer:</strong> Experience building apps for Windows systems. Metro/Windows 8 apps experience a plus</li>
-			<li><strong>OS X developer:</strong> Experience building apps for Mac OS X with great UIs</li>
-		</ul>
-		<%= render 'shared/how_to_apply' %>
-	</div>
-</div>
-<div class='modal hide fade' id='uxDetails' tabindex='2' role='dialog' aria-labelledby='uxDetailsLabel' aria-hidden='true' data-backdrop='static'>
-	<div class='modal-header'>
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id='uxDetailsLabel'>UX designer</h3>
-	</div>
-	<div class='modal-body'>
-		<h3 class='SectionHeader'>Requirements</h3>
-		<ul class='JobRequirements'>
-			<li>Understanding of the process of designing something new, from concept to implementation and user feedback</li>
-			<li>An intuition for usable design and an eye for detail</li>
-			<li>Understanding of how our users work and what they want to accomplish</li>
-			<li>Able to communicate design ideas to customers and developers, from concept, sketches, or a final product</li>
-			<li>Familiar with HTML, CSS, and Javascript (jQuery)</li>
-			<li>Enjoy the latest advances in HTML5 and CSS3</li>
-		</ul>
-		<h3 class='SectionHeader'>Desirables</h3>
-		<ul class='JobDesirables'>
-			<li>A strong portfolio of beautiful design and intuitive workflows in web, desktop, or mobile apps</li>
-			<li>Familiar with Ruby on Rails and RESTful APIs</li>
-			<li>Background in computer science</li>
-			<li>Experience developing and understanding user metrics and analytics, and conducting usability studies</li>
-			<li>Interest in typography, psychology, music, and cultural diversity</li>
-		</ul>
-		<%= render 'shared/how_to_apply' %>
-	</div>
-</div>
-<div class='modal hide fade' id='custdevDetails' tabindex='2' role='dialog' aria-labelledby='custdevDetailsLabel' aria-hidden='true' data-backdrop='static'>
-	<div class='modal-header'>
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id='custdevDetailsLabel'>Customer development agent</h3>
-	</div>
-	<div class='modal-body'>
-		<h3 class='SectionHeader'>Requirements</h3>
-		<ul class='JobRequirements'>
-			<li>A desire to make users happy and provide excellent service</li>
-			<li>Ability to describe ideas to users and receive accurate feedback</li>
-			<li>Understanding of how our users work and what they want to accomplish</li>
-			<li>Understanding of the process of designing something new, from concept to implementation and user feedback</li>
-			<li>Able to switch contexts, from answering support emails to writing feature specs and being a part of team strategy meetings</li>
-			<li>Strong written and verbal communication skills</li>
-		</ul>
-		<h3 class='SectionHeader'>Desirables</h3>
-		<ul class='JobDesirables'>
-			<li>An intuition for usable design and an eye for detail</li>
-			<li>Graphic design experience, including the ability to draw wireframes and create UI elements and mockups</li>
-			<li>Familiar with HTML, CSS, and Javascript (jQuery)</li>
-			<li>Enjoy the latest advances in HTML5 and CSS3</li>
-			<li>Experience designing and implementing a marketing plan</li>
-			<li>Experience making sales to users and companies</li>
-			<li>Experience developing and understanding user metrics and analytics, and conducting usability studies</li>
-			<li>Interest in typography, psychology, music, and cultural diversity</li>
-		</ul>
-		<%= render 'shared/how_to_apply' %>
-	</div>
-</div>
+<%= render 'layouts/job_specs', pop_id: 'devDetails', header_label: 'devDetailsLabel', job_title: 'Software developer', job_reqs: [ 
+			"Fluent in HTML, CSS, and Javascript (jQuery)", 
+			"Enjoy the latest advances in HTML5 and CSS3", 
+			"Familiar with Ruby on Rails and RESTful APIs", 
+			"Experience using git (Github) and coding in a team environment", 
+			"Desire to create a great user experience, and an eye for detail" 
+], job_desirables: [ 
+			"Strong background in computer science", 
+			"Experience developing and understanding user metrics and analytics", 
+			"iOS developer: Experience building native iOS apps with great UIs", 
+			"Android developer: Experience building native Android apps with great UIs across various devices", 
+			"Windows developer: Experience building apps for Windows systems. Metro/Windows 8 apps experience a plus", 
+			"OS X developer: Experience building apps for Mac OS X with great UIs" 
+] %>
+<%= render 'layouts/job_specs', pop_id: 'uxDetails', header_label: 'uxDetailsLabel', job_title: 'UX designer', job_reqs: [
+			"Understanding of the process of designing something new, from concept to implementation and user feedback", 
+			"An intuition for usable design and an eye for detail",
+			"Understanding of how our users work and what they want to accomplish",
+			"Able to communicate design ideas to customers and developers, from concept, sketches, or a final product",
+			"Familiar with HTML, CSS, and Javascript (jQuery)",
+			"Enjoy the latest advances in HTML5 and CSS3"
+], job_desirables: [
+			"A strong portfolio of beautiful design and intuitive workflows in web, desktop, or mobile apps",
+			"Familiar with Ruby on Rails and RESTful APIs",
+			"Background in computer science",
+			"Experience developing and understanding user metrics and analytics, and conducting usability studies",
+			"Interest in typography, psychology, music, and cultural diversity"
+] %>
+<%= render 'layouts/job_specs', pop_id: 'custdevDetails', header_label: 'custdevDetailsLabel', job_title: 'Customer development agent', job_reqs: [
+			"A desire to make users happy and provide excellent service",
+			"Ability to describe ideas to users and receive accurate feedback",
+			"Understanding of how our users work and what they want to accomplish",
+			"Understanding of the process of designing something new, from concept to implementation and user feedback",
+			"Able to switch contexts, from answering support emails to writing feature specs and being a part of team strategy meetings",
+			"Strong written and verbal communication skills"
+], job_desirables: [
+			"An intuition for usable design and an eye for detail",
+			"Graphic design experience, including the ability to draw wireframes and create UI elements and mockups",
+			"Familiar with HTML, CSS, and Javascript (jQuery)",
+			"Enjoy the latest advances in HTML5 and CSS3",
+			"Experience designing and implementing a marketing plan",
+			"Experience making sales to users and companies",
+			"Experience developing and understanding user metrics and analytics, and conducting usability studies",
+			"Interest in typography, psychology, music, and cultural diversity"
+] %>
 <%= render 'layouts/footer' %>

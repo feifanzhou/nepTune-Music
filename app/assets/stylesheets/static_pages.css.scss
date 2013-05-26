@@ -135,6 +135,17 @@ a {
 	}
 }
 
+div.UnderConstructionBanner {
+	background: image-url('construction_tape.png') repeat-x;
+	background-size: 30px 30px;
+	height: 30px;
+	left: 0;
+	margin: 25px 0;
+	opacity: 0.75;
+	right: 0;
+	width: 100%;
+}
+
 input[type='text'], input[type='password'], input[type='email'] {
 	border-radius: 3px;
 	font-family: $Lato;
@@ -241,11 +252,14 @@ p.HomeMore {
 	margin-top: 42px;
 	a {
 		&:after {
-			content: '\e807';
+			content: '\e809';
 			font-family: 'Zonda';
 			margin-left: 10px;
 		}
 	}
+}
+.HomeImage {
+	margin-bottom: 48px;
 }
 div#marketplace {
 	background-image: $Wallhash;
@@ -253,7 +267,7 @@ div#marketplace {
 	// margin-top: 900px;
 }
 div#h_artists {
-	background-color: #333;
+	background-image: $Dashed;
 	h1 {
 		color: $white;
 	}
@@ -266,7 +280,7 @@ div#h_consumers {
 	background-image: $Wallhash;
 }
 div#partners {
-	background-color: #333;
+	background-image: $Dashed;
 	h1 {
 		color: $white;
 	}
@@ -326,7 +340,7 @@ div#aboutus {
 }
 footer {
 	@include RowShadowBottom;
-	background-color: #333;
+	background-image: $Dashed;
 	color: $white;
 	padding: 30px;
 	z-index: -1;
@@ -385,6 +399,10 @@ h3.SectionHeader {
 p.BackBlurb {
 	font-size: 17px;
 }
+img.BackImage {
+	display: inline-block;
+	margin-top: 56px;
+}
 @mixin BackTop {
 	@include RowShadowTop;
 	padding-top: 32px;
@@ -396,8 +414,26 @@ p.BackBlurb {
 div#market {
 	@include BackTop;
 }
+div#artistsText {
+	margin-left: 35px;
+}
+.Col2 {
+	-webkit-column-count: 2;
+	-moz-column-count: 2;
+	-ms-column-count: 2;
+	-o-column-count: 2;
+	column-count: 2;
+	-webkit-column-gap: 30px;
+	-moz-column-gap: 30px;
+	-ms-column-gap: 30px;
+	-o-column-gap: 30px;
+	column-gap: 30px;
+}
 div#consumers {
 	@include BackBottom;
+	div#consumers1 {
+		margin-left: 0;
+	}
 }
 
 div#team {
@@ -487,6 +523,9 @@ div.modal-header {
 	h3 {
 		color: $nepTuneOrange;
 	}
+}
+div.modal-body {
+	background-color: $white;
 }
 .JobRequirements {
 	li {

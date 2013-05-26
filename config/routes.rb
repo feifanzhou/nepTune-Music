@@ -1,4 +1,12 @@
 NeptuneMusic::Application.routes.draw do
+  get "errors/not_found"
+
+  get "errors/server_error"
+
+  get "errors/unprocessable"
+
+  get "errors/access_denied"
+
   get "login/destroy"
 
   get "login_controller/destroy"
@@ -19,6 +27,9 @@ NeptuneMusic::Application.routes.draw do
   match '/terms', to: 'static_pages#terms', as: :terms
   
   match '/logout', to: 'login_#destroy', as: :logout
+  
+  # Any routes that aren't defined go to 404
+  match "*a", to: 'errors#not_found'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
