@@ -69,7 +69,7 @@ function scrollToPartnerSignup() {
 }
 
 function scrollToHomeContent() {
-	$('body').animate({ scrollTop: 500 });
+	$('body').animate({ scrollTop: 530 });
 }
 
 function onResize() {
