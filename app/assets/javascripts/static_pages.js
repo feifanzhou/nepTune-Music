@@ -2,6 +2,8 @@
    All this logic will automatically be available in application.js. */
 
 $(function() {
+	if (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))
+		return;
   $(document.body).on('appear', '.AppearCard', function(e, $affected) {
     // add class called “appeared” for each appeared element
     $(this).addClass("appeared");
@@ -10,7 +12,7 @@ $(function() {
 });
 
 $(function() {
-	$(".TeamGridItem").popover();
+	$(".TeamGridItem").tooltip();
 });
 
 function getScrollXY() {
@@ -33,11 +35,10 @@ function getScrollXY() {
 
 function setHeroHeight() {
 	var cHeight = window.innerHeight;
-	console.log(window.innerHeight);
 	var heroHeight = cHeight - 80;
 	$("#signup").css('height', (heroHeight + 'px'));
-	if (heroHeight < 430)
-		heroHeight = 430;
+	if (heroHeight < 550)
+		heroHeight = 550;
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
 	
 	// Set margin on footer to reveal signup
@@ -52,6 +53,10 @@ function scrollToPartnerSignup() {
 	// $("#signupChecks").css('display', 'block');
 	scrollToTop();
 	return false;
+}
+
+function scrollToHomeContent() {
+	$('body').animate({ scrollTop: 500 });
 }
 
 function onResize() {
