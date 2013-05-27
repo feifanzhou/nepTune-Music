@@ -1,0 +1,21 @@
+<% provide(:title, "nepTune — Beta Access") %>
+<div class='row' id='beta'>
+	<div class='UnderConstructionBanner'></div>
+	<div class='container'>
+		<div class='span10 offset1'>
+			<h1 style='margin-top: 0;'>Beta access</h1>
+			<% if @user.willingToBetaTest %>
+				<p class='BackBlurb'><%= @user.fname %>, you're signed up to help us test nepTune! We'll let you know when we're ready to show you what we've been working on.</p>
+				<p class='BackBlurb'>If you decide that you would rather not be a beta tester, please <%= link_to "contact us", contact_url %>.</p>
+			<% elsif @user.email %>
+				<p class='BackBlurb'><%= @user.fname %>, if you'd like to be one of the first users on nepTune and help us develop the future of music, just click the button!</p>
+				<button class='btn btn-primary'><%= link_to "Join nepTune beta", make_beta_tester_path %></button></p>
+			<% else %>
+				<p class='BackBlurb'>Sign up below to join our beta program and help us develop the future of music.</p>
+				<%= render 'shared/hero_signup', wants_to_beta_test: true %>
+			<% end %>
+		</div>
+	</div>
+	<div class='UnderConstructionBanner'></div>
+</div>
+<%= render 'layouts/footer' %>
