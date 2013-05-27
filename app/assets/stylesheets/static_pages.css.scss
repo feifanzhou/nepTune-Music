@@ -222,7 +222,7 @@ div.ScrollIndicator {
 	font-size: 32px;
 	height: 80px;
 	line-height: 80px;
-	margin: 500px auto;
+	margin: 450px auto;
 	text-align: center;
 	width: 80px;
 	&:hover {
@@ -578,24 +578,22 @@ div#contact {
 	@include BackTop;
 	font-family: $Lato;
 	font-size: 16px;
-	div#contactLinks {
-		ul {
-			list-style: none;
-			margin-top: 32px;
-			text-align: right;
-			li {
-				font-weight: bold;
-				margin-bottom: 1.5em;
+	div.ContactLink {
+		p {
+			font-size: 18px;
+			font-weight: bold;
+			margin-top: 24px;
+			@media (min-width: 768px) {
+				text-align: right;
 			}
 		}
 	}
-	div#contactDetails {
-		ul {
-			list-style: none;
-			margin: 32px auto auto 0;
-			li {
-				font-weight: 300;
-				margin-bottom: 1.5em;
+	div.ContactDetail {
+		p {
+			font-size: 18px;
+			font-weight: 300;
+			@media (min-width: 768px) {
+				margin-top: 24px;
 			}
 		}
 	}

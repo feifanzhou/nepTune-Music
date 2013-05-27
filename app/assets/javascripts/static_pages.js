@@ -48,8 +48,8 @@ function setHeroHeight() {
 	var cHeight = window.innerHeight;
 	var heroHeight = cHeight - 80;
 	$("#signup").css('height', (heroHeight + 'px'));
-	if (heroHeight < 550)
-		heroHeight = 550;
+	if (heroHeight < 600)
+		heroHeight = 600;
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
 	
 	// Set margin on footer to reveal signup
@@ -67,7 +67,8 @@ function scrollToPartnerSignup() {
 }
 
 function scrollToHomeContent() {
-	$('body, html').animate({ scrollTop: 530 });
+	var scrollAmount = 0.80 * window.innerHeight;
+	$('body, html').animate({ scrollTop: scrollAmount });
 }
 
 function onResize() {

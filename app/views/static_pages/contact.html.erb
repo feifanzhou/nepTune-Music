@@ -3,19 +3,41 @@
 <div class='row' id='contact'>
 	<div class='container'>
 		<h2 class='BackHeader'>Contact nepTune</h2>
-		<div class='span3' id='contactLinks'>
-			<ul>
-				<li><a href="mailto:future@neptunemusic.co">General requsts</a></li>
-				<li><%= link_to "Beta access", beta_url %></li>
-				<li><a href="mailto:press@neptunemusic.co">Press inquiries</a></li>
-				<li><%= link_to "Jobs and careers", jobs_url %></li>
+		
+		<div class='row'>
+			<div class='span3 ContactLink'>
+				<p><a href="mailto:future@neptunemusic.co">General requsts</a></p>
+			</div>
+			<div class='span8 ContactDetail'>
+				<p>Send us any questions or comments you have about nepTune.</p>
+			</div>
 		</div>
-		<div class='span8' id='contactDetails'>
-			<ul>
-				<li>Send us any questions or comments you have about nepTune.</li>
-				<li>Join our select group of beta testers as the first members of the nepTune community.</li>
-				<li>Contact our press and media team.</li>
-				<li>Join our team and help us build the future of creativity.</li>
+		
+		<div class='row'>
+			<div class='span3 ContactLink'>
+				<p><%= link_to "Beta access", beta_url %></p>
+			</div>
+			<div class='span8 ContactDetail'>
+				<p>Join our select group of beta testers as the first members of the nepTune community.</p>
+			</div>
+		</div>
+		
+		<div class='row'>
+			<div class='span3 ContactLink'>
+				<p><a href="mailto:press@neptunemusic.co">Press inquiries</a></p>
+			</div>
+			<div class='span8 ContactDetail'>
+				<p>Contact our press and media team.</p>
+			</div>
+		</div>
+		
+		<div class='row'>
+			<div class='span3 ContactLink'>
+				<p><%= link_to "Jobs and careers", jobs_url %></p>
+			</div>
+			<div class='span8 ContactDetail'>
+				<p>Join our team and help us build the future of creativity.</p>
+			</div>
 		</div>
 	</div>
 </div>
