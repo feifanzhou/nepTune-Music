@@ -1,7 +1,7 @@
 /* Place all the behaviors and hooks related to the matching controller here.
    All this logic will automatically be available in application.js. */
 
-window.mobilecheck = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
+window.mobilecheck = navigator.userAgent.match(/(iPhone|iPod|Android|BlackBerry)/);
 
 $(function() {
 	$(".TeamGridItem").tooltip();
