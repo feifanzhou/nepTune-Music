@@ -14,16 +14,21 @@
 	<%= f.email_field :email, placeholder: "Email address" %>
 	
 	<div id='signupChecks'>
-		<%= f.label :willingToBetaTest %>
-		<% if (defined?(wants_to_beta_test) && wants_to_beta_test) %>
-			<%= f.check_box :willingToBetaTest, checked: true %>
-		<% else %>
-			<%= f.check_box :willingToBetaTest %>
-		<% end %>
-		<span class='CheckboxLabel'>I'm willing to beta test</span>
+		<span id='betaTestCheck'>
+			<%= f.label :willingToBetaTest %>
+			<% if (defined?(wants_to_beta_test) && wants_to_beta_test) %>
+				<%= f.check_box :willingToBetaTest, checked: true %>
+			<% else %>
+				<%= f.check_box :willingToBetaTest %>
+			<% end %>
+			<span class='CheckboxLabel'>I'm like to help beta test</span>
+		</span>
 	
-		<%= f.label :isArtist %>
-		<%= f.check_box :isArtist %><span class='CheckboxLabel'>I'm an artist</span>
+		<span id='artistCheck'>
+			<%= f.label :isArtist %>
+			<%= f.check_box :isArtist %>
+			<span class='CheckboxLabel'>I'm an artist</span>
+		</span>
 	</div>
 	
 	<br />

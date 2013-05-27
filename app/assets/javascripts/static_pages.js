@@ -1,21 +1,16 @@
 /* Place all the behaviors and hooks related to the matching controller here.
    All this logic will automatically be available in application.js. */
 
-$(function() {
-	if (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))
-		return;
-  $(document.body).on('appear', '.AppearCard', function(e, $affected) {
-    // add class called “appeared” for each appeared element
-    $(this).addClass("appeared");
-  });
-  $('.AppearCard').appear({force_process: true});
-});
+window.mobilecheck = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/);
 
 $(function() {
 	$(".TeamGridItem").tooltip();
 });
 
 $(window).scroll(function() {
+	if (window.mobilecheck)
+		return;
+	
 	if ($(window).scrollTop() > ($(document).height() / 2)) {
 		$("#scrollTop").animate({ rotate: '180deg' }, 0);
 		$("#scrollBottom").css('display', 'block');
@@ -47,6 +42,9 @@ function getScrollXY() {
 }
 
 function setHeroHeight() {
+	if (window.mobilecheck)
+		return;
+		
 	var cHeight = window.innerHeight;
 	var heroHeight = cHeight - 80;
 	$("#signup").css('height', (heroHeight + 'px'));
@@ -69,7 +67,7 @@ function scrollToPartnerSignup() {
 }
 
 function scrollToHomeContent() {
-	$('body').animate({ scrollTop: 530 });
+	$('body, html').animate({ scrollTop: 530 });
 }
 
 function onResize() {
@@ -80,4 +78,20 @@ var resizeTimer;
 $(window).resize(function() {
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(onResize, 50);
+});
+
+$(function() {
+	if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
+		setHeroHeight();
+		return;
+	}
+	if (window.mobilecheck) {
+		console.log('mobilecheck');
+		return;
+	}
+  $(document.body).on('appear', '.AppearCard', function(e, $affected) {
+    // add class called “appeared” for each appeared element
+    $(this).addClass("appeared");
+  });
+  $('.AppearCard').appear({force_process: true});
 });

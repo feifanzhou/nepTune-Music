@@ -19,49 +19,59 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 64px;
-	margin: 48px 0;
+	@media (min-width: 768px) {
+		font-size: 64px;
+		margin: 48px 0;
+	}
 }
 
 h2 {
-	font-size: 48px;
-	margin: 36px 0;
+	@media (min-width: 768px) {
+		font-size: 48px;
+		margin: 36px 0;
+	}
 }
 
 p {
 	font-family: $Lato;
-	font-size: 22px;
+	@media (min-width: 768px) {
+		font-size: 22px;
+	}
 	font-weight: 300;
 	line-height: 1.5em;
 }
 
 /***** Shared styles *****/
 .AppearCard {
-	-webkit-transition: all 400ms ease 0s;
-  -moz-transition: all 400ms ease 0s;
-	-ms-transition: all 400ms ease 0s;
-  -o-transition: all 400ms ease 0s;
-  transition: all 400ms ease 0s;
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility:    hidden;
-	-ms-backface-visibility:     hidden;
-	-webkit-perspective: 1000;
-  -webkit-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-	-ms-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
-  opacity: 0;
+	@media (min-width: 768px) {
+		-webkit-transition: all 400ms ease 0s;
+	  -moz-transition: all 400ms ease 0s;
+		-ms-transition: all 400ms ease 0s;
+	  -o-transition: all 400ms ease 0s;
+	  transition: all 400ms ease 0s;
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility:    hidden;
+		-ms-backface-visibility:     hidden;
+		-webkit-perspective: 1000;
+	  -webkit-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+	  -moz-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+		-ms-transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+	  transform: translate3d(0px, 100px, 0) rotateX(-30deg) scale(1.25, 1.25);
+	  opacity: 0;
+	}
 }
 .AppearCard.appeared {
-	-webkit-backface-visibility: hidden;
-	-moz-backface-visibility:    hidden;
-	-ms-backface-visibility:     hidden;
-	-webkit-perspective: 1000;
-	-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-	-ms-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
-  opacity: 1;
+	@media (min-width: 768px) {
+		-webkit-backface-visibility: hidden;
+		-moz-backface-visibility:    hidden;
+		-ms-backface-visibility:     hidden;
+		-webkit-perspective: 1000;
+		-webkit-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+	  -moz-transform:  translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+		-ms-transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+	  transform: translate3d(0px, 0px, 0px) rotateX(0)  scale(1, 1);
+	  opacity: 1;
+	}
 }
 
 .btn {
@@ -95,6 +105,13 @@ p {
 .field_with_errors {
   @extend .control-group;
   @extend .error;
+}
+
+.hero-unit {
+	@media (max-width: 767px) {
+		margin-bottom: 0;
+		padding: 10px;
+	}
 }
 
 .link {
@@ -135,6 +152,15 @@ a {
 	}
 }
 
+@media (max-width: 767px) {
+  body {
+		left: 0;
+    padding-right: 0;
+    padding-left: 0;
+		right: 0;
+  }
+}
+
 div.UnderConstructionBanner {
 	background: image-url('construction_tape.png') repeat-x;
 	background-size: 30px 30px;
@@ -167,20 +193,28 @@ ol {
 /***** Home page *****/
 div#signup {
 	background-color: $lightGrayBkg;
-	height: 100%;
-	margin-bottom: 0;
-	min-height: 100%;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: -2;
+	@media (min-width: 768px) {
+		height: 100%;
+		margin-bottom: 0;
+		min-height: 100%;
+		position: fixed;
+		top: 0;
+		width: 100%;
+		z-index: -2;
+	}
 	div#homeRight {
-		position: absolute;
-		right: 18%;
-		top: 80px;
+		@media (min-width: 768px) {
+			position: absolute;
+			right: 18%;
+			top: 80px;
+		}
 	}
 }
 div.ScrollIndicator {
+	@media (max-width: 767px) {
+		display: none;
+		margin: 0;
+	}
 	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 40px;
 	color: rgba(0, 0, 0, 0.6);
@@ -243,6 +277,9 @@ form#new_user {
 	padding-bottom: 48px;
 	text-align: center;
 	z-index: 1;
+	@media (max-width: 767px) {
+		padding: auto 10px;
+	}
 	h1 {
 		color: $nepTuneTeal;
 	}
@@ -250,6 +287,10 @@ form#new_user {
 p.HomeMore {
 	font-weight: 700;
 	margin-top: 42px;
+	@media (max-width: 767px) {
+		margin-bottom: 20px;
+		margin-top: 10px;
+	}
 	a {
 		&:after {
 			content: '\e809';
@@ -264,7 +305,9 @@ p.HomeMore {
 div#marketplace {
 	background-image: $Wallhash;
 	@include RowShadowTop;
-	// margin-top: 900px;
+	@media (max-width: 767px) {
+		margin-top: 0;
+	}
 }
 div#h_artists {
 	background-image: $Dashed;
@@ -284,6 +327,12 @@ div#partners {
 	h1 {
 		color: $white;
 	}
+	img#homeDevices {
+		@media (max-width: 767px) {
+			height: auto;
+			width: 300px;
+		}
+	}
 	p {
 		color: $white;
 		letter-spacing: 0.02em;
@@ -291,6 +340,9 @@ div#partners {
 }
 div.CenterColumn {
 	border-right: 1px solid #ccc;
+	@media (max-width: 767px) {
+		border-right: none;
+	}
 	box-sizing: border-box;
 	display: inline-block;
 	float: none;
@@ -310,8 +362,10 @@ div.CenterColumn {
 div#aboutus {
 	background-image: $Wallhash;
 	div.AboutColumn {
-		height: 530px;
-		// padding: 20px auto;
+		@media (min-width: 768px) {
+			height: 530px;
+			// padding: 20px auto;
+		}
 	}
 	div#aboutContact {
 		border-right: none;
@@ -377,11 +431,45 @@ footer {
 	text-align: center;
 	width: 259px;
 }
+div.container {
+	@media (max-width: 767px) {
+		margin: auto 10px;
+	}
+}
+@mixin MobileFormInput {
+	max-width: 280px !important;
+	width: 280px !important;
+}
 div#pageHero {
 	background-color: $lightGrayBkg;
 	padding-bottom: 42px;
 	div#heroSignup {
 		margin-top: 52px;
+	}
+}
+#new_user {
+	@media (max-width: 767px) {
+		// margin: auto 10px;
+		input#user_fname {
+			@include MobileFormInput;
+		}
+		input#user_lname {
+			@include MobileFormInput;
+		}
+		input#user_email {
+			@include MobileFormInput;
+		}
+		span#betaTestCheck {
+			clear: both;
+			display: block;
+		}
+		span#artistCheck {
+			clear: both;
+			display: block;
+		}
+		#joinButton {
+			@include MobileFormInput;
+		}
 	}
 }
 .BackHeader {
@@ -402,6 +490,9 @@ p.BackBlurb {
 img.BackImage {
 	display: inline-block;
 	margin-top: 56px;
+	@media (max-width: 767px) {
+		margin-top: 10px;
+	}
 }
 @mixin BackTop {
 	@include RowShadowTop;
@@ -415,7 +506,9 @@ div#market {
 	@include BackTop;
 }
 div#artistsText {
-	margin-left: 35px;
+	@media (min-width: 768px) {
+		margin-left: 35px;
+	}
 }
 .Col2 {
 	-webkit-column-count: 2;
@@ -526,6 +619,10 @@ div.modal-header {
 }
 div.modal-body {
 	background-color: $white;
+	@media (max-width: 767px) {
+		height: 300px;
+		max-height: 300px;
+	}
 }
 .JobRequirements {
 	li {
@@ -544,7 +641,9 @@ div.modal-body {
 }
 
 div#beta {
-	@include BackBottom;
+	@media (mix-width: 768px) {
+		@include BackBottom;
+	}
 	background-image: $Wallhash;
 }
 
