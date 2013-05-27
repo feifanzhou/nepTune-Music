@@ -1,0 +1,110 @@
+<% provide(:title, "nepTune — Careers & Jobs") %>
+<%= render 'layouts/page_hero', tagline: "Come build something amazing" %>
+<div class='row' id='workPhilosophy'>
+	<div class='container'>
+		<div class='span6'>
+			<h2 class='BackHeader'>Our philosophy</h2>
+			<p class='BackBlurb'>Work isn't about walking in to a cubicle and pushing papers all day. Work is being empowered to help build something extraordinary, where one person can make a difference that touches the lives of millions. We don't know if we'll succeed and reach all of our goals. But it would be a shame to not try and create something amazing.</p>
+			<p class='BackBlurb'>Our team is at the intersection of passion and impact. We are passionate about <%= link_to "liberating human creativity", team_url(anchor: "mission") %>, and we know that building a sustainable, global business allows us to make the greatest impact. We work to build an incredibly successful business, knowing that profit can be reinvested to compound our contribution to the world.</p>
+		</div>
+		<div class='span5'>
+			<%= image_tag("build.png", size: "400x300", alt: "Help us create something amazing", class: 'BackImage') %>
+		</div>
+	</div>
+</div>
+<div class='row' id='workDetails'>
+	<div class='container'>
+		<div class='span4 offset4'>
+			<h2 class='BackHeader'>What we look for</h2>
+			<h3 class='SectionHeader'>Passion</h3>
+			<p class='BackBlurb'>You're driven by the desire to design, create, and make an impact on the world. You solve problems in your sleep and in the shower, and can't wait to implement your solution.</p>
+			<h3 class='SectionHeader'>Initiative</h3>
+			<p class='BackBlurb'>You don't wait for someone to tell you what to do. You take on projects because they seem interesting, and you take pride in the finished product. You identify things that need to be done, and you own those tasks.</p>
+			<h3 class='SectionHeader'>Maverick</h3>
+			<p class='BackBlurb'>You challenge ideas, authority, and the status quo. You see solutions that others don't, you understand something that others don't, and you push yourself and your peers to discover more and achieve enlightenment.</p>
+			<h3 class='SectionHeader'>Skill</h3>
+			<p class='BackBlurb'>You know what you're doing. If you're a developer, you can build websites in your sleep. If you're a designer, you can design icons and UIs that bring joy to users. And if you're a devigner (developer-designer), then we'd love to get in touch!</p>
+		</div>
+		<div class='span3' id='workLocations'>
+			<h2 class='BackHeader'>Our locations</h2>
+			<p class='BackBlurb'>Our team members are located all around the country. We definitely support working remotely.</p>
+			<p class='BackBlurb'>
+				We have activity hubs at <br />
+				<strong>Cornell&nbsp;University</strong><br />
+				in <strong>Ithaca, New&nbsp;York</strong>,<br />
+				as well as <br />
+				<strong>High&nbsp;Point&nbsp;University</strong><br />
+				in <strong>High Point, North Carolina</strong>.</p>
+		</div>
+	</div>
+</div>
+<div class='row' id='openPositions'>
+	<div class='container'>
+		<div class='span12'>
+			<h2 class='BackHeader'>Open positions</h2>
+			<div class='span4 CenterColumn'>
+				<h3 class='SectionHeader'>Software developer</h3>
+				<p class='BodyBlurb'>We're looking for web developers, as well as iOS, Android, OS X, and Windows developers. Our goal is to get nepTune on every platform. With an emphasis on beauty, craftsmanship, and usability, both in the design and development, you'll be building a platform that reaches millions of people around the world.</p>
+				<p class='HomeMore'><a href='#devDetails' data-toggle='modal'>Apply</a></p>
+			</div>
+			<div class='span4 CenterColumn'>
+				<h3 class='SectionHeader'>UX designer</h3>
+				<p class='BodyBlurb'>In our modern world, the quality of a product is ultimately decided by the user experience. We're looking to build a wonderfully simple, smooth, and beautiful experience that makes it incredibly easy for users to discover, share, and enjoy great music. In doing so, we'll put a smile on their faces and they'll keep coming back.</p>
+				<p class='HomeMore'><a href='#uxDetails' data-toggle='modal'>Apply</a></p>
+			</div>
+			<div class='span4 CenterColumn'>
+				<h3 class='SectionHeader'>Customer development agent</h3>
+				<p class='BodyBlurb'>Customer development is a process that spans from customer acquisition to continued support as they use our product. You'll help create our marketing and sales strategy, talk to customers, and respond to support requests to create a great user experience. You'll also act as a liason between users and our product team.</p>
+				<p class='HomeMore'><a href='#custdevDetails' data-toggle='modal'>Apply</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<%= render 'layouts/job_specs', pop_id: 'devDetails', header_label: 'devDetailsLabel', job_title: 'Software developer', job_reqs: [ 
+			"Fluent in HTML, CSS, and Javascript (jQuery)", 
+			"Enjoy the latest advances in HTML5 and CSS3", 
+			"Familiar with Ruby on Rails and RESTful APIs", 
+			"Experience using git (Github) and coding in a team environment", 
+			"Desire to create a great user experience, and an eye for detail" 
+], job_desirables: [ 
+			"Strong background in computer science", 
+			"Experience developing and understanding user metrics and analytics", 
+			"iOS developer: Experience building native iOS apps with great UIs", 
+			"Android developer: Experience building native Android apps with great UIs across various devices", 
+			"Windows developer: Experience building apps for Windows systems. Metro/Windows 8 apps experience a plus", 
+			"OS X developer: Experience building apps for Mac OS X with great UIs" 
+] %>
+
+<%= render 'layouts/job_specs', pop_id: 'uxDetails', header_label: 'uxDetailsLabel', job_title: 'UX designer', job_reqs: [
+			"Understand the process of designing something new, from concept to implementation and user feedback", 
+			"An intuition for usable design and an eye for detail",
+			"Understanding of how our users work and what they want to accomplish",
+			"Able to communicate design ideas to customers and developers, from concept, sketches, or a final product",
+			"Familiar with HTML, CSS, and Javascript (jQuery)",
+			"Enjoy the latest advances in HTML5 and CSS3"
+], job_desirables: [
+			"A strong portfolio of beautiful design and intuitive workflows in web, desktop, or mobile apps",
+			"Familiar with Ruby on Rails and RESTful APIs",
+			"Background in computer science",
+			"Experience developing and understanding user metrics and analytics, and conducting usability studies",
+			"Interest in typography, psychology, music, and cultural diversity"
+] %>
+
+<%= render 'layouts/job_specs', pop_id: 'custdevDetails', header_label: 'custdevDetailsLabel', job_title: 'Customer development agent', job_reqs: [
+			"A desire to make users happy and provide excellent service",
+			"Ability to describe ideas to users and receive accurate feedback",
+			"Understanding of how our users work and what they want to accomplish",
+			"Understanding of the process of designing something new, from concept to implementation and user feedback",
+			"Able to switch contexts, from answering support emails to writing feature specs and being a part of team strategy meetings",
+			"Strong written and verbal communication skills"
+], job_desirables: [
+			"An intuition for usable design and an eye for detail",
+			"Graphic design experience, including the ability to draw wireframes and create UI elements and mockups",
+			"Familiar with HTML, CSS, and Javascript (jQuery)",
+			"Enjoy the latest advances in HTML5 and CSS3",
+			"Experience designing and implementing a marketing plan",
+			"Experience making sales to users and companies",
+			"Experience developing and understanding user metrics and analytics, and conducting usability studies",
+			"Interest in typography, psychology, music, and cultural diversity"
+] %>
+<%= render 'layouts/footer' %>
