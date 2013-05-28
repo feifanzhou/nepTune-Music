@@ -12,6 +12,10 @@ group :development do
   gem 'annotate', '2.5.0'
 end
 
+group :development, :production do
+  gem 'retina_tag'
+end
+
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
