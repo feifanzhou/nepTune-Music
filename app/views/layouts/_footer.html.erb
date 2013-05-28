@@ -1,4 +1,8 @@
-<footer class='row'>
+<% if (defined?(footer_id)) %>
+	<footer class='row' id='<%= footer_id %>'>
+<% else %>
+	<footer class='row'>
+<% end %>
 	<ul class='span2 offset2' id='footerProduct'>
 		<li class='FooterColHeading'>nepTune</li>
 		<li><%= link_to "Marketplace", market_url %></li>
