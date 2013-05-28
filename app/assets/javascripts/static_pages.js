@@ -4,6 +4,10 @@
 window.mobilecheck = navigator.userAgent.match(/(iPhone|iPod|Android|BlackBerry)/);
 
 $(function() {
+	$("input, textarea").placeholder();
+})
+
+$(function() {
 	$(".TeamGridItem").tooltip();
 });
 
@@ -53,7 +57,7 @@ function setHeroHeight() {
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
 	
 	// Set margin on footer to reveal signup
-	$("footer").css('margin-bottom', (heroHeight - 20 + 'px'));
+	$("#homeFooter").css('margin-bottom', (heroHeight - 20 + 'px'));
 }
 
 function scrollToTop() {
@@ -83,6 +87,10 @@ $(window).resize(function() {
 
 $(function() {
 	if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
+		// If transitions aren't supported, make sure everything appears without animation
+		$(".AppearCard").each(function() {
+			$(this).addClass('appeared');
+		})
 		setHeroHeight();
 		return;
 	}
