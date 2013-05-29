@@ -1,0 +1,16 @@
+<div id='loginContainer'>
+	<%= link_to image_tag('logo.png', size:"259x50", id:'headerLogo', alt:'nepTune'), root_url(subdomain: "www") %>
+	<div id='login'>
+		<%= form_for(:login, url: login_path) do |f| %>
+			<%= f.label :email%>
+			<%= f.email_field :email, placeholder: "Email address" %>
+	
+			<%= f.label :password%>
+			<%= f.password_field :password, placeholder: "Password" %>
+	
+			<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
+		<% end %>
+		<p class='Subtext', id='forgotPassword'>Password help&hellip;</p>
+	</div>
+</div>
+<%= render 'layouts/footer' %>
