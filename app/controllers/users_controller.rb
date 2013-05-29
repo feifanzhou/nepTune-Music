@@ -38,24 +38,34 @@ class UsersController < ApplicationController
   
   def create
     sign_out
-    @user = User.new(params[:user])
+    input = params[:user]
+    if !input || !defined?(input)
+      input = params[:login]
+    end
+    @user = User.new(input)
     should_save = true
-    first_name = params[:user][:fname]
+    first_name = input[:fname]
     if (first_name) && is_profane_name?(first_name)
       @user.errors.add(:fname, "Not valid")
       logger.debug "Profane first name"
       should_save = false
     end
-    last_name = params[:user][:lname]
+    last_name = input[:lname]
     if (last_name) && is_profane_name?(last_name)
       @user.errors.add(:lname, "Not valid")
       logger.debug "Profane last name"
       should_save = false
     end
-    email = params[:user][:email]
+    email = input[:email]
     if (email) && is_profane_name?(email)
       @user.errors.add(:email, "Not valid")
       logger.debug "Profane email"
+      should_save = false
+    end
+    password = input[:password]
+    if (password) && (password.length < 6)
+      @user.errors.add[:password, "Too short"]
+      logger.debug "Password too short"
       should_save = false
     end
 
@@ -64,10 +74,10 @@ class UsersController < ApplicationController
     if should_save && @user.save
       save_user_to_cookie(@user)
     else
-      if (params[:user][:email])  # If they enter an existing email, sign them in
-        @user = User.find_by_email(params[:user][:email])
+      if (email)  # If they enter an existing email, sign them in
+        @user = User.find_by_email(email)
         if @user
-          logger.debug "Found user for email: #{ params[:user][:email] }"
+          logger.debug "Found user for email: #{ email }"
           save_user_to_cookie(@user)
         end
       end

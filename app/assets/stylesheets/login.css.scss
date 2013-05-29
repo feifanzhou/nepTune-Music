@@ -14,17 +14,22 @@ body {
 }
 .Subtext {
 	color: $nepTuneTeal;
-	font-size: 12px;
+	display: inline-block;
+	font-size: 13px;
 	font-weight: 400;
 }
 
 /***** Login styles *****/
 div#loginContainer {
 	margin: 15% auto;
+	text-align: center;
 	div#login {
 		margin: 30px auto;
-		// text-align: center;
+		text-align: left;
 		width: 320px;
+		div.LoginHidden {
+			display: none;
+		}
 		input[type="text"], input[type="email"], input[type="password"] {
 			-webkit-box-sizing: border-box;
 			-moz-box-sizing: border-box;
@@ -34,8 +39,29 @@ div#loginContainer {
 			height: 38px;
 			width: 320px;
 		}
+		input#login_fname {
+			width: 158px;
+		}
+		input#login_lname {
+			width: 158px;
+		}
 		#loginButtonMain {
 			width: 320px;
 		}
+		#createAccount {
+			cursor: pointer;
+			float: right;
+		}
+		#goLogin {
+			cursor: pointer;
+			display: none;
+			float: right;
+		}
 	}
+}
+#appFooter {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
 }

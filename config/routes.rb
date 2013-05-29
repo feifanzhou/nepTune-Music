@@ -1,4 +1,7 @@
 NeptuneMusic::Application.routes.draw do
+  # Routes for resources
+  resources :users
+  
   # Routes for beta subdomain
   constraints subdomain: "beta" do
     root to: 'home#home'
@@ -17,8 +20,6 @@ NeptuneMusic::Application.routes.draw do
     get "login_controller/destroy"
     match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
 
-    resources :users
-  
     root to: 'static_pages#home'
   
     match '/market', to: 'static_pages#market', as: :market

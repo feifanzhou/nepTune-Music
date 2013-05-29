@@ -1,7 +1,15 @@
 <div id='loginContainer'>
 	<%= link_to image_tag('logo.png', size:"259x50", id:'headerLogo', alt:'nepTune'), root_url(subdomain: "www") %>
 	<div id='login'>
-		<%= form_for(:login, url: login_path) do |f| %>
+		<%= form_for(:login, url: login_path, html: { id: 'loginForm' }) do |f| %>
+			<div class='LoginHidden' id='newAccountNames'>
+				<%= f.label :fname %>
+				<%= f.text_field :fname, placeholder: "First name" %>
+	
+				<%= f.label :lname %>
+				<%= f.text_field :lname, placeholder: "Last name" %>
+			</div>
+			
 			<%= f.label :email%>
 			<%= f.email_field :email, placeholder: "Email address" %>
 	
@@ -10,7 +18,9 @@
 	
 			<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
 		<% end %>
-		<p class='Subtext', id='forgotPassword'>Password help&hellip;</p>
+		<p class='Subtext' id='forgotPassword'>Password help&hellip;</p>
+		<p class='Subtext' id='createAccount' onclick="toggleCreateNewAccount(1)">Create a new account</p>
+		<p class='Subtext' id='goLogin' onclick="toggleCreateNewAccount(0)">Login with existing account</p>
 	</div>
 </div>
-<%= render 'layouts/footer' %>
+<%= render 'layouts/footer', footer_id: "appFooter" %>
