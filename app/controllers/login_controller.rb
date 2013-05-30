@@ -20,7 +20,8 @@ class LoginController < ApplicationController
   def sign_in_user # Process and redirect
     user = User.find_by_email(params[:login][:email].downcase)
     if user && user.authenticate(params[:login][:password])
-      # Sign in and redirect
+      cookies[:current_user] = user.remember_token
+      redirect_to root_path
     else
       # Display error message, re-render login
       flash[:login_error] = "Email and password didn't match"

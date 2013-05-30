@@ -75,6 +75,7 @@ class UsersController < ApplicationController
       end
     end
 
+    # TODO: Show message if signing up with an email that already exists
     session[:new_user] = @user
     logger.debug "Session user: #{ session[:new_user] }"
     if should_save && @user.save
