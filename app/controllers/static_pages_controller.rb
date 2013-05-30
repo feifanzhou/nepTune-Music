@@ -11,13 +11,18 @@ class StaticPagesController < ApplicationController
     reset_session
   end
   
+  def get_errors
+    @current_errors = session[:current_errors]
+    @current_errors = [] if @current_errors.blank?
+  end
+  
   def home
     @taglines = ["Let's make music", "A world of music"]
     @tagline = @taglines[rand(@taglines.length)]
     
     set_user
+    get_errors
     logger.debug "Static pages user: #{ @user }"
-    logger.debug "Static pages user error: #{ @user.errors.full_messages }"
     # @has_new_user = session[:did_create_new_user]
   end
 

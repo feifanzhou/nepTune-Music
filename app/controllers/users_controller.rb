@@ -17,7 +17,11 @@ class UsersController < ApplicationController
   end
   
   def save_user_to_cookie(a_user)
-    cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
+    if !(a_user.has_temp_password)
+      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
+    else
+      cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
+    end
   end
   
   def redirect_back
@@ -39,10 +43,11 @@ class UsersController < ApplicationController
   def create
     sign_out
     input = params[:user]
-    if !input || !defined?(input)
+    if input.blank?
       input = params[:login]
     end
-    @user = User.new(input)
+    fullAccountCreate = input[:fullAccountCreate].to_i
+    @user = User.new(input.except(:fullAccountCreate))
     should_save = true
     first_name = input[:fname]
     if (first_name) && is_profane_name?(first_name)
@@ -62,19 +67,20 @@ class UsersController < ApplicationController
       logger.debug "Profane email"
       should_save = false
     end
-    password = input[:password]
-    if (password) && (password.length < 6)
-      @user.errors.add[:password, "Too short"]
-      logger.debug "Password too short"
-      should_save = false
+    if fullAccountCreate > 0
+      password = input[:password]
+      if password.length < 6
+        @user.errors.add(:password, "Too short")
+        should_save = false
+      end
     end
 
     session[:new_user] = @user
     logger.debug "Session user: #{ session[:new_user] }"
     if should_save && @user.save
       save_user_to_cookie(@user)
-    else
-      if (email)  # If they enter an existing email, sign them in
+    elsif fullAccountCreate.blank? or fullAccountCreate == 0
+      if (!email.blank?)  # If they enter an existing email, sign them in
         @user = User.find_by_email(email)
         if @user
           logger.debug "Found user for email: #{ email }"

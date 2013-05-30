@@ -1,4 +1,5 @@
 function toggleCreateNewAccount(tag) {
+	$("#loginError").slideUp(200);
 	if (tag === 1) {
 		$("#loginForm").attr('action', '/users');
 		$("#loginForm").addClass('new_user');

@@ -15,8 +15,11 @@ body {
 .Subtext {
 	color: $nepTuneTeal;
 	display: inline-block;
-	font-size: 13px;
-	font-weight: 400;
+	font-size: 14px;
+	font-weight: 700;
+	&:hover {
+		color: $nepTuneBlue;
+	}
 }
 
 /***** Login styles *****/

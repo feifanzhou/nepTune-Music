@@ -17,10 +17,20 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist
+  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password
+  
+  before_validation do
+    # Create temporary password 
+    if !self.password or self.password.blank?
+      # From http://stackoverflow.com/a/88341/472768
+      self.password = (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
+      self.has_temp_password = true
+    end
+  end
+  before_save { |user| user.email = email.downcase }
+  
   has_secure_password
   
-  before_save { |user| user.email = email.downcase }
   before_save { create_remember_token if (self.password_digest && defined?(self.password_digest)) }
   
   validates :fname, presence: true, length: { maximum: 50 }
