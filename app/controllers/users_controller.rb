@@ -47,6 +47,9 @@ class UsersController < ApplicationController
       input = params[:login]
     end
     fullAccountCreate = input[:fullAccountCreate].to_i
+    if fullAccountCreate and User.find_by_email(input[:email].downcase) # Signing up when email already exists
+      flash[:login_error] = "You're already registered! Sign in below"
+    end
     @user = User.new(input.except(:fullAccountCreate))
     should_save = true
     first_name = input[:fname]
@@ -61,7 +64,7 @@ class UsersController < ApplicationController
       logger.debug "Profane last name"
       should_save = false
     end
-    email = input[:email]
+    email = input[:email].downcase
     if (email) && is_profane_name?(email)
       @user.errors.add(:email, "Not valid")
       logger.debug "Profane email"
