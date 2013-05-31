@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   include LoginHelper
   
   @user
@@ -22,12 +23,6 @@ class UsersController < ApplicationController
     else
       cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
     end
-  end
-  
-  def redirect_back
-    redirect_to :back
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
   end
   
   def is_profane_name?(name)

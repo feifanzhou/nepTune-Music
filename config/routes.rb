@@ -11,6 +11,8 @@ NeptuneMusic::Application.routes.draw do
     
     match '/pwhelp', to: 'login#password_help', as: :pwhelp
     get "/pwreset" => 'login#reset_password', as: :resetpw
+    match '/pwchange', to: 'login#password_change', as: :pwchange
+    post "/changepw" => 'login#change_password', as: :changepw
   end
   
   # Routes for landing site
