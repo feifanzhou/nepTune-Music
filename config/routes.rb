@@ -8,6 +8,9 @@ NeptuneMusic::Application.routes.draw do
     
     get "/login" => "login#login", as: :login
     post "/login" => "login#sign_in_user", as: :sign_in
+    
+    match '/pwhelp', to: 'login#password_help', as: :pwhelp
+    get "/pwreset" => 'login#reset_password', as: :resetpw
   end
   
   # Routes for landing site

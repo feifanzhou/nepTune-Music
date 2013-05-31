@@ -1,6 +1,6 @@
-<div id='loginContainer'>
+<div class='LoginContainer' id='loginContainer'>
 	<%= link_to image_tag('logo.png', size:"259x50", id:'headerLogo', alt:'nepTune'), root_url(subdomain: "www") %>	
-	<div id='login'>
+	<div class='Login' id='login'>
 		
 		<% if !(@login_error.blank?) %>
 			<div class='alert alert-error' id='loginError'>
@@ -27,7 +27,7 @@
 	
 			<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
 		<% end %>
-		<p class='Subtext' id='forgotPassword'>Password help&hellip;</p>
+		<p class='Subtext' id='forgotPassword'><%= link_to "Password help&hellip;".html_safe, pwhelp_path %></p>
 		<p class='Subtext' id='createAccount' onclick="toggleCreateNewAccount(1)">Create a new account</p>
 		<p class='Subtext' id='goLogin' onclick="toggleCreateNewAccount(0)">Login with existing account</p>
 	</div>

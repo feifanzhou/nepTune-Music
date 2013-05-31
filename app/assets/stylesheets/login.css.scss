@@ -23,10 +23,10 @@ body {
 }
 
 /***** Login styles *****/
-div#loginContainer {
+div.LoginContainer {
 	margin: 15% auto;
 	text-align: center;
-	div#login {
+	div.Login {
 		margin: 30px auto;
 		text-align: left;
 		width: 320px;
@@ -67,4 +67,13 @@ div#loginContainer {
 	left: 0;
 	position: absolute;
 	right: 0;
+}
+p#enterPasswordPrompt {
+	color: #666;
+	font-weight: bold;
+	margin-bottom: 28px;
+	text-align: center;
+}
+#resetPasswordButton {
+	width: 320px;
 }

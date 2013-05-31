@@ -19,11 +19,13 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password
   
+  include UsersHelper
+  
   before_validation do
     # Create temporary password 
     if !self.password or self.password.blank?
       # From http://stackoverflow.com/a/88341/472768
-      self.password = (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
+      self.password = temporary_password
       self.has_temp_password = true
     end
   end
