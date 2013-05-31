@@ -16,8 +16,6 @@ class StaticPagesController < ApplicationController
     @tagline = @taglines[rand(@taglines.length)]
     
     set_user
-    logger.debug "Static pages user: #{ @user }"
-    logger.debug "Static pages user error: #{ @user.errors.full_messages }"
     # @has_new_user = session[:did_create_new_user]
   end
 
