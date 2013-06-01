@@ -37,6 +37,8 @@ NeptuneMusic::Application.routes.draw do
     match '/logout', to: 'login_#destroy', as: :logout
   end
   
+  root to: 'static_pages#home'
+  
   # Any routes that aren't defined go to 404
   match "*a", to: 'errors#not_found'
   
