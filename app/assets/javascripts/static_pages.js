@@ -9,6 +9,7 @@ $(function() {
 
 $(function() {
 	$(".TeamGridItem").tooltip();
+	$("#artistCheck").tooltip();
 });
 
 $(window).scroll(function() {

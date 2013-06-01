@@ -127,14 +127,15 @@ p {
 .tooltip {
 	font-family: $Lato;
 	font-size: 13px;
-	.tooltip-inner {
+	font-weight: 400;
+	/* .tooltip-inner {
 		background-color: darken($nepTuneTeal, 5%);
 		border: 2px solid rgba(0, 0, 0, 0.75);
 	}
 	&.in {
 		filter: alpha(opacity=90);
 		opacity: 0.95;
-	}
+	} */
 }
 
 .row {

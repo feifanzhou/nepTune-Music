@@ -14,7 +14,7 @@
 	<%= f.email_field :email, placeholder: "Email address" %>
 	
 	<div id='signupChecks'>
-		<span id='artistCheck'>
+		<span id='artistCheck' data-placement='top' data-trigger='hover' data-title="If you make music, check this box">
 			<%= f.label :isArtist %>
 			<%= f.check_box :isArtist %>
 			<span class='CheckboxLabel'>I'm an artist</span>
