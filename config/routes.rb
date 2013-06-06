@@ -1,32 +1,43 @@
 NeptuneMusic::Application.routes.draw do
-  get "errors/not_found"
-
-  get "errors/server_error"
-
-  get "errors/unprocessable"
-
-  get "errors/access_denied"
-
-  get "login/destroy"
-
-  get "login_controller/destroy"
-  
-  match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
-  # post 'users/make-beta-tester' => 'users#make_beta_tester', as: :make_beta_tester
-
+  # Routes for resources
   resources :users
   
+  # Routes for beta subdomain
+  constraints subdomain: "beta" do
+    root to: 'home#home'
+    
+    get "/login" => "login#login", as: :login
+    post "/login" => "login#sign_in_user", as: :sign_in
+    
+    match '/pwhelp', to: 'login#password_help', as: :pwhelp
+    get "/pwreset" => 'login#reset_password', as: :resetpw
+    match '/pwchange', to: 'login#password_change', as: :pwchange
+    post "/changepw" => 'login#change_password', as: :changepw
+  end
+  
+  # Routes for landing site
+  constraints subdomain: "www" do
+    get "errors/not_found"
+    get "errors/server_error"
+    get "errors/unprocessable"
+    get "errors/access_denied"
+    get "login/destroy"
+    get "login_controller/destroy"
+    match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
+
+    root to: 'static_pages#home'
+  
+    match '/market', to: 'static_pages#market', as: :market
+    match '/team', to: 'static_pages#team', as: :team
+    match '/news', to: 'static_pages#news', as: :news
+    match '/careers', to: 'static_pages#careers', as: :jobs
+    match '/contact', to: 'static_pages#contact', as: :contact
+    match '/beta', to: 'static_pages#beta', as: :beta
+    match '/terms', to: 'static_pages#terms', as: :terms
+    match '/logout', to: 'login_#destroy', as: :logout
+  end
+  
   root to: 'static_pages#home'
-  
-  match '/market', to: 'static_pages#market', as: :market
-  match '/team', to: 'static_pages#team', as: :team
-  match '/news', to: 'static_pages#news', as: :news
-  match '/careers', to: 'static_pages#careers', as: :jobs
-  match '/contact', to: 'static_pages#contact', as: :contact
-  match '/beta', to: 'static_pages#beta', as: :beta
-  match '/terms', to: 'static_pages#terms', as: :terms
-  
-  match '/logout', to: 'login_#destroy', as: :logout
   
   # Any routes that aren't defined go to 404
   match "*a", to: 'errors#not_found'

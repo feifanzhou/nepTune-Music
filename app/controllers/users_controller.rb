@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   include LoginHelper
   
   @user
@@ -17,13 +18,11 @@ class UsersController < ApplicationController
   end
   
   def save_user_to_cookie(a_user)
-    cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
-  end
-  
-  def redirect_back
-    redirect_to :back
-    rescue ActionController::RedirectBackError
-      redirect_to root_path
+    if !(a_user.has_temp_password)
+      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
+    else
+      cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
+    end
   end
   
   def is_profane_name?(name)
@@ -38,36 +37,52 @@ class UsersController < ApplicationController
   
   def create
     sign_out
-    @user = User.new(params[:user])
+    input = params[:user]
+    if input.blank?
+      input = params[:login]
+    end
+    fullAccountCreate = input[:fullAccountCreate].to_i
+    if fullAccountCreate and User.find_by_email(input[:email].downcase) # Signing up when email already exists
+      flash[:login_error] = "You're already registered! Sign in below"
+    end
+    @user = User.new(input.except(:fullAccountCreate))
     should_save = true
-    first_name = params[:user][:fname]
+    first_name = input[:fname]
     if (first_name) && is_profane_name?(first_name)
       @user.errors.add(:fname, "Not valid")
       logger.debug "Profane first name"
       should_save = false
     end
-    last_name = params[:user][:lname]
+    last_name = input[:lname]
     if (last_name) && is_profane_name?(last_name)
       @user.errors.add(:lname, "Not valid")
       logger.debug "Profane last name"
       should_save = false
     end
-    email = params[:user][:email]
+    email = input[:email].downcase
     if (email) && is_profane_name?(email)
       @user.errors.add(:email, "Not valid")
       logger.debug "Profane email"
       should_save = false
     end
+    if fullAccountCreate > 0
+      password = input[:password]
+      if password.length < 6
+        @user.errors.add(:password, "Too short")
+        should_save = false
+      end
+    end
 
+    # TODO: Show message if signing up with an email that already exists
     session[:new_user] = @user
     logger.debug "Session user: #{ session[:new_user] }"
     if should_save && @user.save
       save_user_to_cookie(@user)
-    else
-      if (params[:user][:email])  # If they enter an existing email, sign them in
-        @user = User.find_by_email(params[:user][:email])
+    elsif fullAccountCreate.blank? or fullAccountCreate == 0
+      if (!email.blank?)  # If they enter an existing email, sign them in
+        @user = User.find_by_email(email)
         if @user
-          logger.debug "Found user for email: #{ params[:user][:email] }"
+          logger.debug "Found user for email: #{ email }"
           save_user_to_cookie(@user)
         end
       end

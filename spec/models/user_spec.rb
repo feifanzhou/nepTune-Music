@@ -8,9 +8,12 @@
 #  email             :string(255)
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
-#  willingToBetaTest :boolean
-#  isBetaTester      :boolean
-#  isArtist          :boolean
+#  willingToBetaTest :boolean          default(FALSE)
+#  isBetaTester      :boolean          default(FALSE)
+#  isArtist          :boolean          default(FALSE)
+#  password_digest   :string(255)
+#  has_temp_password :boolean
+#  remember_token    :string(255)
 #
 
 require 'spec_helper'

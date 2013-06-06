@@ -1,3 +1,82 @@
 // Place all the styles related to the Login controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+/***** Common styles *****/
+body {
+	background-image: image-url('debut.png');
+}
+.Subtext {
+	color: $nepTuneTeal;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	&:hover {
+		color: $nepTuneBlue;
+	}
+}
+.Zonda {
+	font-family: "Zonda";
+}
+
+/***** Login styles *****/
+div.LoginContainer {
+	margin: 15% auto;
+	text-align: center;
+	div.Login {
+		margin: 30px auto;
+		text-align: left;
+		width: 320px;
+		div.LoginHidden {
+			display: none;
+		}
+		input[type="text"], input[type="email"], input[type="password"] {
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			-ms-box-sizing: border-box;
+			-o-box-sizing: border-box;
+			box-sizing: border-box;
+			height: 38px;
+			width: 320px;
+		}
+		input#login_fname {
+			width: 158px;
+		}
+		input#login_lname {
+			width: 158px;
+		}
+		#loginButtonMain {
+			width: 320px;
+		}
+		#createAccount {
+			cursor: pointer;
+			float: right;
+		}
+		#goLogin {
+			cursor: pointer;
+			display: none;
+			float: right;
+		}
+	}
+}
+#appFooter {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+}
+p#enterPasswordPrompt {
+	color: #666;
+	font-weight: bold;
+	margin-bottom: 28px;
+	text-align: center;
+}
+#resetPasswordButton {
+	width: 320px;
+}
