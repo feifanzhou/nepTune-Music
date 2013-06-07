@@ -12,12 +12,16 @@
 	
 	<%= f.label :email %>
 	<%= f.email_field :email, placeholder: "Email address" %>
-	
+
 	<div id='signupChecks'>
 		<span id='artistCheck' data-placement='top' data-trigger='hover' data-title="If you make music, check this box">
 			<%= f.label :isArtist %>
 			<%= f.check_box :isArtist %>
-			<span class='CheckboxLabel'>I'm an artist</span>
+			<% if (defined?(is_home_page) && is_home_page) %>
+				<span class='CheckboxLabel CheckboxLabelHome'>I'm an artist</span>
+			<% else %>
+				<span class='CheckboxLabel'>I'm an artist</span>
+			<% end %>
 		</span>
 		<span id='betaTestCheck'>
 			<%= f.label :willingToBetaTest %>
@@ -26,7 +30,11 @@
 			<% else %>
 				<%= f.check_box :willingToBetaTest %>
 			<% end %>
-			<span class='CheckboxLabel'>I want to beta test</span>
+			<% if (defined?(is_home_page) && is_home_page) %>
+				<span class='CheckboxLabel CheckboxLabelHome'>I want to beta test</span>
+			<% else %>
+				<span class='CheckboxLabel'>I want to beta test</span>
+			<% end %>
 		</span>
 	</div>
 	
