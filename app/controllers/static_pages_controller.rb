@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
   end
   
   def home
-    @taglines = ["Let's make music", "A world of music"]
+    @taglines = ["Music. Liberated.", "Music unleashed"]
     @tagline = @taglines[rand(@taglines.length)]
     
     set_user
