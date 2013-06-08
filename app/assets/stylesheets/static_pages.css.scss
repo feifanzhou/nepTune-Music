@@ -199,7 +199,7 @@ div#signup {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='image-url('home_bkg.jpg)', sizingMethod='scale');
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="image-url('home_bkg.jpg')", sizingMethod='scale');
 	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='"image-url('home_bkg.jpg')"', sizingMethod='scale')";
 	background-color: rgba(0, 0, 0, 0);
 	color: white;
