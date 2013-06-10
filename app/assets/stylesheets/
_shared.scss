@@ -1,0 +1,94 @@
+@import "fonts";
+@import "variables";
+
+/***** Shared styles *****/
+.btn {
+	font-family: $Signika !important;
+	font-size: 1.25em;
+	a {
+		color: inherit;
+		&:visited {
+			color: inherit;
+		}
+	}
+}
+
+.CheckboxLabel {
+	display: inline-block;
+	font-family: $Lato;
+	font-size: 16px;
+	line-height: 22px;
+	margin: 5px 10px 0 2px;
+	position: relative;
+	top: 2px;
+}
+
+.tooltip {
+	font-family: $Lato;
+	font-size: 13px;
+	font-weight: 400;
+	/* .tooltip-inner {
+		background-color: darken($nepTuneTeal, 5%);
+		border: 2px solid rgba(0, 0, 0, 0.75);
+	}
+	&.in {
+		filter: alpha(opacity=90);
+		opacity: 0.95;
+	} */
+}
+
+form label {
+	display: none;
+}
+
+input[type='text'], input[type='password'], input[type='email'] {
+	border-radius: 3px;
+	font-family: $Lato;
+	font-size: 18px;
+	font-weight: 400;
+	padding: 8px;
+}
+input[type='submit'] {
+	font-family: $Lato;
+	font-weight: bold;
+}
+ul {
+	font-family: $Lato;
+}
+ol {
+	font-family: $Lato;
+}
+
+/***** Typography *****/
+h1, h2, h3, h4, h5, h6 {
+	font-family: $PTSans;
+	line-height: 1.15em;
+}
+
+h1 {
+	@media (min-width: 768px) {
+		font-size: 64px;
+		margin: 48px 0;
+	}
+}
+
+h2 {
+	@media (min-width: 768px) {
+		font-size: 48px;
+		margin: 36px 0;
+	}
+}
+
+p {
+	font-family: $Lato;
+	@media (min-width: 768px) {
+		font-size: 22px;
+	}
+	font-weight: 300;
+	line-height: 1.5em;
+}
+
+ul {
+	margin-left: 0;
+	padding-left: 0;
+}

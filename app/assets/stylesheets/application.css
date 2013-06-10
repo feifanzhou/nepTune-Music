@@ -10,9 +10,4 @@
  *
  *= require reset
  *= require_self
- *= require_tree .
  */
-
-form label {
-	display: none;
-}

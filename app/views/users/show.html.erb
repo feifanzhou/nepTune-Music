@@ -1,0 +1,84 @@
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='artistPageContainer'>
+  <%= render 'layouts/artist_sidebar' %>
+  <div id='artistPageContent'>
+    <div id='musicGridHeader'>
+      <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", class: "MusicGridHeaderImage") %>
+    </div>
+    <div id='musicGridFilter'>
+      <ul class="FilterBarItems">
+        <li>All</li>
+        <li>Songs</li>
+        <li>Albums</li>
+        <li>Videos</li>
+        <li>Others</li>
+      </ul>
+      <form id='musicFilterSearch'>
+        <input type='text' id='musicFilterSearchField' placeholder='Search' />
+      </form>
+    </div>
+    <div id='musicGrid'>
+      <div class='GridItem GridItemFeatured'>
+        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_2.jpg', alt: "The Piano Guys") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('soundmap1.png') %>
+      </div>
+      <div class='GridItem GridItemFeatured'>
+        <%= image_tag('piano_guys_3.jpg', alt: 'The Piano Guys') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('soundmap2.png') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_emmanuel.jpg', alt: 'The Piano Guys O Come Emmanuel') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
+      </div>
+      <div class='GridItem'>
+        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
+    </div>
+    <script type="text/javascript">
+      /* $(function() {
+        $("#musicGrid").masonry({
+          itemSelector: '.GridItem',
+          columnWidth: floor($('#musicGrid').width() * 0.20)
+        })
+      }) */
+    </script>
+  </div>
+</div>

@@ -1,3 +1,275 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+@import "shared";
+
+header {
+	height: 100px;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+	#pageHeader {
+		background-color: $nepTuneOrange;
+		height: 45px;
+		left: 0;
+		position: fixed;
+		right: 0;
+		top: 0;
+		width: 100%;
+		#headerNavLinks {
+			color: white;
+			display: inline-block;
+			list-style: none;
+			max-width: 1200px;
+			margin: 0;
+			li {
+				color: $inactiveWhite;
+				display: inline-block;
+				float: left;
+				font-family: $Signika;
+				font-size: 20px;
+				font-weight: 400;
+				margin: 10px 0 10px 32px;
+			}
+		}
+		#headerSearch {
+			display: inline-block;
+			float: right;
+			margin-right: 32px;
+			#headerSearchField {
+				background-color: darken($nepTuneOrange, 5%);
+				border: none;
+				box-sizing: border-box;
+				color: white;
+				font-size: 16px;
+				height: 32px;
+				margin: 6px 0 2px 0;
+				width: 280px;
+				&::-webkit-input-placeholder {
+					color: $inactiveWhite;
+				}
+				&:-moz-placeholder {
+					color: $inactiveWhite;
+				}
+				&::-moz-placeholder {
+					color: $inactiveWhite;
+				}
+				&:-ms-input-placeholder {
+					color: $inactiveWhite;
+				}
+				&:focus {
+					background-color: darken($nepTuneOrange, 12%);
+					border: none !important;
+					box-shadow: none !important;
+					outline: none;
+				}
+			}
+		}
+	}
+
+	#playbar {
+		background: $Txture;
+		// border-bottom: 1px solid #eee;
+		margin-top: 45px;
+		height: 80px;
+		width: 100%;
+	}
+}
+
+#artistPageContainer {
+	background: $Txture;
+	height: 100%;
+	overflow: hidden;
+	width: 100%;
+	#artistSidebar {
+		background: $Txture;
+		bottom: 0;
+		color: $white;
+		height: 100%;
+		left: 0;
+		min-height: 960px;
+		overflow: scroll;
+		padding: 12px 8px 0 0;
+		position: fixed;
+		top: 125px;
+		width: 228px;
+		#artistProfile {
+			.ArtistProfilePic {
+				border: 4px solid $white;
+				border-radius: 4px;
+				margin: 10px 26px;
+			}
+			.ArtistProfileName {
+				font-family: $PTSans;
+				font-size: 24px;
+				font-weight: 400;
+				margin: 0 0 18px 0;
+				text-align: center;
+			}
+			h2.SidebarSubheading {
+				color: $halfWhite;
+				font-size: 12px;
+				margin: 14px auto 4px 12px;
+			}
+			@mixin ArtistProfileText {
+				color: white;
+				font-size: 12px;
+				font-weight: 400;
+				margin: 0 12px 1em 12px;
+			}
+			.ArtistProfileBio {
+				@include ArtistProfileText;
+			}
+		}
+		#artistActions {
+			margin: auto 12px;
+			button.ArtistAction {
+				background-color: transparent;
+				border: none;
+				border-bottom: 1px solid $nepTuneOrangeHighlight;
+				border-top: 1px solid $nepTuneOrangeHighlight;
+				color: $inactiveWhite;
+				display: inline-block;
+				font-family: $Signika;
+				font-weight: 700;
+				float: left;
+				margin: 0;
+				width: 50%;
+				&:hover {
+					background-color: desaturate(darken($nepTuneOrange, 25%), 35%);
+					color: $partialActiveWhite;
+					transition: background-color 0.5s, color 0.5s;
+					-webkit-transition: background-color 0.5s, color 0.5s;
+				}
+				&.ArtistActionOn {
+					background-color: $nepTuneOrangeHighlight;
+					color: white;
+				}
+			}
+		}
+		.ArtistNav {
+			margin-top: 80px;
+			ul {
+				list-style: none;
+				margin: 0;
+				li {
+					border-bottom: 2px groove transparentize(#aaa, 0.2);
+					font-family: $Signika;
+					font-size: 28px;
+					font-weight: 400;
+					padding: 12px;
+					&:hover {
+						background-color: transparentize(#666, 0.5);
+						cursor: pointer;
+						transition: background-color 0.5s;
+						-webkit-transition: background-color 0.5s;
+					}
+					&.ArtistNavLast {
+						border: none;
+					}
+				}
+			}
+		}
+	}
+	#artistPageContent {
+		background: #444;
+		bottom: 0;
+		box-shadow: 0 -4px 8px 8px transparentize(black, 0.65);
+		color: $white;
+		left: 228px;
+		overflow: scroll;
+		position: fixed;
+		right: 0;
+		top: 125px;
+		z-index: 2;
+		#musicGridHeader {
+			height: 320px;
+			overflow: hidden;
+			max-width: 960px;
+			.MusicGridHeaderImage {
+				height: 320px;
+			}
+		}
+		#musicGridFilter {
+			background: $Txture;
+			width: 100%;
+			ul.FilterBarItems {
+				display: inline-block;
+				list-style: none;
+				margin: 0;
+				padding: 10px 14px;
+				li {
+					color: $inactiveWhite;
+					display: inline-block;
+					float: left;
+					font-family: $Signika;
+					font-size: 18px;
+					font-weight: 400;
+					margin: 0 14px;
+					&:hover {
+						color: $partialActiveWhite;
+						cursor: pointer;
+						transition: color 0.5s;
+						-webkit-transition: color 0.5s;
+					}
+				}
+			}
+			#musicFilterSearch {
+				display: inline-block;
+				float: right;
+				margin-right: 14px;
+				padding: 8px 14px;
+				#musicFilterSearchField {
+					background-color: #444;
+					border: none;
+					box-sizing: border-box;
+					color: white;
+					font-size: 18px;
+					height: 26px;
+					width: 160px;
+					&::-webkit-input-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&::-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-ms-input-placeholder {
+						color: $inactiveWhite;
+					}
+					&:focus {
+						background-color: #666;
+						border: none !important;
+						box-shadow: none !important;
+						outline: none;
+					}
+				}
+			}
+		}
+		#musicGrid {
+			.GridItem {
+				float: left;
+				width: 20%;
+				img {
+					height: auto;
+					max-width: 100%;
+				}
+			}
+			/* .GridItemFeatured {
+				float: left;
+				width: 40%;
+				img {
+					height: auto;
+					max-width: 100%;
+				} 
+			} */
+		}
+	}
+}
