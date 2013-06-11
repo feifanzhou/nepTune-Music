@@ -7,19 +7,20 @@
   <div id='artistPageContent'>
     <div id='musicGridHeader'>
       <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", class: "MusicGridHeaderImage") %>
+      <div id='musicGridFilter'>
+        <ul class="FilterBarItems">
+          <li>All</li>
+          <li>Songs</li>
+          <li>Albums</li>
+          <li>Videos</li>
+          <li>Others</li>
+        </ul>
+        <form id='musicFilterSearch'>
+          <input type='text' id='musicFilterSearchField' placeholder='Search' />
+        </form>
+      </div>
     </div>
-    <div id='musicGridFilter'>
-      <ul class="FilterBarItems">
-        <li>All</li>
-        <li>Songs</li>
-        <li>Albums</li>
-        <li>Videos</li>
-        <li>Others</li>
-      </ul>
-      <form id='musicFilterSearch'>
-        <input type='text' id='musicFilterSearchField' placeholder='Search' />
-      </form>
-    </div>
+    
     <div id='musicGrid'>
       <div class='GridItem GridItemFeatured'>
         <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
@@ -79,6 +80,21 @@
           columnWidth: floor($('#musicGrid').width() * 0.20)
         })
       }) */
+    </script>
+    <script type="text/javascript">
+      var elm = $("#artistSidebar");
+
+      $(elm).scroll(function() {
+          if (elm.scrollTop() > 15)
+            $("#sidebarShadowTop").fadeTo(1.0, 1.0);
+          else
+            $("#sidebarShadowTop").fadeTo(1.0, 0.0);
+
+          if (elm.innerHeight() + elm.scrollTop() > (elm.scrollHeight - 5))
+            $("#sidebarShadowBottom").fadeTo(1.0, 0.0);
+          else
+            $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
+      });
     </script>
   </div>
 </div>

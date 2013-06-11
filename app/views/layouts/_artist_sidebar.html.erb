@@ -1,4 +1,5 @@
 <div id='artistSidebar'>
+  <div class='ShadowTop' id='sidebarShadowTop'></div>
   <section id='artistProfile'>
     <%= image_tag("pianoguys.jpg", size: "160x160", alt: "The Piano Guys", class: "ArtistProfilePic") %>
     <p class='ArtistProfileName'>The Piano Guys</p>
@@ -11,11 +12,22 @@
   </section>
   <section class='ArtistNav'>
     <ul>
-      <li class='ArtistNavFirst' id='artistAbout'>About</li>
-      <li id='artistMusic'>Music</li>
-      <li id='artistEvents'>Events</li>
-      <li id='artistBurble'>Burble</li>
-      <li class='ArtistNavLast' id='artistFans'>Fans</li>
+      <%= link_to artist_about_path(@user.username) do %>
+        <li class='ArtistNavFirst' id='artistAbout'>About</li>
+      <% end %>
+      <%= link_to artist_music_path(@user.username) do %>
+        <li id='artistMusic'>Music </li>
+      <% end %>
+      <%= link_to artist_events_path(@user.username) do %>
+        <li id='artistEvents'>Events</li>
+      <% end %>
+      <%= link_to artist_burble_path(@user.username) do %>
+        <li id='artistBurble'>Burble</li>
+      <% end %>
+      <%= link_to artist_fans_path(@user.username) do %>
+        <li class='ArtistNavLast' id='artistFans'>Fans</li>
+      <% end %>
     </ul>
   </section>
+  <div class='ShadowBottom' id='sidebarShadowBottom'></div>
 </div>

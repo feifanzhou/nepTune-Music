@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529175620) do
+ActiveRecord::Schema.define(:version => 20130610160015) do
 
   create_table "users", :force => true do |t|
     t.string   "fname"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130529175620) do
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
+    t.string   "username"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

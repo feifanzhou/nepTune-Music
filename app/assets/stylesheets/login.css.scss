@@ -4,13 +4,16 @@
 
 @import "fonts";
 @import "variables";
+@import "shared";
+
+@import "custom_bootstrap";
 
 @import "bootstrap";
 @import "bootstrap-responsive";
 
 /***** Common styles *****/
 body {
-	background-image: image-url('debut.png');
+	background-image: $Debut;
 }
 .Subtext {
 	color: $nepTuneTeal;

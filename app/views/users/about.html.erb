@@ -1,0 +1,21 @@
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='artistPageContainer'>
+  <%= render 'layouts/artist_sidebar' %>
+  <div id='artistPageContent'>
+  	<div id='aboutGallery'>
+	  	<%= image_tag('piano_guys_about_hero.jpg', alt: "The Piano Guys", class: "AboutPageHero", id: "aboutPageHeroDemo") %>
+		</div>
+		<div id='aboutVideo'>
+			<iframe width="480" height="270" src="http://www.youtube.com/embed/09RUuTAM2H0?rel=0" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<div id='aboutText'>
+			<div id='aboutStory'>
+				<h2>The Piano Guys</h2>
+				<p>Paul Anderson owned a piano shop in St. George, Utah. He met musician Jon Schmidt as the latter walked in to ask if he could practice there for an upcoming concert. Months later, Paul Anderson and Tel Stewart (then just for fun) started making videos together of Jon Schmidt. It was not too long after that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson, and Al van der Beek as the studio and music technician. After the five of them started collaborating the group really started to take off, producing a music video each week and posting it to YouTube.</p>
+				<p>The team also includes Tel Stewart (videography and editing) and Al van der Beek (production and recording).</p>
+			</div>
+  </div>
+</div>

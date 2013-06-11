@@ -13,6 +13,13 @@ NeptuneMusic::Application.routes.draw do
     get "/pwreset" => 'login#reset_password', as: :resetpw
     match '/pwchange', to: 'login#password_change', as: :pwchange
     post "/changepw" => 'login#change_password', as: :changepw
+
+    match '/:username', to: 'users#show', as: :username
+    match '/:username/about', to: 'users#about', as: :artist_about
+    match '/:username/music', to: 'users#music', as: :artist_music
+    match '/:username/events', to: 'users#events', as: :artist_events
+    match '/:username/burble', to: 'users#burble', as: :artist_burble
+    match '/:username/fans', to: 'users#fans', as: :artist_fans
   end
   
   # Routes for landing site
