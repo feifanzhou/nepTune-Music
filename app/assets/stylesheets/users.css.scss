@@ -6,6 +6,10 @@
 @import "variables";
 @import "shared";
 
+html {
+	background: $Txture;
+}
+
 header {
 	height: 100px;
 	left: 0;
@@ -21,54 +25,58 @@ header {
 		right: 0;
 		top: 0;
 		width: 100%;
-		#headerNavLinks {
-			color: white;
-			display: inline-block;
-			list-style: none;
-			max-width: 1200px;
-			margin: 0;
-			li {
-				color: $inactiveWhite;
-				display: inline-block;
-				float: left;
-				font-family: $Myriad;
-				font-size: 20px;
-				font-weight: 400;
-				margin: 10px 0 10px 32px;
-			}
-		}
-		#headerSearch {
-			display: inline-block;
-			float: right;
-			margin-right: 32px;
-			#headerSearchField {
-				background-color: darken($nepTuneOrange, 5%);
-				border: none;
-				box-sizing: border-box;
+		div#pageHeaderContainer {
+			margin: auto;
+			width: 1200px;
+			#headerNavLinks {
 				color: white;
-				font-family: $Myriad;
-				font-size: 16px;
-				font-weight: 300;
-				height: 30px;
-				margin: 6px 0 2px 0;
-				width: 280px;
-				&::-webkit-input-placeholder {
+				display: inline-block;
+				list-style: none;
+				max-width: 1200px;
+				margin: 0;
+				li {
 					color: $inactiveWhite;
+					display: inline-block;
+					float: left;
+					font-family: $OpenSans;
+					font-size: 20px;
+					font-weight: 400;
+					margin: 10px 0 10px 32px;
 				}
-				&:-moz-placeholder {
-					color: $inactiveWhite;
-				}
-				&::-moz-placeholder {
-					color: $inactiveWhite;
-				}
-				&:-ms-input-placeholder {
-					color: $inactiveWhite;
-				}
-				&:focus {
-					background-color: darken($nepTuneOrange, 12%);
-					border: none !important;
-					box-shadow: none !important;
-					outline: none;
+			}
+			#headerSearch {
+				display: inline-block;
+				float: right;
+				// margin-right: 32px;
+				#headerSearchField {
+					background-color: darken($nepTuneOrange, 5%);
+					border: none;
+					box-sizing: border-box;
+					color: white;
+					font-family: $OpenSans;
+					font-size: 16px;
+					font-weight: 300;
+					height: 30px;
+					margin: 6px 0 2px 0;
+					width: 280px;
+					&::-webkit-input-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&::-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-ms-input-placeholder {
+						color: $inactiveWhite;
+					}
+					&:focus {
+						background-color: darken($nepTuneOrange, 12%);
+						border: none !important;
+						box-shadow: none !important;
+						outline: none;
+					}
 				}
 			}
 		}
@@ -86,18 +94,23 @@ header {
 #artistPageContainer {
 	background: $Txture;
 	height: 100%;
+	margin: auto;
 	overflow: hidden;
-	width: 100%;
+	width: 1200px;
 	#artistSidebar {
 		background: $Txture;
 		bottom: 0;
 		color: $white;
-		left: 0;
 		overflow: auto;
-		padding: 12px 8px 0 0;
-		position: fixed;
+		padding: 0;
+		position: absolute;
 		top: 125px;
-		width: 228px;
+		width: 238px;
+		transition: border 0.5s;
+		-webkit-transition: border 0.5s;
+		@media (min-width: 1200px) {
+			border-left: 2px inset rgba(100, 100, 100, 0.25);
+		}
 		@mixin SidebarShadowPosition {
 			bottom: 0;
 			left: 0;
@@ -124,7 +137,7 @@ header {
 				margin: 10px 26px;
 			}
 			.ArtistProfileName {
-				font-family: $Myriad;
+				font-family: $OpenSans;
 				font-size: 24px;
 				font-weight: 400;
 				margin: 0 0 18px 0;
@@ -132,21 +145,23 @@ header {
 			}
 			h2.SidebarSubheading {
 				color: $halfWhite;
+				font-family: $Myriad;
 				font-size: 12px;
-				margin: 14px auto 4px 12px;
+				margin: 14px auto 4px 18px;
 			}
 			@mixin ArtistProfileText {
 				color: white;
+				font-family: $Myriad;
 				font-size: 12px;
 				font-weight: 400;
-				margin: 0 12px 1em 12px;
+				margin: 0 12px 1em 18px;
 			}
 			.ArtistProfileBio {
 				@include ArtistProfileText;
 			}
 		}
 		#artistActions {
-			margin: auto 12px;
+			margin: auto 18px;
 			button.ArtistAction {
 				background-color: transparent;
 				border: none;
@@ -154,8 +169,8 @@ header {
 				border-top: 1px solid $nepTuneOrangeHighlight;
 				color: $inactiveWhite;
 				display: inline-block;
-				font-family: $Myriad;
-				font-weight: 700;
+				font-family: $OpenSans;
+				font-weight: 600;
 				float: left;
 				margin: 0;
 				padding-top: 3px;
@@ -173,7 +188,7 @@ header {
 			}
 		}
 		.ArtistNav {
-			margin-top: 70px;
+			margin-top: 80px;
 			ul {
 				list-style: none;
 				margin: 0;
@@ -181,11 +196,10 @@ header {
 					color: $white;
 					text-decoration: none;
 					li {
-						border-bottom: 2px groove transparentize(#aaa, 0.2);
 						font-family: $Myriad;
-						font-size: 28px;
+						font-size: 24px;
 						font-weight: 400;
-						padding: 12px;
+						padding: 6px 0 6px 22px;
 						&:hover {
 							background-color: transparentize(#666, 0.5);
 							color: white;
@@ -202,15 +216,15 @@ header {
 		}
 	}
 	#artistPageContent {
-		background: $Wallhash;
+		background: #565656;
 		bottom: 0;
-		box-shadow: 0 -4px 8px 8px transparentize(black, 0.65);
+		box-shadow: 0 0 8px 8px transparentize(black, 0.75);
 		color: $white;
-		left: 228px;
+		margin-left: 240px;
 		overflow: scroll;
-		position: fixed;
-		right: 0;
+		position: absolute;
 		top: 125px;
+		width: 960px;
 		z-index: 2;
 		#musicGridHeader {
 			height: 320px;
@@ -223,7 +237,7 @@ header {
 				z-index: 2;
 			}
 			#musicGridFilter {
-				background: rgba(0, 0, 0, 0.80);
+				background: rgba(0, 0, 0, 0.70);
 				display: inline-block;
 				height: 50px;
 				position: absolute;
@@ -315,6 +329,7 @@ header {
 			width: 480px;
 			img.AboutPageHero {
 				height: 100%;
+				width: auto;
 			}
 			img#aboutPageHeroDemo {
 				margin-left: -120px;
@@ -329,19 +344,110 @@ header {
 			padding: 16px;
 			width: 448px;
 			#aboutStory {
-				h2 {
-					color: #898989;
-					font-family: $Myriad;
-					font-size: 22px;
-					font-weight: 600;
-					line-height: 1em;
-					margin: 0;
+				
+			}
+			h2 {
+				color: #bbb;
+				font-family: $OpenSans;
+				font-size: 22px;
+				font-weight: 600;
+				line-height: 1em;
+				margin: 0;
+			}
+			p {
+				color: white;
+				font-family: $OpenSans;
+				font-size: 13px;
+				font-weight: 400;
+				&.ContactText {
+					margin: 2px 0;
 				}
-				p {
-					color: black;
-					font-family: $Myriad;
-					font-size: 13px;
+			}
+		}
+		/***** Events page *****/
+		#eventsCalendarHeader {
+			background-color: $nepTuneOrange;
+			border-bottom: 1px solid $white;
+			height: 50px;
+			width: 100%;
+			@mixin InlineIcons {
+				color: white;
+				display: inline-block;
+				font-family: $Zonda;
+				font-size: 22px;				
+				margin: 10px;
+			}
+			#calendarNavigation {
+				display: inline-block;
+				float: left;
+				margin-left: 18px;
+				.InlineNavigation {
+					@include InlineIcons;
+				}
+			}
+			#calendarMonth {
+				display: inline-block;
+				font-family: $OpenSans;
+				font-size: 28px;
+				font-weight: 300;
+				height: 50px;
+				line-height: 50px;
+				margin: 0px 16px;
+			}
+			#calendarViewMode {
+				display: inline-block;
+				float: right;
+				margin-right: 18px;
+				.InlineViewMode {
+					@include InlineIcons;
+					&#viewModeColumns {
+						transform: rotate(90deg);
+						-moz-transform: rotate(90deg);
+						-ms-transform: rotate(90deg);
+						-o-transform: rotate(90deg);
+						-webkit-transform: rotate(90deg);
+					}
+				}
+			}
+		}
+		.CalendarGrid {
+			.CalendarUnit {
+				background: lighten($nepTuneOrange, 45%);
+				border-right: 1px solid #ccc;
+				box-sizing: border-box;
+				display: inline-block;
+				float: left;
+				height: auto;
+				width: 14.2857%;
+				&.CalendarUnitLast {
+					border-right: none;
+				}
+				.CalendarUnitMonth {
+					display: none;
+				}
+				.CalendarUnitDay {
+					color: #676767;
+					font-family: $OpenSans;
+					font-size: 18px;
 					font-weight: 300;
+					margin: 8px;
+				}
+			}
+			#weekdayHeadings {
+				width: 100%;
+				.CalendarHeading {
+					background: $nepTuneOrange;
+					display: inline-block;
+					float: left;
+					width: 14.2857%;
+					h2 {
+						color: white;
+						font-family: $OpenSans;
+						font-size: 18px;
+						font-weight: 600;
+						margin: 12px;
+						text-align: center;
+					}
 				}
 			}
 		}

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   include ApplicationHelper
   include LoginHelper
 
-  before_filter :get_user_from_params, only: [:show, :about, :music]
+  before_filter :get_user_from_params, only: [:show, :about, :music, :events, :burble, :fans]
   
   def self.user=(u)
     @user = u
