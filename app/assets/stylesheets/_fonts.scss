@@ -1,11 +1,15 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
 @import url(http://fonts.googleapis.com/css?family=Signika:400,600,300);
 
 $Lato: 'Lato', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $Myriad: MyriadPro-Regular, 'Myriad Pro Regular', MyriadPro, 'Myriad Pro', 'PT Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$OpenSans: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $PTSans: 'PT Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$sans-serif: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 $Signika: 'Signika', 'Helvetia Neue', 'Helevtica', 'Lucida', 'Arial', sans-serif;
+$Zonda: 'Zonda';
 
 /***** Zonda icon font *****/
 @font-face {
