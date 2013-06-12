@@ -20,5 +20,5 @@ $calendarBorderStyle: 1px solid #dedede;
 $calendarUnitDayColor: #676767;
 $otherMonthBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 45%), 10%), 50%);
 $otherMonthDayColor: transparentize(#676767, 0.50);
-$otherMonthHasEventBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 10%), 5%), 30%);
-$otherMonthHasEventDayColor: transparentize(white, 0.50);
+$otherMonthHasEventBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 15%), 5%), 30%);
+$otherMonthHasEventDayColor: transparentize(white, 0.25);
