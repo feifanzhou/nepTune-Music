@@ -367,15 +367,18 @@ header {
 		/***** Events page *****/
 		#eventsCalendarHeader {
 			background-color: $nepTuneOrange;
-			border-bottom: 1px solid $white;
 			height: 50px;
-			width: 100%;
+			position: fixed;
+			width: 960px;
+			z-index: 1;
 			@mixin InlineIcons {
-				color: white;
+				color: $inactiveWhite;
 				display: inline-block;
 				font-family: $Zonda;
 				font-size: 22px;				
 				margin: 10px;
+				transition: color 0.5s;
+				-webkit-transition: color 0.5s;
 			}
 			#calendarNavigation {
 				display: inline-block;
@@ -407,50 +410,60 @@ header {
 						-o-transform: rotate(90deg);
 						-webkit-transform: rotate(90deg);
 					}
+					&:hover {
+						color: $partialActiveWhite;
+						cursor: pointer;
+					}
+					&.ViewModeSelected {
+						color: white;
+					}
 				}
 			}
 		}
 		.CalendarGrid {
-			.CalendarUnit {
-				background: lighten($nepTuneOrange, 45%);
-				border-bottom: $calendarBorderStyle;
-				border-right: $calendarBorderStyle;
-				box-sizing: border-box;
-				display: inline-block;
-				float: left;
-				height: 130px;
-				width: 14.2857%;
-				&.CalendarUnitColLast {
-					border-right: none;
-				}
-				&.CalendarUnitRowLast {
-					border-bottom: none;
-				}
-				.CalendarUnitMonth {
-					display: none;
-				}
-				.CalendarUnitDay {
-					color: $calendarUnitDayColor;
-					font-family: $Myriad;
-					font-size: 18px;
-					font-weight: 300;
-					margin: 8px;
-				}
-				&.CalendarUnitOtherMonth {
-					background: $otherMonthBackgroundColor;
-					.CalendarUnitDay {
-						color: $otherMonthDayColor;
+			.CalendarUnitContainer {
+				border-top: 1px solid $white;
+				.CalendarUnit {
+					background: lighten($nepTuneOrange, 45%);
+					border-bottom: $calendarBorderStyle;
+					border-right: $calendarBorderStyle;
+					box-sizing: border-box;
+					display: inline-block;
+					float: left;
+					height: 130px;
+					width: 14.2857%;	// One-seventh
+					&.CalendarUnitColLast {
+						border-right: none;
 					}
-				}
-				&.CalendarUnitHasEvent {
-					background: $nepTuneOrange;
+					&.CalendarUnitRowLast {
+						border-bottom: none;
+					}
+					.CalendarUnitMonth {
+						display: none;
+					}
 					.CalendarUnitDay {
-						color: white;
+						color: $calendarUnitDayColor;
+						font-family: $Myriad;
+						font-size: 18px;
+						font-weight: 300;
+						margin: 8px;
 					}
 					&.CalendarUnitOtherMonth {
-						background: $otherMonthHasEventBackgroundColor;
+						background: $otherMonthBackgroundColor;
 						.CalendarUnitDay {
-							color: $otherMonthHasEventDayColor;
+							color: $otherMonthDayColor;
+						}
+					}
+					&.CalendarUnitHasEvent {
+						background: $nepTuneOrange;
+						.CalendarUnitDay {
+							color: white;
+						}
+						&.CalendarUnitOtherMonth {
+							background: $otherMonthHasEventBackgroundColor;
+							.CalendarUnitDay {
+								color: $otherMonthHasEventDayColor;
+							}
 						}
 					}
 				}
@@ -471,6 +484,114 @@ header {
 						text-align: center;
 					}
 				}
+			}
+		}
+		.CalendarColumn {
+			font-size: 0;
+			height: 100%;
+			overflow: scroll;
+			white-space: nowrap;
+			.CalendarUnitContainer {
+				bottom: 0;
+				position: absolute;
+				top: 50px;
+				.CalendarUnit {
+					/* &:nth-child(n+9) {	// Show only one week at a time
+						display: none;
+					} */
+					background: lighten($nepTuneOrange, 45%);
+					border-right: $calendarBorderStyle;
+					display: inline-block;
+					height: 100%;
+					width: 60px;
+					.CalendarUnitMonth {
+						display: none;
+					}
+					.CalendarUnitDay {
+						color: transparentize($calendarUnitDayColor, 0.3);
+						font-family: $Myriad;
+						font-size: 18px;
+						font-weight: 300;
+						margin: 8px;
+					}
+					&.CalendarUnitOtherMonth {
+						background: $otherMonthBackgroundColor;
+						.CalendarUnitDay {
+							color: $otherMonthDayColor;
+						}
+					}
+					&.CalendarUnitHasEvent {
+						background: $nepTuneOrange;
+						width: 280px;
+						.CalendarUnitDay {
+							color: white;
+						}
+						&.CalendarUnitOtherMonth {
+							background: $otherMonthHasEventBackgroundColor;
+							.CalendarUnitDay {
+								color: $otherMonthHasEventDayColor;
+							}
+						}
+					}
+				}
+			}
+			#weekdayHeadings {
+				display: none;
+			}
+		}
+		.CalendarList {
+			font-size: 0;
+			overflow: scroll;
+			.CalendarUnitContainer {
+				font-size: 0;
+				min-height: 100%;
+				position: absolute;
+				width: 100%;
+				top: 50px;
+				z-index: 0;
+				.CalendarUnit {
+					background: lighten($nepTuneOrange, 45%);
+					border-bottom: $calendarBorderStyle;
+					display: none;
+					height: 80px;
+					width: 100%;
+					.CalendarUnitMonth {
+						color: transparentize($calendarUnitDayColor, 0.3);
+						font-family: $Myriad;
+						font-size: 18px;
+						font-weight: 300;
+						margin: 8px 0 0 8px;
+					}
+					.CalendarUnitDay {
+						color: transparentize($calendarUnitDayColor, 0.3);
+						font-family: $Lato;
+						font-size: 28px;
+						font-weight: 300;
+						margin: 0 0 2px 8px;
+					}
+					&.CalendarUnitOtherMonth {
+						background: $otherMonthBackgroundColor;
+						.CalendarUnitDay {
+							color: $otherMonthDayColor;
+						}
+					}
+					&.CalendarUnitHasEvent {
+						background: $nepTuneOrange;
+						display: inline-block;
+						.CalendarUnitDay {
+							color: white;
+						}
+						&.CalendarUnitOtherMonth {
+							background: $otherMonthHasEventBackgroundColor;
+							.CalendarUnitDay {
+								color: $otherMonthHasEventDayColor;
+							}
+						}
+					}
+				}
+			}
+			#weekdayHeadings {
+				display: none;
 			}
 		}
 	}

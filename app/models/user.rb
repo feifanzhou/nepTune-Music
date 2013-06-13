@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
     end
   end
   before_save { |user| user.email = email.downcase }
-  before_save { |user| user.username = username.downcase }
+  before_save { |user| user.username = username.downcase unless username.blank? }
   
   has_secure_password
   

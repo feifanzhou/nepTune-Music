@@ -16,7 +16,7 @@ $Txture: image-url('txture.png');
 $Wallhash: image-url('wallhash.png');
 
 /***** Artist:Events page *****/
-$calendarBorderStyle: 1px solid #dedede;
+$calendarBorderStyle: 1px solid darken(#ddd, 3%);
 $calendarUnitDayColor: #676767;
 $otherMonthBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 45%), 10%), 50%);
 $otherMonthDayColor: transparentize(#676767, 0.50);
