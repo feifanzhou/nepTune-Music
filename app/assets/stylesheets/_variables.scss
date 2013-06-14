@@ -15,6 +15,12 @@ $Debut: image-url('debut.png');
 $Txture: image-url('txture.png');
 $Wallhash: image-url('wallhash.png');
 
+/***** Mixins *****/
+@mixin DarkEngrave {
+	color: transparentize(black, 0.25);
+	text-shadow: 0px 1px transparentize(white, 0.75);
+}
+
 /***** Artist:Events page *****/
 $calendarBorderStyle: 1px solid darken(#ddd, 3%);
 $calendarUnitDayColor: #676767;

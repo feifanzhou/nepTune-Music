@@ -9,70 +9,29 @@
       <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", size: "960x320", class: "MusicGridHeaderImage") %>
       <div id='musicGridFilter'>
         <ul class="FilterBarItems">
-          <li>All</li>
-          <li>Songs</li>
-          <li>Albums</li>
-          <li>Videos</li>
-          <li>Others</li>
+          <li class='FilterItem SelectedFilter' id='filterAll' onclick='filterMusic(0)'>All</li>
+          <li class='FilterItem' id='filterSongs' onclick='filterMusic(1)'>Songs</li>
+          <li class='FilterItem' id='filterAlbums' onclick='filterMusic(2)'>Albums</li>
+          <li class='FilterItem' id='filterVideos' onclick='filterMusic(3)'>Videos</li>
+          <li class='FilterItem' id='filterOthers' onclick='filterMusic(4)'>Others</li>
         </ul>
         <form id='musicFilterSearch'>
           <input type='text' id='musicFilterSearchField' placeholder='Search' />
         </form>
       </div>
     </div>
-    
+
     <div id='musicGrid'>
-      <div class='GridItem GridItemFeatured'>
-        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
+      <!-- TODO: Load filter content with AJAX -->
+      <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums %>
+      
+      <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs %>
+
+      <div id='noFilterMatches'>
+        <p>Nothing matches that filter</p>
       </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_2.jpg', alt: "The Piano Guys") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('soundmap1.png') %>
-      </div>
-      <div class='GridItem GridItemFeatured'>
-        <%= image_tag('piano_guys_3.jpg', alt: 'The Piano Guys') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('soundmap2.png') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_emmanuel.jpg', alt: 'The Piano Guys O Come Emmanuel') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_deluxe.jpg', alt: 'The Piano Guys 2 Deluxe Edition') %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag('piano_guys_1.jpg', alt: "The Piano Guys Hits Volume 1") %>
-      </div>
-      <div class='GridItem'>
-        <%= image_tag("pianoguys.jpg", alt: "The Piano Guys Bourne Vivaldi") %>
     </div>
+    
     <script type="text/javascript">
       /* $(function() {
         $("#musicGrid").masonry({
@@ -95,6 +54,46 @@
           else
             $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
       });
+    </script>
+    <script type="text/javascript">
+      function filterMusic(tag) {
+        $(".FilterItem").each(function() {
+          $(this).removeClass('SelectedFilter');
+        });
+        $(".MusicGridGroupHeader").each(function() {
+          $(this).css('display', 'none');
+        });
+        $("#noFilterMatches").css('display', 'none');
+        switch (tag) {
+          case 0:
+            $(".MusicGridGroupHeader").each(function() {
+              $(this).css('display', 'block');
+            })
+            $("#filterAll").addClass('SelectedFilter');
+            $("#musicGridAlbums").css('display', 'block');
+            $("#musicGridSongs").css('display', 'block');
+            $("#noFilterMatches").css('display', 'none');
+            break;
+          case 1:
+            $("#filterSongs").addClass('SelectedFilter');
+            $("#musicGridAlbums").css('display', 'none');
+            $("#musicGridSongs").css('display', 'block');
+            break;
+          case 2:
+            $("#filterAlbums").addClass('SelectedFilter');
+            $("#musicGridAlbums").css('display', 'block');
+            $("#musicGridSongs").css('display', 'none');
+            $("#noFilterMatches").css('display', 'none');
+            break;
+          case 3:
+          case 4:
+          default:
+            $("#musicGridAlbums").css('display', 'none');
+            $("#musicGridSongs").css('display', 'none');
+            $("#noFilterMatches").css('display', 'block');
+            break;
+        }
+      }
     </script>
   </div>
 </div>

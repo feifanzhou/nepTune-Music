@@ -11,7 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610160015) do
+ActiveRecord::Schema.define(:version => 20130613234813) do
+
+  create_table "albums", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
+  create_table "images", :force => true do |t|
+    t.string   "caption"
+    t.string   "path"
+    t.integer  "height"
+    t.integer  "width"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "album_id"
+    t.integer  "song_id"
+  end
+
+  create_table "songs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "album_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "fname"

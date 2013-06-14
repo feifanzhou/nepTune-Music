@@ -264,6 +264,9 @@ header {
 							cursor: pointer;
 							
 						}
+						&.SelectedFilter {
+							color: white;
+						}
 					}
 				}
 				#musicFilterSearch {
@@ -302,22 +305,80 @@ header {
 			}
 		}
 		#musicGrid {
-			.GridItem {
-				float: left;
-				width: 20%;
-				img {
-					height: auto;
-					max-width: 100%;
+			.MusicGridGroup {
+				clear: both;
+				font-size: 0;
+				margin-bottom: 12px;
+				.MusicGridGroupHeader {
+					@include DarkEngrave;
+					font-size: 16px;
+					margin-bottom: 28px;
+					text-align: center;
+					span {
+						position: relative;
+						&:before, &:after {
+							border-top: 2px groove #666;
+							bottom: 0;
+							content: "";
+							position: absolute;
+							right: 5em;
+							top: 8px;
+							width: 500px;
+						}
+						&:after {
+							bottom: 0;
+							left: 5em;
+							position: absolute;
+							right: 0;
+							top: 8px;
+						}
+					}
+				}
+				.GridItem {
+					display: inline-block;
+					position: relative;
+					width: 25%;
+					img {
+						height: auto;
+						max-width: 100%;
+					}
+					.GridItemDetails {
+						background: rgba(0, 0, 0, 0.65);
+						bottom: 0;
+						height: 30px;
+						left: 0;
+						position: absolute;
+						right: 0;
+						width: 100%;
+						.GridItemName {
+							display: inline-block;
+							font-family: $OpenSans;
+							font-size: 13px;
+							font-weight: 600;
+							margin: 5px 0 0 8px;
+						}
+					}
+				}
+				/* .GridItemFeatured {
+					float: left;
+					width: 40%;
+					img {
+						height: auto;
+						max-width: 100%;
+					} 
+				} */
+			}
+			#noFilterMatches {
+				@include DarkEngrave;
+				display: none;
+				width: 100%;
+				p {
+					font-size: 28px;
+					font-weight: 600;
+					margin: 36px;
+					text-align: center;
 				}
 			}
-			/* .GridItemFeatured {
-				float: left;
-				width: 40%;
-				img {
-					height: auto;
-					max-width: 100%;
-				} 
-			} */
 		}
 
 		/***** About page *****/

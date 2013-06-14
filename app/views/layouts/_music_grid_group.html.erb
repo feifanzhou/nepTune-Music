@@ -1,0 +1,11 @@
+<div class='MusicGridGroup' id='<%= group_id %>'>
+	<h2 class='MusicGridGroupHeader'><span><%= title.upcase %></span></h2>
+<% items.each do |a| %>
+  <div class='GridItem'>
+    <%= image_tag("#{ a.image.path }", alt: a.image.caption) %>
+    <div class='GridItemDetails'>
+      <p class='GridItemName'><%= a.name %></p>
+    </div>
+  </div>
+<% end %>
+</div>
