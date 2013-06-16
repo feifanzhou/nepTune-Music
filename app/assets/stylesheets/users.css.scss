@@ -410,13 +410,23 @@ header {
 					@include InlineIcons;
 					cursor: pointer;
 				}
+				.GridItemIcon {
+					font-family: $Zonda;
+					font-size: 22px;
+					margin: 8px 0;
+				}
+				#detailsHeaderTitle {
+					display: inline-block;
+					font-weight: 600;
+					margin: 8px;
+				}
 			}
 
 			#musicDetails {
 				@include AnimateSideMargins;
 				display: inline-block;
 				height: 300px;
-				margin-left: 40px;
+				margin: 50px 0 0 40px;
 				position: relative;
 				width: 960px;
 			}

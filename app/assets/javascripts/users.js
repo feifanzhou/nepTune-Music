@@ -51,7 +51,17 @@ function filterMusic(tag) {
       $("#noFilterMatches").css('display', 'none');
       break;
     case 3:
+      $("#filterVideos").addClass('SelectedFilter');
+      $("#musicGridAlbums").css('display', 'none');
+      $("#musicGridSongs").css('display', 'none');
+      $("#noFilterMatches").css('display', 'block');
+      break;
     case 4:
+      $("#filterOthers").addClass('SelectedFilter');
+      $("#musicGridAlbums").css('display', 'none');
+      $("#musicGridSongs").css('display', 'none');
+      $("#noFilterMatches").css('display', 'block');
+      break;
     default:
       $("#musicGridAlbums").css('display', 'none');
       $("#musicGridSongs").css('display', 'none');
@@ -60,28 +70,30 @@ function filterMusic(tag) {
   }
 }
 
-$(function() {
-	$(".MediaDisplayLink").click(function(event){
-		event.preventDefault();
+function primeClick() {
+  $('.MediaDisplayLink').click(function(event) {
+    event.preventDefault();
 
-		/* $('#musicGrid').animate({
-			marginLeft: '-980px',
-			marginRight: '980px'
-		}, 500, function() {
-			console.log('animation done');
-		}); */
-		$('#musicGridContainer').addClass('MusicGridDetails');
+    $('#musicGridContainer').addClass('MusicGridDetails');
     $('#musicGridFilter').addClass('Hidden');
     $('#musicDetailsHeader').addClass('Visible');
 
+    $('#itemIcon').html($(this).attr('data-icon'));
+    $('#detailsHeaderTitle').html($(this).attr('data-name'));
+
     var path = $(this).attr('href');
-		setTimeout(function() {
+    setTimeout(function() {
       $('#musicDetailsHeader').css('z-index', 2);
       $('#musicDetailsContent').load(path);
+      // $('#musicDetailsContent').html('<p>Hello</p>');
     }, 1000);
 
-		return false; //for good measure
-	});
+    return false; //for good measure
+  });
+}
+
+$(function() {
+  primeClick();
 });
 
 function returnToMusicGrid() {
@@ -89,8 +101,11 @@ function returnToMusicGrid() {
   $('#musicGridFilter').removeClass('Hidden');
   $('#musicDetailsHeader').css('z-index', -1);
   $('#musicDetailsHeader').removeClass('Visible');
+  primeClick();
   setTimeout(function() {
-    $('#musicDetailsContent').html('');
+    $('#itemIcon').empty();
+    $('#detailsHeaderTitle').empty();
+    $('#musicDetailsContent').empty();
   }, 1000);
 }
 

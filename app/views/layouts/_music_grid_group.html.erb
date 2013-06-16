@@ -8,7 +8,7 @@
 	<% else %>
 		<% link_path = '#' %>
 	<% end %>
-	<%= link_to link_path, class: 'MediaDisplayLink' do %>
+	<%= link_to link_path, class: 'MediaDisplayLink', data: { name: a.name, icon: label_icon } do %>
 	  <div class='GridItem'>
 	    <%= image_tag("#{ a.image.path }", alt: a.image.caption) %>
 	    <div class='GridItemDetails'>
