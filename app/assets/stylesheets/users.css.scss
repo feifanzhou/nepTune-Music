@@ -6,10 +6,6 @@
 @import "variables";
 @import "shared";
 
-@import url(http://fonts.googleapis.com/css?family=Fauna+One);
-@import url(http://fonts.googleapis.com/css?family=Shojumaru);
-@import url(http://fonts.googleapis.com/css?family=Stalinist+One);
-
 html {
 	background: $Txture;
 }
@@ -42,7 +38,7 @@ header {
 					color: $inactiveWhite;
 					display: inline-block;
 					float: left;
-					font-family: 'Shojumaru';
+					font-family: $OpenSans;
 					font-size: 20px;
 					font-weight: 400;
 					margin: 10px 0 10px 32px;
@@ -452,7 +448,7 @@ header {
 			}
 			h2 {
 				color: #bbb;
-				font-family:"Stalinist One";
+				font-family: $OpenSans;
 				font-size: 22px;
 				font-weight: 600;
 				line-height: 1em;
