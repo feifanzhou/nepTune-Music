@@ -49,17 +49,19 @@ function getScrollXY() {
 function setHeroHeight() {
 	if (window.mobilecheck)
 		return;
-		
 	var cHeight = window.innerHeight;
 	var heroHeight = cHeight - 80;
 	$("#signup").css('height', (heroHeight + 'px'));
 	if (heroHeight < 600)
 		heroHeight = 600;
 	$("#marketplace").css('margin-top', (heroHeight + 'px'));
-	
 	// Set margin on footer to reveal signup
 	$("#homeFooter").css('margin-bottom', (heroHeight - 20 + 'px'));
 }
+
+$(window).load(function() {
+	setHeroHeight();
+});
 
 function scrollToTop() {
 	$("html, body").animate({ scrollTop: 0}, 400);
