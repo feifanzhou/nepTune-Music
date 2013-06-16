@@ -59,6 +59,7 @@ function filterMusic(tag) {
       break;
   }
 }
+
 $(function() {
 	$(".MediaDisplayLink").click(function(event){
 		event.preventDefault();
@@ -71,13 +72,13 @@ $(function() {
 		}); */
 		$('#musicGridContainer').addClass('MusicGridDetails');
     $('#musicGridFilter').addClass('Hidden');
+    $('#musicDetailsHeader').addClass('Visible');
 
-		// TODO: Load AJAX song or album content
-		var path = $(this).attr('href');
-		console.log(path);
-		var odv = document.createElement("div");
-		$(odv).load(path);
-		document.appendChild(odv);
+    var path = $(this).attr('href');
+		setTimeout(function() {
+      $('#musicDetailsHeader').css('z-index', 2);
+      $('#musicDetailsContent').load(path);
+    }, 1000);
 
 		return false; //for good measure
 	});
@@ -86,4 +87,13 @@ $(function() {
 function returnToMusicGrid() {
   $('#musicGridContainer').removeClass('MusicGridDetails');
   $('#musicGridFilter').removeClass('Hidden');
+  $('#musicDetailsHeader').css('z-index', -1);
+  $('#musicDetailsHeader').removeClass('Visible');
+  setTimeout(function() {
+    $('#musicDetailsContent').html('');
+  }, 1000);
 }
+
+$(function() {
+  $('#detailsHeaderBack').click(returnToMusicGrid());
+});

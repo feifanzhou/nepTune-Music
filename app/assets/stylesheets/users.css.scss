@@ -240,18 +240,8 @@ header {
 				z-index: 2;
 			}
 			#musicGridFilter {
-				background: rgba(0, 0, 0, 0.70);
-				display: inline-block;
-				height: 50px;
-				left: 0;
-				position: absolute;
-				right: 0;
+				@include TranslucentBar;
 				top: 270px;
-				transition: top 1s;
-				-webkit-transition: top 1s;
-				animation-timing-function: ease-in-out;
-				-moz-animation-timing-function: ease-in-out;
-				-webkit-animation-timing-function: ease-in-out;
 				&.Hidden {
 					top: 320px;
 				}
@@ -407,16 +397,28 @@ header {
 					}
 				}
 			}
+			#musicDetailsHeader {
+				@include TranslucentBar;
+				// display: none;
+				top: 270px;
+				z-index: -1;
+				&.Visible {
+					// display: inline-block;
+					top: 320px;
+				}
+				.InlineNavigation {
+					@include InlineIcons;
+					cursor: pointer;
+				}
+			}
+
 			#musicDetails {
 				@include AnimateSideMargins;
-				background: red;
 				display: inline-block;
 				height: 300px;
 				margin-left: 40px;
+				position: relative;
 				width: 960px;
-				p {
-					@include DarkEngrave;
-				}
 			}
 		}
 
@@ -471,15 +473,6 @@ header {
 			position: fixed;
 			width: 960px;
 			z-index: 1;
-			@mixin InlineIcons {
-				color: $inactiveWhite;
-				display: inline-block;
-				font-family: $Zonda;
-				font-size: 22px;				
-				margin: 10px;
-				transition: color 0.5s;
-				-webkit-transition: color 0.5s;
-			}
 			#calendarNavigation {
 				display: inline-block;
 				float: left;

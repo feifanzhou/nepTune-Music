@@ -1,4 +1,12 @@
 NeptuneMusic::Application.routes.draw do
+  get "albums/new"
+
+  get "albums/show"
+
+  get "songs/new"
+
+  get "songs/show"
+
   # Routes for resources
   resources :users
   

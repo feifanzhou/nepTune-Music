@@ -188,7 +188,7 @@ DEPENDENCIES
   guard-rspec (= 1.2.1)
   guard-spork (= 1.2.0)
   jquery-rails
-  pg (= 0.12.2)
+  pg
   rails (= 3.2.13)
   rails-boilerplate
   retina_tag
