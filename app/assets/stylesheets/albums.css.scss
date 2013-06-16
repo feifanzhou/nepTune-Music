@@ -1,3 +1,58 @@
 // Place all the styles related to the Albums controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+@import "shared";
+
+.AlbumArtMain {
+	position: relative;
+	text-align: center;
+	width: 500px;
+	#albumTrackListing {
+		background-color: transparentize(black, 0.25);
+	  background-position: center center;
+	  background-repeat: no-repeat;
+	  /* Safari 4-5, Chrome 1-9 */
+	  /* Can't specify a percentage size? Laaaaaame. */
+	  background: -webkit-gradient(radial, center center, 0, center center, 460, from($albumOverlayInner), to($albumOverlayOuter));
+	  /* Safari 5.1+, Chrome 10+ */
+	  background: -webkit-radial-gradient(circle, $albumOverlayInner, $albumOverlayOuter);
+	  /* Firefox 3.6+ */
+	  background: -moz-radial-gradient(circle, $albumOverlayInner, $albumOverlayOuter);
+	  /* IE 10 */
+	  background: -ms-radial-gradient(circle, $albumOverlayInner, $albumOverlayOuter);
+		bottom: 0;
+		display: inline-block;
+		left: 0;
+		opacity: 0;
+		padding: 20px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		&.Visible {
+			@include AnimationEase;
+			opacity: 1;
+			transition: opacity 0.65s;
+			-webkit-transition: opacity 0.65s;
+		}
+		.AlbumSongList {
+			color: white;
+			display: inline-block;
+			font-family: $OpenSans;
+			list-style: none;
+			padding-left: 0;
+			text-align: left;
+			.AlbumSongListItem {
+				font-weight: 700;
+				margin-bottom: 4px;
+				text-shadow: 0 2px black;
+				.AlbumSongListItemNumber {
+					font-weight: 300;
+					margin-right: 10px;
+				}
+			}
+		}
+	}
+}

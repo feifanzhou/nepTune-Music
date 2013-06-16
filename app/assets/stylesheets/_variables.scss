@@ -15,10 +15,14 @@ $Debut: image-url('debut.png');
 $Txture: image-url('txture.png');
 $Wallhash: image-url('wallhash.png');
 
+/***** Music colors *****/
+$albumOverlayOuter: transparentize(black, 0.1);
+$albumOverlayInner: transparentize(black, 0.5);
+
 /***** Mixins *****/
 @mixin AnimateSideMargins {
-	transition: margin 1s;
-	-webkit-transition: margin 1s;
+	transition: margin 0.75s;
+	-webkit-transition: margin 0.75s;
 	animation-timing-function: ease-in-out;
 	-moz-animation-timing-function: ease-in-out;
 	-webkit-animation-timing-function: ease-in-out;
@@ -39,6 +43,12 @@ $Wallhash: image-url('wallhash.png');
 	-webkit-transition: color 0.5s;
 }
 
+@mixin AnimationEase {
+	animation-timing-function: ease-in-out;
+	-moz-animation-timing-function: ease-in-out;
+	-webkit-animation-timing-function: ease-in-out;
+}
+
 @mixin TranslucentBar {
 	background: rgba(0, 0, 0, 0.70);
 	display: inline-block;
@@ -46,11 +56,9 @@ $Wallhash: image-url('wallhash.png');
 	left: 0;
 	position: absolute;
 	right: 0;
-	transition: bottom 1s, top 1s, left 1s, right 1s;
-	-webkit-transition: bottom 1s, top 1s, left 1s, right 1s;
-	animation-timing-function: ease-in-out;
-	-moz-animation-timing-function: ease-in-out;
-	-webkit-animation-timing-function: ease-in-out;
+	transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s;
+	-webkit-transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s;
+	@extend AnimationEase;
 }
 
 /***** Artist:Events page *****/

@@ -1,0 +1,3 @@
+$(function() {
+	$('#albumTrackListing').addClass('Visible');
+});

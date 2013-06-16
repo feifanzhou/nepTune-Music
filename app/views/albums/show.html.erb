@@ -1,2 +1,16 @@
-<h1>Albums#show</h1>
-<p>Find me in app/views/albums/show.html.erb</p>
+<div class='AlbumArtMain'>
+	<%= image_tag @album.image.path, alt: @album.name, size: '500x500' %>
+	<div id='albumTrackListing'>
+		<% if @album.songs.blank? %>
+			<p class='EmptyAlbum'>This album doesn't have any songs yet&hellip;</p>
+		<% else %>
+			<ol class='AlbumSongList'>
+				<% song_count = 1 %>
+				<% @album.songs.each do |s| %>
+					<li class='AlbumSongListItem'><span class='AlbumSongListItemNumber'><%= song_count %></span><%= s.name %></li>
+				<% song_count += 1 %>
+				<% end %>
+			</ol>
+		<% end %>
+	</div>
+</div>

@@ -3,5 +3,6 @@ class AlbumsController < ApplicationController
   end
 
   def show
+  	@album = Album.find_by_name(params[:album])
   end
 end

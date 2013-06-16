@@ -84,10 +84,12 @@ function primeClick() {
     var path = $(this).attr('href');
     setTimeout(function() {
       $('#musicDetailsHeader').css('z-index', 2);
-      $('#musicDetailsContent').load(path);
-      // $('#musicDetailsContent').html('<p>Hello</p>');
-    }, 1000);
-
+      $('#musicDetailsContent').load(path, function() {
+				setTimeout(function() {
+					$('#albumTrackListing').addClass('Visible');
+				}, 300);
+			});
+    }, 750);
     return false; //for good measure
   });
 }
@@ -106,7 +108,7 @@ function returnToMusicGrid() {
     $('#itemIcon').empty();
     $('#detailsHeaderTitle').empty();
     $('#musicDetailsContent').empty();
-  }, 1000);
+  }, 750);
 }
 
 $(function() {
