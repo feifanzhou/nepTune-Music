@@ -20,6 +20,8 @@ NeptuneMusic::Application.routes.draw do
     match '/:username/events', to: 'users#events', as: :artist_events
     match '/:username/burble', to: 'users#burble', as: :artist_burble
     match '/:username/fans', to: 'users#fans', as: :artist_fans
+    match '/:username/album/:album', to: 'albums#show', as: :album_for_artist
+    match '/:username/song/:song', to: 'songs#show', as: :song_for_artist
   end
   
   # Routes for landing site

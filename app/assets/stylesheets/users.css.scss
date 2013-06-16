@@ -225,15 +225,18 @@ header {
 		box-shadow: 0 0 8px 8px transparentize(black, 0.75);
 		color: $white;
 		margin-left: 240px;
-		overflow: scroll;
+		overflow-x: hidden;
+		overflow-y: scroll;
 		position: absolute;
 		top: 125px;
+		white-space: nowrap;
 		width: 960px;
 		z-index: 2;
 		#musicGridHeader {
 			height: 320px;
 			max-height: 320px;
 			overflow: hidden;
+			position: relative;
 			max-width: 960px;
 			.MusicGridHeaderImage {
 				display: inline-block;
@@ -244,10 +247,18 @@ header {
 				background: rgba(0, 0, 0, 0.70);
 				display: inline-block;
 				height: 50px;
+				left: 0;
 				position: absolute;
+				right: 0;
 				top: 270px;
-				width: 100%;
-				z-index: 3;
+				transition: top 1s;
+				-webkit-transition: top 1s;
+				animation-timing-function: ease-in-out;
+				-moz-animation-timing-function: ease-in-out;
+				-webkit-animation-timing-function: ease-in-out;
+				&.Hidden {
+					top: 320px;
+				}
 				ul.FilterBarItems {
 					display: inline-block;
 					list-style: none;
@@ -308,79 +319,107 @@ header {
 				}
 			}
 		}
-		#musicGrid {
-			.MusicGridGroup {
-				clear: both;
-				font-size: 0;
-				margin-bottom: 12px;
-				.MusicGridGroupHeader {
-					@include DarkEngrave;
-					font-size: 16px;
-					margin-bottom: 28px;
-					text-align: center;
-					span {
-						position: relative;
-						&:before, &:after {
-							border-top: 2px groove #666;
-							bottom: 0;
-							content: "";
-							position: absolute;
-							right: 5em;
-							top: 8px;
-							width: 500px;
+		#musicGridContainer {
+			@include AnimateSideMargins;
+			margin-left: 0;
+			&.MusicGridDetails {
+				margin-left: -1000px;
+			}
+			#musicGrid {
+				display: inline-block;
+				float: left;
+				white-space: normal;
+				width: 960px;
+				.MusicGridGroup {
+					clear: both;
+					font-size: 0;
+					margin-bottom: 12px;
+					.MusicGridGroupHeader {
+						@include DarkEngrave;
+						font-size: 16px;
+						margin-bottom: 28px;
+						text-align: center;
+						span {
+							position: relative;
+							&:before, &:after {
+								border-top: 2px groove #666;
+								bottom: 0;
+								content: "";
+								position: absolute;
+								right: 5em;
+								top: 8px;
+								width: 425px;
+							}
+							&:after {
+								bottom: 0;
+								left: 5em;
+								position: absolute;
+								right: 0;
+								top: 8px;
+							}
 						}
-						&:after {
+					}
+					.GridItem {
+						display: inline-block;
+						position: relative;
+						width: 25%;
+						img {
+							height: auto;
+							max-width: 100%;
+						}
+						.GridItemDetails {
+							background: rgba(0, 0, 0, 0.65);
 							bottom: 0;
-							left: 5em;
+							color: white;
+							height: 30px;
+							left: 0;
 							position: absolute;
 							right: 0;
-							top: 8px;
+							width: 100%;
+							.GridItemIcon {
+								color: transparentize(white, 0.5);
+								font-family: $Zonda;
+								margin: auto 4px;
+							}
+							.GridItemName {
+								display: inline-block;
+								font-family: $OpenSans;
+								font-size: 13px;
+								font-weight: 600;
+								margin: 5px 0 0 8px;
+							}
 						}
 					}
+					/* .GridItemFeatured {
+						float: left;
+						width: 40%;
+						img {
+							height: auto;
+							max-width: 100%;
+						} 
+					} */
 				}
-				.GridItem {
-					display: inline-block;
-					position: relative;
-					width: 25%;
-					img {
-						height: auto;
-						max-width: 100%;
-					}
-					.GridItemDetails {
-						background: rgba(0, 0, 0, 0.65);
-						bottom: 0;
-						height: 30px;
-						left: 0;
-						position: absolute;
-						right: 0;
-						width: 100%;
-						.GridItemName {
-							display: inline-block;
-							font-family: $OpenSans;
-							font-size: 13px;
-							font-weight: 600;
-							margin: 5px 0 0 8px;
-						}
+				#noFilterMatches {
+					@include DarkEngrave;
+					display: none;
+					width: 100%;
+					p {
+						font-size: 28px;
+						font-weight: 600;
+						margin: 36px;
+						text-align: center;
 					}
 				}
-				/* .GridItemFeatured {
-					float: left;
-					width: 40%;
-					img {
-						height: auto;
-						max-width: 100%;
-					} 
-				} */
 			}
-			#noFilterMatches {
-				@include DarkEngrave;
-				display: none;
-				width: 100%;
+			#musicDetails {
+				@include AnimateSideMargins;
+				background: red;
+				display: inline-block;
+				height: 300px;
+				margin-left: 40px;
+				width: 960px;
 				p {
-					font-size: 28px;
-					font-weight: 600;
-					margin: 36px;
-					text-align: center;
+					@include DarkEngrave;
 				}
 			}
 		}

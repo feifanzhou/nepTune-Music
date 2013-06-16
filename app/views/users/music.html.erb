@@ -21,79 +21,21 @@
       </div>
     </div>
 
-    <div id='musicGrid'>
-      <!-- TODO: Load filter content with AJAX -->
-      <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums %>
-      
-      <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs %>
+    <div id='musicGridContainer'>
+      <div id='musicGrid'>
+        <!-- TODO: Load filter content with AJAX -->
+        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums, label_icon: '&#59405;'.html_safe %>
+        
+        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs, label_icon: '&#59406;'.html_safe %>
 
-      <div id='noFilterMatches'>
-        <p>Nothing matches that filter</p>
+        <div id='noFilterMatches'>
+          <p>Nothing matches that filter</p>
+        </div>
+      </div>
+      <div id='musicDetails'>
+        <p>Details</p>
+        <p onclick='returnToMusicGrid()'>Back</p>
       </div>
     </div>
-    
-    <script type="text/javascript">
-      /* $(function() {
-        $("#musicGrid").masonry({
-          itemSelector: '.GridItem',
-          columnWidth: floor($('#musicGrid').width() * 0.20)
-        })
-      }) */
-    </script>
-    <script type="text/javascript">
-      var elm = $("#artistSidebar");
-
-      $(elm).scroll(function() {
-          if (elm.scrollTop() > 15)
-            $("#sidebarShadowTop").fadeTo(1.0, 1.0);
-          else
-            $("#sidebarShadowTop").fadeTo(1.0, 0.0);
-
-          if (elm.innerHeight() + elm.scrollTop() > (elm.scrollHeight - 5))
-            $("#sidebarShadowBottom").fadeTo(1.0, 0.0);
-          else
-            $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
-      });
-    </script>
-    <script type="text/javascript">
-      function filterMusic(tag) {
-        $(".FilterItem").each(function() {
-          $(this).removeClass('SelectedFilter');
-        });
-        $(".MusicGridGroupHeader").each(function() {
-          $(this).css('display', 'none');
-        });
-        $("#noFilterMatches").css('display', 'none');
-        switch (tag) {
-          case 0:
-            $(".MusicGridGroupHeader").each(function() {
-              $(this).css('display', 'block');
-            })
-            $("#filterAll").addClass('SelectedFilter');
-            $("#musicGridAlbums").css('display', 'block');
-            $("#musicGridSongs").css('display', 'block');
-            $("#noFilterMatches").css('display', 'none');
-            break;
-          case 1:
-            $("#filterSongs").addClass('SelectedFilter');
-            $("#musicGridAlbums").css('display', 'none');
-            $("#musicGridSongs").css('display', 'block');
-            break;
-          case 2:
-            $("#filterAlbums").addClass('SelectedFilter');
-            $("#musicGridAlbums").css('display', 'block');
-            $("#musicGridSongs").css('display', 'none');
-            $("#noFilterMatches").css('display', 'none');
-            break;
-          case 3:
-          case 4:
-          default:
-            $("#musicGridAlbums").css('display', 'none');
-            $("#musicGridSongs").css('display', 'none');
-            $("#noFilterMatches").css('display', 'block');
-            break;
-        }
-      }
-    </script>
   </div>
 </div>
