@@ -21,6 +21,10 @@ $(function() {
 	});
 });
 
+/* $(function() {
+  $('.ArtistNavIcon').tooltip();
+}); */
+
 function filterMusic(tag) {
   $(".FilterItem").each(function() {
     $(this).removeClass('SelectedFilter');

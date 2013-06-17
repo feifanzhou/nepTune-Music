@@ -200,15 +200,36 @@ header {
 						font-size: 24px;
 						font-weight: 400;
 						padding: 6px 0 6px 22px;
+						transition: background-color 0.5s;
+						-webkit-transition: background-color 0.5s;
 						&:hover {
 							background-color: transparentize(#666, 0.5);
 							color: white;
 							cursor: pointer;
-							transition: background-color 0.5s;
-							-webkit-transition: background-color 0.5s;
 						}
 						&.ArtistNavLast {
 							border: none;
+						}
+						&.ArtistNavCurrent {
+							background-color: $nepTuneOrangeHighlight;
+						}
+						.ArtistNavIcon {
+							display: inline-block;
+							margin-right: 12px;
+							text-align: right;
+							width: 24px;
+						}
+						@media(max-height: 879px) {
+							display: inline-block;
+							float: left;
+							padding: 11px;
+							.ArtistNavIcon {
+								margin-right: 0;
+								text-align: center;
+							}
+							.ArtistNavText {
+								display: none;
+							}
 						}
 					}
 				}

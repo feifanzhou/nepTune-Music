@@ -3,7 +3,7 @@
   <%= render 'layouts/playbar' %>
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar' %>
+  <%= render 'layouts/artist_sidebar', curr_nav: 2 %>
   <div class='XHidden' id='artistPageContent'>
     <div id='musicGridHeader'>
       <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", size: "960x320", class: "MusicGridHeaderImage") %>
@@ -24,9 +24,9 @@
     <div id='musicGridContainer'>
       <div id='musicGrid'>
         <!-- TODO: Load filter content with AJAX -->
-        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums, label_icon: '&#59405;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums, label_icon: '&#59410;'.html_safe %>
         
-        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs, label_icon: '&#59406;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs, label_icon: '&#59411;'.html_safe %>
 
         <div id='noFilterMatches'>
           <p>Nothing matches that filter</p>
