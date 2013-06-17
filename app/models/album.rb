@@ -14,4 +14,9 @@ class Album < ActiveRecord::Base
   belongs_to :artist
   has_one :image
   has_many :songs
+
+  def songs
+  	songs_list = super	# Read original song list
+  	return songs_list.sort_by{ |s| s[:track_number] }
+  end
 end

@@ -70,6 +70,8 @@ function filterMusic(tag) {
   }
 }
 
+var contentScrollTop = 0;
+
 function primeClick() {
   $('.MediaDisplayLink').click(function(event) {
     event.preventDefault();
@@ -81,9 +83,15 @@ function primeClick() {
     $('#itemIcon').html($(this).attr('data-icon'));
     $('#detailsHeaderTitle').html($(this).attr('data-name'));
 
+    contentScrollTop = $('#artistPageContent').scrollTop();
+
     var path = $(this).attr('href');
     setTimeout(function() {
       $('#musicDetailsHeader').css('z-index', 2);
+      /* if (contentScrollTop > 160)
+				$('#artistPageContent').animate({
+					scrollTop: 160
+				}, 1000); */
       $('#musicDetailsContent').load(path, function() {
 				setTimeout(function() {
 					$('#albumTrackListing').addClass('Visible');
@@ -108,6 +116,9 @@ function returnToMusicGrid() {
     $('#itemIcon').empty();
     $('#detailsHeaderTitle').empty();
     $('#musicDetailsContent').empty();
+    $('#artistPageContent').animate({
+			scrollTop: contentScrollTop
+    });
   }, 750);
 }
 

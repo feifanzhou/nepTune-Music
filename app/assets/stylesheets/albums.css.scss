@@ -7,6 +7,8 @@
 @import "shared";
 
 .AlbumArtMain {
+	display: inline-block;
+	float: left;
 	position: relative;
 	text-align: center;
 	width: 500px;
@@ -54,5 +56,16 @@
 				}
 			}
 		}
+	}
+}
+.AlbumDetails {
+	display: inline-block;
+	padding: 20px 12px;
+	position: relative;
+	width: 460px;
+	white-space: normal;
+	p {
+		@include DarkEngrave;
+		font-size: 36px;
 	}
 }

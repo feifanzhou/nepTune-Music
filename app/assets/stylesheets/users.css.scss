@@ -221,13 +221,15 @@ header {
 		box-shadow: 0 0 8px 8px transparentize(black, 0.75);
 		color: $white;
 		margin-left: 240px;
-		overflow-x: hidden;
 		overflow-y: scroll;
 		position: absolute;
 		top: 125px;
 		white-space: nowrap;
 		width: 960px;
 		z-index: 2;
+		&.XHidden {
+			overflow-x: hidden;
+		}
 		#musicGridHeader {
 			height: 320px;
 			max-height: 320px;
@@ -386,12 +388,10 @@ header {
 					} */
 				}
 				#noFilterMatches {
-					@include DarkEngrave;
 					display: none;
 					width: 100%;
 					p {
-						font-size: 28px;
-						font-weight: 600;
+						@include DarkEngrave;
 						margin: 36px;
 						text-align: center;
 					}
@@ -454,6 +454,7 @@ header {
 		#aboutText {
 			float: left;
 			padding: 16px;
+			white-space: normal;
 			width: 448px;
 			#aboutStory {
 				
@@ -592,7 +593,9 @@ header {
 		.CalendarColumn {
 			font-size: 0;
 			height: 100%;
-			overflow: scroll;
+			overflow-x: scroll !important;
+			overflow-y: scroll;
+			-webkit-overflow-scrolling: touch;
 			white-space: nowrap;
 			.CalendarUnitContainer {
 				bottom: 0;

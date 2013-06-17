@@ -1,0 +1,10 @@
+<div class='CalendarUnitContainer'>
+<% display_start = month_start.beginning_of_week(:sunday);
+display_end = month_start.end_of_month.tomorrow.end_of_week(:sunday);
+(display_start..display_end).each do |d| %>
+	<div class="CalendarUnit <%= 'CalendarUnitOtherMonth' if d < month_start or d > month_start.end_of_month %> <%= 'CalendarUnitColLast' if d.wday == 6 %> <%= 'CalendarUnitRowLast' if d >= month_start.end_of_month.beginning_of_week %>">
+		<div class='CalendarUnitMonth'><%= d.strftime("%B") %></div>
+		<div class='CalendarUnitDay'><%= d.strftime("%d") %></div>
+	</div>
+<% end %>
+</div>
