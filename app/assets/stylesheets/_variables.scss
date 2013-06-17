@@ -63,6 +63,12 @@ $albumOverlayInner: transparentize(black, 0.5);
 	@extend AnimationEase;
 }
 
+@mixin EventNameStyle {
+	font-family: $OpenSans;
+	font-weight: 400;
+	margin: 0;
+}
+
 /***** Artist:Events page *****/
 $calendarBorderStyle: 1px solid darken(#ddd, 3%);
 $calendarUnitDayColor: #676767;

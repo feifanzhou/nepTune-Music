@@ -15,4 +15,9 @@ class Event < ActiveRecord::Base
   attr_accessible :creator_id, :end_at, :name, :start_at
 
   belongs_to :user, foreign_key: :creator_id
+  has_many :images
+
+  def cover_image
+  	return self.images.primary.first || self.images.first
+  end
 end

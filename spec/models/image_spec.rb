@@ -11,6 +11,8 @@
 #  updated_at :datetime         not null
 #  album_id   :integer
 #  song_id    :integer
+#  is_primary :boolean
+#  event_id   :integer
 #
 
 require 'spec_helper'

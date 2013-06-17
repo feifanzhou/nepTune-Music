@@ -125,3 +125,17 @@ function returnToMusicGrid() {
 $(function() {
   $('#detailsHeaderBack').click(returnToMusicGrid());
 });
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toLowerCase() + string.slice(1);
+  }
+function setCalendarDisplayMode(cls) {
+  $('#eventsCalendar').removeClass();
+  $('#eventsCalendar').addClass(cls);
+  var viewModeID = '#' + capitalizeFirstLetter(cls);
+  $('.InlineViewMode').each(function() {
+    $(this).removeClass('ViewModeSelected');
+  })
+  console.log(viewModeID);
+  $(viewModeID).addClass('ViewModeSelected');
+}

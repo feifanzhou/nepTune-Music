@@ -552,6 +552,25 @@ header {
 						font-weight: 300;
 						margin: 8px;
 					}
+					.CalendarUnitWeekday {
+						display: none;
+					}
+					.CalendarUnitEventHeader {
+						text-decoration: none;
+						img {
+							display: none;
+						}
+						.CalendarUnitEventName {
+							color: white;
+							text-decoration: none;
+							p {
+								@include EventNameStyle;
+								font-size: 14px;
+								margin: 0 8px;
+								text-decoration: none;
+							}
+						}
+					}
 					&.CalendarUnitOtherMonth {
 						background: $otherMonthBackgroundColor;
 						.CalendarUnitDay {
@@ -607,17 +626,52 @@ header {
 					background: lighten($nepTuneOrange, 45%);
 					border-right: $calendarBorderStyle;
 					display: inline-block;
+					float: left;
 					height: 100%;
+					// position: absolute;
+					top: 0;
 					width: 60px;
 					.CalendarUnitMonth {
 						display: none;
 					}
 					.CalendarUnitDay {
+						background: lighten($nepTuneOrange, 40%);
 						color: transparentize($calendarUnitDayColor, 0.3);
-						font-family: $Myriad;
-						font-size: 18px;
-						font-weight: 300;
-						margin: 8px;
+						font-family: $OpenSans;
+						font-size: 24px;
+						font-weight: 600;
+						padding: 8px 16px;
+						text-align: center;
+					}
+					.CalendarUnitWeekday {
+						color: inherit;
+						font-family: inherit;
+						font-size: 16px;
+						font-weight: 400;
+
+					}
+					.CalendarUnitEventHeader {
+						position: relative;
+						img {
+							height: auto;
+							width: 100%;
+						}
+						.CalendarUnitEventName {
+							@include TranslucentBar;
+							bottom: 0;
+							color: white;
+							display: inline-block;
+							height: auto;
+							left: 0;
+							padding: 8px;
+							right: 0;
+							position: absolute;
+							text-decoration: none;
+							p {
+								@include EventNameStyle;
+								font-size: 22px;
+							}
+						}
 					}
 					&.CalendarUnitOtherMonth {
 						display: none;
@@ -626,6 +680,7 @@ header {
 						background: $nepTuneOrange;
 						width: 280px;
 						.CalendarUnitDay {
+							background: $nepTuneOrange;
 							color: white;
 						}
 						&.CalendarUnitOtherMonth {
@@ -644,6 +699,7 @@ header {
 		.CalendarList {
 			font-size: 0;
 			overflow: scroll;
+			white-space: normal;
 			.CalendarUnitContainer {
 				font-size: 0;
 				min-height: 100%;
@@ -680,6 +736,9 @@ header {
 					&.CalendarUnitHasEvent {
 						background: $nepTuneOrange;
 						display: inline-block;
+						.CalendarUnitMonth {
+							color: white;
+						}
 						.CalendarUnitDay {
 							color: white;
 						}
