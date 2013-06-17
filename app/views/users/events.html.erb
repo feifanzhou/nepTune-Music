@@ -41,7 +41,7 @@
   				<h2>Saturday</h2>
   			</div>
   		</div>
-      <%= render 'layouts/events_calendar', month_start: Date.today.beginning_of_month %>
+      <%= render 'layouts/events_calendar', month_start: Date.today.beginning_of_month, events: @events %>
   	</div>
   </div>
 </div>

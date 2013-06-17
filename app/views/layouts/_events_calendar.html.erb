@@ -2,7 +2,18 @@
 <% display_start = month_start.beginning_of_week(:sunday);
 display_end = month_start.end_of_month.tomorrow.end_of_week(:sunday);
 (display_start..display_end).each do |d| %>
-	<div class="CalendarUnit <%= 'CalendarUnitOtherMonth' if d < month_start or d > month_start.end_of_month %> <%= 'CalendarUnitColLast' if d.wday == 6 %> <%= 'CalendarUnitRowLast' if d >= month_start.end_of_month.beginning_of_week %>">
+	<%	has_event = false;
+			events.each do |e|
+				if e.start_at >= d.to_datetime && e.start_at <= d.end_of_day.to_datetime
+					has_event = true
+				end
+				if e.end_at >= d.to_datetime && e.end_at <= d.end_of_day.to_datetime
+					has_event = true
+				end
+				break if has_event
+			end 
+	%>
+	<div class="CalendarUnit <%= 'CalendarUnitOtherMonth' if d < month_start or d > month_start.end_of_month %> <%= 'CalendarUnitColLast' if d.wday == 6 %> <%= 'CalendarUnitRowLast' if d >= month_start.end_of_month.beginning_of_week %> <%= 'CalendarUnitHasEvent' if has_event %>">
 		<div class='CalendarUnitMonth'><%= d.strftime("%B") %></div>
 		<div class='CalendarUnitDay'><%= d.strftime("%d") %></div>
 	</div>

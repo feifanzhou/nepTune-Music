@@ -593,8 +593,7 @@ header {
 		.CalendarColumn {
 			font-size: 0;
 			height: 100%;
-			overflow-x: scroll !important;
-			overflow-y: scroll;
+			overflow: scroll;
 			-webkit-overflow-scrolling: touch;
 			white-space: nowrap;
 			.CalendarUnitContainer {
@@ -621,10 +620,7 @@ header {
 						margin: 8px;
 					}
 					&.CalendarUnitOtherMonth {
-						background: $otherMonthBackgroundColor;
-						.CalendarUnitDay {
-							color: $otherMonthDayColor;
-						}
+						display: none;
 					}
 					&.CalendarUnitHasEvent {
 						background: $nepTuneOrange;

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   
   has_many :songs
   has_many :albums
+  has_many :events, foreign_key: :creator_id
 
   include UsersHelper
   

@@ -31,7 +31,11 @@ class UsersController < ApplicationController
 
   def music
   end
-  
+
+  def events
+    @events = User.find_by_username(params[:username]).events.sort_by! { |e| e.start_at }
+  end
+
   def new
   end
   
