@@ -19,10 +19,6 @@
 
 class User < ActiveRecord::Base
   attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :username
-  
-  has_many :songs
-  has_many :albums
-  has_many :events, foreign_key: :creator_id
 
   include UsersHelper
   

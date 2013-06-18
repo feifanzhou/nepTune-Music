@@ -23,11 +23,11 @@ NeptuneMusic::Application.routes.draw do
     post "/changepw" => 'login#change_password', as: :changepw
 
     match '/:username', to: 'users#show', as: :username
-    match '/:username/about', to: 'users#about', as: :artist_about
-    match '/:username/music', to: 'users#music', as: :artist_music
-    match '/:username/events', to: 'users#events', as: :artist_events
-    match '/:username/burble', to: 'users#burble', as: :artist_burble
-    match '/:username/fans', to: 'users#fans', as: :artist_fans
+    match '/:username/about', to: 'artists#about', as: :artist_about
+    match '/:username/music', to: 'artists#music', as: :artist_music
+    match '/:username/events', to: 'artists#events', as: :artist_events
+    match '/:username/burble', to: 'artists#burble', as: :artist_burble
+    match '/:username/fans', to: 'artists#fans', as: :artist_fans
     match '/:username/album/:album', to: 'albums#show', as: :album_for_artist
     match '/:username/song/:song', to: 'songs#show', as: :song_for_artist
 

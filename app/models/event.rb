@@ -14,7 +14,7 @@
 class Event < ActiveRecord::Base
   attr_accessible :creator_id, :end_at, :name, :start_at
 
-  belongs_to :user, foreign_key: :creator_id
+  belongs_to :artist, foreign_key: :creator_id
   has_many :images
 
   def cover_image

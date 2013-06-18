@@ -25,6 +25,12 @@ $(function() {
   $('.ArtistNavIcon').tooltip();
 }); */
 
+$(function() {
+  var left = $('#artistSidebar').position().left;
+  $('#sidebarShadowTop').css('left', (left + 'px'));
+  $('#sidebarShadowBottom').css('left', (left + 'px'));
+});
+
 function filterMusic(tag) {
   $(".FilterItem").each(function() {
     $(this).removeClass('SelectedFilter');

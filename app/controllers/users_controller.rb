@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   include LoginHelper
-
-  before_filter :get_user_from_params, only: [:show, :about, :music, :events, :burble, :fans]
+  include UsersHelper
   
   def self.user=(u)
     @user = u
@@ -11,29 +10,7 @@ class UsersController < ApplicationController
     @user
   end
 
-  def get_user_from_params
-    if !params[:username].blank?
-      logger.debug("Params username: #{ params[:username] }");
-      @user = User.find_by_username(params[:username].downcase)
-      if @user.blank?
-        not_found
-      end
-    end
-  end
-
   def show
-    # TODO: Render 'about' if first visit, else render 'music'
-    render 'music'
-  end
-
-  def about
-  end
-
-  def music
-  end
-
-  def events
-    @events = User.find_by_username(params[:username]).events.sort_by! { |e| e.start_at }
   end
 
   def new
