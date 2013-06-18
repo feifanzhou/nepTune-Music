@@ -16,10 +16,12 @@ display_end = month_start.end_of_month.tomorrow.end_of_week(:sunday);
 			curr_events.uniq!
 	%>
 	<div class="CalendarUnit <%= 'CalendarUnitOtherMonth' if d < month_start or d > month_start.end_of_month %> <%= 'CalendarUnitColLast' if d.wday == 6 %> <%= 'CalendarUnitRowLast' if d >= month_start.end_of_month.beginning_of_week %> <%= 'CalendarUnitHasEvent' unless curr_events.blank? %>">
-		<div class='CalendarUnitMonth'><%= d.strftime("%B") %></div>
-		<div class='CalendarUnitDay'>
-			<%= d.strftime("%d") %>
-			<div class='CalendarUnitWeekday'><%= d.strftime("%a") %></div>
+		<div class='CalendarUnitDate'>
+			<div class='CalendarUnitMonth'><%= d.strftime("%B") %></div>
+			<div class='CalendarUnitDay'>
+				<%= d.strftime("%d") %>
+				<div class='CalendarUnitWeekday'><%= d.strftime("%a") %></div>
+			</div>
 		</div>
 		<% curr_events.each do |e| %>
 		<%= link_to e do %>

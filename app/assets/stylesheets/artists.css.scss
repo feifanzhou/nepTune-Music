@@ -563,18 +563,20 @@ header {
 					&.CalendarUnitRowLast {
 						border-bottom: none;
 					}
-					.CalendarUnitMonth {
-						display: none;
-					}
-					.CalendarUnitDay {
-						color: $calendarUnitDayColor;
-						font-family: $Myriad;
-						font-size: 18px;
-						font-weight: 300;
-						margin: 8px;
-					}
-					.CalendarUnitWeekday {
-						display: none;
+					.CalendarUnitDate {
+						.CalendarUnitMonth {
+							display: none;
+						}
+						.CalendarUnitDay {
+							color: $calendarUnitDayColor;
+							font-family: $Myriad;
+							font-size: 18px;
+							font-weight: 300;
+							margin: 8px;
+						}
+						.CalendarUnitWeekday {
+							display: none;
+						}
 					}
 					.CalendarUnitEventHeader {
 						text-decoration: none;
@@ -652,24 +654,26 @@ header {
 					// position: absolute;
 					top: 0;
 					width: 60px;
-					.CalendarUnitMonth {
-						display: none;
-					}
-					.CalendarUnitDay {
-						background: lighten($nepTuneOrange, 40%);
-						color: transparentize($calendarUnitDayColor, 0.3);
-						font-family: $OpenSans;
-						font-size: 24px;
-						font-weight: 600;
-						padding: 8px 16px;
-						text-align: center;
-					}
-					.CalendarUnitWeekday {
-						color: inherit;
-						font-family: inherit;
-						font-size: 16px;
-						font-weight: 400;
+					.CalendarUnitDate {
+						.CalendarUnitMonth {
+							display: none;
+						}
+						.CalendarUnitDay {
+							background: lighten($nepTuneOrange, 40%);
+							color: transparentize($calendarUnitDayColor, 0.3);
+							font-family: $OpenSans;
+							font-size: 24px;
+							font-weight: 600;
+							padding: 8px 16px;
+							text-align: center;
+						}
+						.CalendarUnitWeekday {
+							color: inherit;
+							font-family: inherit;
+							font-size: 16px;
+							font-weight: 400;
 
+						}
 					}
 					.CalendarUnitEventHeader {
 						position: relative;
@@ -732,21 +736,60 @@ header {
 					background: lighten($nepTuneOrange, 45%);
 					border-bottom: $calendarBorderStyle;
 					display: none;
-					height: 80px;
+					height: 120px;
+					position: relative;
 					width: 100%;
-					.CalendarUnitMonth {
-						color: transparentize($calendarUnitDayColor, 0.3);
-						font-family: $Myriad;
-						font-size: 18px;
-						font-weight: 300;
-						margin: 8px 0 0 8px;
+					.CalendarUnitDate {
+						bottom: 0;
+						display: inline-block;
+						height: 120px;
+						left: 0;
+						position: absolute;
+						top: 0;
+						.CalendarUnitMonth {
+							color: transparentize($calendarUnitDayColor, 0.3);
+							font-family: $OpenSans;
+							font-size: 18px;
+							font-weight: 300;
+							margin: 8px 0 0 8px;
+						}
+						.CalendarUnitDay {
+							color: transparentize($calendarUnitDayColor, 0.3);
+							font-family: $OpenSans;
+							font-size: 28px;
+							font-weight: 600;
+							margin: 0 0 2px 8px;
+							.CalendarUnitWeekday {
+								font-weight: 300;
+							}
+						}
 					}
-					.CalendarUnitDay {
-						color: transparentize($calendarUnitDayColor, 0.3);
-						font-family: $Lato;
-						font-size: 28px;
-						font-weight: 300;
-						margin: 0 0 2px 8px;
+					.CalendarUnitEventHeader {
+						bottom: 0;
+						display: inline-block;
+						position: absolute;
+						left: 80px;
+						top: 0;
+						img {
+							height: 120px;
+							width: auto;
+						}
+						.CalendarUnitEventName {
+							@include TranslucentBar;
+							bottom: 0;
+							color: white;
+							display: inline-block;
+							height: auto;
+							left: 0;
+							padding: 8px;
+							right: 0;
+							position: absolute;
+							text-decoration: none;
+							p {
+								@include EventNameStyle;
+								font-size: 18px;
+							}
+						}
 					}
 					&.CalendarUnitOtherMonth {
 						background: $otherMonthBackgroundColor;
