@@ -6,6 +6,8 @@
 @import "variables";
 @import "shared";
 
+@import "bootstrap";
+
 html {
 	background: $Txture;
 }
@@ -454,50 +456,96 @@ header {
 		}
 
 		/***** About page *****/
-		#aboutGallery {
-			display: inline-block;
-			float: left;
-			height: 100%;
+		#sliderContainer {
+			background: transparentize(black, 0.25);
+			height: 360px;
+			left: 0;
 			overflow: hidden;
-			width: 480px;
-			img.AboutPageHero {
-				height: 100%;
+			position: absolute;
+			right: 0;
+			.SliderNav {
+				bottom: 0;
+				color: $inactiveWhite;
+				font-size: 60px;
+				padding: 162px 20px;
+				position: absolute;
+				text-align: center;
+				top: 0;
+				width: 60px;
+				z-index: 2;
+				&:hover {
+					color: $partialActiveWhite;
+					cursor: pointer;
+				}
+				&.SliderNavDisabled {
+					color: $inactiveWhite;
+					cursor: default;
+				}
+				&#sliderNavLeft {
+					left: 0;
+				}
+				&#sliderNavRight {
+					right: 0;
+				}
+			}
+			.Slider {
+				font-size: 0;
+				overflow: visible;
+				position: absolute;
+				left: 0px;
 				width: auto;
-			}
-			img#aboutPageHeroDemo {
-				margin-left: -120px;
-			}
-		}
-		#aboutVideo {
-			display: inline-block;
-			float: left;
-		}
-		#aboutText {
-			float: left;
-			padding: 16px;
-			white-space: normal;
-			width: 448px;
-			#aboutStory {
-				
-			}
-			h2 {
-				color: #bbb;
-				font-family: $OpenSans;
-				font-size: 22px;
-				font-weight: 600;
-				line-height: 1em;
-				margin: 0;
-			}
-			p {
-				color: white;
-				font-family: $OpenSans;
-				font-size: 13px;
-				font-weight: 400;
-				&.ContactText {
-					margin: 2px 0;
+				transition: left 0.8s;
+				-webkit-transition: left 0.8s;
+				.SliderElement {
+					display: inline-block;
+					// float: left;
+					height: 360px;
+					opacity: 0.15;
+					pointer-events: none;
+					position: relative;
+					transition: opacity 0.8s;
+					-webkit-transition: opacity 0.8s;
+					&.SliderElementCurrent {
+						opacity: 1;
+						pointer-events: auto;
+					}
+					.SliderTitle {
+						@include TranslucentBar;
+						bottom: 0;
+						margin: 0;
+						z-index: 1;
+						p {
+							font-family: $OpenSans;
+							font-size: 18px;
+							font-weight: 600;
+							margin: 10px;
+						}
+					}
 				}
 			}
 		}
+		#aboutBody {
+			margin-top: 360px;
+			white-space: normal;
+			width: 100%;
+			div {
+				box-sizing: border-box;
+				display: inline-block;
+				padding: 20px;
+				h2 {
+					font-family: $OpenSans;
+					font-size: 36px;
+					font-weight: 300;
+				}
+				p {
+					font-family: $OpenSans;
+					font-size: 15px;
+					font-weight: 400;
+					line-height: 1.5em;
+				}
+			}
+		}
+
 		/***** Events page *****/
 		#eventsCalendarHeader {
 			background-color: $nepTuneOrange;
