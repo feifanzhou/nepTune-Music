@@ -13,84 +13,7 @@ html {
 }
 
 header {
-	height: 100px;
-	left: 0;
-	position: fixed;
-	top: 0;
-	width: 100%;
-	z-index: 1;
-	#pageHeader {
-		background-color: $nepTuneOrange;
-		height: 45px;
-		left: 0;
-		position: fixed;
-		right: 0;
-		top: 0;
-		width: 100%;
-		div#pageHeaderContainer {
-			margin: auto;
-			width: 1200px;
-			#headerNavLinks {
-				color: white;
-				display: inline-block;
-				list-style: none;
-				max-width: 1200px;
-				margin: 0;
-				li {
-					color: $inactiveWhite;
-					display: inline-block;
-					float: left;
-					font-family: $OpenSans;
-					font-size: 20px;
-					font-weight: 400;
-					margin: 10px 0 10px 32px;
-				}
-			}
-			#headerSearch {
-				display: inline-block;
-				float: right;
-				// margin-right: 32px;
-				#headerSearchField {
-					background-color: darken($nepTuneOrange, 5%);
-					border: none;
-					box-sizing: border-box;
-					color: white;
-					font-family: $OpenSans;
-					font-size: 16px;
-					font-weight: 300;
-					height: 30px;
-					margin: 6px 0 2px 0;
-					width: 280px;
-					&::-webkit-input-placeholder {
-						color: $inactiveWhite;
-					}
-					&:-moz-placeholder {
-						color: $inactiveWhite;
-					}
-					&::-moz-placeholder {
-						color: $inactiveWhite;
-					}
-					&:-ms-input-placeholder {
-						color: $inactiveWhite;
-					}
-					&:focus {
-						background-color: darken($nepTuneOrange, 12%);
-						border: none !important;
-						box-shadow: none !important;
-						outline: none;
-					}
-				}
-			}
-		}
-	}
-
-	#playbar {
-		background: $Txture;
-		// border-bottom: 1px solid #eee;
-		margin-top: 45px;
-		height: 80px;
-		width: 100%;
-	}
+	@include AppHeader;
 }
 
 #artistPageContainer {
@@ -239,9 +162,9 @@ header {
 		}
 	}
 	#artistPageContent {
+		@include AppContentLayerShadow;
 		background: #565656;
 		bottom: 0;
-		box-shadow: 0 0 8px 8px transparentize(black, 0.75);
 		color: $white;
 		margin-left: 240px;
 		overflow-y: scroll;

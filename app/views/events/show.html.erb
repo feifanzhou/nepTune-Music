@@ -1,1 +1,30 @@
-Events
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+
+<div id='eventPageContainer'>
+	<div id='attendeesList'>
+		<div id='performers'>
+			<h1>Performers</h1>
+		</div>
+		<div id='attendees'>
+			<h1>Attendees</h1>
+		</div>
+	</div>
+
+	<div id='eventInfo'>
+		<div id='eventHeader'>
+			<%= image_tag 'concert.jpg', size: '800x360' %>
+			<div id='eventBasicInfo'>
+				<p id='eventName'>Name of This Event</p>
+				<p id='eventLoc'>Tomorrow at 6pm &bull; Providence Waterfire</p>
+			</div>
+		</div>
+		<p>Event Info</p>
+	</div>
+
+	<div id='eventActions'>
+		<p>Actions</p>
+	</div>
+</div>

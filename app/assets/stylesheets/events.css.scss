@@ -1,3 +1,86 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+@import "shared";
+
+html {
+	background: $Txture;
+}
+
+header {
+	@include AppHeader;
+}
+
+#eventPageContainer {
+	clear: both;
+	margin: 125px auto auto auto;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	width: 1280px;
+	#attendeesList {
+		box-sizing: border-box;
+		display: inline-block;
+		float: left;
+		width: 240px;
+		div {
+			padding: 0 16px;
+			&#attendees {
+				border-top: 1px groove $white;
+			}
+		}
+		h1 {
+			color: $white;
+			font-family: $OpenSans;
+			font-size: 28px;
+			font-weight: 300;
+			margin: 10px auto;
+		}
+	}
+
+	#eventInfo {
+		@include AppContentLayerShadow;
+		background: transparentize(white, 0.5);
+		box-sizing: border-box;
+		display: inline-block;
+		float: left;
+		position: relative;
+		width: 800px;
+		#eventHeader {
+			height: 360px;
+			position: relative;
+			width: 800px;
+			#eventBasicInfo {
+				@include TranslucentBar;
+				bottom: 0;
+				z-index: 1;
+				#eventName {
+					color: white;
+					display: inline-block;
+					font-family: $OpenSans;
+					font-size: 24px;
+					font-weight: 400;
+					margin: 6px 8px;
+				}
+				#eventLoc {
+					color: $white;
+					display: inline-block;
+					font-family: $OpenSans;
+					font-size: 18px;
+					font-weight: 300;
+					margin: 10px 8px;
+				}
+			}
+		}
+	}
+
+	#eventActions {
+		box-sizing: border-box;
+		display: inline-block;
+		float: left;
+		padding: 0 16px;
+		width: 240px;
+	}
+}
