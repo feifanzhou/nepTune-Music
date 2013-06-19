@@ -9,7 +9,6 @@
 #  artist_id    :integer
 #  album_id     :integer
 #  track_number :integer
-#
 
 class Song < ActiveRecord::Base
   attr_accessible :name
