@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618013114) do
+ActiveRecord::Schema.define(:version => 20130619141311) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -39,13 +39,14 @@ ActiveRecord::Schema.define(:version => 20130618013114) do
     t.string   "path"
     t.integer  "height"
     t.integer  "width"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "album_id"
-    t.integer  "song_id"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
     t.boolean  "is_primary"
-    t.integer  "event_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type", :limit => 64
   end
+
+  add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
 
   create_table "songs", :force => true do |t|
     t.string   "name"

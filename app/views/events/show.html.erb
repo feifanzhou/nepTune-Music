@@ -4,21 +4,45 @@
 </header>
 
 <div id='eventPageContainer'>
-	<div id='attendeesList'>
+	<div id='attendeesListBar'>
 		<div id='performers'>
 			<h1>Performers</h1>
+			<ul class='AttendeeList' id='performersList'>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+			</ul>
 		</div>
-		<div id='attendees'>
-			<h1>Attendees</h1>
+		<div id='going'>
+			<h1>Going</h1>
+			<ul class='AttendeeList' id='goingList'>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+			</ul>
+		</div>
+		<div id='maybe'>
+			<h1>Maybe</h1>
+			<ul class='AttendeeList' id='maybeList'>
+			</ul>
+		</div>
+		<div id='invited'>
+			<h1>Invited</h1>
+			<ul class='AttendeeList' id='invitedList'>
+			</ul>
 		</div>
 	</div>
 
 	<div id='eventInfo'>
 		<div id='eventHeader'>
-			<%= image_tag 'concert.jpg', size: '800x360' %>
+			<%= image_tag 'concert.jpg', size: '960x360' %>
 			<div id='eventBasicInfo'>
-				<p id='eventName'>Name of This Event</p>
+				<p id='eventName'><%= @event.name %></p>
 				<p id='eventLoc'>Tomorrow at 6pm &bull; Providence Waterfire</p>
+				<div id='eventResponse'>
+					<span class='EventResponseAction' id='eventGoing'>Going</span>
+					<span class='EventResponseAction' id='eventMaybe'>Maybe</span>
+				</div>
 			</div>
 		</div>
 		<p>Event Info</p>

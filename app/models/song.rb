@@ -14,7 +14,7 @@ class Song < ActiveRecord::Base
   attr_accessible :name
 
   belongs_to :artist
-  has_one :image
+  has_one :image, as: :imageable
   belongs_to :album
 
   def image

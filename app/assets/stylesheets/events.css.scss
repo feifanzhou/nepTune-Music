@@ -20,11 +20,11 @@ header {
 	overflow-x: hidden;
 	overflow-y: scroll;
 	width: 1280px;
-	#attendeesList {
+	#attendeesListBar {
 		box-sizing: border-box;
 		display: inline-block;
 		float: left;
-		width: 240px;
+		width: 200px;
 		div {
 			padding: 0 16px;
 			&#attendees {
@@ -38,6 +38,33 @@ header {
 			font-weight: 300;
 			margin: 10px auto;
 		}
+		.AttendeeList {
+			list-style: none;
+			padding-left: 0;
+			li {
+				height: 40px;
+				overflow: hidden;
+				position: relative;
+				.AttendeePhoto {
+					display: inline-block;
+					left: 0;
+					position: absolute;
+					top: 5px;
+				}
+				.AttendeeName {
+					color: white;
+					display: inline-block;
+					font-family: $OpenSans;
+					font-size: 14px;
+					font-weight: 400;
+					left: 38px;
+					margin: 0;
+					position: absolute;
+					top: 10px;
+					white-space: nowrap;
+				}
+			}
+		}
 	}
 
 	#eventInfo {
@@ -47,11 +74,11 @@ header {
 		display: inline-block;
 		float: left;
 		position: relative;
-		width: 800px;
+		width: 960px;
 		#eventHeader {
 			height: 360px;
 			position: relative;
-			width: 800px;
+			width: 960px;
 			#eventBasicInfo {
 				@include TranslucentBar;
 				bottom: 0;
@@ -72,6 +99,26 @@ header {
 					font-weight: 300;
 					margin: 10px 8px;
 				}
+				#eventResponse {
+					background: transparentize(gray, 0.25);
+					border-radius: 6px;
+					display: inline-block;
+					float: right;
+					margin: 8px;
+					padding: 6px;
+					.EventResponseAction {
+						color: $inactiveWhite;
+						font-family: $OpenSans;
+						font-size: 16px;
+						font-weight: 600;
+						padding: 6px 12px;
+						width: 100px;
+						&:hover {
+							color: $partialActiveWhite;
+							cursor: pointer;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -81,6 +128,6 @@ header {
 		display: inline-block;
 		float: left;
 		padding: 0 16px;
-		width: 240px;
+		width: 120px;
 	}
 }

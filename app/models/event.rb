@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   attr_accessible :creator_id, :end_at, :name, :start_at
 
   belongs_to :artist, foreign_key: :creator_id
-  has_many :images
+  has_many :images, as: :imageable
 
   def cover_image
   	return self.images.primary.first || self.images.first
