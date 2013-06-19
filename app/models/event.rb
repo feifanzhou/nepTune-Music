@@ -16,6 +16,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :artist, foreign_key: :creator_id
   has_many :images, as: :imageable
+  has_many :attendees
+  has_many :users, through: :attendees
 
   def cover_image
   	return self.images.primary.first || self.images.first

@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :username
 
   include UsersHelper
+
+  has_many :attendees
+  has_many :events, through: :attendees
   
   before_validation do
     # Create temporary password 
