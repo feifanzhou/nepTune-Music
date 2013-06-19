@@ -22,6 +22,6 @@ class Attendee < ActiveRecord::Base
   end
 
   def status=(value)
-  	write_attribute(:status, value.to_sym)
+  	write_attribute(:status, value.to_s)
   end
 end
