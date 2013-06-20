@@ -12,7 +12,7 @@
 				Sign up for exclusive access to our platform.
 			<% end%>
 		</p>
-		<%= render 'shared/hero_signup' %>
+		<%= render 'shared/hero_signup', is_home_page: true %>
 	</div>
 	<div class='ScrollIndicator' id='scrollTop' onclick='scrollToHomeContent()'>&#59397;</div>
 	<div class='ScrollIndicator' id='scrollBottom' onclick='scrollToHomeContent()'>&#59400;</div>
@@ -21,8 +21,8 @@
 	<h1>Marketplace</h1>
 	<%= image_tag("global_music.png", size: "200x200", alt: "nepTune is a global marketplace for great music", class: "HomeImage") %>
 	<p>
-		nepTune is a meeting place for artists and consumers.<br />
-		A place where ideas are developed, conversations flow, and music is enjoyed.<br />
+		nepTune is a meeting place for artists and music lovers.<br />
+		A place to discover new music, meet artists, and support their work.<br />
 		It's a farmer's market for music around the world.
 	</p>
 	<p class='HomeMore'><%= link_to "Find out more", market_url %></p>
@@ -32,17 +32,18 @@
 	<%= image_tag("artist_story.png", size: "254x200", alt: "nepTune gives every artist a chance to tell their story", class: "HomeImage") %>
 	<p>
 		Music is made by people, not machines.<br />
-		nepTune gives every artist the opportunity to tell their story.
+		nepTune gives every artist the opportunity to tell their story,<br />
+		And form meaningful relations with their fans.
 	</p>
 	<p class='HomeMore'><%= link_to "Find out more", market_url(anchor: "artists") %></p>
 </div>
 <div class='row HomeSection AppearCard' id='h_consumers'>
-	<h1>Consumers</h1>
+	<h1>Music Lovers</h1>
 	<%= image_tag("devices.png", size: '454x93', alt: "nepTune will be available on all your devices", class: "HomeImage", id: "homeDevices") %>
 	<p>
-		nepTune gives you access to the best music from around the world.<br />
-		Support the artists you love, and become their #1 fan.<br />
-		No ads, no limits. Just music. Everywhere.
+		nepTune gives fans access to the best music from around the world.<br />
+		Support awesome artists by subscribing, liking, buying, and sharing.<br />
+		No ads, no distractions. Just music. Everywhere.
 	</p>
 	<p class='HomeMore'><%= link_to "Find out more", market_url(anchor: "consumers") %></p>
 </div>
@@ -72,7 +73,7 @@
 	<div class='span4 CenterColumn AboutColumn' id='aboutContact'>
 		<h2>Contact Us</h2>
 		<p>The nepTune team is hard at work building the future of creativity. Please get in touch with us if you have questions about nepTune or impromevements that would make our product better.</p>
-		<p id='contactEmail'><a href="mailto:future@neptunemusic.co">future@neptunemusic.co</a></p>
+		<p id='contactEmail'><a href="mailto:future@getneptune.com">future@getneptune.com</a></p>
 		<p id='contactFB'><a href='http://fb.com/neptunetech'>fb.com/neptunetech</a></p>
 		<p id='contactTwitter'><a href='http://twitter.com/neptuneTech'>@neptuneTech</a></p>
 		<a href='http://bit.ly/nepTuneSurvey'><button class='btn btn-primary' id='feedbackSurvey'>Feedback survey</button></a>
@@ -80,4 +81,3 @@
 	</div>
 </div>
 <%= render 'layouts/footer', footer_id: 'homeFooter' %>
-<script type="text/javascript">setHeroHeight()</script>

@@ -1,5 +1,5 @@
 NeptuneMusic::Application.routes.draw do
-  # Routes for resources
+
   resources :users
   
   # Routes for beta subdomain
