@@ -11,7 +11,7 @@ And as always, *don't commit broken code*. Or the Octocat will get you. Or somet
 # Initial setup
 Our app is currently routed through a ```beta``` subdomain, and will be deployed as such for the near future. Therefore, we have to map a ```beta``` subdomain on any main domain to ```localhost``` to test on our system. This can be done by editing ```/etc/hosts```, which requires special permissions. Sublime Text, Textmate, and BBEdit on the mac can do this; in Windows, you can run Notepad with administrator privileges to achieve the same thing. 
 
-The hosts entries you'll have to  make (the should be on separate lines):
+The hosts entries you'll have to  make (they should be on separate lines):
 
 ```127.0.0.1 beta.neptune.com
 127.0.0.1 neptune.com
