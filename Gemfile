@@ -10,6 +10,7 @@ gem 'pg'
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'awesome_print'
 end
 
 group :development, :production do

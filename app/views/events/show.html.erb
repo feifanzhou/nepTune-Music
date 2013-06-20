@@ -8,27 +8,36 @@
 		<div id='performers'>
 			<h1>Performers</h1>
 			<ul class='AttendeeList' id='performersList'>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<% @event.performers.each do |p| %>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+				<% end %>
 			</ul>
 		</div>
 		<div id='going'>
 			<h1>Going</h1>
 			<ul class='AttendeeList' id='goingList'>
+				<!-- <li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
 				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li> -->
+				<% @event.going.each do |p| %>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+				<% end %>
 			</ul>
 		</div>
 		<div id='maybe'>
 			<h1>Maybe</h1>
 			<ul class='AttendeeList' id='maybeList'>
+				<% @event.maybe_going.each do |p| %>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+				<% end %>
 			</ul>
 		</div>
 		<div id='invited'>
 			<h1>Invited</h1>
 			<ul class='AttendeeList' id='invitedList'>
+				<% @event.invited.each do |p| %>
+				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+				<% end %>
 			</ul>
 		</div>
 	</div>

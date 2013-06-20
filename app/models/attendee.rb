@@ -11,7 +11,7 @@
 #
 
 class Attendee < ActiveRecord::Base
-  attr_accessible :status
+  attr_accessible :status, :user, :event
   validates_inclusion_of :status, in: [:performing, :invited, :going, :maybe]
 
   belongs_to :user

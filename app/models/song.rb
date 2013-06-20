@@ -11,7 +11,7 @@
 #  track_number :integer
 
 class Song < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :track_number
 
   belongs_to :artist
   has_one :image, as: :imageable

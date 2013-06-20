@@ -22,4 +22,21 @@ class Event < ActiveRecord::Base
   def cover_image
   	return self.images.primary.first || self.images.first
   end
+
+  def performers
+  	# map: http://stackoverflow.com/a/5216299/472768
+  	return self.attendees.where(status: :performing).map(&:user)
+  end
+
+  def invited
+  	return self.attendees.where(status: :invited).map(&:user)
+  end
+
+  def going
+  	return self.attendees.where(status: :going).map(&:user)
+  end
+
+  def maybe_going
+  	return self.attendees.where(status: :maybe).map(&:user)
+  end
 end
