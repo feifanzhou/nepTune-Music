@@ -32,6 +32,7 @@ NeptuneMusic::Application.routes.draw do
     match '/:username/song/:song', to: 'songs#show', as: :song_for_artist
 
     resources :events
+    match '/event/:id/join', to: 'attendees#join', as: :join_event
   end
   
   # Routes for landing site
