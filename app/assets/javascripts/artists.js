@@ -1,62 +1,95 @@
+$(function() {
+	$('.ArtistNavIcon').tooltip();
+});
+
+$(function() {
+	$('#sliderContainer').mouseenter(function() {
+		$('.SliderTitle').fadeIn();
+		$('.SliderTitle').css('bottom', '0px');
+	});
+	$('#sliderContainer').mouseleave(function() {
+		$('.SliderTitle').fadeOut();
+		$('.SliderTitle').css('bottom', '-50px');
+	});
+});
+$(function() {
+	$('.NoblockTitle').mouseenter(function() {
+		$(this).fadeOut();
+	});
+});
+
 function setSliderOffset(sliderOffset) {
 	$('#slider').css('left', (sliderOffset + 'px'));
 }
 
 $(function() {
-  var firstElement = $('.SliderElement').first();
-  var firstElementWidth = firstElement.width();
+  var firstElementWidth = $('#gallery0').width();
   var sliderContainerWidth = $('#sliderContainer').width();
   var sliderStartingOffset = (sliderContainerWidth - firstElementWidth) / 2;
   setSliderOffset(sliderStartingOffset);
 });
 
-$('.SliderNav').click(function() {
-	var objId = $(this).attr('id');
-	var currObj;
-	var elementsCount = $('.SliderElement').length;
-	if (objId == 'sliderNavLeft') {
-		if ($(this).hasClass('SliderNavDisabled'))
-			return;
-		// Else get previous element and adjust position
-		var lastObj;
-		$('.SliderElement').each(function(index, element) {
-			if ($(this).hasClass('SliderElementCurrent')) {
-				currObj = $(this);
-				return false;
-			}
-			else
-				lastObj = $(this);
-		});
-		var sliderOffset = ($('#sliderContainer').width() - $(lastObj).width()) / 2 + $(currObj).width() - $(currObj).position().left;
-		$(lastObj).addClass('SliderElementCurrent');
-		setSliderOffset(sliderOffset);
-	}
-	else if (objId == 'sliderNavRight') {
-		if ($(this).hasClass('SliderNavDisabled'))
-			return;
-		// Else get previous element and adjust position
-		var nextObj;
-		$('.SliderElement').each(function(index, element) {
-			console.log('this in loop: ' + $(this));
-			if ($(this).hasClass('SliderElementCurrent')) {
-				currObj = $(this);
-				nextObj = $(this).next();
-			}
-		});
-		var offset = ($('#sliderContainer').width() - $(nextObj).width()) / 2 - $(currObj).width() - $(currObj).position().left;
-		$(nextObj).addClass('SliderElementCurrent');
-		setSliderOffset(offset);
-	}
-	$(currObj).removeClass('SliderElementCurrent');
-	var newCurr = $('.SliderElementCurrent').first();
-	// http://stackoverflow.com/a/2389825/472768
-	if ($(newCurr)[0] === $('.SliderElement').first()[0])
+function setGalleryNavStatus(currObj) {
+	console.log('setGalleryNavStatus: ' + currObj);
+	if ($(currObj)[0] === $('.SliderElement').first()[0])
 		$('#sliderNavLeft').addClass('SliderNavDisabled');
 	else
 		$('#sliderNavLeft').removeClass('SliderNavDisabled');
 
-	if ($(newCurr)[0] === $('.SliderElement').last()[0])
+	if ($(currObj)[0] === $('.SliderElement').last()[0])
 		$('#sliderNavRight').addClass('SliderNavDisabled');
 	else
 		$('#sliderNavRight').removeClass('SliderNavDisabled');
+}
+
+function galleryToElement(index) {
+	var prevWidths = 0;
+	var elm;
+	$('.SliderElementCurrent').removeClass('SliderElementCurrent');
+	for (var i = 0; i <= index; i++) {
+		elm = $('#gallery' + i);
+		if (i < index)
+			prevWidths += $(elm).width();
+	}
+	var centerOffset = ($('#sliderContainer').width() - $(elm).width()) / 2;
+	var totalOffset = -1 * prevWidths + centerOffset;
+	setSliderOffset(totalOffset);
+	$(elm).addClass('SliderElementCurrent');
+	setGalleryNavStatus(elm);
+}
+
+function galleryToHash() {
+	var hash = window.location.hash.slice(1);
+	if (isNaN(hash) || hash.length === 0) {
+		return;
+	}
+	galleryToElement(hash);
+}
+
+$(function() {
+	galleryToHash();
+});
+
+$(window).bind('hashchange', function () {
+	galleryToHash();
+});
+
+$('.SliderNav').click(function() {
+	if ($(this).hasClass('SliderNavDisabled'))
+		return false;
+
+	var objId = $(this).attr('id');
+	var hash = window.location.hash.slice(1);
+	if (hash.length === 0 || isNaN(hash)) {	// No hash, default to 0
+		window.location.hash = '#1';
+		return false;
+	}
+	hash = parseInt(hash, 10);
+	if (objId == 'sliderNavLeft')
+		hash -= 1;
+	else
+		hash += 1;
+	console.log('new hash: ' + hash);
+	location.hash = ('#' + hash);
+	return false;
 });
