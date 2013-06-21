@@ -5,41 +5,7 @@
 
 <div id='eventPageContainer'>
 	<div id='attendeesListBar'>
-		<div id='performers'>
-			<h1>Performers</h1>
-			<ul class='AttendeeList' id='performersList'>
-				<% @event.performers.each do |p| %>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
-				<% end %>
-			</ul>
-		</div>
-		<div id='going'>
-			<h1>Going</h1>
-			<ul class='AttendeeList' id='goingList'>
-				<!-- <li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'>Bobby Robertson</p></li> -->
-				<% @event.going.each do |p| %>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
-				<% end %>
-			</ul>
-		</div>
-		<div id='maybe'>
-			<h1>Maybe</h1>
-			<ul class='AttendeeList' id='maybeList'>
-				<% @event.maybe_going.each do |p| %>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
-				<% end %>
-			</ul>
-		</div>
-		<div id='invited'>
-			<h1>Invited</h1>
-			<ul class='AttendeeList' id='invitedList'>
-				<% @event.invited.each do |p| %>
-				<li><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
-				<% end %>
-			</ul>
-		</div>
+	<%= render 'layouts/attendees_list', event: @event %>
 	</div>
 
 	<div id='eventInfo'>
@@ -49,8 +15,13 @@
 				<p id='eventName'><%= @event.name %></p>
 				<p id='eventLoc'>Tomorrow at 6pm &bull; Providence Waterfire</p>
 				<div id='eventResponse'>
+					<!-- TODO: Include current user id in link path -->
+					<%= link_to join_event_path(@event, status: :going), remote: true, data: { status: 'going' }, class: 'EventStatusTrigger' do %>
 					<span class='EventResponseAction' id='eventGoing'>Going</span>
+					<% end %>
+					<%= link_to join_event_path(@event, status: :maybe), remote: true, data: { status: 'maybe' }, class: 'EventStatusTrigger' do %>
 					<span class='EventResponseAction' id='eventMaybe'>Maybe</span>
+					<% end %>
 				</div>
 			</div>
 		</div>
