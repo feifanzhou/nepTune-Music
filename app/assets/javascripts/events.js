@@ -3,5 +3,15 @@ $('.EventStatusTrigger').bind('ajax:success', function() {
 	var uID = 1;
 	var liID = '#' + 'attendeeUser' + uID;
 	var destListID = '#' + $(this).data('status') + 'List';
-	$(liID).detach().appendTo(destListID);
+	$(liID).animate({
+		marginLeft: '-300px'
+	}, 400, function() {
+		$(liID).slideUp(400, function() {
+			$(liID).detach().appendTo(destListID);
+		});
+		$(liID).slideDown();
+		$(liID).animate({
+			marginLeft: '0px'
+		}, 400);
+	});
 });
