@@ -21,10 +21,6 @@ $(function() {
 	});
 });
 
-/* $(function() {
-  $('.ArtistNavIcon').tooltip();
-}); */
-
 $(function() {
   var left = $('#artistSidebar').position().left;
   $('#sidebarShadowTop').css('left', (left + 'px'));
