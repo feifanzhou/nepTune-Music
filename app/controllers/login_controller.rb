@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
   include ApplicationHelper
   include LoginHelper
+  include UsersHelper
 
   def destroy
     sign_out
@@ -44,7 +45,7 @@ class LoginController < ApplicationController
     errors = create_user(params)
 
     if @user.errors.blank?
-      redirect_back
+      redirect_to root_path
     else
       render "login"
     end

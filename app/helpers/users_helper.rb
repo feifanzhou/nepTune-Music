@@ -8,6 +8,14 @@ module UsersHelper
     end
   end
 
+  def save_user_to_cookie(a_user)
+    if !(a_user.has_temp_password)
+      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
+    else
+      cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
+    end
+  end
+
   def temporary_password
     return (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
   end
