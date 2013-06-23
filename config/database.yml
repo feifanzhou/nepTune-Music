@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: Feifan
+#  username: postgres
   database: app-dev
   pool: 5
   timeout: 5000
@@ -19,7 +19,7 @@ test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  username: Feifan
+#  username: postgres
   database: app-dev-test
   pool: 5
   timeout: 5000
