@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: artists
+# Table name: band_members
 #
 #  id         :integer          not null, primary key
+#  artist_id  :integer
+#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  type       :string(255)
-#  artistname :string(255)
 #
 
 require 'spec_helper'
 
-describe Artist do
+describe BandMember do
   pending "add some examples to (or delete) #{__FILE__}"
 end

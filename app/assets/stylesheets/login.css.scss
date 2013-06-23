@@ -22,6 +22,7 @@ body {
 	font-weight: 700;
 	&:hover {
 		color: $nepTuneBlue;
+		cursor: pointer;
 	}
 }
 .Zonda {
@@ -53,6 +54,32 @@ div.LoginContainer {
 		}
 		input#login_lname {
 			width: 158px;
+		}
+		input#login_password {
+			transition: margin-bottom 0.4s;
+			-webkit-transition: margin-bottom 0.4s;
+		}
+		#loginRule {
+			line-height: 10px;
+		}
+		#isArtistToggle {
+			height: 27px;
+			position: relative;
+			#artistToggle {
+				display: inline-block;
+				left: 0;
+				margin-top: -9px;
+				position: absolute;
+				top: 0;
+			}
+			#artistExplain {
+				display: inline-block;
+				position: absolute;
+				right: 0;
+			}
+		}
+		#artistUsername {
+			display: none;
 		}
 		#loginButtonMain {
 			width: 320px;

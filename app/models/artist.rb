@@ -1,27 +1,39 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: artists
 #
-#  id                :integer          not null, primary key
-#  fname             :string(255)
-#  lname             :string(255)
-#  email             :string(255)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  willingToBetaTest :boolean          default(FALSE)
-#  isBetaTester      :boolean          default(FALSE)
-#  isArtist          :boolean          default(FALSE)
-#  password_digest   :string(255)
-#  has_temp_password :boolean
-#  remember_token    :string(255)
-#  username          :string(255)
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  type       :string(255)
+#  artistname :string(255)
 #
 
-class Artist < User
+class Artist < ActiveRecord::Base
   # attr_accessible :title, :body
+
+  attr_accessible :artistname
 
   has_many :songs
   has_many :albums
   has_many :events, foreign_key: :creator_id
+  has_many :band_members
+  has_many :users, through: :band_members
+
+  def display_name
+  	return self.artistname || super	# If username, return that
+  end
+
+  def members
+  	return self.band_members.map(&:user)
+  end
+
+  def email		# Likely artist email will be nil, so return email of member
+    return self.email || self.band_members.first.email || super
+  end
+
+  def isArtist
+  	return true		# Every artist…is an artist
+  end
   
 end

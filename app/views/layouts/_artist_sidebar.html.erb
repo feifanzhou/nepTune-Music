@@ -12,31 +12,31 @@
   </section>
   <section class='ArtistNav'>
     <ul>
-      <%= link_to artist_about_path(@user.username) do %>
+      <%= link_to artist_about_path(@artist.artistname) do %>
         <li class="ArtistNavFirst <%= 'ArtistNavCurrent' if curr_nav == 1 %>" id='artistAbout'>
           <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover' data-title="About" title="About">&#59405;</span>
           <span class='ArtistNavText'>About</span>
         </li>
       <% end %>
-      <%= link_to artist_music_path(@user.username) do %>
+      <%= link_to artist_music_path(@artist.artistname) do %>
         <li class="<%= 'ArtistNavCurrent' if curr_nav == 2 %>" id='artistMusic'>
           <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover' data-title="Music" title="Music">&#59406;</span>
           <span class='ArtistNavText'>Music</span>
         </li>
       <% end %>
-      <%= link_to artist_events_path(@user.username) do %>
+      <%= link_to artist_events_path(@artist.artistname) do %>
         <li class="<%= 'ArtistNavCurrent' if curr_nav == 3 %>" id='artistEvents'>
           <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover' data-title="Events" title="Events">&#59407;</span>
           <span class='ArtistNavText'>Events</span>
         </li>
       <% end %>
-      <%= link_to artist_burble_path(@user.username) do %>
+      <%= link_to artist_burble_path(@artist.artistname) do %>
         <li class="<%= 'ArtistNavCurrent' if curr_nav == 4 %>" id='artistBurble'>
           <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover' data-title="Burble" title="Burble">&#59408;</span>
           <span class='ArtistNavText'>Burble</span>
         </li>
       <% end %>
-      <%= link_to artist_fans_path(@user.username) do %>
+      <%= link_to artist_fans_path(@artist.artistname) do %>
         <li class="ArtistNavLast <%= 'ArtistNavCurrent' if curr_nav == 5 %>" id='artistFans'>
           <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover' data-title="Fans" title='Fans'>&#59409;</span>
           <span class='ArtistNavText'>Fans</span>

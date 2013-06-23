@@ -1,8 +1,10 @@
+<% attendeeCount = 1 %>
 <div id='performers'>
 	<h1>Performers</h1>
 	<ul class='AttendeeList' id='performersList'>
 		<% event.performers.each do |p| %>
-		<li id="attendeeUser<%= p.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<li id="attendeeUser<%= attendeeCount %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.display_name %></p></li>
+		<% attendeeCount += 1 %>
 		<% end %>
 	</ul>
 </div>
@@ -10,7 +12,8 @@
 	<h1>Going</h1>
 	<ul class='AttendeeList' id='goingList'>
 		<% event.going.each do |p| %>
-		<li id="attendeeUser<%= p.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<li id="attendeeUser<%= attendeeCount %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<% attendeeCount += 1 %>
 		<% end %>
 	</ul>
 </div>
@@ -18,7 +21,8 @@
 	<h1>Maybe</h1>
 	<ul class='AttendeeList' id='maybeList'>
 		<% event.maybe_going.each do |p| %>
-		<li id="attendeeUser<%= p.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<li id="attendeeUser<%= attendeeCount %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<% attendeeCount += 1 %>
 		<% end %>
 	</ul>
 </div>
@@ -26,7 +30,8 @@
 	<h1>Invited</h1>
 	<ul class='AttendeeList' id='invitedList'>
 		<% event.invited.each do |p| %>
-		<li id="attendeeUser<%= p.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<li id="attendeeUser<%= attendeeCount %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
+		<% attendeeCount += 1 %>
 		<% end %>
 	</ul>
 </div>

@@ -11,10 +11,11 @@
 #
 
 class Attendee < ActiveRecord::Base
-  attr_accessible :status, :user, :event
+  attr_accessible :status, :user, :artist, :event
   validates_inclusion_of :status, in: [:performing, :invited, :going, :maybe]
 
   belongs_to :user
+  belongs_to :artist
   belongs_to :event
 
   def status

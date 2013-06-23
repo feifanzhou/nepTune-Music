@@ -14,11 +14,11 @@
 #  password_digest   :string(255)
 #  has_temp_password :boolean
 #  remember_token    :string(255)
-#  username          :string(255)
+#  is_group          :boolean          default(FALSE)
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :username
+  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password
 
   include UsersHelper
 
@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
       self.has_temp_password = true
     end
   end
-  before_save { |user| user.email = email.downcase }
-  before_save { |user| user.username = username.downcase unless username.blank? }
+  # before_save { |user| user.email = email.downcase }
+  # before_save { |user| user.artistname = artistname.downcase unless artistname.blank? }
   
   has_secure_password
   
@@ -45,7 +45,11 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }
-  validates :username, uniqueness: { case_sensitive: false };
+  # validates :artistname, uniqueness: { case_sensitive: false }, allow_nil: true;
+
+  def display_name
+    return "#{ self.fname } #{ self.lname }"
+  end
   
   private
   def create_remember_token

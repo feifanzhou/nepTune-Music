@@ -19,11 +19,27 @@
 				<%= f.hidden_field :fullAccountCreate, value: "1" %>
 			</div>
 			
-			<%= f.label :email%>
+			<%= f.label :email %>
 			<%= f.email_field :email, placeholder: "Email address" %>
 	
-			<%= f.label :password%>
+			<%= f.label :password %>
 			<%= f.password_field :password, placeholder: "Password" %>
+
+			<div class='LoginHidden' id='loginRule'><hr /></div>
+
+			<div class='LoginHidden' id='isArtistToggle'>
+				<span id='artistToggle'>
+					<%= f.label :isArtist %>
+					<%= f.check_box :isArtist, id: 'isArtist' %>
+					<span class='CheckboxLabel'>I'm an artist</span>
+				</span>
+				<a href='#artistModal' data-toggle="modal"><span class='Subtext' id='artistExplain'>What will this do?</span></a>
+			</div>
+
+			<div id='artistUsername'>
+				<%= f.label :artistname %>
+				<%= f.text_field :artistname, placeholder: "Artist name (stage name)" %>
+			</div>
 	
 			<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
 		<% end %>
@@ -31,5 +47,16 @@
 		<p class='Subtext' id='createAccount' onclick="toggleCreateNewAccount(1)">Create a new account</p>
 		<p class='Subtext' id='goLogin' onclick="toggleCreateNewAccount(0)">Login with existing account</p>
 	</div>
+	<div id="artistModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 class='modal-title'>Creating an artist page</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>If you make music, then you're an artist. nepTune gives you the opportunity to share your creations with the world &mdash; but if you prefer, it can also be your private music portfolio.</p>
+	    <p>When you sign up, we'll create a personal profile for you, so you can discover and enjoy music from around the world. We'll also create an artist profile, where you will be able to share your story and your work with other users.</p>
+	    <p>If you're a member of a band or musical group, only one member needs to create an artist page, but everyone should create personal accounts. You can then invite all the other members into the artist page.</p>
+	  </div>
+	</div>
 </div>
-<%= render 'layouts/footer', footer_id: "appFooter" %>
+<!-- <%= render 'layouts/footer', footer_id: "appFooter" %> -->

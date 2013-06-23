@@ -24,9 +24,9 @@
     <div id='musicGridContainer'>
       <div id='musicGrid'>
         <!-- TODO: Load filter content with AJAX -->
-        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @user.albums, label_icon: '&#59410;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @artist.albums, label_icon: '&#59410;'.html_safe %>
         
-        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @user.songs, label_icon: '&#59411;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @artist.songs, label_icon: '&#59411;'.html_safe %>
 
         <div id='noFilterMatches'>
           <p>Nothing matches that filter</p>

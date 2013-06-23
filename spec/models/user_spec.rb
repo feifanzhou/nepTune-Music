@@ -14,7 +14,7 @@
 #  password_digest   :string(255)
 #  has_temp_password :boolean
 #  remember_token    :string(255)
-#  username          :string(255)
+#  is_group          :boolean          default(FALSE)
 #
 
 require 'spec_helper'

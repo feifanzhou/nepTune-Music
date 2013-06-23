@@ -5,15 +5,15 @@ namespace :admin do
 		Rake::Task["db:reset"].invoke
 
 		puts "Creating users..."	# Vanilla users
-		u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar', username: 'beethoven')
-		u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar', username: 'haydn')
-		u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar', username: 'feif')
-		u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar', username: 'pk')
-		u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar', username: 'dtoma')
-		u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar', username: 'bobby')
+		u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar')
+		u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar')
+		u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar')
+		u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar')
+		u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar')
+		u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar')
 		
 		puts "Discovering artists..."
-		jon = Artist.create(fname: 'Jon', lname: 'Schmidt', email: 'jon@thepianoguys.com', isArtist: true, password: 'foobar', username: 'thepianoguys')
+		jon = Artist.create(artistname: 'thepianoguys')
 
 		puts "Preparing albums..."	# Songs belong_to albums, so create albums first
 		a1 = Album.create(name: 'Hits Volume 1')
@@ -60,11 +60,11 @@ namespace :admin do
 		
 		puts "Planning events..."
 		e1 = Event.create(name: 'MusicFest', start_at: DateTime.new(2013, 6, 7, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 7, 19, 30, 0, '-4'))
-		e1.artist = jon
+		e1.creator = jon
 		e1.images.push i4
 		e1.save
 		e2 = Event.create(name: '24 Hour Sesh', start_at: DateTime.new(2013, 6, 1, 10, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 2, 10, 0, 0, '-4'))
-		e2.artist = jon
+		e2.creator = jon
 		e2.images.push i5
 		e2.save
 
@@ -84,10 +84,10 @@ namespace :admin do
 		at5 = Attendee.new(user: u3, event: e1)
 		at5.status = :going
 		at5.save
-		at6 = Attendee.new(user: jon, event: e1)
+		at6 = Attendee.new(artist: jon, event: e1)
 		at6.status = :performing
 		at6.save
-		at7 = Attendee.new(user: jon, event: e2)
+		at7 = Attendee.new(artist: jon, event: e2)
 		at7.status = :going
 		at7.save
 		at8 = Attendee.new(user: u4, event: e1)

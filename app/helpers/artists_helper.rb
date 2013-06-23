@@ -1,8 +1,10 @@
+include ApplicationHelper
+
 module ArtistsHelper
 	def get_artist_from_params
-    if !params[:username].blank?
-      @user = Artist.find_by_username(params[:username].downcase)
-      if @user.blank?
+    if !params[:artistname].blank?
+      @artist = Artist.find_by_artistname(params[:artistname].downcase)
+      if @artist.blank?
         not_found
       end
     end

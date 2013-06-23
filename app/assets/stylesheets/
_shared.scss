@@ -36,6 +36,29 @@
 	font-family: $Zonda;
 }
 
+.modal-header {
+	h3 {
+		color: $nepTuneOrange;
+		font-family: $PTSans;
+		text-align: left;
+	}
+}
+.modal-body {
+	background-color: $white;
+	text-align: left;
+	@media (max-width: 767px) {
+		height: 300px;
+		max-height: 300px;
+	}
+	p {
+		font-size: 16px;
+		font-weight: 400;
+	}
+	ul {
+		margin-left: 25px;
+	}
+}
+
 .tooltip {
 	font-family: $Lato;
 	font-size: 13px;

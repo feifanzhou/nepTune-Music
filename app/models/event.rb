@@ -14,10 +14,11 @@
 class Event < ActiveRecord::Base
   attr_accessible :creator_id, :end_at, :name, :start_at
 
-  belongs_to :artist, foreign_key: :creator_id
+  belongs_to :creator, class_name: 'Artist', foreign_key: :creator_id
   has_many :images, as: :imageable
   has_many :attendees
   has_many :users, through: :attendees
+  has_many :artists, through: :attendees
 
   def cover_image
   	return self.images.primary.first || self.images.first
@@ -25,7 +26,7 @@ class Event < ActiveRecord::Base
 
   def performers
   	# map: http://stackoverflow.com/a/5216299/472768
-  	return self.attendees.where(status: :performing).map(&:user)
+  	return self.attendees.where(status: :performing).map(&:artist)
   end
 
   def invited

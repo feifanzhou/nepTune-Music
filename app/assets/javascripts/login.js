@@ -6,6 +6,7 @@ function toggleCreateNewAccount(tag) {
 		$(".LoginHidden").each(function() {
 			$(this).slideDown(200);
 		});
+		$('#login_password').css('margin-bottom', '0px');
 		$("#loginButtonMain").val("Create my account");
 		$("#createAccount").css('display', 'none');
 		$("#goLogin").css('display', 'inline-block');
@@ -16,8 +17,16 @@ function toggleCreateNewAccount(tag) {
 		$(".LoginHidden").each(function() {
 			$(this).slideUp(200);
 		});
+		$('#login_password').css('margin-bottom', '10px');
 		$("#loginButtonMain").val("Log in");
 		$("#createAccount").css('display', 'inline-block');
 		$("#goLogin").css('display', 'none');
 	}
 }
+
+$('#isArtist').change(function() {
+	if ($(this).is(':checked'))
+		$('#artistUsername').slideDown();
+	else
+		$('#artistUsername').slideUp();
+});

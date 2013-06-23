@@ -14,6 +14,6 @@ class ArtistsController < ApplicationController
   end
 
   def events
-    @events = @user.events.sort_by! { |e| e.start_at }
+    @events = @artist.events.sort_by! { |e| e.start_at }
   end
 end

@@ -514,18 +514,7 @@ div#workPhilosophy {
 div#openPositions {
 	@include BackBottom;
 }
-div.modal-header {
-	h3 {
-		color: $nepTuneOrange;
-	}
-}
-div.modal-body {
-	background-color: $white;
-	@media (max-width: 767px) {
-		height: 300px;
-		max-height: 300px;
-	}
-}
+
 .JobRequirements {
 	li {
 		margin-bottom: 0.25em;

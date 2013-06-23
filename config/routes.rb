@@ -9,6 +9,7 @@ NeptuneMusic::Application.routes.draw do
     
     get "/login" => "login#login", as: :login
     post "/login" => "login#sign_in_user", as: :sign_in
+    match 'logout', to: 'login#destroy', as: :logout
     
     match '/pwhelp', to: 'login#password_help', as: :pwhelp
     get "/pwreset" => 'login#reset_password', as: :resetpw
@@ -16,13 +17,13 @@ NeptuneMusic::Application.routes.draw do
     post "/changepw" => 'login#change_password', as: :changepw
 
     match '/:username', to: 'users#show', as: :username
-    match '/:username/about', to: 'artists#about', as: :artist_about
-    match '/:username/music', to: 'artists#music', as: :artist_music
-    match '/:username/events', to: 'artists#events', as: :artist_events
-    match '/:username/burble', to: 'artists#burble', as: :artist_burble
-    match '/:username/fans', to: 'artists#fans', as: :artist_fans
-    match '/:username/album/:album', to: 'albums#show', as: :album_for_artist
-    match '/:username/song/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artistname/about', to: 'artists#about', as: :artist_about
+    match '/:artistname/music', to: 'artists#music', as: :artist_music
+    match '/:artistname/events', to: 'artists#events', as: :artist_events
+    match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
+    match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
+    match '/:artistname/album/:album', to: 'albums#show', as: :album_for_artist
+    match '/:artistname/song/:song', to: 'songs#show', as: :song_for_artist
 
     resources :events
     match '/event/:id/join', to: 'attendees#join', as: :join_event

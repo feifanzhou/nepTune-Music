@@ -44,7 +44,13 @@ class UsersController < ApplicationController
     if fullAccountCreate and User.find_by_email(input[:email].downcase) # Signing up when email already exists
       flash[:login_error] = "You're already registered! Sign in below"
     end
-    @user = User.new(input.except(:fullAccountCreate))
+    isArtist = input[:isArtist].to_i
+    # @user = (isArtist == 1) ? Artist.new(input.except(:fullAccountCreate)) : User.new(input.except(:fullAccountCreate, :username))
+    @user = User.new(input.except(:fullAccountCreate, :username))
+    if isArtist == 1
+      artist = Artist.create(input[:username])
+      member = BandMember.create(user: @user, artist: artist)
+    end
     should_save = true
     first_name = input[:fname]
     if (first_name) && is_profane_name?(first_name)
