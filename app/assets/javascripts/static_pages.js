@@ -89,22 +89,17 @@ $(window).resize(function() {
 	resizeTimer = setTimeout(onResize, 50);
 });
 
-$(function() {
-	if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
-		// If transitions aren't supported, make sure everything appears without animation
-		$(".AppearCard").each(function() {
-			$(this).addClass('appeared');
-		})
-		setHeroHeight();
-		return;
-	}
-	if (window.mobilecheck) {
-		console.log('mobilecheck');
-		return;
-	}
-  $(document.body).on('appear', '.AppearCard', function(e, $affected) {
-    // add class called “appeared” for each appeared element
-    $(this).addClass("appeared");
-  });
-  $('.AppearCard').appear({force_process: true});
-});
+if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
+	// If transitions aren't supported, make sure everything appears without animation
+	$(".AppearCard").each(function() {
+		$(this).addClass('appeared');
+	});
+	setHeroHeight();
+}
+if (!window.mobilecheck) {
+	$(document.body).on('appear', '.AppearCard', function(e, $affected) {
+	// add class called “appeared” for each appeared element
+		$(this).addClass("appeared");
+	});
+	$('.AppearCard').appear({force_process: true});
+}
