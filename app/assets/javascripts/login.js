@@ -24,14 +24,9 @@ function toggleCreateNewAccount(tag) {
     }
 }
 
-//$(function() {
-  //  alert("hello there!");
-
-    if ($('#error_explanation').length != 0) {
-        toggleCreateNewAccount(1);
-    //    alert("hello from inside that cool element if check!");
-    }
-//});
+if ($('#error_explanation').length != 0) {
+    toggleCreateNewAccount(1);
+}
 
 $('#isArtist').change(function() {
     if ($(this).is(':checked'))
@@ -39,3 +34,10 @@ $('#isArtist').change(function() {
     else
         $('#artistUsername').slideUp();
 });
+
+/* 	To address Asana #6120758366453:
+		Fix "I'm an artist" checkbox behavior on creating user failure */
+if ($('#isArtist').is(':checked'))
+	$('#artistUsername').css('display', 'inline-block');
+else
+	$('#artistUsername').css('display', 'none');
