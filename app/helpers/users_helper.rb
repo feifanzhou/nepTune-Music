@@ -20,9 +20,10 @@ module UsersHelper
     return (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
   end
 
+  BAD_WORDS = ['cunt', 'faggot', 'fuck', 'fuq', 'hoes', 'hoez', 'jizz', 'nigger', 'nigga', 'suck', 'sucker', 'poop']
+
   def is_profane_name?(name)
-    terms = ['cunt', 'faggot', 'fuck', 'fuq', 'hoes', 'hoez', 'jizz', 'nigger', 'nigga', 'suck', 'sucker', 'poop']
-    terms.each do |t|
+    BAD_WORDS.each do |t|
       if name.downcase.include? t
         return true
       end
