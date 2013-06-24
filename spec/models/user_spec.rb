@@ -23,7 +23,7 @@ require 'spec_helper'
 include UsersHelper
 
 describe User do
-  before { @user = User.new(fname: 'John', lname: 'Smith', email: 'john@example.com') }
+  before { @user = User.new(fname: 'John', lname: 'Smith', email: 'john@example.com', password: "foobar") }
 
   subject { @user }
 
@@ -94,7 +94,10 @@ describe User do
     describe "first name" do
       it "should be valid" do
         10.times do
-          @user.fname = Faker::Name.first_name
+          @user.fname = Faker::Name.first_name()
+          if not @user.valid?
+            $stderr.puts @user.fname
+          end
           @user.should be_valid
         end
       end
@@ -103,7 +106,10 @@ describe User do
     describe "last name" do
       it "should be valid" do
         10.times do
-          @user.lname = Faker::Name.last_name
+          @user.lname = Faker::Name.last_name()
+          if not @user.valid?
+            $stderr.puts @user.lname
+          end
           @user.should be_valid
         end
       end
@@ -112,7 +118,10 @@ describe User do
     describe "email" do
       it "should be valid" do
         10.times do
-          @user.email = Faker::Internet.email
+          @user.email = Faker::Internet.email()
+          if not @user.valid?
+            $stderr.puts @user.email
+          end
           @user.should be_valid
         end
       end
@@ -128,7 +137,7 @@ describe User do
         BAD_WORDS.each do |word|
           name = Faker::Name.first_name
           pos = rand(name.length+1)
-          bad_name = name.insert(pos, rand_case(word))
+          bad_name = String.new(name).insert(pos, rand_case(word))
           @user.fname = bad_name
           @user.should_not be_valid
         end
@@ -140,7 +149,7 @@ describe User do
         BAD_WORDS.each do |word|
           name = Faker::Name.last_name
           pos = rand(name.length+1)
-          bad_name = name.insert(pos, rand_case(word))
+          bad_name = String.new(name).insert(pos, rand_case(word))
           @user.lname = bad_name
           @user.should_not be_valid
         end

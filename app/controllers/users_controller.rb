@@ -18,6 +18,8 @@ class UsersController < ApplicationController
 
   def create
     sign_out
+    params[:password] = temporary_password
+    params[:has_temp_password] = true
     errors = create_user(params)
 
     if @user.errors.blank?
