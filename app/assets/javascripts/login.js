@@ -35,9 +35,9 @@ $('#isArtist').change(function() {
         $('#artistUsername').slideUp();
 });
 
-/* 	To address Asana #6120758366453:
-		Fix "I'm an artist" checkbox behavior on creating user failure */
+/*  To address Asana #6120758366453:
+        Fix "I'm an artist" checkbox behavior on creating user failure */
 if ($('#isArtist').is(':checked'))
-	$('#artistUsername').css('display', 'inline-block');
+    $('#artistUsername').css('display', 'inline-block');
 else
-	$('#artistUsername').css('display', 'none');
+    $('#artistUsername').css('display', 'none');
