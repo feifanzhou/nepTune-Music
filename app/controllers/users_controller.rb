@@ -16,26 +16,10 @@ class UsersController < ApplicationController
   def new
   end
 
-  def save_user_to_cookie(a_user)
-    if !(a_user.has_temp_password)
-      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
-    else
-      cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
-    end
-  end
-
-  def is_profane_name?(name)
-    terms = ['cunt', 'faggot', 'fuck', 'fuq', 'hoes', 'hoez', 'jizz', 'nigger', 'nigga', 'suck', 'sucker', 'poop']
-    terms.each do |t|
-      if name.downcase.include? t
-        return true
-      end
-    end
-    return false
-  end
-
   def create
     sign_out
+    params[:password] = temporary_password
+    params[:has_temp_password] = true
     errors = create_user(params)
 
     if @user.errors.blank?

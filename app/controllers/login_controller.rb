@@ -51,7 +51,6 @@ class LoginController < ApplicationController
     end
   end
 
-  include UsersHelper
   def reset_password
     email = params[:login][:email]
     user = User.find_by_email(email)

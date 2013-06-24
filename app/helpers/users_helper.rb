@@ -20,10 +20,16 @@ module UsersHelper
     return (0...16).map{ ('a'..'z').to_a[rand(26)] }.join
   end
 
+  BAD_WORDS = ['cunt', 'faggot', 'fuck', 'fuq', 'hoes', 'hoez', 'jizz', 'nigger', 'nigga', 'suck', 'sucker', 'poop']
+
   def is_profane_name?(name)
-    terms = ['cunt', 'faggot', 'fuck', 'fuq', 'hoes', 'hoez', 'jizz', 'nigger', 'nigga', 'suck', 'sucker', 'poop']
-    terms.each do |t|
-      if name.downcase.include? t
+    if name.blank?
+      return false
+    else
+      n = name.downcase
+    end
+    BAD_WORDS.each do |t|
+      if n.include? t
         return true
       end
     end
@@ -43,32 +49,7 @@ module UsersHelper
     # @user = (isArtist == 1) ? Artist.new(input.except(:fullAccountCreate)) : User.new(input.except(:fullAccountCreate, :username))
     @user = User.new(input.except(:fullAccountCreate, :artistname))
 
-    should_save = true
-    first_name = input[:fname]
-    if (first_name) && is_profane_name?(first_name)
-      @user.errors.add(:fname, "Not valid")
-      logger.debug "Profane first name"
-      should_save = false
-    end
-    last_name = input[:lname]
-    if (last_name) && is_profane_name?(last_name)
-      @user.errors.add(:lname, "Not valid")
-      logger.debug "Profane last name"
-      should_save = false
-    end
-    email = input[:email].downcase
-    if (email) && is_profane_name?(email)
-      @user.errors.add(:email, "Not valid")
-      logger.debug "Profane email"
-      should_save = false
-    end
-    if fullAccountCreate > 0
-      password = input[:password]
-      if password.length < 6
-        @user.errors.add(:password, "Too short")
-        should_save = false
-      end
-    end
+    should_save = @user.valid?
 
     # TODO: check for artist name duplicates
 

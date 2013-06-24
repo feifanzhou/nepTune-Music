@@ -12,5 +12,10 @@
 require 'spec_helper'
 
 describe Artist do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @artist = Artist.new(artistname: 'john@example.com') }
+
+  subject { @artist }
+
+
+
 end

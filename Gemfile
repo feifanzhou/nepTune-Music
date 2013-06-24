@@ -8,6 +8,11 @@ gem 'pg'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+group :linux, :test do
+  gem 'libnotify'
+end
+
+
 group :development do
   gem 'annotate', '2.5.0'
   gem 'awesome_print'
@@ -15,6 +20,7 @@ end
 
 group :development, :production do
   gem 'retina_tag'
+  gem 'aws-s3'
 end
 
 group :development, :test do
@@ -27,6 +33,7 @@ end
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'faker'
 end
 
 # Gems used only for assets and not required
@@ -44,7 +51,7 @@ end
 gem 'jquery-rails'
 
 group :production do
-  
+
 end
 
 # To use ActiveModel has_secure_password
