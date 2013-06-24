@@ -14,6 +14,7 @@ namespace :admin do
 		
 		puts "Discovering artists..."
 		jon = Artist.create(artistname: 'thepianoguys')
+		bm = BandMember.create(artist_id: jon.id, user_id: u3.id)
 
 		puts "Preparing albums..."	# Songs belong_to albums, so create albums first
 		a1 = Album.create(name: 'Hits Volume 1')
