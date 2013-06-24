@@ -95,12 +95,11 @@ if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitio
 		$(this).addClass('appeared');
 	});
 	setHeroHeight();
-	return;
 }
-if (window.mobilecheck)
-	return;
-$(document.body).on('appear', '.AppearCard', function(e, $affected) {
-// add class called “appeared” for each appeared element
-	$(this).addClass("appeared");
-});
-$('.AppearCard').appear({force_process: true});
+if (!window.mobilecheck) {
+	$(document.body).on('appear', '.AppearCard', function(e, $affected) {
+	// add class called “appeared” for each appeared element
+		$(this).addClass("appeared");
+	});
+	$('.AppearCard').appear({force_process: true});
+}
