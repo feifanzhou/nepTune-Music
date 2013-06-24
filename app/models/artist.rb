@@ -20,6 +20,8 @@ class Artist < ActiveRecord::Base
   has_many :band_members
   has_many :users, through: :band_members
 
+  validates :artistname, presence: true
+
   def display_name
   	return self.artistname || super	# If username, return that
   end
