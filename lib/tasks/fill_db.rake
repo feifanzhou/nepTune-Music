@@ -14,6 +14,7 @@ namespace :admin do
 		
 		puts "Discovering artists..."
 		jon = Artist.create(artistname: 'thepianoguys')
+		bm = BandMember.create(artist_id: jon.id, user_id: u3.id)
 
 		puts "Preparing albums..."	# Songs belong_to albums, so create albums first
 		a1 = Album.create(name: 'Hits Volume 1')
@@ -82,7 +83,7 @@ namespace :admin do
 		at4.status = :invited
 		at4.save
 		at5 = Attendee.new(user: u3, event: e1)
-		at5.status = :going
+		at5.status = :invited
 		at5.save
 		at6 = Attendee.new(artist: jon, event: e1)
 		at6.status = :performing
@@ -97,7 +98,7 @@ namespace :admin do
 		at9.status = :maybe
 		at9.save
 		at10 = Attendee.new(user: u6, event: e1)
-		at10.status = :invited
+		at10.status = :going
 		at10.save
 		
 		puts "Done!"

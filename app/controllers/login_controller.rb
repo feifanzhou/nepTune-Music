@@ -1,23 +1,25 @@
 class LoginController < ApplicationController
   include ApplicationHelper
   include LoginHelper
-  
+  include UsersHelper
+
   def destroy
     sign_out
     redirect_back
   end
-  
+
   def login # Just displays login page
     # Check if user just created a new account, and redirect as necessary
     if cookies[:current_user] && !cookies[:current_user].blank?
       redirect_to root_path
     end
     @login_error = flash[:login_error]
+    @user = User.new
   end
-  
+
   def sign_in_user # Process and redirect
-    user = User.find_by_email(params[:login][:email].downcase)
-    if user && user.authenticate(params[:login][:password])
+    user = User.find_by_email(params[:user][:email].downcase)
+    if user && user.authenticate(params[:user][:password])
       cookies[:current_user] = user.remember_token
       if user.has_temp_password
         redirect_to pwchange_path
@@ -26,16 +28,29 @@ class LoginController < ApplicationController
       end
     else
       # Display error message, re-render login
-      flash[:login_error] = "Email and password didn't match."
-      redirect_to login_path
+      @user = User.new(params[:user].except(:fullAccountCreate))
+      @login_error = "Email and password didn't match."
+      render "login"
+      #redirect_to login_path
     end
     # redirect_to root_path
   end
-  
+
   def password_help
     @reset_error = flash[:reset_password_error]
   end
-  
+
+  def create_new_user
+    sign_out
+    errors = create_user(params)
+
+    if @user.errors.blank?
+      redirect_to root_path
+    else
+      render "login"
+    end
+  end
+
   include UsersHelper
   def reset_password
     email = params[:login][:email]
@@ -53,14 +68,14 @@ class LoginController < ApplicationController
     flash[:login_error] = "Check your email for a temporary password."
     redirect_to login_url
   end
-  
+
   def password_change # Renders view
     if !cookies[:current_user] or cookies[:current_user].blank?
       redirect_to login_path
     end
     @password_change_error = flash[:pw_change_error]
   end
-  
+
   def change_password # Process and redirect
     old_pass = params[:login][:old_password]
     new_pass = params[:login][:password]
@@ -82,5 +97,5 @@ class LoginController < ApplicationController
       return
     end
   end
-  
+
 end
