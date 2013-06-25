@@ -7,11 +7,17 @@
 @import "shared";
 
 .AlbumArtMain {
+	background-clip: content-box;
 	display: inline-block;
 	float: left;
 	position: relative;
 	text-align: center;
 	width: 500px;
+	img {
+		background-clip:content-box;
+		display: inline-block;
+		-webkit-filter: blur(2 px);
+	}
 	#albumTrackListing {
 		background-color: transparentize(black, 0.25);
 	  background-position: center center;
