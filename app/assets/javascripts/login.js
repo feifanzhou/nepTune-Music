@@ -30,7 +30,7 @@ function toggleCreateNewAccount(tag) {
 	}
 }
 
-if ($('#error_explanation').length != 0) {
+if ($('#error_explanation').length !== 0) {
 	toggleCreateNewAccount(1);
 }
 

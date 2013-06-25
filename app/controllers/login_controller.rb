@@ -45,7 +45,7 @@ class LoginController < ApplicationController
     errors = create_user(params)
 
     if @user.errors.blank?
-      redirect_to root_path
+      (params[:user][:isArtist].to_i == 1) ? redirect_to(artist_about_path(params[:user][:artistname], edit: 1)) : redirect_to(root_path)
     else
       render "login"
     end
