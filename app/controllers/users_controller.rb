@@ -20,9 +20,11 @@ class UsersController < ApplicationController
     sign_out
     params[:password] = temporary_password
     params[:has_temp_password] = true
-    errors = create_user(params)
+    # errors = create_user(params)
+    results = create_user(params)
 
-    if @user.errors.blank?
+    # if @user.errors.blank?
+    if results or results.blank?
       redirect_back
     else
       render template: "login/login"

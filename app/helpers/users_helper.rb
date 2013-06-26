@@ -1,5 +1,8 @@
 module UsersHelper
+  # TODO: Organize methods in alphabetical order
   def get_user_from_params
+    # TODO: Find by other parameters, including id, facebook_id, and email
+    # TODO: Don't use username anymore
     if !params[:username].blank?
       @user = User.find_by_username(params[:username].downcase)
       if @user.blank?
@@ -8,11 +11,15 @@ module UsersHelper
     end
   end
 
+  def has_facebook_id(a_user)
+    return !a_user.facebook_id.nil? && a_user.facebook_id > 0   # It actually looks like facebook IDs 1–3 don't return anything
+  end
+
   def save_user_to_cookie(a_user)
-    if !(a_user.has_temp_password)
-      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
-    else
+    if a_user.has_temp_password && !has_facebook_id(a_user)
       cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
+    else
+      cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
     end
   end
 
@@ -36,13 +43,44 @@ module UsersHelper
     return false
   end
 
+  def update_user_for_facebook_login(a_user, input)
+    logger.debug("Update with FBID user: #{ a_user.display_name }, fb_id: #{ input[:facebook_id] }")
+    # a_user.facebook_id = input[:facebook_id].to_i
+    # a_user.password = input[:password] if a_user.has_temp_password
+    # a_user.save
+
+    # update_column to bypass validation (was getting some issues with the password not being 6 characters)
+    a_user.update_column(:facebook_id, input[:facebook_id])
+    logger.debug("Update user errors: #{ a_user.errors.full_messages }")
+  end
+
+  def user_exists_by_email(target_email)
+    return !(User.find_by_email(target_email).blank?)
+  end
+
+  # TODO: I feel like this method should return the user, and there should be another method that saves and logins in etc.
+  # This way, I can set other, hidden properties on the user like facebook_id
+  # The use of this method in Logins#fb_login prompted this thought
   def create_user(params)
+    logger.debug("create_user with params #{ params }")
     input = params[:user]
     if input.blank?
       input = params[:login]
     end
+    logger.debug("create_user input #{ input }")
+    # FB Login—check if email already exists
+    # If it does, update user with Facebook ID and return
+    emUser = User.find_by_email(input[:email].downcase)
+    logger.debug("emUser: #{ emUser }")
+    if !emUser.blank?
+      update_user_for_facebook_login(emUser, input)
+      return true
+    end
+    # ?? Above could be written as
+    # update_user_with_facebook_id(emUser, input[:facebook_id]) if !emUser.blank? and return
+
     fullAccountCreate = input[:fullAccountCreate].to_i
-    if fullAccountCreate and User.find_by_email(input[:email].downcase) # Signing up when email already exists
+    if fullAccountCreate and !emUser.blank? # Signing up when email already exists
       flash[:login_error] = "You're already registered! Sign in below"
     end
     isArtist = input[:isArtist].to_i
@@ -72,6 +110,6 @@ module UsersHelper
       end
     end
 
-    return @user.errors
+    return @user.errors.blank? || @user.errors
   end
 end

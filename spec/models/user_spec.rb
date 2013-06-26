@@ -15,6 +15,7 @@
 #  has_temp_password :boolean
 #  remember_token    :string(255)
 #  is_group          :boolean          default(FALSE)
+#  facebook_id       :integer
 #
 
 require 'spec_helper'

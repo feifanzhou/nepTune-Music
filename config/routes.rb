@@ -10,6 +10,7 @@ NeptuneMusic::Application.routes.draw do
     get "/login" => "login#login", as: :login
     post "/login" => "login#sign_in_user", as: :sign_in
     post "/login/create" => "login#create_new_user", as: :login_create_user
+    post "/login/fb_login" => "login#fb_login", as: :fb_login
     match 'logout', to: 'login#destroy', as: :logout
 
     match '/pwhelp', to: 'login#password_help', as: :pwhelp

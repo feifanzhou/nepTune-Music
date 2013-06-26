@@ -15,12 +15,14 @@
 #  has_temp_password :boolean
 #  remember_token    :string(255)
 #  is_group          :boolean          default(FALSE)
+#  facebook_id       :integer
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :artistname
+  # FIXME: Password should not be mass-assignable
+  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password
 
-  attr_accessor :artistname
+  attr_accessor :artistname, :facebook_id
 
   include UsersHelper
 

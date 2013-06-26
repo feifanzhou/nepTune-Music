@@ -55,3 +55,13 @@ else {
 	$('#artistUsername').css('display', 'none');
 	isArtistChecked = false;
 }
+
+function showFBLoginSpinner() {
+	$('#fbLogin').hide();
+	$('#fbLoginSpinner').show();
+}
+
+function hideFBLoginSpinner() {
+	$('#fbLogin').show();
+	$('#fbLoginSpinner').hide();
+}
