@@ -48,6 +48,10 @@
 	<%= f.label :password %>
 	<%= f.password_field :password, placeholder: "Password" %>
 
+  <!-- This field should never be filled out. If it is, form was filled out by a script -->
+  <%= f.label :id %>
+  <%= f.text_field :id, placeholder: "Leave blank", autocomplete: 'off' %>
+
 	<div class='LoginHidden' id='loginRule'><hr /></div>
 
 	<div class='LoginHidden' id='isArtistToggle'>

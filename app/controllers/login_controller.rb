@@ -47,6 +47,15 @@ class LoginController < ApplicationController
   end
 
   def sign_in_user # Process and redirect
+    # Check if id is filled out.
+    # Users should not fill it out—it's hidden and says to leave blank
+    # If it is filled out, then a script did it
+    # Return an error
+    logger.debug("params id: #{ params[:user][:id] }")
+    if !params[:user][:id].blank?
+      flash[:login_error] = "You filled in stuff that shouldn't be. Contact us for help."
+      redirect_to login_path
+    end
     user = User.find_by_email(params[:user][:email].downcase)
     if user && user.authenticate(params[:user][:password])
       cookies[:current_user] = user.remember_token
@@ -70,6 +79,14 @@ class LoginController < ApplicationController
   end
 
   def create_new_user
+    # Duplicated code in sign_in_user
+    # TODO: Refactor honeypot check code
+    logger.debug("params id: #{ params[:user][:id] }")
+    if !params[:user][:id].blank?
+      flash[:login_error] = "You filled in stuff that shouldn't be. Contact us for help."
+      redirect_to login_path
+      return
+    end
     sign_out
     # errors = create_user(params)
     results = create_user(params)
