@@ -19,10 +19,10 @@ NeptuneMusic::Application.configure do
 
   # Generate digests for assets URLs
   config.assets.digest = true
-  
+
   # Add fonts path
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-  
+
   # Precompile additional assets
   config.assets.precompile += %w( .svg .eot .woff .ttf )
 
@@ -71,4 +71,14 @@ NeptuneMusic::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'ChirkuTest',
+      access_key_id: 'AKIAJ2IQPLAT23NIXPMA',
+      secret_access_key: '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'
+    }
+  }
+
 end
