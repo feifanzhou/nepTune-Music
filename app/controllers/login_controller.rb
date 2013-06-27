@@ -43,7 +43,7 @@ class LoginController < ApplicationController
     else
       save_user_to_cookie(user)
       json_to_root
-    end      
+    end
   end
 
   def sign_in_user # Process and redirect
@@ -66,7 +66,7 @@ class LoginController < ApplicationController
       end
     else
       # Display error message, re-render login
-      @user = User.new(params[:user].except(:fullAccountCreate))
+      @user = User.new(params[:user].except(:fullAccountCreate, :artistname))
       @login_error = "Email and password didn't match."
       render "login"
       #redirect_to login_path

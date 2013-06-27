@@ -34,10 +34,20 @@ NeptuneMusic::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-  
+
   # Add fonts path
   # config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-  
+
   # Precompile additional assets
   # config.assets.precompile += %w( .svg .eot .woff .ttf )
+
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: 'ChirkuTest',
+      access_key_id: 'AKIAJ2IQPLAT23NIXPMA',
+      secret_access_key: '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'
+    }
+  }
+
 end

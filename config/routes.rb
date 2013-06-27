@@ -18,6 +18,9 @@ NeptuneMusic::Application.routes.draw do
     match '/pwchange', to: 'login#password_change', as: :pwchange
     post "/changepw" => 'login#change_password', as: :changepw
 
+    match '/upload', to: 'users#upload', as: :upload
+
+
     match '/:username', to: 'users#show', as: :username
     match '/:artistname/about', to: 'artists#about', as: :artist_about
     match '/:artistname/music', to: 'artists#music', as: :artist_music
@@ -29,6 +32,9 @@ NeptuneMusic::Application.routes.draw do
 
     resources :events
     match '/event/:id/join', to: 'attendees#join', as: :join_event
+
+
+
   end
 
   # Routes for landing site

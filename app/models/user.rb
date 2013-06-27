@@ -20,7 +20,7 @@
 
 class User < ActiveRecord::Base
   # FIXME: Password should not be mass-assignable
-  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :facebook_id
+  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :facebook_id, :avatar
 
   attr_accessor :artistname, :facebook_id
 
@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
 
   has_many :attendees
   has_many :events, through: :attendees
+
+  has_attached_file :avatar, s3_protocol: 'http'
 
 
   # before_save { |user| user.email = email.downcase }
@@ -45,7 +47,8 @@ class User < ActiveRecord::Base
   validates :lname, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  validates :password, length: { minimum: 6, too_short: "should have at least %{count} characters" }
+  validates :password, length: { minimum: 6, too_short: "should have at least %{count} characters" }, on: :create
+  #validates :password_confirmation, on: :update, unless: lambda { |user| user.password.blank? }
   # validates :artistname, uniqueness: { case_sensitive: false }, allow_nil: true;
 
   validate :should_not_have_profanities
