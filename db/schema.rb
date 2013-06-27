@@ -87,7 +87,6 @@ ActiveRecord::Schema.define(:version => 20130627031637) do
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
-    t.string   "username"
     t.boolean  "is_group",                         :default => false
     t.integer  "facebook_id",         :limit => 8
     t.string   "avatar_file_name"

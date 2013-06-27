@@ -22,6 +22,7 @@ end
 group :development, :production do
   gem 'retina_tag'
   gem 'aws-s3'
+  gem "paperclip", "~> 3.0"
   gem 'fb-channel-file'
 end
 
