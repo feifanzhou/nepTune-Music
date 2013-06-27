@@ -11,8 +11,7 @@
 
     // Additional initialization code such as adding Event Listeners goes here
      // Here we subscribe to the auth.authResponseChange JavaScript event. This event is fired
-  // for any authentication related change, such as login, logout or session refresh. This means
-that
+  // for any authentication related change, such as login, logout or session refresh. This means that
   // whenever someone who was previously logged out tries to log in again, the correct case below
   // will be handled.
       /* FB.Event.subscribe('auth.authResponseChange', function(response) {
