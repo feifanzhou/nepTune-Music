@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module UsersHelper
   # TODO: Organize methods in alphabetical order
   def get_user_from_params
@@ -12,7 +13,7 @@ module UsersHelper
   end
 
   def has_facebook_id(a_user)
-    return !a_user.facebook_id.nil? && a_user.facebook_id > 0   # It actually looks like facebook IDs 1–3 don't return anything
+    return !a_user.facebook_id.nil? && a_user.facebook_id.to_i > 0   # It actually looks like facebook IDs 1–3 don't return anything
   end
 
   def save_user_to_cookie(a_user)

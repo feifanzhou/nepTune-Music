@@ -20,7 +20,7 @@
 
 class User < ActiveRecord::Base
   # FIXME: Password should not be mass-assignable
-  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password
+  attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :facebook_id
 
   attr_accessor :artistname, :facebook_id
 
