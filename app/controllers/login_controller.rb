@@ -33,7 +33,6 @@ class LoginController < ApplicationController
       results = create_user(prms)
       logger.debug("Create user results: #{ results }")
       if results
-        save_user_to_cookie(user)
         # redirect_to root_path
         json_to_root
       # else
