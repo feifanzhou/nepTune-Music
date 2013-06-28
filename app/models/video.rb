@@ -9,6 +9,7 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  location          :string(255)
+#  collection_order  :integer
 #  file_file_name    :string(255)
 #  file_content_type :string(255)
 #  file_file_size    :integer
@@ -18,10 +19,11 @@
 #  is_primary        :boolean
 #  media_holder_id   :integer
 #  media_holder_type :string(64)
+#  custom_path       :string(255)
 #
 
 class Video < Media
-  attr_accessible :embedcode, :path
+  attr_accessible :collection_order, :custom_path, :embedcode
 
   def show_html
   	# Only returns Youtube iframe

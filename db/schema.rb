@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628204843) do
+ActiveRecord::Schema.define(:version => 20130628215607) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20130628204843) do
     t.boolean  "is_primary"
     t.integer  "media_holder_id"
     t.string   "media_holder_type", :limit => 64
+    t.string   "custom_path"
   end
 
   create_table "play_counts", :force => true do |t|

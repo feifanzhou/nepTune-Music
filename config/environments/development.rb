@@ -42,7 +42,7 @@ NeptuneMusic::Application.configure do
   # config.assets.precompile += %w( .svg .eot .woff .ttf )
 
   config.paperclip_defaults = {
-    storage: :s3,
+    storage: :filesystem,
     s3_credentials: {
       bucket: 'ChirkuTest',
       access_key_id: 'AKIAJ2IQPLAT23NIXPMA',
