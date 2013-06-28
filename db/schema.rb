@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130628204843) do
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
     t.string   "location"
+    t.integer  "collection_order"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
@@ -99,7 +100,6 @@ ActiveRecord::Schema.define(:version => 20130628204843) do
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
-    t.string   "username"
     t.boolean  "is_group",                         :default => false
     t.integer  "facebook_id",         :limit => 8
     t.string   "avatar_file_name"
