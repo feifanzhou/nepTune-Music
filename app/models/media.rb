@@ -8,7 +8,8 @@
 #  type       :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  location   :string(255)		# Where it's being used on the site, such as 'AboutGallery'
+#  location   :string(255)
+#  path       :string(255)
 #
 
 class Media < ActiveRecord::Base
@@ -16,4 +17,8 @@ class Media < ActiveRecord::Base
 
   has_many :play_counts
   has_many :users, through: :play_counts
+
+  def show_html
+  	raise "SubclassResponsibility"
+  end
 end
