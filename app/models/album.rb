@@ -13,11 +13,11 @@ class Album < ActiveRecord::Base
   attr_accessible :name
 
   belongs_to :artist
-  has_one :image, as: :imageable
+  has_one :image, as: :media_holder
   has_many :songs
 
   def songs
-  	songs_list = super	# Read original song list
-  	return songs_list.sort_by{ |s| s[:track_number] }
+    songs_list = super	# Read original song list
+    return songs_list.sort_by{ |s| s[:track_number] }
   end
 end

@@ -20,8 +20,5 @@
 #  media_holder_type :string(64)
 #
 
-require 'spec_helper'
-
-describe Media do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Audio < Media
 end
