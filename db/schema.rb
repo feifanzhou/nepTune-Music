@@ -70,9 +70,13 @@ ActiveRecord::Schema.define(:version => 20130628200918) do
     t.string   "name"
     t.string   "details"
     t.string   "type"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "location"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.string   "path"
     t.integer  "collection_order"
   end
@@ -106,6 +110,7 @@ ActiveRecord::Schema.define(:version => 20130628200918) do
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
+    t.string   "username"
     t.boolean  "is_group",                         :default => false
     t.integer  "facebook_id",         :limit => 8
     t.string   "avatar_file_name"

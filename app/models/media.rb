@@ -14,17 +14,19 @@
 #
 
 class Media < ActiveRecord::Base
-  attr_accessible :name, :details
+  attr_accessible :name, :details, :height, :path, :width, :is_primary
 
   has_many :play_counts
   has_many :users, through: :play_counts
+  has_attached_file :file, s3_protocol: 'https', s3_permissions: {original: :private}
 
   def media_for_location(loc)
   	return Media.find_by_location(loc.to_s, order: "collection_order ASC")
   end
 
+
   def show_html
-  	raise "SubclassResponsibility"
+    raise "SubclassResponsibility"
   end
 
 end
