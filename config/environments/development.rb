@@ -43,7 +43,7 @@ NeptuneMusic::Application.configure do
 
   config.paperclip_defaults = {
     storage: :filesystem
-    }
   }
+
 
 end
