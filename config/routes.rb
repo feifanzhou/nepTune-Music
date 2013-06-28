@@ -21,7 +21,7 @@ NeptuneMusic::Application.routes.draw do
     match '/upload', to: 'users#upload', as: :upload
 
 
-    match '/:username', to: 'users#show', as: :username
+    match '/:artistname', to: 'artists#show', as: :artist_main
     match '/:artistname/about', to: 'artists#about', as: :artist_about
     match '/:artistname/music', to: 'artists#music', as: :artist_music
     match '/:artistname/events', to: 'artists#events', as: :artist_events
