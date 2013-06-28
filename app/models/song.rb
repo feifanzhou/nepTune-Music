@@ -14,10 +14,12 @@ class Song < ActiveRecord::Base
   attr_accessible :name, :track_number
 
   belongs_to :artist
-  has_one :image, as: :imageable
   belongs_to :album
 
+  has_one :image, as: :media_holder
+  has_one :audio, as: :media_holder
+
   def image
-  	return super || self.album.image || nil  # super reads attribute :image
+    return super || self.album.image || nil  # super reads attribute :image
   end
 end

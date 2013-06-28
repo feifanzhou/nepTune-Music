@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628194242) do
+ActiveRecord::Schema.define(:version => 20130628204843) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -52,32 +52,22 @@ ActiveRecord::Schema.define(:version => 20130628194242) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "images", :force => true do |t|
-    t.string   "caption"
-    t.string   "path"
-    t.integer  "height"
-    t.integer  "width"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.boolean  "is_primary"
-    t.integer  "imageable_id"
-    t.string   "imageable_type", :limit => 64
-  end
-
-  add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
-
   create_table "media", :force => true do |t|
     t.string   "name"
     t.string   "details"
     t.string   "type"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "location"
     t.string   "file_file_name"
     t.string   "file_content_type"
     t.integer  "file_file_size"
     t.datetime "file_updated_at"
-    t.string   "path"
+    t.integer  "height"
+    t.integer  "width"
+    t.boolean  "is_primary"
+    t.integer  "media_holder_id"
+    t.string   "media_holder_type", :limit => 64
   end
 
   create_table "play_counts", :force => true do |t|
@@ -119,12 +109,5 @@ ActiveRecord::Schema.define(:version => 20130628194242) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-
-  create_table "videos", :force => true do |t|
-    t.string   "path"
-    t.string   "embedcode"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end
