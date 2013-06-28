@@ -16,4 +16,6 @@ class Media < ActiveRecord::Base
 
   has_many :play_counts
   has_many :users, through: :play_counts
+
+  has_attached_file :file, s3_protocol: 'https', s3_permissions: {original: :private}
 end

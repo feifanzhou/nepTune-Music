@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628184450) do
+ActiveRecord::Schema.define(:version => 20130628194111) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -70,9 +70,13 @@ ActiveRecord::Schema.define(:version => 20130628184450) do
     t.string   "name"
     t.string   "details"
     t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "location"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "play_counts", :force => true do |t|
@@ -104,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20130628184450) do
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
+    t.string   "username"
     t.boolean  "is_group",                         :default => false
     t.integer  "facebook_id",         :limit => 8
     t.string   "avatar_file_name"
