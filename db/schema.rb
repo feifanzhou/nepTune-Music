@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627031637) do
+ActiveRecord::Schema.define(:version => 20130628184450) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -66,6 +66,23 @@ ActiveRecord::Schema.define(:version => 20130627031637) do
 
   add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
 
+  create_table "media", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "location"
+  end
+
+  create_table "play_counts", :force => true do |t|
+    t.integer  "media_id"
+    t.integer  "user_id"
+    t.integer  "count"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "songs", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
@@ -96,5 +113,12 @@ ActiveRecord::Schema.define(:version => 20130627031637) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.string   "path"
+    t.string   "embedcode"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
