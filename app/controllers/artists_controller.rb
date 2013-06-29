@@ -20,6 +20,17 @@ class ArtistsController < ApplicationController
     @events = @artist.events.sort_by! { |e| e.start_at }
   end
 
+  def remove_media
+    loc = params[:location]
+    if !loc.blank?
+      remove_media_for_index_at_location(params[:media_index].to_i, loc)
+      render json: { success: 1 }, status: 200
+    else
+      remove_media_with_id(params[:media_id])
+      render json: { success: 1 }, status: 200
+    end
+  end
+
   private
   def authenticate_editing
     return if params[:edit].blank?  # Bail, don't bury: http://blog.wilshipley.com/2005/07/code-insults-mark-i.html
@@ -36,14 +47,27 @@ class ArtistsController < ApplicationController
     # Artist page should only be edited by members of the artist
     # TODO: Only allow editing artist page by designed member(s)
     curr_user = current_user
-    logger.debug("Curr_user: #{ curr_user }")
     artist = Artist.find_by_artistname(params[:artistname])
-    logger.debug("Artist: #{ artist }")
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
     if bm.blank?
       redirect_to login_path
     else
       @is_editing = true
     end
+  end
+
+  def remove_media_for_index_at_location(m_index, loc)
+    # This code could probably be more efficient
+    # Especially in pulling the artist info
+    # Should pull only id—but code isn't working (undefined methods)
+    # a_id = Artist.select(:id).find_by_artistname(params[:artistname]).limit(1)
+    a_id = Artist.find_by_artistname(params[:artistname]).id
+    m = Media.where(media_holder_id: a_id, location: loc.to_s, id: m_index)
+    logger.debug("m_index: #{ m_index }, loc: #{ loc }, a_id: #{ a_id }, m: #{ m }")
+    m.first.destroy  # Call destroy so we get callbacks such as before_destroy, where we can do undo
+  end
+
+  def remove_media_with_id(m_id)
+    Media.find(m_id).destroy
   end
 end

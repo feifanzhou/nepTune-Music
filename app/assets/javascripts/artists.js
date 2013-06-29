@@ -144,20 +144,22 @@ $(function() {
 	$('.ArtistNavIcon').tooltip();
 });
 
-$(function() {
-	$('#sliderContainer').mouseenter(function() {
-		$('.SliderTitle').fadeIn();
-		$('.SliderTitle').css('bottom', '0px');
-	});
-	$('#sliderContainer').mouseleave(function() {
-		$('.SliderTitle').fadeOut();
-		$('.SliderTitle').css('bottom', '-50px');
-	});
+$('#sliderContainer').mouseenter(function() {
+	$('.SliderTitle').fadeIn();
+	$('.SliderTitle').css('bottom', '0px');
 });
-$(function() {
-	$('.NoblockTitle').mouseenter(function() {
-		$(this).fadeOut();
-	});
+$('#sliderContainer').mouseleave(function() {
+	$('.SliderTitle').fadeOut();
+	$('.SliderTitle').css('bottom', '-50px');
+});
+$('.NoblockTitle').mouseenter(function() {
+  $(this).fadeOut();
+});
+$('.SliderTitle').mouseenter(function() {
+  $(this).css('background', 'rgba(0, 0, 0, 0.90)');
+});
+$('.SliderTitle').mouseleave(function() {
+  $(this).css('background', 'rgba(0, 0, 0, 0.70)');
 });
 
 function setSliderOffset(sliderOffset) {
@@ -234,4 +236,54 @@ $('.SliderNav').click(function() {
 	console.log('new hash: ' + hash);
 	location.hash = ('#' + hash);
 	return false;
+});
+
+function renumberGalleryElements() {
+  var index = 0;
+  $('.SliderElement').each(function() {
+    $(this).attr('id', ('gallery' + index));
+    index++;
+  });
+  index = 0;
+  $('.SliderElementRemove').each(function() {
+    $(this).attr('id', ('remove' + index));
+    index++;
+  });
+}
+
+$('.SliderElementRemove').click(function() {
+  var index = parseInt($(this).attr('data-media-id'), 10);
+  console.log('remove index: ' + index);
+  var artistname = document.URL.split("/")[3];
+  console.log('artistname: ' + artistname);
+  var rm_el = $(this);
+  console.log('rm_el: ' + rm_el);
+  $.ajax({
+    url: "/" + artistname + "/remove_media",
+    type: "POST",
+    data: { location: 'AboutGallery',
+            media_index: index
+          },
+    success: function(resp) {
+      console.log('delete success');
+      if (!resp)
+        return;
+      var scs = parseInt(resp['success'], 10);
+      if (scs !== 1)
+        return;
+
+      console.log('rm_el: ' + rm_el);
+      console.log('rm_el id: ' + $(rm_el).attr('id'));
+      index = parseInt($(rm_el).attr('id').slice(6), 10);
+      console.log('new index: ' + index);
+      $('#gallery' + index).fadeOut();
+      setTimeout(function() {
+        $('#gallery' + index).remove();
+        console.log('gallery element removed');
+        renumberGalleryElements();
+        // window.location.hash = '#' + window.location.hash.slice(1);
+        galleryToHash();
+      }, 400);
+    }
+  });
 });

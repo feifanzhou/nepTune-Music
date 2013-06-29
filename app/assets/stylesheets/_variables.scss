@@ -143,8 +143,8 @@ $albumOverlayInner: transparentize(black, 0.5);
 	left: 0;
 	position: absolute;
 	right: 0;
-	transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s;
-	-webkit-transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s;
+	transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
+	-webkit-transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
 	@extend AnimationEase;
 }
 

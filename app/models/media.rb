@@ -31,7 +31,7 @@ class Media < ActiveRecord::Base
   has_many :users, through: :play_counts
   has_attached_file :file, s3_protocol: 'https', s3_permissions: { original: :private }
 
-  def for_location(loc)
+  def self.for_location(loc)
   	return Media.find_by_location(loc.to_s, order: "collection_order ASC")
   end
 

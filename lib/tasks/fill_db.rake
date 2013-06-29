@@ -27,7 +27,16 @@ namespace :admin do
 		ag4 = Video.new(name: "Coldplay - Paradise (Peponi) African Style ft. Alex Boye", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/Cgovv8jWETM?rel=0', collection_order: 4)
 		ag4.media_holder = jon
 		ag4.save
-
+		ag5 = Video.new(name: "Berlin", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/VcnzqKpFZ0I?rel=0', collection_order: 5)
+		ag5.media_holder = jon
+		ag5.save
+		ag6 = Video.new(name: "Moonlight - Electric Cello", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/DRVvFYppU0w?rel=0', collection_order: 6)
+		ag6.media_holder = jon
+		ag6.save
+		ag7 = Video.new(name: 'ThePianoGuys...before they were The Piano Guys', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/noAoxGXHblw?rel=0', collection_order: 7)
+		ag7.media_holder = jon
+		ag7.save
+		
 		puts "Preparing albums..."	# Songs belong_to albums, so create albums first
 		a1 = Album.create(name: 'Hits Volume 1')
 		a1.artist = jon

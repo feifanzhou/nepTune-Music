@@ -4,9 +4,11 @@
 	<% artist.media_for_location(:AboutGallery).each do |m| %>
 	<div class="SliderElement <%= 'SliderElementCurrent' if gallery_index == 0 %>" id="gallery<%= gallery_index %>">
 		<% if is_editing %>
-		<span class='Icon SliderElementRemove'>&#59407;</span>
+		<div class='SliderElementRemoveOverlay'>
+			<span class='Icon SliderElementRemove' id="remove<%= gallery_index %>" data-media-id="<%= m.id %>">&#59407;</span>
+		</div>
 		<% end %>
-		<h2 class='SliderTitle NoblockTitle'><p><%= m.name %></p></h2>
+		<h2 class="SliderTitle <%= 'NoblockTitle' unless is_editing %>"><p><%= m.name %></p></h2>
 		<%= m.show_html %>
 	</div>
 	<% gallery_index += 1 %>
