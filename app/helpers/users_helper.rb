@@ -75,7 +75,7 @@ module UsersHelper
     logger.debug("emUser: #{ emUser }")
     if !emUser.blank?
       update_user_for_facebook_login(emUser, input)
-      save_user_to_cookie(@user)
+      save_user_to_cookie(emUser)
       return true
     end
     # ?? Above could be written as
