@@ -36,12 +36,12 @@ class ArtistsController < ApplicationController
     return if params[:edit].blank?  # Bail, don't bury: http://blog.wilshipley.com/2005/07/code-insults-mark-i.html
     # If edit param is anything other than 1, redirect to same page, without edit param
     if params[:edit].to_i != 1
-      redirect_to request.fullpath.split("?")[0]  # http://stackoverflow.com/a/5266133/472768
+      redirect_to_current_page_without_params
       return
     end
 
     if !is_logged_in
-      redirect_to login_path
+      redirect_to_current_page_without_params
       return
     end
     # Artist page should only be edited by members of the artist
@@ -50,10 +50,11 @@ class ArtistsController < ApplicationController
     artist = Artist.find_by_artistname(params[:artistname])
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
     if bm.blank?
-      redirect_to login_path
+      redirect_to_current_page_without_params
     else
       @is_editing = true
     end
+    # @is_editing = true unless bm.blank?
   end
 
   def remove_media_for_index_at_location(m_index, loc)
