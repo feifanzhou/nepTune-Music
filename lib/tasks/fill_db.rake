@@ -15,6 +15,7 @@ namespace :admin do
 		puts "Discovering artists..."
 		jon = Artist.create(artistname: 'thepianoguys')
 		bm = BandMember.create(artist_id: jon.id, user_id: u3.id)
+		bm2 = BandMember.create(artist_id: jon.id, user_id: u4.id)
 		ag1 = Video.new(name: 'Phillip Phillips - Home (Piano/Cello Cover)', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0', collection_order: 1)
 		ag1.media_holder = jon
 		ag1.save
