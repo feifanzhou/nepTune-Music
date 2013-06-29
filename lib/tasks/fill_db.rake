@@ -15,10 +15,18 @@ namespace :admin do
 		puts "Discovering artists..."
 		jon = Artist.create(artistname: 'thepianoguys')
 		bm = BandMember.create(artist_id: jon.id, user_id: u3.id)
-		ag1 = Video.create(name: 'Phillip Phillips - Home (Piano/Cello Cover)', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0', collection_order: 1)
-		ag2 = Video.create(name: "Beethoven's 5 Secrets - OneRepublic (Cello/Orchestral Cover)", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/mJ_fkw5j-t0?rel=0', collection_order: 2)
-		ag3 = Video.create(name: "Mission Impossible (Piano/Cello/Violin) ft. Lindsey Stirling", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/9p0BqUcQ7i0?rel=0', collection_order: 3)
-		ag4 = Video.create(name: "Coldplay - Paradise (Peponi) African Style ft. Alex Boye", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/Cgovv8jWETM?rel=0', collection_order: 4)
+		ag1 = Video.new(name: 'Phillip Phillips - Home (Piano/Cello Cover)', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0', collection_order: 1)
+		ag1.media_holder = jon
+		ag1.save
+		ag2 = Video.new(name: "Beethoven's 5 Secrets - OneRepublic (Cello/Orchestral Cover)", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/mJ_fkw5j-t0?rel=0', collection_order: 2)
+		ag2.media_holder = jon
+		ag2.save
+		ag3 = Video.new(name: "Mission Impossible (Piano/Cello/Violin) ft. Lindsey Stirling", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/9p0BqUcQ7i0?rel=0', collection_order: 3)
+		ag3.media_holder = jon
+		ag3.save
+		ag4 = Video.new(name: "Coldplay - Paradise (Peponi) African Style ft. Alex Boye", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/Cgovv8jWETM?rel=0', collection_order: 4)
+		ag4.media_holder = jon
+		ag4.save
 
 		puts "Preparing albums..."	# Songs belong_to albums, so create albums first
 		a1 = Album.create(name: 'Hits Volume 1')

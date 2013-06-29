@@ -10,6 +10,7 @@ class ArtistsController < ApplicationController
 	end
 
 	def about
+    @artist = Artist.find_by_artistname(params[:artistname])
 	end
 
   def music
@@ -35,8 +36,14 @@ class ArtistsController < ApplicationController
     # Artist page should only be edited by members of the artist
     # TODO: Only allow editing artist page by designed member(s)
     curr_user = current_user
+    logger.debug("Curr_user: #{ curr_user }")
     artist = Artist.find_by_artistname(params[:artistname])
+    logger.debug("Artist: #{ artist }")
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
-    redirect_to login_path if bm.blank?
+    if bm.blank?
+      redirect_to login_path
+    else
+      @is_editing = true
+    end
   end
 end

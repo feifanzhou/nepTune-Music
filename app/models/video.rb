@@ -28,6 +28,6 @@ class Video < Media
   def show_html
   	# Only returns Youtube iframe
   	# This is temporary to test rest of editing
-  	return "<iframe width='640' height='360' src='#{ self.path }' frameborder='0' allowfullscreen></iframe>"
+  	return "<iframe width='640' height='360' src='#{ self.custom_path }' frameborder='0' allowfullscreen></iframe>".html_safe
   end
 end

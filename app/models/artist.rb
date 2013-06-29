@@ -17,6 +17,7 @@ class Artist < ActiveRecord::Base
   has_many :songs
   has_many :albums
   has_many :events, foreign_key: :creator_id
+  has_many :media, as: :media_holder, class_name: "Media"
   has_many :band_members
   has_many :users, through: :band_members
 
@@ -37,5 +38,8 @@ class Artist < ActiveRecord::Base
   def isArtist
   	return true		# Every artist…is an artist
   end
-  
+
+  def media_for_location(loc)
+    return Media.where(media_holder_id: self.id, location: loc.to_s)
+  end  
 end

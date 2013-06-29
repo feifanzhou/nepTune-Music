@@ -434,6 +434,16 @@ header {
 						opacity: 1;
 						pointer-events: auto;
 					}
+					.SliderElementRemove {
+						color: $nepTuneOrange;
+						font-size: 36px;
+						left: 0;
+						position: absolute;
+						top: 6px;
+						&:hover {
+							cursor: pointer;
+						}
+					}
 					.SliderTitle {
 						@include TranslucentBar;
 						bottom: 0;

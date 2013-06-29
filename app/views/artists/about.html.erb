@@ -6,7 +6,7 @@
   <%= render 'layouts/artist_sidebar', curr_nav: 1 %>
   <div class='XHidden' id='artistPageContent'>
   	<div id='sliderContainer'>
-  		<%= render 'layouts/about_gallery' %>
+  		<%= render 'layouts/about_gallery', artist: @artist, is_editing: @is_editing %>
 		</div>
 		<div class='row' id='aboutBody'>
 			<div class='span8' id='aboutStory'>
