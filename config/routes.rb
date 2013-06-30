@@ -19,6 +19,7 @@ NeptuneMusic::Application.routes.draw do
     post "/changepw" => 'login#change_password', as: :changepw
 
     match '/upload', to: 'users#upload', as: :upload
+    post '/:artistname/update_content', to: 'artists#update_content', as: :update_content
     post '/:artistname/remove_media', to: 'artists#remove_media', as: :remove_media
 
     match '/:artistname', to: 'artists#show', as: :artist_main

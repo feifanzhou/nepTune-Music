@@ -21,6 +21,20 @@ class ArtistsController < ApplicationController
     @events = @artist.events.sort_by! { |e| e.start_at }
   end
 
+  def update_content
+    case params[:location]
+    when 'AboutGalleryCaption'
+      # Is this secure? 
+      # Does authenticate_editing prevent me from 
+      # passing in any artist name and media id and modifying it?
+      m_id = params[:mediaID].to_i
+      m = Media.find(m_id)
+      m.name = params[:newText]
+      m.save
+    end
+    render json: { success: 1 }, status: 200
+  end
+
   def remove_media
     loc = params[:location]
     if !loc.blank?
@@ -65,7 +79,7 @@ class ArtistsController < ApplicationController
     # a_id = Artist.select(:id).find_by_artistname(params[:artistname]).limit(1)
     a_id = Artist.find_by_artistname(params[:artistname]).id
     m = Media.where(media_holder_id: a_id, location: loc.to_s, id: m_index)
-    logger.debug("m_index: #{ m_index }, loc: #{ loc }, a_id: #{ a_id }, m: #{ m }")
+    # FIXME: If m is nil, return 500 error, and handle in JS
     m.first.destroy  # Call destroy so we get callbacks such as before_destroy, where we can do undo
   end
 

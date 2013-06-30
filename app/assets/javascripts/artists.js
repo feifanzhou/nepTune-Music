@@ -238,6 +238,11 @@ $('.SliderNav').click(function() {
 	return false;
 });
 
+/***** Editing functionality *****/
+function getArtistNameFromURL() {
+  return document.URL.split("/")[3];
+}
+
 function renumberGalleryElements() {
   var index = 0;
   $('.SliderElement').each(function() {
@@ -253,11 +258,8 @@ function renumberGalleryElements() {
 
 $('.SliderElementRemove').click(function() {
   var index = parseInt($(this).attr('data-media-id'), 10);
-  console.log('remove index: ' + index);
-  var artistname = document.URL.split("/")[3];
-  console.log('artistname: ' + artistname);
+  var artistname = getArtistNameFromURL();
   var rm_el = $(this);
-  console.log('rm_el: ' + rm_el);
   $.ajax({
     url: "/" + artistname + "/remove_media",
     type: "POST",
@@ -265,25 +267,51 @@ $('.SliderElementRemove').click(function() {
             media_index: index
           },
     success: function(resp) {
-      console.log('delete success');
       if (!resp)
         return;
       var scs = parseInt(resp['success'], 10);
       if (scs !== 1)
         return;
 
-      console.log('rm_el: ' + rm_el);
-      console.log('rm_el id: ' + $(rm_el).attr('id'));
       index = parseInt($(rm_el).attr('id').slice(6), 10);
-      console.log('new index: ' + index);
       $('#gallery' + index).fadeOut();
       setTimeout(function() {
         $('#gallery' + index).remove();
-        console.log('gallery element removed');
         renumberGalleryElements();
         // window.location.hash = '#' + window.location.hash.slice(1);
         galleryToHash();
       }, 400);
     }
   });
+});
+
+function updateCaptionForGalleryItem(newText, m_id) {
+  $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutGalleryCaption',
+            mediaID: m_id,
+            newText: newText
+          },
+    success: function(resp) {
+      console.log('Successfully changed media caption');
+      console.log('Resp: ' + resp);
+    }
+  });
+}
+$('.TitleTextEdit').keydown(function(event){
+  if (event.keyCode !== 13)  // Check for Return key
+    return;
+
+  event.preventDefault();
+  $(this).blur();
+  var m_id = parseInt($(this).attr('data-media-id'), 10);
+  var text = $(this).html();
+  updateCaptionForGalleryItem(text, m_id);
+  return false;
+});
+$('.TitleTextEdit').blur(function(event) {
+  var m_id = parseInt($(this).attr('data-media-id'), 10);
+  var text = $(this).html();
+  updateCaptionForGalleryItem(text, m_id);
 });
