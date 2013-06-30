@@ -470,6 +470,15 @@ header {
 							font-size: 18px;
 							font-weight: 600;
 							margin: 10px;
+							&.TitleTextEdit {
+								margin: 1px 10px;
+							}
+							&.ClickToEdit {
+								color: transparentize(white, 0.5);
+								font-size: 14px;
+								font-weight: 400;
+								margin: 1px 10px;
+							}
 						}
 					}
 				}

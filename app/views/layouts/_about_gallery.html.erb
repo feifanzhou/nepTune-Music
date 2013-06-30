@@ -9,7 +9,7 @@
 		</div>
 		<% end %>
 		<h2 class="SliderTitle <%= 'NoblockTitle' unless is_editing %>">
-			<p <%= 'contenteditable' if is_editing %>><%= m.name %></p>
+			<p class='<%= "TitleTextEdit" if is_editing %>' <%= 'contenteditable' if is_editing %>><%= m.name %></p>
 			<% if is_editing %>
 			<p class='ClickToEdit'>Click on caption to edit</p>
 			<% end %>
