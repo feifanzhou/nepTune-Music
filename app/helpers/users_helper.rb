@@ -59,6 +59,7 @@ module UsersHelper
     return !(User.find_by_email(target_email).blank?)
   end
 
+
   # TODO: I feel like this method should return the user, and there should be another method that saves and logins in etc.
   # This way, I can set other, hidden properties on the user like facebook_id
   # The use of this method in Logins#fb_login prompted this thought
@@ -71,20 +72,20 @@ module UsersHelper
     logger.debug("create_user input #{ input }")
     # FB Login—check if email already exists
     # If it does, update user with Facebook ID and return
-    emUser = User.find_by_email(input[:email].downcase)
-    logger.debug("emUser: #{ emUser }")
-    if !emUser.blank?
-      update_user_for_facebook_login(emUser, input)
-      save_user_to_cookie(emUser)
-      return true
-    end
+    # emUser = User.find_by_email(input[:email].downcase)
+    # logger.debug("emUser: #{ emUser }")
+    # if !emUser.blank?
+    #   update_user_for_facebook_login(emUser, input)
+    #   save_user_to_cookie(emUser)
+    #   return true
+    # end
     # ?? Above could be written as
     # update_user_with_facebook_id(emUser, input[:facebook_id]) if !emUser.blank? and return
 
     fullAccountCreate = input[:fullAccountCreate].to_i
-    if fullAccountCreate and !emUser.blank? # Signing up when email already exists
-      flash[:login_error] = "You're already registered! Sign in below"
-    end
+    # if fullAccountCreate and !emUser.blank? # Signing up when email already exists
+    #   flash[:login_error] = "You're already registered! Sign in below"
+    # end
     isArtist = input[:isArtist].to_i
     # @user = (isArtist == 1) ? Artist.new(input.except(:fullAccountCreate)) : User.new(input.except(:fullAccountCreate, :username))
     @user = User.new(input.except(:fullAccountCreate, :artistname))
@@ -112,6 +113,6 @@ module UsersHelper
       end
     end
 
-    return @user.errors.blank? || @user.errors
+    return @user.errors
   end
 end

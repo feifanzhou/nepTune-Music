@@ -1,17 +1,18 @@
+# -*- coding: utf-8 -*-
 class ArtistsController < ApplicationController
-	include ArtistsHelper
+  include ArtistsHelper
   include LoginHelper
-	before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
+  before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :authenticate_editing
 
-	def show
+  def show
     # TODO: Render 'about' if first visit, else render 'music'
     render 'music'
-	end
+  end
 
-	def about
+  def about
     @artist = Artist.find_by_artistname(params[:artistname])
-	end
+  end
 
   def music
   end

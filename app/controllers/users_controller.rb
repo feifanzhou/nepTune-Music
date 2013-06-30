@@ -27,10 +27,10 @@ class UsersController < ApplicationController
     results = create_user(params)
 
     # if @user.errors.blank?
-    if results or results.blank?
+    if results.blank?
       redirect_back
     else
-      render template: "login/login"
+      #render template: "login/login"
     end
   end
 

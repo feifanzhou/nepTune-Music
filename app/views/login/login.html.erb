@@ -20,7 +20,7 @@
 	
 	<%= form_for(@user, url: login_path, html: { id: 'loginForm' }) do |f| %>
     <% if @user and @user.errors.any? %>
-    <div id="error_explanation">
+    <div id="createLoginError">
       <div class="alert alert-error">
         The form contains <%= pluralize(@user.errors.count, "error") %>.
       <ul>
@@ -100,4 +100,4 @@
 	</div>
   </div>
 </div>
-<!-- <%= render 'layouts/footer', footer_id: "appFooter" %> -->         
+<!-- <%= render 'layouts/footer', footer_id: "appFooter" %> -->          
