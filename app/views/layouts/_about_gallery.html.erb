@@ -8,7 +8,12 @@
 			<span class='Icon SliderElementRemove' id="remove<%= gallery_index %>" data-media-id="<%= m.id %>">&#59407;</span>
 		</div>
 		<% end %>
-		<h2 class="SliderTitle <%= 'NoblockTitle' unless is_editing %>"><p><%= m.name %></p></h2>
+		<h2 class="SliderTitle <%= 'NoblockTitle' unless is_editing %>">
+			<p <%= 'contenteditable' if is_editing %>><%= m.name %></p>
+			<% if is_editing %>
+			<p class='ClickToEdit'>Click on caption to edit</p>
+			<% end %>
+		</h2>
 		<%= m.show_html %>
 	</div>
 	<% gallery_index += 1 %>
