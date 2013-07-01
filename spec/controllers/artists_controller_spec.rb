@@ -1,34 +1,52 @@
 require 'spec_helper'
 
+def create_artist_event(artist)
+	e1 = Factory(:event)
+	e1.creator = artist
+	e1.save
+	return e1
+end
+
 describe ArtistsController do
-	describe "GET artist nav sections" do
-		it "finds artist by artistname" do
-			artist = Factory(:artist)
-			get :about
-			assigns(:artist).should eq(artist)
-			get :music
-			assigns(:artist).should eq(artist)
-			get :events
-			assigns(:artist).should eq(artist)
-		end
-	end
+	let(:artist) { Factory(:artist) }
 	describe "GET #about" do
+		it "finds artist by artistname" do
+			visit artist_about_path(artist)
+			assigns(:artist).should eq(@artist)
+		end
 		it "renders the :about view" do
-			get :about
-			response.should render_template :about
+			visit artist_about_path(artist)
+			# response.should render_template :about
+			response.should be_success
 		end
 	end
 
 	describe "GET #music" do
+		it "finds artist by artistname" do
+			visit artist_music_path(artist)
+			assigns(:artist).should eq(@artist)
+		end
 		it "renders the :music view" do
-			get :music
-			response.should render_template :music
+			visit artist_music_path(artist)
+			# response.should render_template :music
+			response.should be_success
 		end
 	end
 
 	describe "GET #events" do
-		it "gets all the artist's events"
-		it "renders the :events view"
+		it "finds artist by artistname" do
+			visit artist_events_path(artist)
+			assigns(:artist).should eq(@artist)
+		end
+		it "gets all the artist's events" do
+			evt = create_artist_event(artist)
+			visit artist_events_path(artist)
+			assigns(:events).should eq([evt])
+		end
+		it "renders the :events view" do
+			# response.should render_template :events
+			response.should be_success
+		end
 	end
 
 	describe "POST #update_content" do
