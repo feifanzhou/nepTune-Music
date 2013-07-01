@@ -5,6 +5,7 @@ gem 'rails', '3.2.13'
 gem 'rails-boilerplate'
 gem 'bootstrap-sass', '~> 2.3.1.2'
 gem 'pg'
+gem 'paperclip', '~> 3.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -22,7 +23,7 @@ end
 group :development, :production do
   gem 'retina_tag'
   gem 'aws-sdk', '~> 1.5.7'
-  gem 'paperclip', '~> 3.0'
+  
   gem 'fb-channel-file'
 end
 
