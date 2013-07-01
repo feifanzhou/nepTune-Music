@@ -69,7 +69,8 @@ class LoginController < ApplicationController
       if user.has_temp_password
         redirect_to pwchange_path
       else
-        redirect_to root_path
+        # redirect_to root_path
+        redirect_back
       end
     else
       # Display error message, re-render login

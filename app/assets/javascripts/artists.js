@@ -295,7 +295,6 @@ function updateCaptionForGalleryItem(newText, m_id) {
           },
     success: function(resp) {
       console.log('Successfully changed media caption');
-      console.log('Resp: ' + resp);
     }
   });
 }
@@ -305,13 +304,64 @@ $('.TitleTextEdit').keydown(function(event){
 
   event.preventDefault();
   $(this).blur();
-  var m_id = parseInt($(this).attr('data-media-id'), 10);
-  var text = $(this).html();
-  updateCaptionForGalleryItem(text, m_id);
   return false;
 });
 $('.TitleTextEdit').blur(function(event) {
   var m_id = parseInt($(this).attr('data-media-id'), 10);
   var text = $(this).html();
   updateCaptionForGalleryItem(text, m_id);
+});
+
+function updateStoryForArtist(newText) {
+  $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutStory',
+            newText: newText
+          },
+    success: function(resp) {
+      // TODO: Should update text with stored version
+      // which may include stripped HTML tags
+      console.log('Successfully updated artist story');
+    }
+  });
+}
+$('.ArtistStory').keydown(function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).blur();
+  return false;
+});
+$('.ArtistStory').blur(function(event) {
+  var nTxt = $(this).html();
+  console.log('nTxt: ' + nTxt);
+  updateStoryForArtist(nTxt);
+});
+
+function updateContactInfoForArtist(field, value) {
+  $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutContactInfo',
+            field: field,
+            value: value
+          },
+    success: function(resp) {
+      console.log('Successfully updated artist contact info');
+    }
+  });
+}
+$('.ContactText').keydown(function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).blur();
+  return false;
+});
+$('.ContactText').blur(function(event) {
+  var value = $(this).html();
+  console.log('value: ' + value);
+  var field = $(this).attr('id');
+  updateContactInfoForArtist(field, value);
 });

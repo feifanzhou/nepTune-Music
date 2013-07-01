@@ -7,6 +7,7 @@
 #  updated_at :datetime         not null
 #  type       :string(255)
 #  artistname :string(255)
+#  story      :text
 #
 
 require 'spec_helper'

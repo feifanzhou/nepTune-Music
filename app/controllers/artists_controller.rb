@@ -3,6 +3,7 @@ class ArtistsController < ApplicationController
   include ArtistsHelper
   include LoginHelper
   before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
+  before_filter :get_current_user_status, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :authenticate_editing
 
   def show
@@ -11,7 +12,7 @@ class ArtistsController < ApplicationController
   end
 
   def about
-    @artist = Artist.find_by_artistname(params[:artistname])
+    @contact_info = @artist.contact_info
   end
 
   def music
@@ -31,6 +32,16 @@ class ArtistsController < ApplicationController
       m = Media.find(m_id)
       m.name = params[:newText]
       m.save
+    when 'AboutStory'
+      artist = Artist.find_by_artistname(params[:artistname])
+      artist.story = sanitize(params[:newText])
+      artist.save
+    when 'AboutContactInfo'
+      artist = Artist.find_by_artistname(params[:artistname])
+      ci = artist.contact_info
+      setter = params[:field] + '='   # Build setter method
+      ci.send(setter, sanitize(params[:value]))   # http://stackoverflow.com/a/621193/472768
+      ci.save
     end
     render json: { success: 1 }, status: 200
   end
@@ -72,6 +83,12 @@ class ArtistsController < ApplicationController
     # @is_editing = true unless bm.blank?
   end
 
+  def get_current_user_status
+    @current_user = current_user
+    f = Follower.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    @is_following = !f.blank?
+  end
+
   def remove_media_for_index_at_location(m_index, loc)
     # This code could probably be more efficient
     # Especially in pulling the artist info
@@ -85,5 +102,9 @@ class ArtistsController < ApplicationController
 
   def remove_media_with_id(m_id)
     Media.find(m_id).destroy
+  end
+
+  def sanitize(s) 
+    ActionView::Base.full_sanitizer.sanitize(s)
   end
 end

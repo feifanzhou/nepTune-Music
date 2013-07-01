@@ -30,6 +30,8 @@ body {
 }
 
 /***** Login styles *****/
+$fbBlue: #3B5996;
+$fbBlueHighlight: lighten($fbBlue, 10%);
 div.LoginContainer {
 	margin: 15% auto;
 	text-align: center;
@@ -47,8 +49,11 @@ div.LoginContainer {
 			text-align: center;
 		}
 		#fbLogin {
+			@include buttonBackground($fbBlueHighlight, $fbBlue);
+			box-sizing: border-box;
 			display: inline-block;
 			height: 44px;
+			padding-top: 1px;
 			width: 320px;
 		}
 		div.LoginHidden {

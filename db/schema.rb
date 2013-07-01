@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628215607) do
+ActiveRecord::Schema.define(:version => 20130630180400) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(:version => 20130628215607) do
     t.datetime "updated_at", :null => false
     t.string   "type"
     t.string   "artistname"
+    t.text     "story"
   end
 
   create_table "attendees", :force => true do |t|
@@ -43,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20130628215607) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "contact_infos", :force => true do |t|
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
+    t.integer  "contactable_id"
+    t.string   "contactable_type", :limit => 64
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
@@ -50,6 +61,14 @@ ActiveRecord::Schema.define(:version => 20130628215607) do
     t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "followers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "is_following"
   end
 
   create_table "media", :force => true do |t|

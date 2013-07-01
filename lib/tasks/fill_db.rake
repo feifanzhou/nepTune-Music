@@ -13,7 +13,18 @@ namespace :admin do
 		u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar')
 		
 		puts "Discovering artists..."
-		jon = Artist.create(artistname: 'thepianoguys')
+		jon = Artist.new(artistname: 'thepianoguys')
+		jon.story = 'Paul Anderson owned a piano shop in St. George, Utah. '\
+					'He met musician Jon Schmidt as the latter walked in to ask '\
+					'if he could practice there for an upcoming concert. '\
+					'Months later, Paul Anderson and Tel Stewart (then just for fun) '\
+					'started making videos together of Jon Schmidt. It was not too long after '\
+					'that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson, '\
+					'and Al van der Beek as the studio and music technician. After the five of them started collaborating '\
+					'the group really started to take off, producing a music video each week and posting it to YouTube.'
+		jon.save
+		ci = ContactInfo.create(email: 'jon@thepianoguys.com', phone: '(401) 123-4567', website: 'thepianoguys.com')
+		jon.contact_info = ci
 		bm = BandMember.create(artist_id: jon.id, user_id: u3.id)
 		bm2 = BandMember.create(artist_id: jon.id, user_id: u4.id)
 		ag1 = Video.new(name: 'Phillip Phillips - Home (Piano/Cello Cover)', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0', collection_order: 1)
@@ -82,11 +93,11 @@ namespace :admin do
 		i5 = Image.create(caption: 'World Music', path: 'http://msitvoiceiiit.files.wordpress.com/2013/02/world-music.jpg', height: 355, width: 380, is_primary: true)
 		
 		puts "Planning events..."
-		e1 = Event.create(name: 'MusicFest', start_at: DateTime.new(2013, 6, 7, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 7, 19, 30, 0, '-4'))
+		e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 6, 7, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 7, 19, 30, 0, '-4'))
 		e1.creator = jon
 		e1.images.push i4
 		e1.save
-		e2 = Event.create(name: '24 Hour Sesh', start_at: DateTime.new(2013, 6, 1, 10, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 2, 10, 0, 0, '-4'))
+		e2 = Event.new(name: '24 Hour Sesh', start_at: DateTime.new(2013, 6, 1, 10, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 2, 10, 0, 0, '-4'))
 		e2.creator = jon
 		e2.images.push i5
 		e2.save

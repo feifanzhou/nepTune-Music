@@ -36,7 +36,9 @@ end
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'factory_girl_rails', '1.0'
   gem 'faker'
+  gem 'rb-fsevent', '0.9.3'
 end
 
 # Gems used only for assets and not required

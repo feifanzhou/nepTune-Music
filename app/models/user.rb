@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   include UsersHelper
 
+  has_many :artists, through: :followers, as: :followed_artists
   has_many :attendees
   has_many :events, through: :attendees
   has_many :play_counts
