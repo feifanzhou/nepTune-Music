@@ -86,6 +86,10 @@ class ArtistsController < ApplicationController
 
   def get_current_user_status
     @current_user = current_user
+    if @current_user.blank?
+      @is_following = false
+      return
+    end
     f = Follower.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
     @is_following = !f.blank?
   end

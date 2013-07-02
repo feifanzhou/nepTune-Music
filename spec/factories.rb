@@ -1,6 +1,7 @@
 FactoryGirl.define do
 	factory :artist do |a|
 		a.artistname { 'paulbunyan' }
+		a.story { 'This is a sad story of a lonely lumberjack.'}
 	end
 
 	factory :contact_info do |c|
