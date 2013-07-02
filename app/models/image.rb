@@ -23,7 +23,7 @@
 #
 
 class Image < Media
-  attr_accessible :caption, :path
+  attr_accessible :caption
 
   def caption=(s)
     self.name = s
@@ -31,13 +31,5 @@ class Image < Media
 
   def caption
     self.name
-  end
-
-  def path=(url)
-    self.file = URI.parse(url)
-  end
-
-  def path
-    self.file.expiring_url || self.custom_path
   end
 end

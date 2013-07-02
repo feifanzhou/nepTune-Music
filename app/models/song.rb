@@ -11,7 +11,7 @@
 #  track_number :integer
 
 class Song < ActiveRecord::Base
-  attr_accessible :name, :track_number
+  attr_accessible :name, :track_number, :audio, :image, :artist, :album
 
   belongs_to :artist
   belongs_to :album
@@ -20,8 +20,13 @@ class Song < ActiveRecord::Base
   has_one :audio, as: :media_holder
 
   validates :audio, presence: true
+  validates :artist, presence: true
 
   def image
-    return super || self.album.image || nil  # super reads attribute :image
+    return super || (self.album && self.album.image) || nil  # super reads attribute :image
+  end
+
+  def name
+    return super || (self.audio && self.audio.name)
   end
 end

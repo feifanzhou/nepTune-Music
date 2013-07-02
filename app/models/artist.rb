@@ -47,4 +47,9 @@ class Artist < ActiveRecord::Base
   def media_for_location(loc)
     return Media.where(media_holder_id: self.id, location: loc.to_s)
   end
+
+  def add_band_member(user)
+    BandMember.create(artist_id: self.id, user_id: user.id)
+  end
+
 end

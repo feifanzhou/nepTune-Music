@@ -10,11 +10,14 @@
 #
 
 class Album < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :artist, :image
 
   belongs_to :artist
   has_one :image, as: :media_holder
   has_many :songs
+
+  validates :artist, presence: true
+  validates :name, presence: true
 
   def songs
     songs_list = super	# Read original song list

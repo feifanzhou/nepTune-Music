@@ -23,13 +23,15 @@
 #
 
 class Media < ActiveRecord::Base
-  attr_accessible :name, :details, :location, :height, :width, :is_primary, :file, :custom_path
+  attr_accessible :name, :details, :location, :height, :width, :is_primary, :file, :custom_path, :path, :media_holder
 
   belongs_to :media_holder, polymorphic: true
 
   has_many :play_counts
   has_many :users, through: :play_counts
   has_attached_file :file, s3_protocol: 'https', s3_permissions: { original: :private }
+
+  validate :should_have_some_path
 
   def self.for_location(loc)
     return Media.find_by_location(loc.to_s, order: "collection_order ASC")
@@ -43,6 +45,24 @@ class Media < ActiveRecord::Base
     pc = PlayCount.find_by_user_id_and_media_id(user.id, self.id)
     pc.count += 1
     pc.save
+  end
+
+  def path=(url)
+    if url == nil
+      self.file = nil
+    else
+      self.file = URI.parse(url)
+    end
+  end
+
+  def path
+    self.file.expiring_url || self.custom_path
+  end
+
+  def should_have_some_path
+    if file.blank? and custom_path.blank?
+      errors.add(:path, "should not be blank")
+    end
   end
 
   # http://stackoverflow.com/a/17154985/472768

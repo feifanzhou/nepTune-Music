@@ -19,14 +19,15 @@ namespace :admin do
 
     puts "Discovering artists..."
     jon = Artist.new(artistname: 'thepianoguys')
-    jon.story = 'Paul Anderson owned a piano shop in St. George, Utah. '\
-    'He met musician Jon Schmidt as the latter walked in to ask '\
-    'if he could practice there for an upcoming concert. '\
-    'Months later, Paul Anderson and Tel Stewart (then just for fun) '\
-    'started making videos together of Jon Schmidt. It was not too long after '\
-    'that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson, '\
-    'and Al van der Beek as the studio and music technician. After the five of them started collaborating '\
-    'the group really started to take off, producing a music video each week and posting it to YouTube.'
+    jon.story = """Paul Anderson owned a piano shop in St. George, Utah.
+He met musician Jon Schmidt as the latter walked in to ask
+if he could practice there for an upcoming concert.
+Months later, Paul Anderson and Tel Stewart (then just for fun)
+started making videos together of Jon Schmidt. It was not too long after
+that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson,
+and Al van der Beek as the studio and music technician. After the five of them started collaborating
+the group really started to take off, producing a music video each week and posting it to YouTube."""
+
     jon.save
     ci = ContactInfo.create(email: 'jon@thepianoguys.com',
                             phone: '(401) 123-4567', website: 'thepianoguys.com')
