@@ -56,14 +56,15 @@ the group really started to take off, producing a music video each week and post
     a1 = Album.create(name: 'Hits Volume 1', image: i1, artist: jon)
     a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon)
 
+    audio = Audio.create(name: "Next Stop Everywhere", custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3')
 
     puts "Writing songs..."
-    s1 = Song.create(name: 'Home', artist: jon, image: i3)
-    s2 = Song.create(name: 'Moonlight', track_number: 1, artist: jon, album: a1)
-    s3 = Song.create(name: 'More Than Words', track_number: 3, artist: jon, album: a1)
-    s4 = Song.create(name: 'All Of Me', track_number: 2, artist: jon, album: a1)
-    s5 = Song.create(name: 'Peponi (Paradise)', track_number: 2, artist: jon, album: a2)
-    s6 = Song.create(name: 'Titanium/Pavane', track_number: 1, artist: jon, album: a2)
+    s1 = Song.create(name: 'Home', artist: jon, image: i3, audio: audio)
+    s2 = Song.create(name: 'Moonlight', track_number: 1, artist: jon, album: a1, audio: audio)
+    s3 = Song.create(name: 'More Than Words', track_number: 3, artist: jon, album: a1, audio: audio)
+    s4 = Song.create(name: 'All Of Me', track_number: 2, artist: jon, album: a1, audio: audio)
+    s5 = Song.create(name: 'Peponi (Paradise)', track_number: 2, artist: jon, album: a2, audio: audio)
+    s6 = Song.create(name: 'Titanium/Pavane', track_number: 1, artist: jon, album: a2, audio: audio)
 
     puts "Planning events..."
     e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 6, 7, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 7, 19, 30, 0, '-4'))

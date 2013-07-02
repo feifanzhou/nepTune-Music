@@ -56,7 +56,12 @@ class Media < ActiveRecord::Base
   end
 
   def path
-    self.file.expiring_url || self.custom_path
+    if self.file.blank? and self.custom_path
+      self.custom_path
+    else
+      self.file.expiring_url
+    end
+
   end
 
   def should_have_some_path
