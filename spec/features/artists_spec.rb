@@ -12,8 +12,8 @@ describe "Artist pages" do
     subject { page }
 
     before :each do
-        set_host "beta.neptune.com:3000"
-        puts "Set host"
+        #set_host "beta.neptune.com:3000"
+        #puts "Set host"
         @artist = FactoryGirl.create(:artist)
         c_i = FactoryGirl.create(:contact_info)
         @artist.contact_info = c_i

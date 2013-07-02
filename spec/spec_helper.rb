@@ -5,6 +5,12 @@ require 'rake'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
+def set_host (host)
+  #default_url_options[:host] = host
+  Capybara.app_host = "http://" + host
+end
+
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
@@ -24,7 +30,9 @@ Spork.prefork do
   rake.load_rakefile
   rake['admin:reset_and_fill_db'].invoke
 
-  # Requires supporting ruby files with custom matchers and macros, etc,
+  set_host "beta.neptune.com:3000"
+
+    # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
