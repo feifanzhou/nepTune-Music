@@ -28,7 +28,7 @@ Spork.prefork do
   Rake.application = rake
   rake.init
   rake.load_rakefile
-  rake['admin:reset_and_fill_db'].invoke
+  rake['admin:fill_db'].invoke
 
   set_host "beta.neptune.com:3000"
 

@@ -13,7 +13,6 @@ class ArtistsController < ApplicationController
 
   def about
     @contact_info = @artist.contact_info
-    puts @artist.inspect
   end
 
   def music
