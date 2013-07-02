@@ -21,4 +21,4 @@ Next, you'll have to set up your databases. We're using Postgres, because Heroku
 
 Using this setup, you can access the app at ```beta.neptune.com:3000```. An artist's page is at ```beta.neptune.com:3000/thepianoguys```, and from there it links to other pages as well. 
 
-*This Readme file will be updated as necessary. Last updated on June 20th, 2013*
+*This Readme file will be updated as necessary. Last updated on July 1st, 2013*
