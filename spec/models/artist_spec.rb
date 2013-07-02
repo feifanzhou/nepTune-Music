@@ -35,4 +35,24 @@ describe Artist do
     it { should_not be_valid }
   end
 
+  describe "adding band members" do
+    let (:user) { User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@not_take.com', isArtist: false, password: 'foobar') }
+    before do
+      @artist.save
+    end
+
+    it "should make a new Band member" do
+      lambda do
+        @artist.add_band_member(user)
+      end.should change(BandMember, :count).by(1)
+    end
+
+    describe "-- afterwards" do
+      before { @artist.add_band_member(user) }
+      it "proper band member must be created" do
+        BandMember.find_by_user_id_and_artist_id(user.id, @artist.id).should_not be_nil
+      end
+    end
+  end
+
 end

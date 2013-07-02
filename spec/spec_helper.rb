@@ -28,11 +28,11 @@ Spork.prefork do
   Rake.application = rake
   rake.init
   rake.load_rakefile
-  rake['admin:reset_and_fill_db'].invoke
+  rake['admin:fill_db'].invoke
 
   set_host "beta.neptune.com:3000"
 
-    # Requires supporting ruby files with custom matchers and macros, etc,
+  # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
@@ -69,8 +69,10 @@ end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  # This code will be run each time you run your specs.
+  FactoryGirl.reload
+  ActiveSupport::Dependencies.clear
   NeptuneMusic::Application.reload_routes!
+
 end
 
 # --- Instructions ---
