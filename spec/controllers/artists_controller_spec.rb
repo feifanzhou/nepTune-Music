@@ -4,7 +4,7 @@ describe ArtistsController do
 	let(:artist) { FactoryGirl.create(:artist) }
 	describe "GET #about" do
 		it "renders the :about view" do
-			visit artist_about_path(artist)
+			visit artist_about_path(artist.artistname)
 			# response.should render_template :about
 			response.should be_success
 		end
@@ -12,7 +12,7 @@ describe ArtistsController do
 
 	describe "GET #music" do
 		it "renders the :music view" do
-			visit artist_music_path(artist)
+			visit artist_music_path(artist.artistname)
 			# response.should render_template :music
 			response.should be_success
 		end
