@@ -12,8 +12,18 @@
 require 'spec_helper'
 
 describe Album do
-  before { @album = Album.new }
+  before do
+    @artist = FactoryGirl.create(:artist)
+    @album = Album.new(artist: @artist)
+  end
 
   it { should respond_to(:name) }
+  it { should respond_to(:artist) }
+  it { should be_valid }
+
+  describe "without artist" do
+    before { @album.artist = nil }
+    it { should_not be_valid }
+  end
 
 end
