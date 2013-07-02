@@ -1,6 +1,7 @@
 require 'factory_girl'
 require 'rubygems'
 require 'spork'
+require 'rake'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -16,6 +17,12 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'capybara/rails'
   require 'capybara/rspec'
+
+  rake = Rake::Application.new
+  Rake.application = rake
+  rake.init
+  rake.load_rakefile
+  rake['admin:reset_and_fill_db'].invoke
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
