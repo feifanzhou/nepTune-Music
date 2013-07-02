@@ -19,7 +19,6 @@ describe Attendee do
     @artist = Artist.new(artistname: "wakawaka")
     @event = Event.new
     @attendee = Attendee.create(user: @user, status: :going, event: @event)
-    p @attendee
   }
 
   subject { @attendee }
