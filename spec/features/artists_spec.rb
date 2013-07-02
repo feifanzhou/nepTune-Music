@@ -1,10 +1,10 @@
 require 'factory_girl'
 require 'spec_helper'
 
-def set_host (host)
-  default_url_options[:host] = host
-  Capybara.app_host = "http://" + host
-end
+# def set_host (host)
+#   default_url_options[:host] = host
+#   Capybara.app_host = "http://" + host
+# end
 
 # https://github.com/jnicklas/capybara
 # http://stackoverflow.com/a/13755730/472768
@@ -12,7 +12,7 @@ describe "Artist pages" do
   subject { page }
 
   before :each do
-    set_host "beta.neptune.com:3000"
+    # set_host "beta.neptune.com:3000"
     @artist = Artist.first
   end
 
