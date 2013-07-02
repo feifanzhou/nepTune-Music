@@ -12,7 +12,9 @@ class ArtistsController < ApplicationController
   end
 
   def about
+    @artist = Artist.find_by_artistname(params[:artistname].downcase)
     @contact_info = @artist.contact_info
+    puts "1 ==============================="
     puts @artist.inspect
   end
 
