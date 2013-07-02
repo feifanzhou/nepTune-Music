@@ -1,12 +1,5 @@
 require 'spec_helper'
 
-def create_artist_event(artist)
-	e1 = FactoryGirl.create(:event)
-	e1.creator = artist
-	e1.save
-	return e1
-end
-
 describe ArtistsController do
 	let(:artist) { FactoryGirl.create(:artist) }
 	describe "GET #about" do
