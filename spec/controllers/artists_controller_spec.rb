@@ -3,10 +3,6 @@ require 'spec_helper'
 describe ArtistsController do
 	let(:artist) { FactoryGirl.create(:artist) }
 	describe "GET #about" do
-		it "finds artist by artistname" do
-			visit artist_about_path(artist)
-			assigns(:artist).should eq(@artist)
-		end
 		it "renders the :about view" do
 			visit artist_about_path(artist)
 			# response.should render_template :about
@@ -15,10 +11,6 @@ describe ArtistsController do
 	end
 
 	describe "GET #music" do
-		it "finds artist by artistname" do
-			visit artist_music_path(artist)
-			assigns(:artist).should eq(@artist)
-		end
 		it "renders the :music view" do
 			visit artist_music_path(artist)
 			# response.should render_template :music
@@ -27,16 +19,6 @@ describe ArtistsController do
 	end
 
 	describe "GET #events" do
-		it "finds artist by artistname" do
-			visit artist_events_path(artist)
-			assigns(:artist).should eq(@artist)
-		end
-		it "gets all the artist's events" do
-			# evt = create_artist_event(artist)
-			# visit artist_events_path(artist)
-			# assigns(:events).should eq([evt])
-			pending
-		end
 		it "renders the :events view" do
 			# response.should render_template :events
 			response.should be_success
