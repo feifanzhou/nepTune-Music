@@ -14,7 +14,7 @@
 class Artist < ActiveRecord::Base
   # attr_accessible :title, :body
 
-  attr_accessible :artistname
+  attr_accessible :artistname, :story
 
   has_one :contact_info, as: :contactable
   has_many :songs
