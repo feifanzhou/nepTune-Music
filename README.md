@@ -17,7 +17,7 @@ The hosts entries you'll have to  make (they should be on separate lines):
 127.0.0.1 neptune.com
 127.0.0.1 www.neptune.com```
 
-Next, you'll have to set up your databases. We're using Postgres, because Heroku uses it in production and it's best to keep things the same as much as possible. There's a [mac app](http://postgresapp.com) which makes it really easy to run Postgres. In Terminal, make sure you ```cd``` to the Rails app's root directory, and run ```rake db:create``` then ```rake db:migrate```. Finally, run ```rake admin:fill_db``` to create sample database entries. This task is in ```lib/tasks/fill_db.rake``` if you want to check it out. *Note that the rake task wipes the database when it runs to prevent problems with old associations and ids*. 
+Next, you'll have to set up your databases. We're using Postgres, because Heroku uses it in production and it's best to keep things the same as much as possible. There's a [mac app](http://postgresapp.com) which makes it really easy to run Postgres. In Terminal, make sure you ```cd``` to the Rails app's root directory, and run ```rake db:create``` then ```rake db:migrate```. Finally, run ```rake admin:reset_and_fill_db``` to create sample database entries. This task is in ```lib/tasks/fill_db.rake``` if you want to check it out. *Note that the rake task wipes the database when it runs to prevent problems with old associations and ids*. 
 
 Using this setup, you can access the app at ```beta.neptune.com:3000```. An artist's page is at ```beta.neptune.com:3000/thepianoguys```, and from there it links to other pages as well. 
 
