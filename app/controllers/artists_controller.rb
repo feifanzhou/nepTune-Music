@@ -13,6 +13,7 @@ class ArtistsController < ApplicationController
 
   def about
     @contact_info = @artist.contact_info
+    puts @artist.inspect
   end
 
   def music
@@ -25,8 +26,8 @@ class ArtistsController < ApplicationController
   def update_content
     case params[:location]
     when 'AboutGalleryCaption'
-      # Is this secure? 
-      # Does authenticate_editing prevent me from 
+      # Is this secure?
+      # Does authenticate_editing prevent me from
       # passing in any artist name and media id and modifying it?
       m_id = params[:mediaID].to_i
       m = Media.find(m_id)
@@ -104,7 +105,7 @@ class ArtistsController < ApplicationController
     Media.find(m_id).destroy
   end
 
-  def sanitize(s) 
+  def sanitize(s)
     ActionView::Base.full_sanitizer.sanitize(s)
   end
 end

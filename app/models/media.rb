@@ -23,7 +23,7 @@
 #
 
 class Media < ActiveRecord::Base
-  attr_accessible :name, :details, :location, :height, :width, :is_primary, :file
+  attr_accessible :name, :details, :location, :height, :width, :is_primary, :file, :custom_path
 
   belongs_to :media_holder, polymorphic: true
 
@@ -32,11 +32,17 @@ class Media < ActiveRecord::Base
   has_attached_file :file, s3_protocol: 'https', s3_permissions: { original: :private }
 
   def self.for_location(loc)
-  	return Media.find_by_location(loc.to_s, order: "collection_order ASC")
+    return Media.find_by_location(loc.to_s, order: "collection_order ASC")
   end
 
   def show_html
     raise "SubclassResponsibility"
+  end
+
+  def increase_play_count_for_user(user)
+    pc = PlayCount.find_by_user_id_and_media_id(user.id, self.id)
+    pc.count += 1
+    pc.save
   end
 
   # http://stackoverflow.com/a/17154985/472768

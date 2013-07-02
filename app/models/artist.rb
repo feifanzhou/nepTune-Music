@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # == Schema Information
 #
 # Table name: artists
@@ -22,16 +23,17 @@ class Artist < ActiveRecord::Base
   has_many :media, as: :media_holder, class_name: "Media"
   has_many :band_members
   has_many :users, through: :band_members
+  has_many :followers
   has_many :users, through: :followers, as: :fans
 
   validates :artistname, presence: true
 
   def display_name
-  	return self.artistname || super	# If username, return that
+    return self.artistname || super	# If username, return that
   end
 
   def members
-  	return self.band_members.map(&:user)
+    return self.band_members.map(&:user)
   end
 
   def email		# Likely artist email will be nil, so return email of member
@@ -39,10 +41,10 @@ class Artist < ActiveRecord::Base
   end
 
   def isArtist
-  	return true		# Every artist…is an artist
+    return true		# Every artist…is an artist
   end
 
   def media_for_location(loc)
     return Media.where(media_holder_id: self.id, location: loc.to_s)
-  end  
+  end
 end

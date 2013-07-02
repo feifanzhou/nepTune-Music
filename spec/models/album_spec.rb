@@ -12,5 +12,8 @@
 require 'spec_helper'
 
 describe Album do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before { @album = Album.new }
+
+  it { should respond_to(:name) }
+
 end

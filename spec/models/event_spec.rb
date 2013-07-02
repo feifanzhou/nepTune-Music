@@ -14,5 +14,12 @@
 require 'spec_helper'
 
 describe Event do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before { @event = Event.new(name: "Sweet stuff",
+                              start_at: DateTime.now(),
+                              end_at: DateTime.now().since(3600) )
+  }
+
+  it { should be_valid }
+
 end

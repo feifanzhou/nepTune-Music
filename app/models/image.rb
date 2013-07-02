@@ -38,6 +38,6 @@ class Image < Media
   end
 
   def path
-    self.file.expiring_url
+    self.file.expiring_url || self.custom_path
   end
 end
