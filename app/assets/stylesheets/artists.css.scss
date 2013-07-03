@@ -489,6 +489,15 @@ header {
 										margin-bottom: 8px;
 										position: relative;
 										width: 100%;
+										#imgUploadSpinner {
+											display: none;
+											margin-top: 50px;
+											width: 100%;
+										}
+										.ImagePreview {
+											max-height: 100%;
+											max-width: 100%;
+										}
 										button {
 											left: 68px;
 											position: absolute;
@@ -505,6 +514,9 @@ header {
                                                 position: absolute;
                                                 left: 1000mm;
 											}
+										}
+										#upload_target {
+											display: none;
 										}
 									}
 									.AddElementCaption {
@@ -533,6 +545,7 @@ header {
 								padding-left: 15px;
 							}
 						}
+
 					}
 					.SliderElementRemoveOverlay {
 						background: transparentize(white, 0.2);
@@ -580,6 +593,11 @@ header {
 								margin: 1px 10px;
 							}
 						}
+					}
+					img {
+						display: block;
+						height: 360px;
+						max-height: 360px;
 					}
 				}
 			}

@@ -9,13 +9,19 @@
 				<h2><span class='Icon'>&#59413;</span> Add Image</h2>
 				<div class='UploadPreview' id='imageUploadPreview'>
 					<button class='btn btn-primary' id='selectImageButton'>Select Image</button>
-					<input type='file' id='selectImage' />
+					<p class='Icon' id='imgUploadSpinner'>&#59392;</p>
+					<form id='uploadImageForm' action="/<%= artistname %>/update_content?location=AboutGalleryImageUpload" method="POST" enctype='multipart/form-data' target='upload_target'>
+						<input type='file' name='select_image' id='selectImage' />
+						<!-- <input type='submit' class='btn btn-primary' value='Submit' /> -->
+					</form>
+					<iframe id='upload_target' name='upload_target' src=''>
+					</iframe>
 				</div>
 				<input type='text' class='AddElementCaption' id='addImageCaption'
 placeholder='Caption for this picture' />
 				<div class='AddElementActions'>
 					<button class='btn AddElementCancel'>Cancel</button>
-					<button class='btn btn-primary'>Save Image</button>
+					<button class='btn btn-primary' id='saveImage'>Save Image</button>
 				</div>
 			</div>
 		</div>

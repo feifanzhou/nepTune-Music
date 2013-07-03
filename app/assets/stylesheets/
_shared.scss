@@ -59,6 +59,15 @@
 	}
 }
 
+.Spinner {
+	-webkit-animation: spin 2s infinite linear;
+	-moz-animation: spin 2s infinite linear;
+	-o-animation: spin 2s infinite linear;
+	-ms-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+	text-align: center;
+}
+
 .tooltip {
 	font-family: $Lato;
 	font-size: 13px;

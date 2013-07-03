@@ -32,4 +32,8 @@ class Image < Media
   def caption
     self.name
   end
+
+  def show_html
+  	return "<img src='#{ self.path }' />".html_safe
+  end
 end

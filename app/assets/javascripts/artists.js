@@ -243,6 +243,18 @@ function getArtistNameFromURL() {
   return document.URL.split("/")[3];
 }
 
+function beginUpload() {
+  $('#imgUploadSpinner').addClass('Spinner');
+  $('#imgUploadSpinner').css('display', 'inline-block');
+  $('#selectImageButton').css('display', 'none');
+  $('#uploadImageForm').css('display', 'none');
+}
+
+function finishUpload() {
+  $('#imgUploadSpinner').removeClass('Spinner');
+  $('#imgUploadSpinner').css('display', 'none');
+}
+
 $('.AddElementFace').click(function() {
   var clicked = $(this);
   $('.AddElementOption').each(function() {
@@ -270,7 +282,50 @@ $('#selectImageButton').click(function() {
 $('#selectImage').change(function() {
   console.log('chose file');
   var fileList = this.files;
-  console.log('file list: ' + fileList);
+  // beginUpload();
+  $('#uploadImageForm').submit();
+});
+$('#uploadImageForm').submit(function() {
+  beginUpload();
+});
+var img_id = -1;
+$('#upload_target').load(function() {
+  finishUpload();
+  var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
+  console.log('upload image resp: ' + resp);
+  var i = "<img class='ImagePreview' src='" + resp['obj_data'] + "' />";
+  $('#imageUploadPreview').append(i);
+  img_id = parseInt(resp['extra_data'], 10);
+});
+function createGalleryItemWithContent(ctc, caption, index, m_id) {
+  var se = "<div class='SliderElement' id='gallery" + index + "'>";
+  se += "<div class='SliderElementRemoveOverlay'>";
+  se += "<span class='Icon SliderElementRemove' id='remove" + index + "'";
+  se += " data-media-id='" + m_id + "'>&#59407;</span></div>";
+  se += "<h2 class='SliderTitle'><p class='TitleTextEdit' contenteditable data-media-id='" + m_id + "'>";
+  se += "" + caption + "</p><p class='ClickToEdit'>Click on caption to edit</p></h2>";
+  se += "" + ctc + "</div>";
+  $('#slider').append(se);
+}
+$('#saveImage').click(function() {
+  var caption = $('#addImageCaption').val();
+  var order = $('.SliderElement').length;
+  $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutGalleryImage',
+            m_id: img_id,
+            caption: caption,
+            order: order
+          },
+    success: function(resp) {
+      console.log('Successfully added gallery image');
+      var img_tag = "<img src='" + resp['obj_data'] + "' />";
+      var m_id = resp['extra_data'];
+      createGalleryItemWithContent(img_tag, caption, order, m_id);
+      window.location.hash = '#' + order;
+    }
+  });
 });
 $('.AddVideoURL').keydown(function(event) {
   if (event.keyCode !== 13)
@@ -290,24 +345,14 @@ $('.AddVideoURL').blur(function(event) {
     $('#videoUploadPreview').append(iframe);
   }
 });
-function createGalleryItemWithContent(ctc, caption, index, m_id) {
-  var se = "<div class='SliderElement' id='gallery" + index + "'>";
-  se += "<div class='SliderElementRemoveOverlay'>";
-  se += "<span class='Icon SliderElementRemove' id='remove" + index + "'";
-  se += " data-media-id='" + m_id + "'>&#59407;</span></div>";
-  se += "<h2 class='SliderTitle'><p class='TitleTextEdit' contenteditable data-media-id='" + m_id + "'>";
-  se += "" + caption + "</p><p class='ClickToEdit'>Click on caption to edit</p></h2>";
-  se += "" + ctc + "</div>";
-  $('#slider').append(se);
-}
 $('#saveVideo').click(function() {
   var URL = youtubeEmbedForURL($('.AddVideoURL').val());
   var caption = $('#addVideoCaption').val();
-  var order = $('.SliderElement').length;  // -1 for add element itself
+  var order = $('.SliderElement').length;
   $.ajax({
     url: '/' + getArtistNameFromURL() + '/update_content',
     type: 'POST',
-    data: { location: 'AboutGalleryItem',
+    data: { location: 'AboutGalleryVideo',
             video_URL: URL,
             caption: caption,
             order: order
@@ -315,7 +360,7 @@ $('#saveVideo').click(function() {
     success: function(resp) {
       console.log('Successfully added gallery media');
       // Create gallery item
-      m_id = resp["obj_id"];
+      m_id = resp["obj_data"];
       createGalleryItemWithContent(youtubeIframeForURL($('.AddVideoURL').val(), 640, 360), caption, order, m_id);
       // Change hash
       window.location.hash = '#' + order;

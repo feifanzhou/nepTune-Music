@@ -40,13 +40,7 @@ div.LoginContainer {
 		text-align: left;
 		width: 320px;
 		#fbLoginSpinner {
-			-webkit-animation: spin 2s ease-in;
-			-moz-animation: spin 2s ease-in;
-			-o-animation: spin 2s ease-in;
-			-ms-animation: spin 2s ease-in;
-			animation: spin 2s ease-in;
 			display: none;
-			text-align: center;
 		}
 		#fbLogin {
 			@include buttonBackground($fbBlueHighlight, $fbBlue);

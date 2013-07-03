@@ -26,7 +26,8 @@ class ArtistsController < ApplicationController
 
   def update_content
     artist = Artist.find_by_artistname(params[:artistname])
-    i_id = -1
+    obj_data = -1
+    extra_data = -1
     case params[:location]
     when 'AboutGalleryCaption'
       # Is this secure?
@@ -44,18 +45,27 @@ class ArtistsController < ApplicationController
       setter = params[:field] + '='   # Build setter method
       ci.send(setter, sanitize(params[:value]))   # http://stackoverflow.com/a/621193/472768
       ci.save
-    when 'AboutGalleryItem'   # Add gallery item
+    when 'AboutGalleryVideo'   # Add gallery video
       custom_path = params[:video_URL]
       caption = params[:caption]
       order = params[:order]
       ag = Video.create(name: caption, location: 'AboutGallery', custom_path: custom_path, collection_order: order, media_holder: artist)
-      i_id = ag.id
+      obj_data = ag.id
+    when 'AboutGalleryImageUpload'    # Upload gallery image
+      i = Image.create(location: 'AboutGallery', file: params[:select_image], media_holder: artist)
+      obj_data = i.path
+      extra_data = i.id
+      sleep(1)
+    when 'AboutGalleryImage'    # Add gallery image
+      i = Image.find(params[:m_id])
+      i.caption = params[:caption]
+      i.collection_order = params[:order].to_i
+      i.save
+      obj_data = i.path
+      extra_data = i.id
     end
-    if i_id > -1
-      render json: { success: 1, obj_id: i_id }, status: 200
-    else
-      render json: { success: 1 }, status: 200
-    end
+
+    render json: { success: 1, obj_data: obj_data, extra_data: extra_data }, status: 200
   end
 
   def remove_media
