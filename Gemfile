@@ -38,7 +38,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'capybara-webkit'
   gem 'selenium-webdriver'
-  #gem 'poltergeist'
+  # gem 'poltergeist'
   # gem 'factory_girl_rails', '1.0'
   gem 'factory_girl_rails', '4.1.0'
   gem 'faker'
