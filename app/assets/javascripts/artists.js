@@ -263,7 +263,57 @@ $('.AddElementCancel').click(function() {
   var face = $(info).siblings('.AddElementFace');
   $(face).css('display', 'block');
   $(info).css('display', 'none');
-})
+});
+$('.AddVideoURL').keydown(function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).blur();
+  return false;
+});
+$('.AddVideoURL').blur(function(event) {
+  var input = $(this);
+  var URL = $(this).val();
+  console.log('URL input text: ' + URL);
+  if (URL.indexOf('youtube.com') >= 0) {
+    var iframe = youtubeIframeForURL(URL);
+    console.log('iframe: ' + iframe);
+    $(input).css('display', 'none');
+    $('#videoUploadPreview').append(iframe);
+  }
+});
+function createGalleryItemWithContent(ctc, caption, index, m_id) {
+  var se = "<div class='SliderElement' id='gallery" + index + "'>";
+  se += "<div class='SliderElementRemoveOverlay'>";
+  se += "<span class='Icon SliderElementRemove' id='remove" + index + "'";
+  se += " data-media-id='" + m_id + "'>&#59407;</span></div>";
+  se += "<h2 class='SliderTitle'><p class='TitleTextEdit' contenteditable data-media-id='" + m_id + "'>";
+  se += "" + caption + "</p><p class='ClickToEdit'>Click on caption to edit</p></h2>";
+  se += "" + ctc + "</div>";
+  $('#slider').append(se);
+}
+$('#saveVideo').click(function() {
+  var URL = youtubeEmbedForURL($('.AddVideoURL').val());
+  var caption = $('#addVideoCaption').val();
+  var order = $('.SliderElement').length;  // -1 for add element itself
+  $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutGalleryItem',
+            video_URL: URL,
+            caption: caption,
+            order: order
+          },
+    success: function(resp) {
+      console.log('Successfully added gallery media');
+      // Create gallery item
+      m_id = resp["obj_id"];
+      createGalleryItemWithContent(youtubeIframeForURL($('.AddVideoURL').val(), 640, 360), caption, order, m_id);
+      // Change hash
+      window.location.hash = '#' + order;
+    }
+  });
+});
 
 function renumberGalleryElements() {
   var index = 0;
