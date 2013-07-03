@@ -53,18 +53,35 @@ describe "Artist pages" do
           fill_in "Caption for this picture", with: "Cool gnu"
         end
 
-        it do
-          lambda do
-            click_button "Save Image"
-          end.should change(@artist.media_for_location(:AboutGallery), :count).by(1)
+        it "should add to database" do
+          gallery_count = @artist.media_for_location(:AboutGallery).count
+          media_count = @artist.media.count
+          click_button "Save Image"
+          @artist.media_for_location(:AboutGallery).count should == (gallery_count+1)
+          @artist.media.count.should == (media_count+1)
         end
+
 
         describe "should be there" do
           before do
+            find('#selectImageButton').set(File.join(Rails.root, '/test_files/meditate.jpg'))
+            fill_in "Caption for this picture", with: "Yokolowakawaka"
             click_button "Save Image"
           end
 
-          it { page.should have_content('Cool gnu') }
+          it "and deletable" do
+            gallery_count = @artist.media_for_location(:AboutGallery).count
+            media_count = @artist.media.count
+
+            page.should have_content('Yokolowakawaka')
+
+            find('#slider').find(".SliderElementCurrent").find(".SliderElementRemoveOverlay").click
+
+            page.should_not have_content('Yokolowakawaka')
+
+            @artist.media_for_location(:AboutGallery).count should == (gallery_count-1)
+            @artist.media.count.should == (media_count-1)
+          end
 
         end
       end
@@ -76,18 +93,37 @@ describe "Artist pages" do
           fill_in "Caption for this video", with: "WHITE REFLECTION!!!"
         end
 
-        it do
-          lambda do
-            click_button "Save Video"
-          end.should change(@artist.media_for_location(:AboutGallery), :count).by(1)
+        it "should add to database" do
+          gallery_count = @artist.media_for_location(:AboutGallery).count
+          media_count = @artist.media.count
+          click_button "Save Video"
+          @artist.media_for_location(:AboutGallery).count should == (gallery_count+1)
+          @artist.media.count.should == (media_count+1)
         end
+
+        # tests are consolidated here because javascript takes forever to run =/
 
         describe "should be there" do
           before do
+            fill_in "Video URL", with: 'http://www.youtube.com/watch?v=XLgYAHHkPFs'
+            fill_in "Caption for this video", with: "Imagine -- John Lennon"
             click_button "Save Video"
           end
 
-          it { page.should have_content('WHITE REFLECTION!!!') }
+          it "and deletable" do
+            gallery_count = @artist.media_for_location(:AboutGallery).count
+            media_count = @artist.media.count
+
+            page.should have_content('Imagine -- John Lennon')
+
+            find('#slider').find(".SliderElementCurrent").find(".SliderElementRemoveOverlay").click
+
+            page.should_not have_content('Imagine -- John Lennon')
+
+            @artist.media_for_location(:AboutGallery).count should == (gallery_count-1)
+            @artist.media.count.should == (media_count-1)
+          end
+
         end
       end
 
