@@ -36,14 +36,55 @@ describe "Artist pages" do
       it { should have_button("Save Video") }
       it { should have_button("Cancel") }
 
-      describe "test add image" do
+      describe "check it has proper media" do
+        it "should have all media" do
+          @artist.media_for_location(:AboutGallery).each do |m|
+            page.html.should include(m.show_html)
+          end
+        end
+      end
+
+      describe "add image" do
         before do
-          attach_file "Select Image", ~/Pictures/autres/meditate.jpg
+          attach_file "Select Image", 'test_files/meditate.jpg'
           fill_in "Caption for this picture", with: "Cool gnu"
-          click_button "Save Image"
         end
 
+        it do
+          lambda do
+            click_button "Save Image"
+          end.should change(@artist.media_for_location(:AboutGallery), :count).by(1)
+        end
 
+        describe "should be there" do
+          before do
+            click_button "Save Image"
+          end
+
+          it { page.should have_content('Cool gnu') }
+
+        end
+      end
+
+      describe "add video", :js => true do
+        before do
+          fill_in "Video URL", with: 'http://www.youtube.com/watch?v=m3I2r0viGyA'
+          fill_in "Caption for this video", with: "WHITE REFLECTION!!!"
+        end
+
+        it do
+          lambda do
+            click_button "Save Video"
+          end.should change(@artist.media_for_location(:AboutGallery), :count).by(1)
+        end
+
+        describe "should be there" do
+          before do
+            click_button "Save Video"
+          end
+
+          it { page.should have_content('WHITE REFLECTION!!!') }
+        end
       end
 
     end

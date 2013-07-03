@@ -30,6 +30,7 @@ Spork.prefork do
   rake.load_rakefile
   rake['admin:fill_db'].invoke
 
+  Capybara.javascript_driver = :webkit
   set_host "beta.neptune.com:3000"
 
   # Requires supporting ruby files with custom matchers and macros, etc,
