@@ -19,6 +19,9 @@ class UsersController < ApplicationController
   def new
   end
 
+  def edit
+  end
+
   def create
     sign_out
     params[:password] = temporary_password

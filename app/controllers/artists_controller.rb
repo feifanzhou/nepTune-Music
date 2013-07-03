@@ -5,7 +5,8 @@ class ArtistsController < ApplicationController
   before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :get_current_user_status, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :authenticate_editing
-
+  before_filter :check_logged_in, only: [:update_content, :remove_media]
+  before_filter :redirect_if_not_logged_in, only: [:update_content, :remove_media]
   def show
     # TODO: Render 'about' if first visit, else render 'music'
     render 'music'
@@ -60,6 +61,7 @@ class ArtistsController < ApplicationController
 
   private
   def authenticate_editing
+    @is_editing = false
     return if params[:edit].blank?  # Bail, don't bury: http://blog.wilshipley.com/2005/07/code-insults-mark-i.html
     # If edit param is anything other than 1, redirect to same page, without edit param
     if params[:edit].to_i != 1
@@ -112,4 +114,13 @@ class ArtistsController < ApplicationController
   def sanitize(s)
     ActionView::Base.full_sanitizer.sanitize(s)
   end
+
+  def check_logged_in
+    a_id = Artist.find_by_artistname(params[:artistname]).id
+    bm = BandMember.find_by_user_id_and_artist_id(current_user.id, a_id)
+    if bm.blank?
+      redirect_to root_path
+    end
+  end
+
 end
