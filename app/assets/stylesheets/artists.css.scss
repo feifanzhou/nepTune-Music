@@ -501,7 +501,9 @@ header {
 											right: 6px;
 											top: 48px;
 											&#selectImage {
-												display: none;
+											  //display: none;
+                                                position: absolute;
+                                                left: 1000mm;
 											}
 										}
 									}

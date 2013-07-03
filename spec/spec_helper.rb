@@ -23,6 +23,7 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'capybara/rails'
   require 'capybara/rspec'
+#  require 'capybara/poltergeist'
 
   rake = Rake::Application.new
   Rake.application = rake
@@ -30,12 +31,14 @@ Spork.prefork do
   rake.load_rakefile
   rake['admin:fill_db'].invoke
 
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :selenium #:poltergeist #:selenium #:webkit
+  Capybara.ignore_hidden_elements = false
   set_host "beta.neptune.com:3000"
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
 
   RSpec.configure do |config|
     # ## Mock Framework
@@ -65,6 +68,11 @@ Spork.prefork do
     # Use named routes
     config.include Rails.application.routes.url_helpers
   end
+
+  # Capybara.register_driver :poltergeist do |app|
+  #   Capybara::Poltergeist::Driver.new(app,
+  #                                     js_errors: false )
+  # end
 
 end
 

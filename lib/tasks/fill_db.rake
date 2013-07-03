@@ -39,11 +39,13 @@ the group really started to take off, producing a music video each week and post
 
     ag1 = Video.create(name: 'Phillip Phillips - Home (Piano/Cello Cover)', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0', collection_order: 1, media_holder: jon)
     ag2 = Video.create(name: "Beethoven's 5 Secrets - OneRepublic (Cello/Orchestral Cover)", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/mJ_fkw5j-t0?rel=0', collection_order: 2, media_holder: jon)
-    ag3 = Video.create(name: "Mission Impossible (Piano/Cello/Violin) ft. Lindsey Stirling", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/9p0BqUcQ7i0?rel=0', collection_order: 3, media_holder: jon)
-    ag4 = Video.create(name: "Coldplay - Paradise (Peponi) African Style ft. Alex Boye", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/Cgovv8jWETM?rel=0', collection_order: 4, media_holder: jon)
-    ag5 = Video.create(name: "Berlin", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/VcnzqKpFZ0I?rel=0', collection_order: 5, media_holder: jon)
-    ag6 = Video.create(name: "Moonlight - Electric Cello", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/DRVvFYppU0w?rel=0', collection_order: 6, media_holder: jon)
-    ag7 = Video.create(name: 'ThePianoGuys...before they were The Piano Guys', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/noAoxGXHblw?rel=0', collection_order: 7, media_holder: jon)
+
+    #disable for faster testing
+    # ag3 = Video.create(name: "Mission Impossible (Piano/Cello/Violin) ft. Lindsey Stirling", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/9p0BqUcQ7i0?rel=0', collection_order: 3, media_holder: jon)
+    # ag4 = Video.create(name: "Coldplay - Paradise (Peponi) African Style ft. Alex Boye", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/Cgovv8jWETM?rel=0', collection_order: 4, media_holder: jon)
+    # ag5 = Video.create(name: "Berlin", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/VcnzqKpFZ0I?rel=0', collection_order: 5, media_holder: jon)
+    # ag6 = Video.create(name: "Moonlight - Electric Cello", location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/DRVvFYppU0w?rel=0', collection_order: 6, media_holder: jon)
+    # ag7 = Video.create(name: 'ThePianoGuys...before they were The Piano Guys', location: 'AboutGallery', custom_path: 'http://www.youtube.com/embed/noAoxGXHblw?rel=0', collection_order: 7, media_holder: jon)
 
     puts "Taking images..."	# Just album art and event photos, for now
     i1 = Image.create(caption: 'Hits Volume 1', custom_path: 'https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg', height: 600, width: 600)

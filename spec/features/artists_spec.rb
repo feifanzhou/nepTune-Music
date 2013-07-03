@@ -24,6 +24,7 @@ describe "Artist pages" do
 
   describe "Edit artist gallery" do
     describe "valid user" do
+
       before do
         sign_in_as @user, password: "foobar"
         visit artist_about_path(@artist.artistname, edit: 1)
@@ -35,6 +36,7 @@ describe "Artist pages" do
       it { should have_button("Select Image") }
       it { should have_button("Save Video") }
       it { should have_button("Cancel") }
+      it { should have_selector(".AddVideoURL") }
 
       describe "check it has proper media" do
         it "should have all media" do
@@ -44,9 +46,10 @@ describe "Artist pages" do
         end
       end
 
-      describe "add image" do
+      describe "add image", js: true do
         before do
-          attach_file "Select Image", 'test_files/meditate.jpg'
+          find('#addImage').find(".AddElementFace").click
+          find('#selectImageButton').set(File.join(Rails.root, '/test_files/meditate.jpg'))
           fill_in "Caption for this picture", with: "Cool gnu"
         end
 
@@ -66,8 +69,9 @@ describe "Artist pages" do
         end
       end
 
-      describe "add video", :js => true do
+      describe "add video", js: true do
         before do
+          find('#addVideo').find(".AddElementFace").click
           fill_in "Video URL", with: 'http://www.youtube.com/watch?v=m3I2r0viGyA'
           fill_in "Caption for this video", with: "WHITE REFLECTION!!!"
         end
