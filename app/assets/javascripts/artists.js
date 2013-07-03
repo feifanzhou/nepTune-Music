@@ -264,6 +264,14 @@ $('.AddElementCancel').click(function() {
   $(face).css('display', 'block');
   $(info).css('display', 'none');
 });
+$('#selectImageButton').click(function() {
+  $('#selectImage').click();
+});
+$('#selectImage').change(function() {
+  console.log('chose file');
+  var fileList = this.files;
+  console.log('file list: ' + fileList);
+});
 $('.AddVideoURL').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -328,7 +336,7 @@ function renumberGalleryElements() {
   });
 }
 
-http://stackoverflow.com/questions/13929766/event-handlers-not-working-after-dom-manipulation
+// http://stackoverflow.com/questions/13929766/event-handlers-not-working-after-dom-manipulation
 $(document).on('click', '.SliderElementRemove', function() {
   var index = parseInt($(this).attr('data-media-id'), 10);
   var artistname = getArtistNameFromURL();

@@ -500,6 +500,9 @@ header {
 											position: absolute;
 											right: 6px;
 											top: 48px;
+											&#selectImage {
+												display: none;
+											}
 										}
 									}
 									.AddElementCaption {
