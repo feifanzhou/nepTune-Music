@@ -1,6 +1,9 @@
 <%= link_to '#' do %><div class='Icon SliderNav SliderNavDisabled' id='sliderNavLeft'>&#59399;</div><% end %>
 <div class='Slider' id='slider'>
-	<% gallery_index = 0 %>
+	<% if is_editing %>
+	<%= render 'layouts/about_gallery_add_item_element' %>
+	<% end %>
+	<% gallery_index = is_editing ? 1 : 0 %>
 	<% artist.media_for_location(:AboutGallery).each do |m| %>
 	<div class="SliderElement <%= 'SliderElementCurrent' if gallery_index == 0 %>" id="gallery<%= gallery_index %>">
 		<% if is_editing %>

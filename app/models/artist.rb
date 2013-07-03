@@ -45,7 +45,7 @@ class Artist < ActiveRecord::Base
   end
 
   def media_for_location(loc)
-    return Media.where(media_holder_id: self.id, location: loc.to_s)
+    return Media.where(media_holder_id: self.id, location: loc.to_s).order('collection_order ASC')
   end
 
   def add_band_member(user)

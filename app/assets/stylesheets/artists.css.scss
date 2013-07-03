@@ -415,15 +415,16 @@ header {
 			}
 			.Slider {
 				font-size: 0;
+				height: 360px;
+				left: 0;
 				overflow: visible;
 				position: absolute;
-				left: 0px;
+				top: 0;
 				width: auto;
 				transition: left 0.8s;
 				-webkit-transition: left 0.8s;
 				.SliderElement {
 					display: inline-block;
-					// float: left;
 					height: 360px;
 					opacity: 0.15;
 					pointer-events: none;
@@ -433,6 +434,98 @@ header {
 					&.SliderElementCurrent {
 						opacity: 1;
 						pointer-events: auto;
+					}
+					&.SliderAddElement {
+						height: 360px;
+						width: 560px;
+						.SliderElementInnerContent {
+							background: $Debut;
+							border-radius: 4px;
+							color: black;
+							height: 310px;
+							margin: 10px;
+							padding: 15px;
+							.AddElementOption {
+								display: inline-block;
+								float: left;
+								height: 100%;
+								position: relative;
+								text-align: center;
+								width: 239px;
+								.AddElementFace {
+									@include AnimateBackground;
+									border-radius: 3px;
+									height: 100%;
+									position: relative;
+									width: 100%;
+									&:hover {
+										background: transparentize(#AAA, 0.65);
+										cursor: pointer;
+									}
+									p {
+										position: absolute;
+										text-align: center;
+										top: 176px;
+										width: 100%;
+										&.AddElementIcon {
+											font-size: 60px;
+											top: 86px;
+										}
+									}
+								}
+								.AddElementInfo {
+									display: none;
+									h2 {
+										font-family: $PTSans;
+									}
+									.UploadPreview {
+										background: #AAA;
+										border: 4px dashed #888;
+										border-radius: 2px;
+										box-sizing: border-box;
+										height: 132px;
+										margin-bottom: 8px;
+										position: relative;
+										width: 100%;
+										button {
+											left: 68px;
+											position: absolute;
+											top: 50px;
+										}
+										input {
+											height: 30px;
+											left: 6px;
+											position: absolute;
+											right: 6px;
+											top: 46px;
+										}
+									}
+									.AddElementCaption {
+										box-sizing: border-box;
+										height: 32px;
+										max-height: 190px;
+										max-width: 100%;
+										width: 100%;
+									}
+									.AddElementActions {
+										button {
+											margin: 6px;
+										}
+									}
+								}
+							}
+							#addImage {
+								border-bottom-left-radius: 3px;
+								border-top-left-radius: 3px;
+								border-right: 2px groove #AAA;
+								padding-right: 15px;
+							}
+							#addVideo {
+								border-bottom-right-radius: 3px;
+								border-top-right-radius: 3px;
+								padding-left: 15px;
+							}
+						}
 					}
 					.SliderElementRemoveOverlay {
 						background: transparentize(white, 0.2);

@@ -243,6 +243,28 @@ function getArtistNameFromURL() {
   return document.URL.split("/")[3];
 }
 
+$('.AddElementFace').click(function() {
+  var clicked = $(this);
+  $('.AddElementOption').each(function() {
+    var face = $(this).children('.AddElementFace');
+    var info = $(this).children('.AddElementInfo');
+    if ($(face)[0] === $(clicked)[0]) {
+      $(face).css('display', 'none');
+      $(info).css('display', 'block');
+    }
+    else {
+      $(face).css('display', 'block');
+      $(info).css('display', 'none');
+    }
+  });
+});
+$('.AddElementCancel').click(function() {
+  var info = $(this).closest('.AddElementInfo');
+  var face = $(info).siblings('.AddElementFace');
+  $(face).css('display', 'block');
+  $(info).css('display', 'none');
+})
+
 function renumberGalleryElements() {
   var index = 0;
   $('.SliderElement').each(function() {
