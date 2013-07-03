@@ -328,7 +328,8 @@ function renumberGalleryElements() {
   });
 }
 
-$('.SliderElementRemove').click(function() {
+http://stackoverflow.com/questions/13929766/event-handlers-not-working-after-dom-manipulation
+$(document).on('click', '.SliderElementRemove', function() {
   var index = parseInt($(this).attr('data-media-id'), 10);
   var artistname = getArtistNameFromURL();
   var rm_el = $(this);
@@ -370,7 +371,8 @@ function updateCaptionForGalleryItem(newText, m_id) {
     }
   });
 }
-$('.TitleTextEdit').keydown(function(event){
+$(document).on('keydown', '.TitleTextEdit', function() {
+// $('.TitleTextEdit').keydown(function(event){
   if (event.keyCode !== 13)  // Check for Return key
     return;
 
@@ -378,7 +380,8 @@ $('.TitleTextEdit').keydown(function(event){
   $(this).blur();
   return false;
 });
-$('.TitleTextEdit').blur(function(event) {
+$(document).on('blur', '.TitleTextEdit', function() {
+// $('.TitleTextEdit').blur(function(event) {
   var m_id = parseInt($(this).attr('data-media-id'), 10);
   var text = $(this).html();
   updateCaptionForGalleryItem(text, m_id);
@@ -398,14 +401,16 @@ function updateStoryForArtist(newText) {
     }
   });
 }
-$('.ArtistStory').keydown(function(event) {
+$(document).on('keydown', '.ArtistStory', function() {
+// $('.ArtistStory').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
   event.preventDefault();
   $(this).blur();
   return false;
 });
-$('.ArtistStory').blur(function(event) {
+$(document).on('blur', '.ArtistStory', function() {
+// $('.ArtistStory').blur(function(event) {
   var nTxt = $(this).html();
   console.log('nTxt: ' + nTxt);
   updateStoryForArtist(nTxt);
@@ -424,14 +429,16 @@ function updateContactInfoForArtist(field, value) {
     }
   });
 }
-$('.ContactText').keydown(function(event) {
+$(document).on('keydown', '.ContactText', function() {
+// $('.ContactText').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
   event.preventDefault();
   $(this).blur();
   return false;
 });
-$('.ContactText').blur(function(event) {
+$(document).on('blur', '.ContactText', function() {
+// $('.ContactText').blur(function(event) {
   var value = $(this).html();
   console.log('value: ' + value);
   var field = $(this).attr('id');
