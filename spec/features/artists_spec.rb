@@ -89,11 +89,12 @@ describe "Artist pages" do
       describe "add video", js: true do
         before do
           find('#addVideo').find(".AddElementFace").click
-          fill_in "Video URL", with: 'http://www.youtube.com/watch?v=m3I2r0viGyA'
+          #fill_in "Video URL", with: 'http://www.youtube.com/watch?v=m3I2r0viGyA'
           fill_in "Caption for this video", with: "WHITE REFLECTION!!!"
         end
 
         it "should add to database" do
+          fill_in "Video URL", with: 'http://www.youtube.com/watch?v=m3I2r0viGyA'
           gallery_count = @artist.media_for_location(:AboutGallery).count
           media_count = @artist.media.count
           click_button "Save Video"
