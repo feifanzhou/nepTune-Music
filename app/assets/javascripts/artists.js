@@ -347,6 +347,7 @@ $('#saveImage').click(function() {
       var m_id = resp['extra_data'];
       createGalleryItemWithContent(img_tag, caption, order, m_id);
       window.location.hash = '#' + order;
+      $('#cancelImage').click();
     }
   });
 });
@@ -388,6 +389,8 @@ $('#saveVideo').click(function() {
       createGalleryItemWithContent(youtubeIframeForURL($('.AddVideoURL').val(), 640, 360), caption, order, m_id);
       // Change hash
       window.location.hash = '#' + order;
+      // Clear input
+      $('#cancelVideo').click();
     }
   });
 });
