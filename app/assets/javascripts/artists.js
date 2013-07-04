@@ -275,6 +275,29 @@ $('.AddElementCancel').click(function() {
   var face = $(info).siblings('.AddElementFace');
   $(face).css('display', 'block');
   $(info).css('display', 'none');
+  if ($(this).attr('id') == 'cancelImage') {
+    $('#selectImageButton').css('display', 'block');
+    $('#uploadImageForm').css('display', 'block');
+    var m_id = $('.ImagePreview').attr('data-media-id');
+    $.ajax({
+      url: '/' + getArtistNameFromURL() + '/update_content',
+      type: 'POST',
+      data: { location: 'AboutGalleryImageRemove',
+              m_id: m_id
+            },
+      success: function(resp) {
+        console.log('Successfully removed gallery image');
+        $('.ImagePreview').remove();
+      }
+    });
+    $('#addImageCaption').val('');
+  }
+  else {
+    $('#videoURL').css('display', 'inline-block');
+    $('.VideoPreview').remove();
+    $('.youtube5placeholder').remove(); // Only for YouTube 5 extension
+    $('#addVideoCaption').val('');
+  }
 });
 $('#selectImageButton').click(function() {
   $('#selectImage').click();
@@ -293,9 +316,9 @@ $('#upload_target').load(function() {
   finishUpload();
   var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
   console.log('upload image resp: ' + resp);
-  var i = "<img class='ImagePreview' src='" + resp['obj_data'] + "' />";
-  $('#imageUploadPreview').append(i);
   img_id = parseInt(resp['extra_data'], 10);
+  var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
+  $('#imageUploadPreview').append(i);
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
   var se = "<div class='SliderElement' id='gallery" + index + "'>";
@@ -340,6 +363,7 @@ $('.AddVideoURL').blur(function(event) {
   console.log('URL input text: ' + URL);
   if (URL.indexOf('youtube.com') >= 0) {
     var iframe = youtubeIframeForURL(URL);
+    var iframe = iframe.slice(0, 8) + "class='VideoPreview' " + iframe.slice(8);
     console.log('iframe: ' + iframe);
     $(input).css('display', 'none');
     $('#videoUploadPreview').append(iframe);

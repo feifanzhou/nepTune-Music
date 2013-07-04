@@ -488,6 +488,7 @@ header {
 										height: 132px;
 										margin-bottom: 8px;
 										position: relative;
+										text-align: center;
 										width: 100%;
 										#imgUploadSpinner {
 											display: none;
@@ -497,6 +498,7 @@ header {
 										.ImagePreview {
 											max-height: 100%;
 											max-width: 100%;
+											text-align: center;
 										}
 										button {
 											left: 68px;
@@ -510,9 +512,7 @@ header {
 											right: 6px;
 											top: 48px;
 											&#selectImage {
-											  //display: none;
-                                                position: absolute;
-                                                left: 1000mm;
+											  display: none;
 											}
 										}
 										#upload_target {

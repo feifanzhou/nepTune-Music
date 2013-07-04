@@ -63,6 +63,10 @@ class ArtistsController < ApplicationController
       i.save
       obj_data = i.path
       extra_data = i.id
+    when 'AboutGalleryImageRemove'
+      m_id = params[:m_id]
+      m = Media.find(m_id)
+      m.destroy
     end
 
     render json: { success: 1, obj_data: obj_data, extra_data: extra_data }, status: 200
