@@ -57,7 +57,7 @@ describe "Artist pages" do
           gallery_count = @artist.media_for_location(:AboutGallery).count
           media_count = @artist.media.count
           click_button "Save Image"
-          @artist.media_for_location(:AboutGallery).count should == (gallery_count+1)
+          @artist.media_for_location(:AboutGallery).count.should == (gallery_count+1)
           @artist.media.count.should == (media_count+1)
         end
 
@@ -79,7 +79,7 @@ describe "Artist pages" do
 
             page.should_not have_content('Yokolowakawaka')
 
-            @artist.media_for_location(:AboutGallery).count should == (gallery_count-1)
+            @artist.media_for_location(:AboutGallery).count.should == (gallery_count-1)
             @artist.media.count.should == (media_count-1)
           end
 
@@ -97,7 +97,7 @@ describe "Artist pages" do
           gallery_count = @artist.media_for_location(:AboutGallery).count
           media_count = @artist.media.count
           click_button "Save Video"
-          @artist.media_for_location(:AboutGallery).count should == (gallery_count+1)
+          @artist.media_for_location(:AboutGallery).count.should == (gallery_count+1)
           @artist.media.count.should == (media_count+1)
         end
 
@@ -120,7 +120,7 @@ describe "Artist pages" do
 
             page.should_not have_content('Imagine -- John Lennon')
 
-            @artist.media_for_location(:AboutGallery).count should == (gallery_count-1)
+            @artist.media_for_location(:AboutGallery).count.should == (gallery_count-1)
             @artist.media.count.should == (media_count-1)
           end
 
