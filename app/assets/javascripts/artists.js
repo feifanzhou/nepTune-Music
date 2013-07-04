@@ -303,6 +303,7 @@ $('.AddElementFace').click(function() {
     }
   });
 });
+var shouldDeleteImage = true;
 $('.AddElementCancel').click(function() {
   var info = $(this).closest('.AddElementInfo');
   var face = $(info).siblings('.AddElementFace');
@@ -311,18 +312,21 @@ $('.AddElementCancel').click(function() {
   if ($(this).attr('id') == 'cancelImage') {
     $('#selectImageButton').css('display', 'block');
     $('#uploadImageForm').css('display', 'block');
-    var m_id = $('.ImagePreview').attr('data-media-id');
-    $.ajax({
-      url: '/' + getArtistNameFromURL() + '/update_content',
-      type: 'POST',
-      data: { location: 'AboutGalleryImageRemove',
-              m_id: m_id
-            },
-      success: function(resp) {
-        console.log('Successfully removed gallery image');
-        $('.ImagePreview').remove();
-      }
-    });
+    if (shouldDeleteImage) {
+      var m_id = $('.ImagePreview').attr('data-media-id');
+      $.ajax({
+        url: '/' + getArtistNameFromURL() + '/update_content',
+        type: 'POST',
+        data: { location: 'AboutGalleryImageRemove',
+                m_id: m_id
+              },
+        success: function(resp) {
+          console.log('Successfully removed gallery image');
+        }
+      });
+    }
+    shouldDeleteImage = true;
+    $('.ImagePreview').remove();
     $('#addImageCaption').val('');
   }
   else {
@@ -381,6 +385,7 @@ $('#saveImage').click(function() {
       var m_id = resp['extra_data'];
       createGalleryItemWithContent(img_tag, caption, order, m_id);
       window.location.hash = '#' + order;
+      shouldDeleteImage = false;
       $('#cancelImage').click();
     }
   });
@@ -465,8 +470,11 @@ $(document).on('click', '.SliderElementRemove', function() {
       setTimeout(function() {
         $('#gallery' + index).remove();
         renumberGalleryElements();
+        var hash = parseInt(window.location.hash.slice(1), 10);
+        hash -= 1;
+        window.location.hash = '#' + hash;
         // window.location.hash = '#' + window.location.hash.slice(1);
-        galleryToHash();
+        // galleryToHash();
       }, 400);
     }
   });
