@@ -9,9 +9,9 @@
 				<h2><span class='Icon'>&#59413;</span> Add Image</h2>
 				<div class='UploadPreview' id='imageUploadPreview'>
 					<button class='btn btn-primary' id='selectImageButton'>Select Image</button>
-					<p class='Icon' id='imgUploadSpinner'>&#59392;</p>
-					<form id='uploadImageForm' action="/<%= artistname %>/update_content?location=AboutGalleryImageUpload" method="POST" enctype='multipart/form-data' target='upload_target'>
-						<input type='file' name='select_image' id='selectImage' />
+					<p class='Icon UploadSpinner' id='imgUploadSpinner'>&#59392;</p>
+					<form class='UploadImageForm' id='uploadImageForm' action="/<%= artistname %>/update_content?location=AboutGalleryImageUpload" method="POST" enctype='multipart/form-data' target='upload_target'>
+						<input type='file' name='select_image' class='SelectImage' id='selectGalleryImage' />
 						<!-- <input type='submit' class='btn btn-primary' value='Submit' /> -->
 					</form>
 					<iframe id='upload_target' name='upload_target' src=''>

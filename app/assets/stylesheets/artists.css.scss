@@ -58,10 +58,59 @@ header {
 			pointer-events: none;
 		}
 		#artistProfile {
-			.ArtistProfilePic {
-				border: 4px solid $white;
-				border-radius: 4px;
-				margin: 10px 26px;
+			.ProfilePictureContainer {
+				margin: 0 32px;
+				&.ProfilePictureEdit {
+					position: relative;
+					&:hover {
+						cursor: pointer;
+					}
+					#profileDarken {
+						background-color: transparentize(black, 0.25);
+						display: none;
+						height: 160px;
+						left: 4px;
+						position: absolute;
+						top: 15px;
+						width: 160px;
+					}
+					#profileUploadSpinner {
+						color: $white;
+						display: none;
+						font-size: 36px;
+						left: 68px;
+						position: absolute;
+						top: 68px;
+					}
+					#changeProfilePic {
+						@include TranslucentBar;
+						color: $white;
+						font-family: $OpenSans;
+						height: 24px;
+						left: 4px;
+						position: absolute;
+						text-align: center;
+						top: 150px;
+						width: 160px;
+					}
+					#profile_target {
+						display: none;
+					}
+				}
+				.ArtistProfilePic {
+					border: 4px solid $white;
+					border-radius: 4px;
+					height: 160px;
+					margin: 10px 0;
+					max-height: 160px;
+					max-width: 160px;
+					min-height: 160px;
+					min-width: 160px;
+					width: 160px;
+				}
+			}
+			.UploadImageForm {
+				display: none;
 			}
 			.ArtistProfileName {
 				font-family: $OpenSans;
@@ -511,7 +560,7 @@ header {
 											position: absolute;
 											right: 6px;
 											top: 48px;
-											&#selectImage {
+											&.SelectImage {
 											  display: none;
 											}
 										}

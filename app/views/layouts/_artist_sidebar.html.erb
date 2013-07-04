@@ -1,15 +1,20 @@
 <div id='artistSidebar'>
   <div class='ShadowTop' id='sidebarShadowTop'></div>
   <section id='artistProfile'>
-    <%= image_tag("pianoguys.jpg", size: "160x160", alt: "The Piano Guys", class:
+    <div class="ProfilePictureContainer <%= 'ProfilePictureEdit' if is_editing %>">
+      <%= image_tag("pianoguys.jpg", size: "160x160", alt: "The Piano Guys", class:
 "ArtistProfilePic") %>
+      <% if is_editing %>
+      <div id='profileDarken'></div>
+      <p class='Icon UploadSpinner' id='profileUploadSpinner'>&#59392;</p>
+      <div id='changeProfilePic'>Click to change picture</div>
+      <% end %>
+      <iframe id='profile_target' name='profile_target' src=''></iframe>
+    </div>
+    <form class='UploadImageForm' action="/<%= artist.artistname %>/update_content?location=ProfilePictureUpload" method='POST' enctype='multipart/form-data' target='profile_target' id='uploadProfileForm'>
+      <input type='file' name='select_image' id='selectProfile' />
+    </form>
     <p class='ArtistProfileName'>The Piano Guys</p>
-    <h2 class='SidebarSubheading'>Who we are</h2>
-    <p class='ArtistProfileBio'>The Piano Guys have quickly become an international sensation by way
-of their immensely successful self-made music videos. Their uniquely unprecedented sound mixing pop
-and classical music conveyed through stunning cinematography has them consistently atop iTunes and
-YouTube charts alike. If youve seen a piano on a cliff or a train or a cellist jumping out of a
-plane then you've seen The Piano Guys!</p>
   </section>
   <section id='artistActions'>
     <button class="ArtistAction <%= 'ArtistActionOn' if is_following %>"

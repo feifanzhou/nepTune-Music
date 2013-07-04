@@ -2,12 +2,16 @@
 #
 # Table name: artists
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  type       :string(255)
-#  artistname :string(255)
-#  story      :text
+#  id                  :integer          not null, primary key
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  type                :string(255)
+#  artistname          :string(255)
+#  story               :text
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 require 'spec_helper'

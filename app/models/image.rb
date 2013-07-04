@@ -34,6 +34,6 @@ class Image < Media
   end
 
   def show_html
-  	return "<img src='#{ self.path }' />".html_safe
+  	return "<img src='#{ self.path }' alt='#{ self.name }' />".html_safe
   end
 end

@@ -243,17 +243,50 @@ function getArtistNameFromURL() {
   return document.URL.split("/")[3];
 }
 
-function beginUpload() {
+function beginUpload(hideButton) {
   $('#imgUploadSpinner').addClass('Spinner');
   $('#imgUploadSpinner').css('display', 'inline-block');
-  $('#selectImageButton').css('display', 'none');
-  $('#uploadImageForm').css('display', 'none');
+  if (hideButton)
+    $('#selectImageButton').css('display', 'none');
+  $('.UploadImageForm').css('display', 'none');
 }
-
 function finishUpload() {
   $('#imgUploadSpinner').removeClass('Spinner');
   $('#imgUploadSpinner').css('display', 'none');
 }
+
+function beginProfilePictureUpload() {
+  $('#profileUploadSpinner').addClass('Spinner');
+  $('#profileUploadSpinner').css('display', 'inline-block');
+  $('#profileDarken').css('display', 'block');
+}
+function finishProfilePictureUpload() {
+  $('#profileUploadSpinner').removeClass('Spinner');
+  $('#profileUploadSpinner').css('display', 'none');
+  $('#profileDarken').css('display', 'none');
+}
+$('.ProfilePictureEdit').click(function() {
+  $('#selectProfile').click();
+});
+$('#selectProfile').change(function() {
+  console.log('files changed');
+  $('#uploadProfileForm').submit();
+});
+$('#uploadProfileForm').submit(function() {
+  console.log('profile form submit');
+  beginProfilePictureUpload();
+});
+var img_id = -1;
+$('#profile_target').load(function() {
+  console.log('profile target loaded');
+  finishProfilePictureUpload();
+  var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
+  console.log('profile image resp: ' + resp);
+  /* img_id = parseInt(resp['extra_data'], 10);
+  var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
+  $('#imageUploadPreview').append(i); */
+  $('.ArtistProfilePic').attr('src', resp['obj_data']);
+});
 
 $('.AddElementFace').click(function() {
   var clicked = $(this);
@@ -300,19 +333,20 @@ $('.AddElementCancel').click(function() {
   }
 });
 $('#selectImageButton').click(function() {
-  $('#selectImage').click();
+  $('#selectGalleryImage').click();
 });
-$('#selectImage').change(function() {
-  console.log('chose file');
-  var fileList = this.files;
+$('#selectGalleryImage').change(function() {
+  console.log('select gallery image');
   // beginUpload();
   $('#uploadImageForm').submit();
 });
 $('#uploadImageForm').submit(function() {
-  beginUpload();
+  console.log('gallery image upload submit');
+  beginUpload(true);
 });
 var img_id = -1;
 $('#upload_target').load(function() {
+  console.log('gallery image uploaded');
   finishUpload();
   var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
   console.log('upload image resp: ' + resp);
@@ -364,7 +398,7 @@ $('.AddVideoURL').blur(function(event) {
   console.log('URL input text: ' + URL);
   if (URL.indexOf('youtube.com') >= 0) {
     var iframe = youtubeIframeForURL(URL);
-    var iframe = iframe.slice(0, 8) + "class='VideoPreview' " + iframe.slice(8);
+    iframe = iframe.slice(0, 8) + "class='VideoPreview' " + iframe.slice(8);
     console.log('iframe: ' + iframe);
     $(input).css('display', 'none');
     $('#videoUploadPreview').append(iframe);

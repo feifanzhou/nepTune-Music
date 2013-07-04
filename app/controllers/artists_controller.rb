@@ -67,6 +67,10 @@ class ArtistsController < ApplicationController
       m_id = params[:m_id]
       m = Media.find(m_id)
       m.destroy
+    when 'ProfilePictureUpload'
+      artist.avatar = params[:select_image]
+      artist.save
+      obj_data = artist.avatar.url
     end
 
     render json: { success: 1, obj_data: obj_data, extra_data: extra_data }, status: 200
