@@ -3,7 +3,7 @@
   <%= render 'layouts/playbar' %>
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', curr_nav: 2, is_following: @is_following  %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
   <div class='XHidden' id='artistPageContent'>
     <div id='musicGridHeader'>
       <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", size: "960x320", class: "MusicGridHeaderImage") %>
