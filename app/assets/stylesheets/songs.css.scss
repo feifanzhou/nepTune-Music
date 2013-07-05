@@ -17,36 +17,92 @@ header {
 	@include AppHeader;
 }
 
-#newSongsContainer {
+// #newSongsContainer {
+// 	@include AppContentLayerShadow;
+// 	background: $Txture;
+// 	bottom: 0;
+// 	margin: 130px auto 0px auto;
+// 	width: 1280px;
+// 	.NewSongBlock {
+// 		display: inline-block;
+// 		height: 203px;
+// 		margin: 4px;
+// 		position: relative;
+// 		width: 415px;
+// 		&#allSongsSetting {
+// 			border-bottom: 2px groove $white;
+// 			border-right: 2px groove $white;
+// 		}
+// 		.NewSongPreview {
+// 			display: inline-block;
+// 			height: 200px;
+// 			position: relative;
+// 			top: -30px;
+// 			width: 200px;
+// 		}
+// 		.NewSongDetails {
+// 			display: inline-block;
+// 			margin-left: 8px;
+// 			position: relative;
+// 			top: 28px;
+// 			.new_song {
+// 				margin-bottom: 0;
+// 				input[type='text'] {
+// 					background-color: transparentize(white, 0.7);
+// 					border: none;
+// 					color: white;
+// 					@include vendor-prefix(box-sizing, border-box);
+// 					height: 28px;
+// 					width: 200px;
+// 					&::-webkit-input-placeholder {
+// 						color: $inactiveWhite;
+// 					}
+// 					&:-moz-placeholder {
+// 						color: $inactiveWhite;
+// 					}
+// 					&::-moz-placeholder {
+// 						color: $inactiveWhite;
+// 					}
+// 					&:-ms-input-placeholder {
+// 						color: $inactiveWhite;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+#newSongContainer {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
 	margin: 130px auto 0px auto;
+	text-align: center;
 	width: 1280px;
-	.NewSongBlock {
+	#newSong {
 		display: inline-block;
-		position: relative;
-		width: 425px;
-		.NewSongPreview {
+		margin: 24px auto;
+		width: 466px;
+		#newSongPreview {
 			display: inline-block;
+			float: left;
 			height: 200px;
-			position: relative;
-			top: -30px;
 			width: 200px;
 		}
-		.NewSongDetails {
+		#newSongDetails {
 			display: inline-block;
-			margin-left: 8px;
+			float: left;
+			margin-left: 12px;
 			position: relative;
-			top: 28px;
-			.new_song {
+			top: 47px;
+			#new_song {
 				margin-bottom: 0;
 				input[type='text'] {
 					background-color: transparentize(white, 0.7);
 					border: none;
+					color: white;
 					@include vendor-prefix(box-sizing, border-box);
 					height: 28px;
-					width: 213px;
+					width: 200px;
 					&::-webkit-input-placeholder {
 						color: $inactiveWhite;
 					}
@@ -59,6 +115,19 @@ header {
 					&:-ms-input-placeholder {
 						color: $inactiveWhite;
 					}
+					&#song_name {
+						width: 254px;
+					}
+					&#song_album {
+						width: 150px;
+					}
+					&#song_track_number {
+						width: 100px;
+					}
+				}
+				#submit_song {
+					@include vendor-prefix(box-sizing, border-box);
+					width: 254px;
 				}
 			}
 		}
