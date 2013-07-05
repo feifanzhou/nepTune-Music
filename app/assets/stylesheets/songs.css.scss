@@ -1,3 +1,66 @@
 // Place all the styles related to the Songs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "fonts";
+@import "variables";
+@import "shared";
+
+@import "custom_bootstrap";
+
+@import "bootstrap";
+
+body {
+	background: $Txture;
+}
+
+header {
+	@include AppHeader;
+}
+
+#newSongsContainer {
+	@include AppContentLayerShadow;
+	background: $Txture;
+	bottom: 0;
+	margin: 130px auto 0px auto;
+	width: 1280px;
+	.NewSongBlock {
+		display: inline-block;
+		position: relative;
+		width: 425px;
+		.NewSongPreview {
+			display: inline-block;
+			height: 200px;
+			position: relative;
+			top: -30px;
+			width: 200px;
+		}
+		.NewSongDetails {
+			display: inline-block;
+			margin-left: 8px;
+			position: relative;
+			top: 28px;
+			.new_song {
+				margin-bottom: 0;
+				input[type='text'] {
+					background-color: transparentize(white, 0.7);
+					border: none;
+					@include vendor-prefix(box-sizing, border-box);
+					height: 28px;
+					width: 213px;
+					&::-webkit-input-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&::-moz-placeholder {
+						color: $inactiveWhite;
+					}
+					&:-ms-input-placeholder {
+						color: $inactiveWhite;
+					}
+				}
+			}
+		}
+	}
+}

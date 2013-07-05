@@ -29,7 +29,7 @@ if os == :linux # for Pierre
   notification :libnotify
 end
 
-guard 'rspec', :version => 2, :all_after_pass => false, :cli => '--drb' do
+guard 'rspec', :version => 2, :all_after_pass => false, all_on_start: false, :cli => '--drb' do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
@@ -70,13 +70,13 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
 end
 
 
-# if os == :macosx # feifan (and bobby?)
-#   guard 'livereload' do
-#     watch(%r{app/views/.+\.(erb|haml|slim)$})
-#     watch(%r{app/helpers/.+\.rb})
-#     watch(%r{public/.+\.(css|js|html)})
-#     watch(%r{config/locales/.+\.yml})
-#     # Rails Assets Pipeline
-#     watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
-#   end
-# end
+if os == :macosx # feifan (and bobby?)
+  guard 'livereload', grace_period: 0 do
+    watch(%r{app/views/.+\.(erb|haml|slim)$})
+    watch(%r{app/helpers/.+\.rb})
+    watch(%r{public/.+\.(css|js|html)})
+    watch(%r{config/locales/.+\.yml})
+    # Rails Assets Pipeline
+    watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
+  end
+end

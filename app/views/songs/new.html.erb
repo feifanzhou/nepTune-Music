@@ -1,2 +1,26 @@
-<h1>Songs#new</h1>
-<p>Find me in app/views/songs/new.html.erb</p>
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='newSongsContainer'>
+	<div class='NewSongBlock'>
+		<div class='NewSongPreview'>
+			<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
+		</div>
+		<div class='NewSongDetails'>
+			<%= form_for @song do |s| %>
+				<%= s.label :name %>
+				<%= s.text_field :name, placeholder: 'Song name' %><br />
+
+				<%= s.label :album %>
+				<%= s.text_field :album, placeholder: 'Album name' %><br />
+
+				<%= s.label :track_number %>
+				<%= s.text_field :track_number, placeholder: 'Track number' %><br />
+				
+				<%= s.button 'Cancel', class: 'btn' %>
+				<%= s.submit 'Apply to all', class: 'btn btn-primary' %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -192,10 +192,11 @@ header {
 						.ArtistNavIcon {
 							display: inline-block;
 							margin-right: 12px;
-							text-align: right;
+							text-align: center;
 							width: 24px;
 						}
-						@media(max-height: 879px) {
+						// @media(max-height: 879px) {
+						@media(max-height: 599px) {
 							display: inline-block;
 							float: left;
 							padding: 11px;
@@ -220,7 +221,7 @@ header {
 		margin-left: 240px;
 		overflow-y: scroll;
 		position: absolute;
-		top: 125px;
+		top: 130px;
 		white-space: nowrap;
 		width: 960px;
 		z-index: 2;
@@ -253,7 +254,7 @@ header {
 						color: $inactiveWhite;
 						display: inline-block;
 						float: left;
-						font-family: $Myriad;
+						font-family: $OpenSans;
 						font-size: 18px;
 						font-weight: 400;
 						margin: 0 14px;
@@ -267,6 +268,31 @@ header {
 						&.SelectedFilter {
 							color: white;
 						}
+					}
+				}
+				#createNewMusic {
+					background: transparentize($nepTuneOrange, 0.25);
+					border-radius: 4px;
+					display: inline-block;
+					padding: 3px 4px;
+					position: absolute;
+					top: 10px;
+					right: 200px;
+					a {
+						color: $white;
+						font-family: $OpenSans;
+						font-size: 16px;
+						padding: 3px;
+						&:hover {
+							color: white;
+							text-decoration: none;
+						}
+					}
+					.SegmentDivider {
+						color: $white;
+						font-family: $OpenSans;
+						font-size: 18px;
+						font-weight: 300;
 					}
 				}
 				#musicFilterSearch {

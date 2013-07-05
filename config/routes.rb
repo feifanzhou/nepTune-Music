@@ -2,6 +2,8 @@ NeptuneMusic::Application.routes.draw do
 
   # Routes for resources
   resources :users
+  resources :albums
+  resources :songs
 
   # Routes for beta subdomain
   constraints subdomain: "beta" do
