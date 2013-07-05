@@ -81,7 +81,7 @@ header {
 	#newSong {
 		display: inline-block;
 		margin: 24px auto;
-		width: 466px;
+		width: 486px;
 		#newSongPreview {
 			display: inline-block;
 			float: left;
@@ -97,12 +97,13 @@ header {
 			#new_song {
 				margin-bottom: 0;
 				input[type='text'] {
+					@include vendor-prefix(box-sizing, border-box);
 					background-color: transparentize(white, 0.7);
 					border: none;
 					color: white;
-					@include vendor-prefix(box-sizing, border-box);
-					height: 28px;
-					width: 200px;
+					font-size: 16px;
+					height: 32px;
+					width: 220px;
 					&::-webkit-input-placeholder {
 						color: $inactiveWhite;
 					}
@@ -116,18 +117,18 @@ header {
 						color: $inactiveWhite;
 					}
 					&#song_name {
-						width: 254px;
+						width: 274px;
 					}
 					&#song_album {
 						width: 150px;
 					}
 					&#song_track_number {
-						width: 100px;
+						width: 120px;
 					}
 				}
 				#submit_song {
 					@include vendor-prefix(box-sizing, border-box);
-					width: 254px;
+					width: 274px;
 				}
 			}
 		}
