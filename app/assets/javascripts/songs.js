@@ -115,8 +115,6 @@ $('#album_target').load(function() {
 });
 $('#new_song').bind('ajax:success', function() {
 	console.log('Song created successfully');
-	alert('New song created successfully');
-});
-$('#new_song').on('unload', function() {
-	return;	// Don't do anything
+	$('#newSongFeedback').addClass('alert-success');
+	$('#newSongFeedback').css('display', 'block');
 });

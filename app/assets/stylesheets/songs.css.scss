@@ -17,60 +17,6 @@ header {
 	@include AppHeader;
 }
 
-// #newSongsContainer {
-// 	@include AppContentLayerShadow;
-// 	background: $Txture;
-// 	bottom: 0;
-// 	margin: 130px auto 0px auto;
-// 	width: 1280px;
-// 	.NewSongBlock {
-// 		display: inline-block;
-// 		height: 203px;
-// 		margin: 4px;
-// 		position: relative;
-// 		width: 415px;
-// 		&#allSongsSetting {
-// 			border-bottom: 2px groove $white;
-// 			border-right: 2px groove $white;
-// 		}
-// 		.NewSongPreview {
-// 			display: inline-block;
-// 			height: 200px;
-// 			position: relative;
-// 			top: -30px;
-// 			width: 200px;
-// 		}
-// 		.NewSongDetails {
-// 			display: inline-block;
-// 			margin-left: 8px;
-// 			position: relative;
-// 			top: 28px;
-// 			.new_song {
-// 				margin-bottom: 0;
-// 				input[type='text'] {
-// 					background-color: transparentize(white, 0.7);
-// 					border: none;
-// 					color: white;
-// 					@include vendor-prefix(box-sizing, border-box);
-// 					height: 28px;
-// 					width: 200px;
-// 					&::-webkit-input-placeholder {
-// 						color: $inactiveWhite;
-// 					}
-// 					&:-moz-placeholder {
-// 						color: $inactiveWhite;
-// 					}
-// 					&::-moz-placeholder {
-// 						color: $inactiveWhite;
-// 					}
-// 					&:-ms-input-placeholder {
-// 						color: $inactiveWhite;
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
-// }
 #newSongContainer {
 	@include AppContentLayerShadow;
 	background: $Txture;
@@ -78,6 +24,11 @@ header {
 	margin: 130px auto 0px auto;
 	text-align: center;
 	width: 1280px;
+	#newSongFeedback {
+		display: none;
+		margin: 24px auto auto auto;
+		width: 486px;
+	}
 	#newSong {
 		display: inline-block;
 		margin: 24px auto;
