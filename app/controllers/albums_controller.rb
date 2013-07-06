@@ -7,9 +7,10 @@ class AlbumsController < ApplicationController
   end
 
   def album_name_suggestions
-  	results = Album.where("name ILIKE ?", params[:input] + '%').map(&:name)
-  	logger.debug("============= results: #{ results }")
+  	results = Album.where("name ILIKE ?", params[:input] + '%')
+    names = results.map(&:name)
+    paths = results.map(&:image).map(&:path)
   	# results = Album.find :all, select: 'id, DISTINCT name', conditions: [ "(name LIKE ?)", '%' + params[:input] + '%']
-  	render json: { results: results }
+  	render json: { names: names,  paths: paths }
   end
 end

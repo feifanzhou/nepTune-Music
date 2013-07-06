@@ -6,6 +6,7 @@ $('#clearGeneralFields').click(function(event) {
 	return false;
 });
 
+var suggestionImagePaths;
 $('#song_album').keyup(function(event) {
 	console.log('song album keyup');
 	if (event.keyCode == 8 && $(this).val().length < 1) {	// backspace
@@ -22,7 +23,8 @@ $('#song_album').keyup(function(event) {
 			input: albumNameInput
 		},
 		success: function(resp) {
-			var resp_json = eval(resp['results']);
+			var resp_json = eval(resp['names']);
+			suggestionImagePaths = eval(resp['paths']);
 			$('#albumSuggestions').empty();
 			for (var i = 0; i < resp_json.length; i++) {
 				var li = "<li class='AlbumSuggestion' id='suggestion" + i + "'>" + resp_json[i] + '</li>';
@@ -31,6 +33,17 @@ $('#song_album').keyup(function(event) {
 		}
 	});
 });
+function beginAlbumArtUpdate() {
+	$('#albumImageDarken').css('opacity', 1);
+	$('#changeAlbumImageSpinner').css('display', 'inline-block');
+	$('#changeAlbumImageSpinner').addClass('Spinner');
+}
+function endAlbumArtUpdate() {
+	$('#albumImageDarken').css('opacity', 0);
+	$('#changeAlbumImageSpinner').css('display', 'none');
+	$('#changeAlbumImageSpinner').removeClass('Spinner');
+}
+// TODO: Remove duplicate code here
 $('#song_album').keydown(function(event) {
 	if (event.keyCode !== 40 && event.keyCode !== 38)
 		return;
@@ -50,6 +63,9 @@ $('#song_album').keydown(function(event) {
 		$(newID).addClass('SelectedSuggestion');
 		var suggestion = $(newID).text();
 		$('#song_album').val(suggestion);
+		var imgPath = suggestionImagePaths[currentIndex];
+		beginAlbumArtUpdate();
+		$('.NewSongArt').attr('src', imgPath);
 		event.preventDefault();
 	}
 	else if (event.keyCode == 38) {	// Key up
@@ -64,9 +80,15 @@ $('#song_album').keydown(function(event) {
 		$(newID).addClass('SelectedSuggestion');
 		var suggestion = $(newID).text();
 		$('#song_album').val(suggestion);
+		var imgPath = suggestionImagePaths[currentIndex];
+		beginAlbumArtUpdate();
+		$('.NewSongArt').attr('src', imgPath);
 		event.preventDefault();
 	}
 });
 $('#song_album').blur(function() {
 	$('#albumSuggestions').empty();
 });
+$('.NewSongArt').load(function() {
+	endAlbumArtUpdate();
+})
