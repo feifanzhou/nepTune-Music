@@ -20,6 +20,7 @@
 #  media_holder_id   :integer
 #  media_holder_type :string(64)
 #  custom_path       :string(255)
+#  is_temporary      :boolean           Conceivable that user might upload media but then cancel before saving
 #
 
 class Media < ActiveRecord::Base

@@ -45,6 +45,8 @@ function endAlbumArtUpdate() {
 }
 // TODO: Remove duplicate code here
 $('#song_album').keydown(function(event) {
+	if (event.keyCode == 13)	// return key
+		event.preventDefault();
 	if (event.keyCode !== 40 && event.keyCode !== 38)
 		return;
 	var currentSelection = $('.SelectedSuggestion');
@@ -91,4 +93,19 @@ $('#song_album').blur(function() {
 });
 $('.NewSongArt').load(function() {
 	endAlbumArtUpdate();
-})
+});
+
+$('#newSongPreview').click(function() {
+	$('#image_file').click();
+});
+$('#image_file').change(function() {
+	$('#new_image').submit();
+});
+$('#new_image').submit(function() {
+	beginAlbumArtUpdate();
+});
+$('#album_target').load(function() {
+	endAlbumArtUpdate();
+	var json = JSON.parse(document.getElementById('album_target').contentWindow.document.body.textContent);
+	$('.NewSongArt').attr('src', json['img_src']);
+});
