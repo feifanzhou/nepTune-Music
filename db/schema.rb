@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130704194140) do
+ActiveRecord::Schema.define(:version => 20130706142042) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20130704194140) do
     t.datetime "updated_at", :null => false
     t.integer  "artist_id"
   end
+
+  add_index "albums", ["name"], :name => "index_albums_on_name"
 
   create_table "artists", :force => true do |t|
     t.datetime "created_at",          :null => false
@@ -93,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20130704194140) do
     t.integer  "media_holder_id"
     t.string   "media_holder_type", :limit => 64
     t.string   "custom_path"
+    t.boolean  "is_temporary"
   end
 
   create_table "play_counts", :force => true do |t|

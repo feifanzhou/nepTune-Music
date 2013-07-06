@@ -20,6 +20,7 @@
 #  media_holder_id   :integer
 #  media_holder_type :string(64)
 #  custom_path       :string(255)
+#  is_temporary      :boolean
 #
 
 class Audio < Media

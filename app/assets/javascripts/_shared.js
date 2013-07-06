@@ -1,3 +1,7 @@
+function getArtistNameFromURL() {
+  return document.URL.split("/")[3];
+}
+
 function youtubeEmbedForURL(ytURL) {
 	var v_id_param_index = ytURL.indexOf('?v=');
 	if (v_id_param_index < 0) 

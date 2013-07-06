@@ -19,7 +19,7 @@ class Song < ActiveRecord::Base
   has_one :image, as: :media_holder
   has_one :audio, as: :media_holder
 
-  validates :audio, presence: true
+  # validates :audio, presence: true
   validates :artist, presence: true
 
   def image

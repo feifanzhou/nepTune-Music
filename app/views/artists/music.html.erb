@@ -13,8 +13,15 @@
           <li class='FilterItem' id='filterSongs' onclick='filterMusic(1)'>Songs</li>
           <li class='FilterItem' id='filterAlbums' onclick='filterMusic(2)'>Albums</li>
           <li class='FilterItem' id='filterVideos' onclick='filterMusic(3)'>Videos</li>
-          <li class='FilterItem' id='filterOthers' onclick='filterMusic(4)'>Others</li>
+          <!-- <li class='FilterItem' id='filterOthers' onclick='filterMusic(4)'>Others</li> -->
         </ul>
+        <% if @is_band_member %>
+        <div id='createNewMusic'>
+          <%= link_to 'Create New Album', new_album_path %>
+          <span class='SegmentDivider'>|</span>
+          <%= link_to 'Upload Song', new_song_for_artist_path(@artist.artistname) %>
+        </div>
+        <% end %>
         <form id='musicFilterSearch'>
           <input type='text' id='musicFilterSearchField' placeholder='Search' />
         </form>

@@ -17,6 +17,8 @@ class ArtistsController < ApplicationController
   end
 
   def music
+    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    @is_band_member = (bm.blank?) ? false : true
   end
 
   def events
@@ -104,6 +106,9 @@ class ArtistsController < ApplicationController
     # TODO: Only allow editing artist page by designed member(s)
     curr_user = current_user
     artist = Artist.find_by_artistname(params[:artistname])
+    if curr_user.blank? || artist.blank?
+      redirect_to_current_page_without_params
+    end
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
     if bm.blank?
       redirect_to_current_page_without_params

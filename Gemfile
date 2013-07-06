@@ -18,6 +18,7 @@ end
 group :development do
   gem 'annotate', '2.5.0'
   gem 'awesome_print'
+  gem 'guard-livereload'
 end
 
 group :development, :production do
