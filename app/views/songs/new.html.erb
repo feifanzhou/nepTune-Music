@@ -32,16 +32,17 @@
 		<div id='newSongDetails'>
 			<%= form_for @song do |s| %>
 				<%= s.label :name %>
-				<%= s.text_field :name, placeholder: 'Song name' %><br />
+				<%= s.text_field :name, placeholder: 'Song name', autocomplete: :off %><br />
 
 				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name' %>
+				<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
 
 				<%= s.label :track_number %>
-				<%= s.text_field :track_number, placeholder: 'Track number' %><br />
+				<%= s.text_field :track_number, placeholder: 'Track number', autocomplete: :off %><br />
 				
 				<%= s.submit 'Upload song', class: 'btn btn-primary', id: 'submit_song' %>
 			<% end %>
+			<ul id='albumSuggestions'></ul>
 		</div>
 	</div>
 </div>

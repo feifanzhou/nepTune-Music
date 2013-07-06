@@ -24,6 +24,8 @@ NeptuneMusic::Application.routes.draw do
     post '/:artistname/update_content', to: 'artists#update_content', as: :update_content
     post '/:artistname/remove_media', to: 'artists#remove_media', as: :remove_media
 
+    match '/json/album_name_suggestions', to: 'albums#album_name_suggestions', as: :album_name_suggestions
+
     match '/:artistname', to: 'artists#show', as: :artist_main
     match '/:artistname/about', to: 'artists#about', as: :artist_about
     match '/:artistname/music', to: 'artists#music', as: :artist_music
