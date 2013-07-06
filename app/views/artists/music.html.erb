@@ -19,7 +19,7 @@
         <div id='createNewMusic'>
           <%= link_to 'Create New Album', new_album_path %>
           <span class='SegmentDivider'>|</span>
-          <%= link_to 'Upload Song', new_song_path %>
+          <%= link_to 'Upload Song', new_song_for_artist_path(@artist.artistname) %>
         </div>
         <% end %>
         <form id='musicFilterSearch'>

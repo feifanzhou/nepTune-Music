@@ -2,28 +2,6 @@
   <%= render 'layouts/app_header' %>
   <%= render 'layouts/playbar' %>
 </header>
-<!-- <div id='newSongsContainer'>
-	<div class='NewSongBlock' id='allSongsSetting'>
-		<div class='NewSongPreview'>
-			<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
-		</div>
-		<div class='NewSongDetails'>
-			<%= form_for @song, namespace: 'all_songs' do |s| %>
-				<%= s.label :name %>
-				<%= s.text_field :name, placeholder: 'Song name' %><br />
-
-				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name' %><br />
-
-				<%= s.label :track_number %>
-				<%= s.text_field :track_number, placeholder: 'Track number' %><br />
-				
-				<%= s.button 'Clear', class: 'btn', id: 'clearGeneralFields' %>
-				<%= s.button 'Apply to all', class: 'btn btn-primary' %>
-			<% end %>
-		</div>
-	</div>
-</div> -->
 <div class='row' id='newSongContainer'>
 	<div id='newSong'>
 		<div id='newSongPreview'>
@@ -33,12 +11,15 @@
 			<div id='changeAlbumArt'>Click to change picture</div>
 		</div>
 		<div id='newSongDetails'>
-			<%= form_for @song do |s| %>
+			<%= form_for @song, remote: true do |s| %>
+				<input type='hidden' name='artistname' id='artistname' />
 				<%= s.label :name %>
-				<%= s.text_field :name, placeholder: 'Song name', autocomplete: :off %><br />
+				<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
 				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
+				<%= s.text_field :album, placeholder: 'Album name', required: 'required', autocomplete: :off %>
+
+				<input type='hidden' name='song[album_art_id]' id='song_album_art_id' />
 
 				<%= s.label :track_number %>
 				<%= s.text_field :track_number, placeholder: 'Track number', autocomplete: :off %><br />

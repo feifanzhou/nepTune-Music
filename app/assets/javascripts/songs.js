@@ -6,6 +6,9 @@ $('#clearGeneralFields').click(function(event) {
 	return false;
 });
 
+// Fill in artist name from URL
+$('#artistname').val(getArtistNameFromURL());
+
 var suggestionImagePaths;
 $('#song_album').keyup(function(event) {
 	console.log('song album keyup');
@@ -108,4 +111,12 @@ $('#album_target').load(function() {
 	endAlbumArtUpdate();
 	var json = JSON.parse(document.getElementById('album_target').contentWindow.document.body.textContent);
 	$('.NewSongArt').attr('src', json['img_src']);
+	$('#song_album_art_id').attr('val', json['img_id']);
+});
+$('#new_song').bind('ajax:success', function() {
+	console.log('Song created successfully');
+	alert('New song created successfully');
+});
+$('#new_song').on('unload', function() {
+	return;	// Don't do anything
 });

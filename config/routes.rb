@@ -4,14 +4,15 @@ NeptuneMusic::Application.routes.draw do
 
   get "images_controller/new"
 
-  # Routes for resources
-  resources :users
-  resources :albums
-  resources :songs
-  resources :images
-
   # Routes for beta subdomain
   constraints subdomain: "beta" do
+    # Routes for resources
+    resources :users
+    resources :events
+    resources :albums
+    resources :songs  # TODO: albums and songs should probably be subresources of artists
+    resources :images
+
     root to: 'home#home'
 
     get "/login" => "login#login", as: :login
@@ -37,12 +38,12 @@ NeptuneMusic::Application.routes.draw do
     match '/:artistname/events', to: 'artists#events', as: :artist_events
     match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
     match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
-    match '/:artistname/album/:album', to: 'albums#show', as: :album_for_artist
-    match '/:artistname/song/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artistname/albums/:album', to: 'albums#show', as: :album_for_artist
+    match '/:artistname/songs/new', to: 'songs#new', as: :new_song_for_artist
+    match '/:artistname/songs/:song', to: 'songs#show', as: :song_for_artist
 
     resources :events
     match '/event/:id/join', to: 'attendees#join', as: :join_event
-
 
 
   end

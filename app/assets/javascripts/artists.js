@@ -239,10 +239,6 @@ $('.SliderNav').click(function() {
 });
 
 /***** Editing functionality *****/
-function getArtistNameFromURL() {
-  return document.URL.split("/")[3];
-}
-
 function beginUpload(hideButton) {
   $('#imgUploadSpinner').addClass('Spinner');
   $('#imgUploadSpinner').css('display', 'inline-block');
