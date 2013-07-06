@@ -19,6 +19,10 @@ class Album < ActiveRecord::Base
   validates :artist, presence: true
   validates :name, presence: true
 
+  def image
+    return super || Image.new(custom_path: '/images/album_default.png', name: 'Missing album art') || nil
+  end
+
   def songs
     songs_list = super	# Read original song list
     return songs_list.sort_by{ |s| s[:track_number] }
