@@ -1,4 +1,8 @@
 class SongsController < ApplicationController
+	include LoginHelper
+
+	before_filter :authenticate_editing, only: [:new, :create]
+
   def new
   	@song = Song.new
   end
@@ -34,5 +38,17 @@ class SongsController < ApplicationController
   	# 	format.js { render json: { success: 1 } }
   	# end
   	render json: { success: 1 }
+  end
+
+  private
+  def authenticate_editing
+  	artist = Artist.find_by_artistname(params[:artistname])
+  	curr_user = current_user
+  	if curr_user.blank? || artist.blank?
+  		redirect_to artist_main_path(artist.artistname)
+  		return
+  	end
+  	bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
+    redirect_to artist_main_path(artist.artistname) if bm.blank?
   end
 end
