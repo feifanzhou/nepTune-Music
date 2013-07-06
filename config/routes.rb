@@ -1,5 +1,7 @@
 NeptuneMusic::Application.routes.draw do
 
+  get "audio/create"
+
   get "images/new"
 
   get "images_controller/new"
@@ -12,6 +14,7 @@ NeptuneMusic::Application.routes.draw do
     resources :albums
     resources :songs  # TODO: albums and songs should probably be subresources of artists
     resources :images
+    resources :audio
 
     root to: 'home#home'
 

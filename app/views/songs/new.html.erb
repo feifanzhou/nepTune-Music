@@ -12,8 +12,17 @@
 			<div id='changeAlbumArt'>Click to change picture</div>
 		</div>
 		<div id='newSongDetails'>
+			<iframe id='audio_target' name='audio_target' src=''></iframe>
+			<%= form_for Audio.new(), html: { target: 'audio_target' } do |a| %>
+				<%= a.file_field :file %>
+			<% end %>
 			<%= form_for @song, remote: true do |s| %>
 				<input type='hidden' name='artistname' id='artistname' />
+				<%= s.label :audio %>
+				<input type='hidden' name='song[audio_id]' id='song_audio_id' />
+				<%= s.button 'Select audio file', class: 'btn', id: 'select_file_button' %>
+				<p id='selectedFileName'>No audio file selected</p>
+
 				<%= s.label :name %>
 				<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
