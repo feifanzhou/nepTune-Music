@@ -6,6 +6,8 @@
 	<div class='span4' id='newAlbumInfo'>
 		<div id='albumArt'>
 			<img src='/images/album_default.png' alt='Default album' id='album_art' />
+			<div id='albumArtDarken'></div>
+			<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
 			<div id='albumArtPrompt'>Click to change album art</div>
 		</div>
 		<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>

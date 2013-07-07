@@ -100,6 +100,25 @@ header {
 			&:hover {
 				cursor: pointer;
 			}
+			#albumArtDarken {
+				background: transparentize(black, 0.5);
+				bottom: 0;
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+				transition: opacity 0.25s;
+				-webkit-transition: opacity 0.25s;
+			}
+			#changeAlbumImageSpinner {
+				color: white;
+				display: none;
+				font-size: 60px;
+				left: 175px;
+				position: absolute;
+				top: 159px;
+			}
 			#albumArtPrompt {
 				@include TranslucentBar;
 				bottom: 0;

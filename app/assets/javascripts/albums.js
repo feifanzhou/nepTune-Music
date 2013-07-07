@@ -8,11 +8,17 @@ $('#albumArt').click(function() {
 });
 $('#image_file').change(function() {
 	$('#new_image').submit();
+	$('#changeAlbumImageSpinner').addClass('Spinner');
+	$('#changeAlbumImageSpinner').css('display', 'inline-block');
+	$('#albumArtDarken').css('opacity', 1);
 });
 $('#album_target').load(function() {
 	var JSON = JSONFromID('album_target');
 	console.log('album_target loaded');
 	console.log('JSON: ' + JSON);
+	$('#changeAlbumImageSpinner').removeClass('Spinner');
+	$('#changeAlbumImageSpinner').css('display', 'none');
+	$('#albumArtDarken').css('opacity', 0);
 	$('#album_art_id').val(JSON['img_id']);
 	$('#album_art').attr('src', JSON['img_src']);
 });
