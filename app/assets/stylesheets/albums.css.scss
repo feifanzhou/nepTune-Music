@@ -5,6 +5,15 @@
 @import "fonts";
 @import "variables";
 @import "shared";
+@import "bootstrap";
+
+body {
+	background: $Txture;
+}
+
+header {
+	@include AppHeader;
+}
 
 .AlbumArtMain {
 	background-clip: content-box;
@@ -73,5 +82,40 @@
 	p {
 		@include DarkEngrave;
 		font-size: 36px;
+	}
+}
+
+#newAlbumContainer {
+	@include AppContentLayerShadow;
+	background: $Txture;
+	bottom: 0;
+	margin: 130px auto 0px auto;
+	text-align: center;
+	width: 1280px;
+	#newAlbumInfo {
+		#albumArt {
+			position: relative;
+			&:hover {
+				cursor: pointer;
+			}
+			#albumArtPrompt {
+				@include TranslucentBar;
+				bottom: 0;
+				color: $white;
+				font-family: $OpenSans;
+				font-size: 24px;
+				font-weight: 700;
+				left: 0;
+				line-height: 45px;
+				position: absolute;
+				right: 0;
+			}
+		}
+		#new_image {
+			display: none;
+		}
+		#album_target {
+			display: none;
+		}
 	}
 }

@@ -1,2 +1,19 @@
-<h1>Albums#new</h1>
-<p>Find me in app/views/albums/new.html.erb</p>
+<header>
+	<%= render 'layouts/app_header' %>
+	<%= render 'layouts/playbar' %>
+</header>
+<div class='row-fluid' id='newAlbumContainer'>
+	<div class='span4' id='newAlbumInfo'>
+		<div id='albumArt'>
+			<img src='/images/album_default.png' alt='Default album' />
+			<div id='albumArtPrompt'>Click to change album art</div>
+		</div>
+		<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>
+			<%= i.file_field :file %>
+		<% end %>
+		<iframe id='album_target' name='album_target' src=''></iframe>
+	</div>
+	<div class='span8' id='newAlbumSongs'>
+		<div id='song'><img src='/images/song_default.png' /></div>
+	</div>
+</div>

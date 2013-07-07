@@ -41,6 +41,7 @@ NeptuneMusic::Application.routes.draw do
     match '/:artistname/events', to: 'artists#events', as: :artist_events
     match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
     match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
+    match '/:artistname/albums/new', to: 'albums#new', as: :new_album_for_artist
     match '/:artistname/albums/:album', to: 'albums#show', as: :album_for_artist
     match '/:artistname/songs/new', to: 'songs#new', as: :new_song_for_artist
     match '/:artistname/songs/:song', to: 'songs#show', as: :song_for_artist
