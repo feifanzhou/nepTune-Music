@@ -14,8 +14,6 @@ $('#image_file').change(function() {
 });
 $('#album_target').load(function() {
 	var JSON = JSONFromID('album_target');
-	console.log('album_target loaded');
-	console.log('JSON: ' + JSON);
 	$('#changeAlbumImageSpinner').removeClass('Spinner');
 	$('#changeAlbumImageSpinner').css('display', 'none');
 	$('#albumArtDarken').css('opacity', 0);
@@ -26,4 +24,11 @@ $('#new_album').bind('ajax:success', function() {
 	console.log('Successfully created new album');
 	$('#newAlbumFeedback').addClass('alert-success');
 	$('#newAlbumFeedback').slideDown();
+});
+
+$('.SongGridItem').click(function() {
+	if ($(this).hasClass('SelectedSong'))
+		$(this).removeClass('SelectedSong');
+	else
+		$(this).addClass('SelectedSong');
 });

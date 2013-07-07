@@ -31,7 +31,7 @@ Spork.prefork do
   rake.load_rakefile
   rake['admin:fill_db'].invoke
 
-  Capybara.javascript_driver = :selenium #:poltergeist #:selenium #:webkit
+  Capybara.javascript_driver = :webkit #:poltergeist #:selenium #:webkit
   Capybara.ignore_hidden_elements = false
   Capybara.automatic_reload = false
   set_host "beta.neptune.com:3000"

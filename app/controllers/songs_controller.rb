@@ -21,6 +21,7 @@ class SongsController < ApplicationController
   	song.track_number = params[:song][:track_number] if !params[:song][:track_number].blank?
   	artist = Artist.find_by_artistname(params[:artistname])
   	song.artist = artist
+    # TODO: Songs don't need to have an album
   	album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
   	if album.blank?
   		album = Album.new(name: params[:song][:album], artist: artist)

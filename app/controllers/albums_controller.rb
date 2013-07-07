@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
   def new
     @album = Album.new
+    @artist = Artist.find_by_artistname(params[:artistname])
   end
 
   def create

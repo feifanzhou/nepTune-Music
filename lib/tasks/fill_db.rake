@@ -55,8 +55,8 @@ the group really started to take off, producing a music video each week and post
     i5 = Image.create(caption: 'World Music', custom_path: 'http://msitvoiceiiit.files.wordpress.com/2013/02/world-music.jpg', height: 355, width: 380, is_primary: true)
 
     puts "Preparing albums..."	# Songs belong_to albums, so create albums first
-    a1 = Album.create(name: 'Hits Volume 1', image: i1, artist: jon)
-    a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon)
+    a1 = Album.create(name: 'Hits Volume 1', image: i1, artist: jon, year: 2011)
+    a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon, year: 2012)
 
     audio = Audio.create(name: "Next Stop Everywhere", custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3')
 

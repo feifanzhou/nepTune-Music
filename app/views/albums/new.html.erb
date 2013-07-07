@@ -29,6 +29,17 @@
 		<% end %>
 	</div>
 	<div class='span8' id='newAlbumSongs'>
-		<div id='song'><img src='/images/song_default.png' /></div>
+		<div id='allSongs'>
+			<h1>All Songs</h1>
+			<% @artist.songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
+			<div class='SongGridItem'>
+				<div class='SongSelected' id="songSelectd<%= s.id %>">
+					<span class='Icon SongSelectedCheck'>&#59415;</span>
+				</div>
+				<img class='SongImage' src='<%= s.image.path %>' />
+				<p class='SongName'><%= s.name %></p>
+			</div>
+			<% end %>
+		</div>
 	</div>
 </div>

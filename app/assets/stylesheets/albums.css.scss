@@ -154,4 +154,63 @@ header {
 			}
 		}
 	}
+	#newAlbumSongs {
+		h1 {
+			color: $white;
+			font-family: $OpenSans;
+		}
+		#inAlbum {
+
+		}
+		#allSongs {
+			text-align: left;
+			h1 {
+				text-align: center;
+			}
+			.SongGridItem {
+				&.SelectedSong {
+					.SongSelected {
+						display: block;
+					}
+				}
+			}
+			.SongSelected {
+				@include TranslucentBar;
+				color: $white;
+				display: none;
+				font-family: $OpenSans;
+				height: auto;
+				left: 0;
+				padding: 6px 3px;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+			.SongGridItem {
+				display: inline-block;
+				height: 150px;
+				margin: 6px;
+				position: relative;
+				width: 150px;
+				&:hover {
+					cursor: pointer;
+				}
+				.SongName {
+					@include TranslucentBar;
+					bottom: 0;
+					color: $white;
+					font-family: $OpenSans;
+					font-size: 14px;
+					font-weight: 600;
+					height: auto;
+					left: 0;
+					line-height: 100%;
+					margin-bottom: 0;
+					padding: 6px 3px;
+					position: absolute;
+					right: 0;
+				}
+			}
+		}
+	}
 }

@@ -10,9 +10,7 @@
 	<% end %>
 	<%= link_to link_path, class: 'MediaDisplayLink', data: { name: a.name, icon: label_icon } do %>
 	  <div class='GridItem'>
-	  	<% logger.debug("=========== a: #{ a }, a.id: #{ a.id }") %>
 	    <%= image_tag("#{ a.image.path }", alt: a.image.caption) %>
-	    <% logger.debug("=========== passed image tag") %>
 	    <div class='GridItemDetails'>
 	    	<p class='GridItemName'>
 			  	<% if !label_icon.blank? %>
