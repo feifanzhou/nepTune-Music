@@ -47,6 +47,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.0.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     climate_control (0.0.3)
@@ -225,6 +228,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 2.3.1.2)
   capybara (= 2.1.0)
+  capybara-webkit
   childprocess (= 0.3.6)
   coffee-rails (~> 3.2.1)
   factory_girl_rails (= 4.1.0)

@@ -1,15 +1,19 @@
 
 
-<%= javascript_include_tag "soundmanager2-jsmin" %>
+<!-- <%= javascript_include_tag "soundmanager2-jsmin" %> -->
 <div id="mainPartial">
+  <%= image_tag @song.image.path %>
+
+  
   <script type="text/javascript">
     alert('test');
   </script>
 
-
-  <h1>Songs#show</h1>
-  <p>Find me in app/views/songs/show.html.erb</p>
-  Blah blah blah
+  <p>
+    Click the button to play:  
+    <%= button_tag "Play!", onclick:"playStuff('#{@song.audio.path}')" %>
+  </p>
+  
   <script>
     alert('hi');
     console.log('hi!');

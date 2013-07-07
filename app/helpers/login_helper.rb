@@ -6,7 +6,7 @@ module LoginHelper
   end
 
   def is_logged_in
-    return !cookies[:current_user].blank?
+    return !(cookies[:current_user].blank? or current_user.blank?)
   end
 
   def current_user

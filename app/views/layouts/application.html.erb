@@ -34,6 +34,7 @@
        if you need the modernizr, but remember to only do the actual checks
        that you need. -->
   <%= javascript_tag "Modernizr.load();" %>
+  <%= yield(:head) %>
 </head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.

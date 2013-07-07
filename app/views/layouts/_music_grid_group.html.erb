@@ -4,7 +4,7 @@
 	<% if title == 'Albums' %>
 		<% link_path = album_for_artist_path(username: params[:username], album: a.name, isPartial: 1) %>
 	<% elsif title == 'Songs' %>
-		<% link_path = song_for_artist_path(username: params[:username], song: a.name, isPartial: 1) %>
+		<% link_path = song_for_artist_path(username: params[:username], song: a.id, isPartial: 1) %>
 	<% else %>
 		<% link_path = '#' %>
 	<% end %>
@@ -22,4 +22,4 @@
 	  </div>
 	<% end %>
 <% end %>
-</div>
+</div> 

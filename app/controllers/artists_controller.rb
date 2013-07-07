@@ -17,7 +17,11 @@ class ArtistsController < ApplicationController
   end
 
   def music
-    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    if @current_user
+      bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    else
+      bm = nil
+      end
     @is_band_member = (bm.blank?) ? false : true
   end
 
