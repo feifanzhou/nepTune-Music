@@ -20,10 +20,16 @@ $('#album_target').load(function() {
 	$('#album_art_id').val(JSON['img_id']);
 	$('#album_art').attr('src', JSON['img_src']);
 });
-$('#new_album').bind('ajax:success', function() {
+$('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
+	// var JSON = eval(xhr);
+	var JSON = jQuery.parseJSON(xhr.responseText);
+	$('#newAlbumID').text(JSON['album_id']);
 	console.log('Successfully created new album');
+	console.log('JSON: ' + JSON);
+	console.log('JSON[album_id]: ' + JSON['album_id']);
 	$('#newAlbumFeedback').addClass('alert-success');
 	$('#newAlbumFeedback').slideDown();
+	$('#newAlbumSongs').addClass('SongGridActive');
 });
 
 $('.SongGridItem').click(function() {

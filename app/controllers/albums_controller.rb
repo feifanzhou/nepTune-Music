@@ -16,7 +16,7 @@ class AlbumsController < ApplicationController
       album.image = Image.find(params[:album][:art_id])
     end
     album.save
-    render json: { success: 1 }
+    render json: { album_id: album.id, success: 1 }
   end
 
   def show

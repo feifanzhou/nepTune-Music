@@ -15,7 +15,7 @@
 		<% end %>
 		<iframe id='album_target' name='album_target' src=''></iframe>
 		<div class='alert' id='newAlbumFeedback'>Album saved successfully</div>
-		<%= form_for @album, remote: true do |a| %>
+		<%= form_for @album, remote: true, html: {:'data-type' => 'json'} do |a| %>
 			<input type='hidden' name='album[art_id]' id='album_art_id' />
 			<input type='hidden' name='album[artistname]' id='artistname' />
 
@@ -28,6 +28,7 @@
 			<%= a.submit 'Save album', class: 'btn btn-primary', id: 'saveAlbumButton' %>
 		<% end %>
 	</div>
+	<div id='newAlbumID'></div>
 	<div class='span8' id='newAlbumSongs'>
 		<div id='allSongs'>
 			<h1>All Songs</h1>

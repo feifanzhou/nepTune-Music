@@ -154,7 +154,18 @@ header {
 			}
 		}
 	}
+	#newAlbumID {
+		display: none;
+	}
 	#newAlbumSongs {
+		opacity: 0.2;
+		pointer-events: none;
+		-webkit-filter: blur(2px);
+		&.SongGridActive {
+			opacity: 1;
+			pointer-events: auto;
+			-webkit-filter: none;
+		}
 		h1 {
 			color: $white;
 			font-family: $OpenSans;
@@ -170,21 +181,23 @@ header {
 			.SongGridItem {
 				&.SelectedSong {
 					.SongSelected {
-						display: block;
+						opacity: 1;
 					}
 				}
 			}
 			.SongSelected {
 				@include TranslucentBar;
 				color: $white;
-				display: none;
 				font-family: $OpenSans;
 				height: auto;
 				left: 0;
+				opacity: 0;
 				padding: 6px 3px;
 				position: absolute;
 				right: 0;
 				top: 0;
+				transition: opacity 0.5s;
+				-webkit-transition: opacity 0.5s;
 			}
 			.SongGridItem {
 				display: inline-block;
