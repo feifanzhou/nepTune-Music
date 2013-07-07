@@ -1,8 +1,8 @@
 $(function() {
-	var elm = $("#artistSidebar");
+    var elm = $("#artistSidebar");
 
-	$(elm).scroll(function() {
-		if (elm.scrollTop() > 15)
+    $(elm).scroll(function() {
+        if (elm.scrollTop() > 15)
       $("#sidebarShadowTop").fadeTo(1.0, 1.0);
     else
       $("#sidebarShadowTop").fadeTo(1.0, 0.0);
@@ -11,7 +11,7 @@ $(function() {
       $("#sidebarShadowBottom").fadeTo(1.0, 0.0);
     else
       $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
-	});
+    });
 });
 
 $(function() {
@@ -88,14 +88,14 @@ function primeClick() {
     setTimeout(function() {
       $('#musicDetailsHeader').css('z-index', 2);
       /* if (contentScrollTop > 160)
-				$('#artistPageContent').animate({
-					scrollTop: 160
-				}, 1000); */
+                $('#artistPageContent').animate({
+                    scrollTop: 160
+                }, 1000); */
       $('#musicDetailsContent').load(path, function() {
-				setTimeout(function() {
-					$('#albumTrackListing').addClass('Visible');
-				}, 300);
-			});
+                setTimeout(function() {
+                    $('#albumTrackListing').addClass('Visible');
+                }, 300);
+            });
     }, 750);
     return false; //for good measure
   });
@@ -116,7 +116,7 @@ function returnToMusicGrid() {
     $('#detailsHeaderTitle').empty();
     $('#musicDetailsContent').empty();
     $('#artistPageContent').animate({
-			scrollTop: contentScrollTop
+            scrollTop: contentScrollTop
     });
   }, 750);
 }
@@ -141,16 +141,16 @@ function setCalendarDisplayMode(cls) {
 }
 
 $(function() {
-	$('.ArtistNavIcon').tooltip();
+    $('.ArtistNavIcon').tooltip();
 });
 
 $('#sliderContainer').mouseenter(function() {
-	$('.SliderTitle').fadeIn();
-	$('.SliderTitle').css('bottom', '0px');
+    $('.SliderTitle').fadeIn();
+    $('.SliderTitle').css('bottom', '0px');
 });
 $('#sliderContainer').mouseleave(function() {
-	$('.SliderTitle').fadeOut();
-	$('.SliderTitle').css('bottom', '-50px');
+    $('.SliderTitle').fadeOut();
+    $('.SliderTitle').css('bottom', '-50px');
 });
 $('.NoblockTitle').mouseenter(function() {
   $(this).fadeOut();
@@ -163,7 +163,7 @@ $('.SliderTitle').mouseleave(function() {
 });
 
 function setSliderOffset(sliderOffset) {
-	$('#slider').css('left', (sliderOffset + 'px'));
+    $('#slider').css('left', (sliderOffset + 'px'));
 }
 
 $(function() {
@@ -174,68 +174,68 @@ $(function() {
 });
 
 function setGalleryNavStatus(currObj) {
-	console.log('setGalleryNavStatus: ' + currObj);
-	if ($(currObj)[0] === $('.SliderElement').first()[0])
-		$('#sliderNavLeft').addClass('SliderNavDisabled');
-	else
-		$('#sliderNavLeft').removeClass('SliderNavDisabled');
+    console.log('setGalleryNavStatus: ' + currObj);
+    if ($(currObj)[0] === $('.SliderElement').first()[0])
+        $('#sliderNavLeft').addClass('SliderNavDisabled');
+    else
+        $('#sliderNavLeft').removeClass('SliderNavDisabled');
 
-	if ($(currObj)[0] === $('.SliderElement').last()[0])
-		$('#sliderNavRight').addClass('SliderNavDisabled');
-	else
-		$('#sliderNavRight').removeClass('SliderNavDisabled');
+    if ($(currObj)[0] === $('.SliderElement').last()[0])
+        $('#sliderNavRight').addClass('SliderNavDisabled');
+    else
+        $('#sliderNavRight').removeClass('SliderNavDisabled');
 }
 
 function galleryToElement(index) {
-	var prevWidths = 0;
-	var elm;
-	$('.SliderElementCurrent').removeClass('SliderElementCurrent');
-	for (var i = 0; i <= index; i++) {
-		elm = $('#gallery' + i);
-		if (i < index)
-			prevWidths += $(elm).width();
-	}
-	var centerOffset = ($('#sliderContainer').width() - $(elm).width()) / 2;
-	var totalOffset = -1 * prevWidths + centerOffset;
-	setSliderOffset(totalOffset);
-	$(elm).addClass('SliderElementCurrent');
-	setGalleryNavStatus(elm);
+    var prevWidths = 0;
+    var elm;
+    $('.SliderElementCurrent').removeClass('SliderElementCurrent');
+    for (var i = 0; i <= index; i++) {
+        elm = $('#gallery' + i);
+        if (i < index)
+            prevWidths += $(elm).width();
+    }
+    var centerOffset = ($('#sliderContainer').width() - $(elm).width()) / 2;
+    var totalOffset = -1 * prevWidths + centerOffset;
+    setSliderOffset(totalOffset);
+    $(elm).addClass('SliderElementCurrent');
+    setGalleryNavStatus(elm);
 }
 
 function galleryToHash() {
-	var hash = window.location.hash.slice(1);
-	if (isNaN(hash) || hash.length === 0) {
-		return;
-	}
-	galleryToElement(hash);
+    var hash = window.location.hash.slice(1);
+    if (isNaN(hash) || hash.length === 0) {
+        return;
+    }
+    galleryToElement(hash);
 }
 
 $(function() {
-	galleryToHash();
+    galleryToHash();
 });
 
 $(window).bind('hashchange', function () {
-	galleryToHash();
+    galleryToHash();
 });
 
 $('.SliderNav').click(function() {
-	if ($(this).hasClass('SliderNavDisabled'))
-		return false;
+    if ($(this).hasClass('SliderNavDisabled'))
+        return false;
 
-	var objId = $(this).attr('id');
-	var hash = window.location.hash.slice(1);
-	if (hash.length === 0 || isNaN(hash)) {	// No hash, default to 0
-		window.location.hash = '#1';
-		return false;
-	}
-	hash = parseInt(hash, 10);
-	if (objId == 'sliderNavLeft')
-		hash -= 1;
-	else
-		hash += 1;
-	console.log('new hash: ' + hash);
-	location.hash = ('#' + hash);
-	return false;
+    var objId = $(this).attr('id');
+    var hash = window.location.hash.slice(1);
+    if (hash.length === 0 || isNaN(hash)) {	// No hash, default to 0
+        window.location.hash = '#1';
+        return false;
+    }
+    hash = parseInt(hash, 10);
+    if (objId == 'sliderNavLeft')
+        hash -= 1;
+    else
+        hash += 1;
+    console.log('new hash: ' + hash);
+    location.hash = ('#' + hash);
+    return false;
 });
 
 /***** Editing functionality *****/
