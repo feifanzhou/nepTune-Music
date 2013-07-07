@@ -59,7 +59,7 @@ $albumOverlayInner: transparentize(black, 0.5);
 		display: inline-block;
 		list-style: none;
 		//	max-width: 1200px;
-        width: 312px;
+        width: 400px;
 		margin: 0;
 		li {
 		  color: $inactiveWhite;
@@ -114,9 +114,10 @@ $albumOverlayInner: transparentize(black, 0.5);
 	//  align: center;
 	//font-size: 18px;
 	// height: 18px !important;
-    height: 100px;
+    height: 100%;
 	text-align: center;
-	display: inline-block;
+	//display: inline-block;
+    display: none;
 	width: 500px !important;
 	.statusbar {
 	  border-radius: 4px;
@@ -124,24 +125,37 @@ $albumOverlayInner: transparentize(black, 0.5);
 	  width: 100px;
 	  margin: auto;
 	  background: rgb(20,20,20);
+      position: relative;
 	  ///border-color: white;
 	  border: 1px solid transparentize(white, 0.5);
-	  height: 6px;
+	  height: 8px;
+      .loading {
+	    background-color: rgb(100, 100, 100);
+	    border-radius: 0px;
+	    //border-color: rgb(102, 102, 102);
+        position: absolute;
+        top: 1px;
+	    height: 100%;
+	  }
 	  .position {
 	    background-color: rgb(200, 200, 200);
 	    border-radius: 0px;
 	    //border-color: rgb(102, 102, 102);
+        position: absolute;
+        top: 1px;
 	    height: 100%;
 	  }
 
 	}
-
+    
 	.songbar {
-	  display: inline-block;
+      /* position: absolute; */
+      /* top: 4px; */
+      display: inline-block;
 	}
 
 	#playPauseBtn {
-	  display: inline-block;
+	  display: inline-block !important;
 	  position: absolute;
 	  top: 8px;
       margin: 0 0 0 20px; //top right bottom left

@@ -16,10 +16,23 @@ soundManager.setup({
 
 var currentSound = false;
 
-function updateBar() {
+function updateBarPlaying() {
     if(currentSound) {
-        $('.position').css('width', 100*currentSound.position/currentSound.duration + '%');
+        $('.position').css('width', 100*currentSound.position/currentSound.durationEstimate + '%');
     }
+}
+
+function updateBarLoading() {
+    if(currentSound) {
+        $('.loading').css('width', 100*currentSound.duration/currentSound.durationEstimate + '%');
+    }
+}
+
+function changePlayButton(name) {
+    function n() {
+        $('#playPauseBtn').text(name);
+    }
+    return n;
 }
 
 function playStuff(url) {
@@ -29,12 +42,17 @@ function playStuff(url) {
     var mySound = soundManager.createSound({
         id: 'sound',
         url: url,
-        whileplaying: updateBar
+        whileplaying: updateBarPlaying,
+        whileloading: updateBarLoading,
+        onplay: changePlayButton('Pause'),
+        onpause: changePlayButton('Resume'),
+        onresume: changePlayButton('Pause')
     });
     mySound.play();
     currentSound = mySound;
-    var name = $('#detailsHeaderTitle').html()
+    var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
+    $('#playbar').css('display', 'inline-block');
 }
 
 function togglePause() {
