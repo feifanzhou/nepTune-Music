@@ -24,10 +24,11 @@ function playStuff(url) {
         url: url //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
     });
     mySound.play();
-
+    var name = $('#detailsHeaderTitle').html()
+    $('#nowPlaying').html(name);
 }
 
-function togglePause(url) {
+function togglePause() {
     soundManager.togglePause('sound');
 
 }

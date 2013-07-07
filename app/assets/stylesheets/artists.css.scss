@@ -18,6 +18,10 @@ header {
 	@include AppHeader;
 }
 
+#playbar {
+  color: $white;
+}
+
 #artistPageContainer {
 	background: $Txture;
 	height: 100%;
