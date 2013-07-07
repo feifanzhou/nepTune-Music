@@ -18,8 +18,6 @@ var currentSound = false;
 
 function updateBar() {
     if(currentSound) {
-       // $('#playbar.statusbar.position').style.width =
-        // currentSound.position/currentSound.duration;
         $('.position').css('width', 100*currentSound.position/currentSound.duration + '%');
     }
 }
@@ -30,7 +28,7 @@ function playStuff(url) {
     soundManager.destroySound('sound');
     var mySound = soundManager.createSound({
         id: 'sound',
-        url: url, //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
+        url: url,
         whileplaying: updateBar
     });
     mySound.play();

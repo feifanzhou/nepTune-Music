@@ -1,12 +1,14 @@
 <header>
   <%= render 'layouts/app_header' %>
-  <%= render 'layouts/playbar' %>
+  <!-- <%= render 'layouts/playbar' %> -->
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing,
+is_following: @is_following  %>
   <div class='XHidden' id='artistPageContent'>
     <div id='musicGridHeader'>
-      <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", size: "960x320", class: "MusicGridHeaderImage") %>
+      <%= image_tag("piano_guys_promo.jpg", alt: "The Piano Guys", size: "960x320", class:
+"MusicGridHeaderImage") %>
       <div id='musicGridFilter'>
         <ul class="FilterBarItems">
           <li class='FilterItem SelectedFilter' id='filterAll' onclick='filterMusic(0)'>All</li>
@@ -31,16 +33,19 @@
     <div id='musicGridContainer'>
       <div id='musicGrid'>
         <!-- TODO: Load filter content with AJAX -->
-        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items: @artist.albums, label_icon: '&#59405;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items:
+@artist.albums, label_icon: '&#59405;'.html_safe %>
         
-        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items: @artist.songs, label_icon: '&#59406;'.html_safe %>
+        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items:
+@artist.songs, label_icon: '&#59406;'.html_safe %>
 
         <div id='noFilterMatches'>
           <p>Nothing matches that filter</p>
         </div>
       </div>
       <div id='musicDetailsHeader'>
-        <span class='InlineNavigation' id='detailsHeaderBack' onclick='returnToMusicGrid()'>&#59399;</span>
+        <span class='InlineNavigation' id='detailsHeaderBack'
+onclick='returnToMusicGrid()'>&#59399;</span>
         <span class='GridItemIcon' id='itemIcon'></span>
         <p id='detailsHeaderTitle'></p>
       </div>
@@ -51,4 +56,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> 

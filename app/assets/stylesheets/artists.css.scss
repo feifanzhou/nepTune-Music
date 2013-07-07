@@ -20,20 +20,23 @@ header {
 
 #playbar {
   color: $white;
-  align: center;
+//  align: center;
   //font-size: 18px;
-  height: 18px;
+  height: 18px !important;
   text-align: center;
+  display: inline-block;
+  width: 100px !important;
   .statusbar {
+    width: 100px;
+    margin: auto;
     background: rgb(20,20,20);
     ///border-color: white;
-    border: 1px solid white;
-    height: 18px;
+    border: 1px solid transparentize(white, 0.5);;
+    height: 5px;
     .position {
-      background-color: rgb(102, 102, 102);
-      border-color: rgb(102, 102, 102);
+      background-color: rgb(200, 200, 200);
+      //border-color: rgb(102, 102, 102);
       height: 100%;
-      line-height: 27px;
     }
 
   }

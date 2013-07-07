@@ -58,7 +58,8 @@ $albumOverlayInner: transparentize(black, 0.5);
 				color: white;
 				display: inline-block;
 				list-style: none;
-				max-width: 1200px;
+			    //	max-width: 1200px;
+                width: 312px;
 				margin: 0;
 				li {
 					color: $inactiveWhite;
