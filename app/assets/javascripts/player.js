@@ -14,6 +14,15 @@ soundManager.setup({
 });
 
 
+var currentSound = false;
+
+function updateBar() {
+    if(currentSound) {
+       // $('#playbar.statusbar.position').style.width =
+        // currentSound.position/currentSound.duration;
+        $('.position').css('width', 100*currentSound.position/currentSound.duration + '%');
+    }
+}
 
 function playStuff(url) {
     // Ready to use; soundManager.createSound() etc. can now be called.
@@ -21,9 +30,11 @@ function playStuff(url) {
     soundManager.destroySound('sound');
     var mySound = soundManager.createSound({
         id: 'sound',
-        url: url //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
+        url: url, //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
+        whileplaying: updateBar
     });
     mySound.play();
+    currentSound = mySound;
     var name = $('#detailsHeaderTitle').html()
     $('#nowPlaying').html(name);
 }

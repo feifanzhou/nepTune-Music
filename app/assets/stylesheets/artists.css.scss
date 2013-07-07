@@ -11,1018 +11,1035 @@
 @import "bootstrap";
 
 html {
-	background: $Txture;
+  background: $Txture;
 }
 
 header {
-	@include AppHeader;
+  @include AppHeader;
 }
 
 #playbar {
   color: $white;
+  align: center;
+  //font-size: 18px;
+  height: 18px;
+  text-align: center;
+  .statusbar {
+    background: rgb(20,20,20);
+    ///border-color: white;
+    border: 1px solid white;
+    height: 18px;
+    .position {
+      background-color: rgb(102, 102, 102);
+      border-color: rgb(102, 102, 102);
+      height: 100%;
+      line-height: 27px;
+    }
+
+  }
 }
 
 #artistPageContainer {
+  background: $Txture;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  width: 1200px;
+  #artistSidebar {
 	background: $Txture;
-	height: 100%;
-	margin: auto;
-	overflow: hidden;
-	width: 1200px;
-	#artistSidebar {
-		background: $Txture;
-		bottom: 0;
-		color: $white;
-		overflow: auto;
-		padding: 0;
-		position: absolute;
-		top: 125px;
-		width: 238px;
-		transition: border 0.5s;
-		-webkit-transition: border 0.5s;
-		@media (min-width: 1200px) {
-			border-left: 2px inset rgba(100, 100, 100, 0.25);
+	bottom: 0;
+	color: $white;
+	overflow: auto;
+	padding: 0;
+	position: absolute;
+	top: 125px;
+	width: 238px;
+	transition: border 0.5s;
+	-webkit-transition: border 0.5s;
+	@media (min-width: 1200px) {
+	  border-left: 2px inset rgba(100, 100, 100, 0.25);
+	}
+	@mixin SidebarShadowPosition {
+	  bottom: 0;
+	  left: 0;
+	  position: fixed;
+	  top: 125px;
+	  width: 228px;
+	}
+	.ShadowTop {
+	  @include SidebarShadowPosition;
+	  box-shadow: inset 0px 8px 6px -6px black;
+	  opacity: 0;
+	  pointer-events: none;
+	}
+	.ShadowBottom {
+	  @include SidebarShadowPosition;
+	  box-shadow: inset 0px -8px 6px -6px black;
+	  opacity: 1;
+	  pointer-events: none;
+	}
+	#artistProfile {
+	  .ProfilePictureContainer {
+		margin: 0 32px;
+		&.ProfilePictureEdit {
+		  position: relative;
+		  &:hover {
+			cursor: pointer;
+		  }
+		  #profileDarken {
+			background-color: transparentize(black, 0.25);
+			display: none;
+			height: 160px;
+			left: 4px;
+			position: absolute;
+			top: 15px;
+			width: 160px;
+		  }
+		  #profileUploadSpinner {
+			color: $white;
+			display: none;
+			font-size: 36px;
+			left: 68px;
+			position: absolute;
+			top: 68px;
+		  }
+		  #changeProfilePic {
+			@include TranslucentBar;
+			color: $white;
+			font-family: $OpenSans;
+			height: 24px;
+			left: 4px;
+			position: absolute;
+			text-align: center;
+			top: 150px;
+			width: 160px;
+		  }
 		}
-		@mixin SidebarShadowPosition {
-			bottom: 0;
-			left: 0;
-			position: fixed;
-			top: 125px;
-			width: 228px;
+		.ArtistProfilePic {
+		  border: 4px solid $white;
+		  border-radius: 4px;
+		  height: 160px;
+		  margin: 10px 0;
+		  max-height: 160px;
+		  max-width: 160px;
+		  min-height: 160px;
+		  min-width: 160px;
+		  width: 160px;
 		}
-		.ShadowTop {
-			@include SidebarShadowPosition;
-			box-shadow: inset 0px 8px 6px -6px black;
-			opacity: 0;
-			pointer-events: none;
+	  }
+	  #profile_target {
+		display: none;
+	  }
+	  .UploadImageForm {
+		display: none;
+	  }
+	  .ArtistProfileName {
+		font-family: $OpenSans;
+		font-size: 24px;
+		font-weight: 400;
+		margin: 0 0 18px 0;
+		text-align: center;
+	  }
+	  h2.SidebarSubheading {
+		color: $halfWhite;
+		font-family: $Myriad;
+		font-size: 12px;
+		margin: 14px auto 4px 18px;
+	  }
+	  @mixin ArtistProfileText {
+		color: white;
+		font-family: $Myriad;
+		font-size: 12px;
+		font-weight: 400;
+		margin: 0 12px 1em 18px;
+	  }
+	  .ArtistProfileBio {
+		@include ArtistProfileText;
+	  }
+	}
+	#artistActions {
+	  margin: auto 18px;
+	  button.ArtistAction {
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px solid $nepTuneOrangeHighlight;
+		border-top: 1px solid $nepTuneOrangeHighlight;
+		color: $inactiveWhite;
+		display: inline-block;
+		font-family: $OpenSans;
+		font-weight: 600;
+		float: left;
+		margin: 0;
+		padding-top: 3px;
+		transition: background-color 0.5s, color 0.5s;
+		-webkit-transition: background-color 0.5s, color 0.5s;
+		width: 50%;
+		&:hover {
+		  background-color: desaturate(darken($nepTuneOrange, 25%), 35%);
+		  color: $partialActiveWhite;
 		}
-		.ShadowBottom {
-			@include SidebarShadowPosition;
-			box-shadow: inset 0px -8px 6px -6px black;
-			opacity: 1;
-			pointer-events: none;
+		&.ArtistActionOn {
+		  background-color: $nepTuneOrangeHighlight;
+		  color: white;
 		}
-		#artistProfile {
-			.ProfilePictureContainer {
-				margin: 0 32px;
-				&.ProfilePictureEdit {
-					position: relative;
-					&:hover {
-						cursor: pointer;
-					}
-					#profileDarken {
-						background-color: transparentize(black, 0.25);
-						display: none;
-						height: 160px;
-						left: 4px;
-						position: absolute;
-						top: 15px;
-						width: 160px;
-					}
-					#profileUploadSpinner {
-						color: $white;
-						display: none;
-						font-size: 36px;
-						left: 68px;
-						position: absolute;
-						top: 68px;
-					}
-					#changeProfilePic {
-						@include TranslucentBar;
-						color: $white;
-						font-family: $OpenSans;
-						height: 24px;
-						left: 4px;
-						position: absolute;
-						text-align: center;
-						top: 150px;
-						width: 160px;
-					}
-				}
-				.ArtistProfilePic {
-					border: 4px solid $white;
-					border-radius: 4px;
-					height: 160px;
-					margin: 10px 0;
-					max-height: 160px;
-					max-width: 160px;
-					min-height: 160px;
-					min-width: 160px;
-					width: 160px;
-				}
+	  }
+	}
+	.ArtistNav {
+	  margin-top: 80px;
+	  ul {
+		list-style: none;
+		margin: 0;
+		a {
+		  color: $white;
+		  text-decoration: none;
+		  li {
+			font-family: $Myriad;
+			font-size: 24px;
+			font-weight: 400;
+			padding: 6px 0 6px 22px;
+			transition: background-color 0.5s;
+			-webkit-transition: background-color 0.5s;
+			&:hover {
+			  background-color: transparentize(#666, 0.5);
+			  color: white;
+			  cursor: pointer;
 			}
-			#profile_target {
-				display: none;
+			&.ArtistNavLast {
+			  border: none;
 			}
-			.UploadImageForm {
-				display: none;
+			&.ArtistNavCurrent {
+			  background-color: $nepTuneOrangeHighlight;
 			}
-			.ArtistProfileName {
-				font-family: $OpenSans;
-				font-size: 24px;
-				font-weight: 400;
-				margin: 0 0 18px 0;
-				text-align: center;
+			.ArtistNavIcon {
+			  display: inline-block;
+			  margin-right: 12px;
+			  text-align: center;
+			  width: 24px;
 			}
-			h2.SidebarSubheading {
-				color: $halfWhite;
-				font-family: $Myriad;
-				font-size: 12px;
-				margin: 14px auto 4px 18px;
-			}
-			@mixin ArtistProfileText {
-				color: white;
-				font-family: $Myriad;
-				font-size: 12px;
-				font-weight: 400;
-				margin: 0 12px 1em 18px;
-			}
-			.ArtistProfileBio {
-				@include ArtistProfileText;
-			}
-		}
-		#artistActions {
-			margin: auto 18px;
-			button.ArtistAction {
-				background-color: transparent;
-				border: none;
-				border-bottom: 1px solid $nepTuneOrangeHighlight;
-				border-top: 1px solid $nepTuneOrangeHighlight;
-				color: $inactiveWhite;
+			// @media(max-height: 879px) {
+			  @media(max-height: 599px) {
 				display: inline-block;
-				font-family: $OpenSans;
-				font-weight: 600;
 				float: left;
-				margin: 0;
-				padding-top: 3px;
-				transition: background-color 0.5s, color 0.5s;
-				-webkit-transition: background-color 0.5s, color 0.5s;
-				width: 50%;
-				&:hover {
-					background-color: desaturate(darken($nepTuneOrange, 25%), 35%);
-					color: $partialActiveWhite;
+				padding: 11px;
+				.ArtistNavIcon {
+				  margin-right: 0;
+				  text-align: center;
 				}
-				&.ArtistActionOn {
-					background-color: $nepTuneOrangeHighlight;
-					color: white;
+				.ArtistNavText {
+				  display: none;
 				}
+			  }
 			}
+		  }
 		}
-		.ArtistNav {
-			margin-top: 80px;
-			ul {
-				list-style: none;
-				margin: 0;
-				a {
-					color: $white;
-					text-decoration: none;
-					li {
-						font-family: $Myriad;
-						font-size: 24px;
-						font-weight: 400;
-						padding: 6px 0 6px 22px;
-						transition: background-color 0.5s;
-						-webkit-transition: background-color 0.5s;
-						&:hover {
-							background-color: transparentize(#666, 0.5);
-							color: white;
-							cursor: pointer;
-						}
-						&.ArtistNavLast {
-							border: none;
-						}
-						&.ArtistNavCurrent {
-							background-color: $nepTuneOrangeHighlight;
-						}
-						.ArtistNavIcon {
-							display: inline-block;
-							margin-right: 12px;
-							text-align: center;
-							width: 24px;
-						}
-						// @media(max-height: 879px) {
-						@media(max-height: 599px) {
-							display: inline-block;
-							float: left;
-							padding: 11px;
-							.ArtistNavIcon {
-								margin-right: 0;
-								text-align: center;
-							}
-							.ArtistNavText {
-								display: none;
-							}
-						}
-					}
-				}
-			}
-		}
+	  }
 	}
 	#artistPageContent {
-		@include AppContentLayerShadow;
-		background: #565656;
-		bottom: 0;
-		color: $white;
-		margin-left: 240px;
-		overflow-y: scroll;
-		position: absolute;
-		top: 130px;
-		white-space: nowrap;
-		width: 960px;
-		z-index: 2;
-		&.XHidden {
-			overflow-x: hidden;
+	  @include AppContentLayerShadow;
+	  background: #565656;
+	  bottom: 0;
+	  color: $white;
+	  margin-left: 240px;
+	  overflow-y: scroll;
+	  position: absolute;
+	  top: 130px;
+	  white-space: nowrap;
+	  width: 960px;
+	  z-index: 2;
+	  &.XHidden {
+		overflow-x: hidden;
+	  }
+	  #musicGridHeader {
+		height: 320px;
+		max-height: 320px;
+		overflow: hidden;
+		position: relative;
+		max-width: 960px;
+		.MusicGridHeaderImage {
+		  display: inline-block;
+		  height: 320px;
+		  z-index: 2;
 		}
-		#musicGridHeader {
-			height: 320px;
-			max-height: 320px;
-			overflow: hidden;
-			position: relative;
-			max-width: 960px;
-			.MusicGridHeaderImage {
-				display: inline-block;
-				height: 320px;
-				z-index: 2;
+		#musicGridFilter {
+		  @include TranslucentBar;
+		  top: 270px;
+		  &.Hidden {
+			top: 320px;
+		  }
+		  ul.FilterBarItems {
+			display: inline-block;
+			list-style: none;
+			margin: 0;
+			padding: 12px 14px 8px 14px;
+			li {
+			  color: $inactiveWhite;
+			  display: inline-block;
+			  float: left;
+			  font-family: $OpenSans;
+			  font-size: 18px;
+			  font-weight: 400;
+			  margin: 0 14px;
+			  transition: color 0.5s;
+			  -webkit-transition: color 0.5s;
+			  &:hover {
+				color: $partialActiveWhite;
+				cursor: pointer;
+				
+			  }
+			  &.SelectedFilter {
+				color: white;
+			  }
 			}
-			#musicGridFilter {
-				@include TranslucentBar;
-				top: 270px;
-				&.Hidden {
-					top: 320px;
-				}
-				ul.FilterBarItems {
-					display: inline-block;
-					list-style: none;
-					margin: 0;
-					padding: 12px 14px 8px 14px;
-					li {
-						color: $inactiveWhite;
-						display: inline-block;
-						float: left;
-						font-family: $OpenSans;
-						font-size: 18px;
-						font-weight: 400;
-						margin: 0 14px;
-						transition: color 0.5s;
-						-webkit-transition: color 0.5s;
-						&:hover {
-							color: $partialActiveWhite;
-							cursor: pointer;
-							
-						}
-						&.SelectedFilter {
-							color: white;
-						}
-					}
-				}
-				#createNewMusic {
-					background: transparentize($nepTuneOrange, 0.25);
-					border-radius: 4px;
-					display: inline-block;
-					padding: 3px 4px;
-					position: absolute;
-					top: 10px;
-					right: 200px;
-					a {
-						color: $white;
-						font-family: $OpenSans;
-						font-size: 16px;
-						padding: 3px;
-						&:hover {
-							color: white;
-							text-decoration: none;
-						}
-					}
-					.SegmentDivider {
-						color: $white;
-						font-family: $OpenSans;
-						font-size: 18px;
-						font-weight: 300;
-					}
-				}
-				#musicFilterSearch {
-					display: inline-block;
-					float: right;
-					margin-right: 14px;
-					padding: 10px 14px 6px 14px;
-					#musicFilterSearchField {
-						background-color: #444;
-						border: none;
-						box-sizing: border-box;
-						color: white;
-						font-size: 18px;
-						height: 26px;
-						width: 160px;
-						&::-webkit-input-placeholder {
-							color: $inactiveWhite;
-						}
-						&:-moz-placeholder {
-							color: $inactiveWhite;
-						}
-						&::-moz-placeholder {
-							color: $inactiveWhite;
-						}
-						&:-ms-input-placeholder {
-							color: $inactiveWhite;
-						}
-						&:focus {
-							background-color: #666;
-							border: none !important;
-							box-shadow: none !important;
-							outline: none;
-						}
-					}
-				}
-			}
-		}
-		#musicGridContainer {
-			@include AnimateSideMargins;
-			margin-left: 0;
-			&.MusicGridDetails {
-				margin-left: -1000px;
-			}
-			#musicGrid {
-				display: inline-block;
-				float: left;
-				white-space: normal;
-				width: 960px;
-				.MusicGridGroup {
-					clear: both;
-					font-size: 0;
-					margin-bottom: 12px;
-					.MusicGridGroupHeader {
-						@include DarkEngrave;
-						font-size: 16px;
-						margin-bottom: 28px;
-						text-align: center;
-						span {
-							position: relative;
-							&:before, &:after {
-								border-top: 2px groove #666;
-								bottom: 0;
-								content: "";
-								position: absolute;
-								right: 5em;
-								top: 8px;
-								width: 425px;
-							}
-							&:after {
-								bottom: 0;
-								left: 5em;
-								position: absolute;
-								right: 0;
-								top: 8px;
-							}
-						}
-					}
-					.GridItem {
-						box-shadow: 0px 0px 6px 3px transparentize(black, 0.6);
-						display: inline-block;
-						margin: 10px;
-						position: relative;
-						width: 220px;
-						img {
-							height: auto;
-							max-width: 100%;
-						}
-						.GridItemDetails {
-							background: rgba(0, 0, 0, 0.65);
-							bottom: 0;
-							color: white;
-							height: 30px;
-							left: 0;
-							position: absolute;
-							right: 0;
-							width: 100%;
-							.GridItemIcon {
-								color: transparentize(white, 0.5);
-								font-family: $Zonda;
-								margin: auto 4px;
-							}
-							.GridItemName {
-								display: inline-block;
-								font-family: $OpenSans;
-								font-size: 13px;
-								font-weight: 600;
-								margin: 5px 0 0 8px;
-							}
-						}
-					}
-					/* .GridItemFeatured {
-						float: left;
-						width: 40%;
-						img {
-							height: auto;
-							max-width: 100%;
-						} 
-					} */
-				}
-				#noFilterMatches {
-					display: none;
-					width: 100%;
-					p {
-						@include DarkEngrave;
-						margin: 36px;
-						text-align: center;
-					}
-				}
-			}
-			#musicDetailsHeader {
-				@include TranslucentBar;
-				// display: none;
-				top: 270px;
-				z-index: -1;
-				&.Visible {
-					// display: inline-block;
-					top: 320px;
-				}
-				.InlineNavigation {
-					@include InlineIcons;
-					cursor: pointer;
-				}
-				.GridItemIcon {
-					font-family: $Zonda;
-					font-size: 22px;
-					margin: 8px 0;
-				}
-				#detailsHeaderTitle {
-					display: inline-block;
-					font-weight: 600;
-					margin: 8px;
-				}
-			}
-
-			#musicDetails {
-				@include AnimateSideMargins;
-				display: inline-block;
-				height: 300px;
-				margin: 50px 0 0 40px;
-				position: relative;
-				width: 960px;
-			}
-		}
-
-		/***** About page *****/
-		#sliderContainer {
-			background: transparentize(black, 0.25);
-			height: 360px;
-			left: 0;
-			overflow: hidden;
+		  }
+		  #createNewMusic {
+			background: transparentize($nepTuneOrange, 0.25);
+			border-radius: 4px;
+			display: inline-block;
+			padding: 3px 4px;
 			position: absolute;
-			right: 0;
-			.SliderNav {
-				bottom: 0;
+			top: 10px;
+			right: 200px;
+			a {
+			  color: $white;
+			  font-family: $OpenSans;
+			  font-size: 16px;
+			  padding: 3px;
+			  &:hover {
+				color: white;
+				text-decoration: none;
+			  }
+			}
+			.SegmentDivider {
+			  color: $white;
+			  font-family: $OpenSans;
+			  font-size: 18px;
+			  font-weight: 300;
+			}
+		  }
+		  #musicFilterSearch {
+			display: inline-block;
+			float: right;
+			margin-right: 14px;
+			padding: 10px 14px 6px 14px;
+			#musicFilterSearchField {
+			  background-color: #444;
+			  border: none;
+			  box-sizing: border-box;
+			  color: white;
+			  font-size: 18px;
+			  height: 26px;
+			  width: 160px;
+			  &::-webkit-input-placeholder {
 				color: $inactiveWhite;
-				font-size: 60px;
-				padding: 162px 20px;
-				position: absolute;
-				text-align: center;
-				top: 0;
-				width: 60px;
-				z-index: 2;
-				&:hover {
-					color: $partialActiveWhite;
-					cursor: pointer;
-				}
-				&.SliderNavDisabled {
-					color: $inactiveWhite;
-					cursor: default;
-				}
-				&#sliderNavLeft {
-					left: 0;
-				}
-				&#sliderNavRight {
-					right: 0;
-				}
+			  }
+			  &:-moz-placeholder {
+				color: $inactiveWhite;
+			  }
+			  &::-moz-placeholder {
+				color: $inactiveWhite;
+			  }
+			  &:-ms-input-placeholder {
+				color: $inactiveWhite;
+			  }
+			  &:focus {
+				background-color: #666;
+				border: none !important;
+				box-shadow: none !important;
+				outline: none;
+			  }
 			}
-			.Slider {
-				font-size: 0;
-				height: 360px;
+		  }
+		}
+	  }
+	  #musicGridContainer {
+		@include AnimateSideMargins;
+		margin-left: 0;
+		&.MusicGridDetails {
+		  margin-left: -1000px;
+		}
+		#musicGrid {
+		  display: inline-block;
+		  float: left;
+		  white-space: normal;
+		  width: 960px;
+		  .MusicGridGroup {
+			clear: both;
+			font-size: 0;
+			margin-bottom: 12px;
+			.MusicGridGroupHeader {
+			  @include DarkEngrave;
+			  font-size: 16px;
+			  margin-bottom: 28px;
+			  text-align: center;
+			  span {
+				position: relative;
+				&:before, &:after {
+				  border-top: 2px groove #666;
+				  bottom: 0;
+				  content: "";
+				  position: absolute;
+				  right: 5em;
+				  top: 8px;
+				  width: 425px;
+				}
+				&:after {
+				  bottom: 0;
+				  left: 5em;
+				  position: absolute;
+				  right: 0;
+				  top: 8px;
+				}
+			  }
+			}
+			.GridItem {
+			  box-shadow: 0px 0px 6px 3px transparentize(black, 0.6);
+			  display: inline-block;
+			  margin: 10px;
+			  position: relative;
+			  width: 220px;
+			  img {
+				height: auto;
+				max-width: 100%;
+			  }
+			  .GridItemDetails {
+				background: rgba(0, 0, 0, 0.65);
+				bottom: 0;
+				color: white;
+				height: 30px;
 				left: 0;
-				overflow: visible;
 				position: absolute;
-				top: 0;
-				width: auto;
-				transition: left 0.8s;
-				-webkit-transition: left 0.8s;
-				.SliderElement {
-					display: inline-block;
-					height: 360px;
-					opacity: 0.15;
-					pointer-events: none;
-					position: relative;
-					transition: opacity 0.8s;
-					-webkit-transition: opacity 0.8s;
-					&.SliderElementCurrent {
-						opacity: 1;
-						pointer-events: auto;
-					}
-					&.SliderAddElement {
-						height: 360px;
-						width: 560px;
-						.SliderElementInnerContent {
-							background: $Debut;
-							border-radius: 4px;
-							color: black;
-							height: 310px;
-							margin: 10px;
-							padding: 15px;
-							.AddElementOption {
-								display: inline-block;
-								float: left;
-								height: 100%;
-								position: relative;
-								text-align: center;
-								width: 239px;
-								.AddElementFace {
-									@include AnimateBackground;
-									border-radius: 3px;
-									height: 100%;
-									position: relative;
-									width: 100%;
-									&:hover {
-										background: transparentize(#AAA, 0.65);
-										cursor: pointer;
-									}
-									p {
-										position: absolute;
-										text-align: center;
-										top: 176px;
-										width: 100%;
-										&.AddElementIcon {
-											font-size: 60px;
-											top: 86px;
-										}
-									}
-								}
-								.AddElementInfo {
-									display: none;
-									h2 {
-										font-family: $PTSans;
-									}
-									.UploadPreview {
-										background: #AAA;
-										// border: 4px dashed #888;
-										border-radius: 2px;
-										box-sizing: border-box;
-										height: 132px;
-										margin-bottom: 8px;
-										position: relative;
-										text-align: center;
-										width: 100%;
-										#imgUploadSpinner {
-											display: none;
-											margin-top: 50px;
-											width: 100%;
-										}
-										.ImagePreview {
-											max-height: 100%;
-											max-width: 100%;
-											text-align: center;
-										}
-										button {
-											left: 68px;
-											position: absolute;
-											top: 50px;
-										}
-										input {
-											height: 26px;
-											left: 6px;
-											position: absolute;
-											right: 6px;
-											top: 48px;
-											&.SelectImage {
-											  display: none;
-											}
-										}
-										#upload_target {
-											display: none;
-										}
-									}
-									.AddElementCaption {
-										box-sizing: border-box;
-										height: 32px;
-										max-height: 190px;
-										max-width: 100%;
-										width: 100%;
-									}
-									.AddElementActions {
-										button {
-											margin: 6px;
-										}
-									}
-								}
-							}
-							#addImage {
-								border-bottom-left-radius: 3px;
-								border-top-left-radius: 3px;
-								border-right: 2px groove #AAA;
-								padding-right: 15px;
-							}
-							#addVideo {
-								border-bottom-right-radius: 3px;
-								border-top-right-radius: 3px;
-								padding-left: 15px;
-							}
-						}
-
-					}
-					.SliderElementRemoveOverlay {
-						background: transparentize(white, 0.2);
-						bottom: 0;
-						left: 0;
-						opacity: 0;
-						position: absolute;
-						right: 0;
-						top: 0px;
-						z-index: 1;
-						transition: opacity 0.5s;
-						-webkit-transition: opacity 0.5s;
-						&:hover {
-							opacity: 1;
-						}
-						.SliderElementRemove {
-							color: $nepTuneOrange;
-							cursor: pointer;
-							display: inline-block;
-							font-size: 144px;
-							left: 0;
-							position: absolute;
-							right: 0;
-							text-align: center;
-							top: 180px;
-						}
-					}
-					.SliderTitle {
-						@include TranslucentBar;
-						bottom: 0;
-						margin: 0;
-						z-index: 2;
-						p {
-							font-family: $OpenSans;
-							font-size: 18px;
-							font-weight: 600;
-							margin: 10px;
-							&.TitleTextEdit {
-								margin: 1px 10px;
-							}
-							&.ClickToEdit {
-								color: transparentize(white, 0.5);
-								font-size: 14px;
-								font-weight: 400;
-								margin: 1px 10px;
-							}
-						}
-					}
-					img {
-						display: block;
-						height: 360px;
-						max-height: 360px;
-					}
+				right: 0;
+				width: 100%;
+				.GridItemIcon {
+				  color: transparentize(white, 0.5);
+				  font-family: $Zonda;
+				  margin: auto 4px;
 				}
+				.GridItemName {
+				  display: inline-block;
+				  font-family: $OpenSans;
+				  font-size: 13px;
+				  font-weight: 600;
+				  margin: 5px 0 0 8px;
+				}
+			  }
 			}
-		}
-		#aboutBody {
-			margin-top: 360px;
-			white-space: normal;
+		  /* .GridItemFeatured {
+			 float: left;
+			 width: 40%;
+			 img {
+			 height: auto;
+			 max-width: 100%;
+			 } 
+			 } */
+		  }
+		  #noFilterMatches {
+			display: none;
 			width: 100%;
-			div {
-				box-sizing: border-box;
-				display: inline-block;
-				padding: 20px;
-				h2 {
-					font-family: $OpenSans;
-					font-size: 36px;
-					font-weight: 300;
-				}
-				p {
-					font-family: $OpenSans;
-					font-size: 15px;
-					font-weight: 400;
-					line-height: 1.5em;
-				}
+			p {
+			  @include DarkEngrave;
+			  margin: 36px;
+			  text-align: center;
 			}
+		  }
+		}
+		#musicDetailsHeader {
+		  @include TranslucentBar;
+		  // display: none;
+		  top: 270px;
+		  z-index: -1;
+		  &.Visible {
+			// display: inline-block;
+					top: 320px;
+		  }
+		  .InlineNavigation {
+			@include InlineIcons;
+			cursor: pointer;
+		  }
+		  .GridItemIcon {
+			font-family: $Zonda;
+			font-size: 22px;
+			margin: 8px 0;
+		  }
+		  #detailsHeaderTitle {
+			display: inline-block;
+			font-weight: 600;
+			margin: 8px;
+		  }
 		}
 
-		/***** Events page *****/
-		#eventsCalendarHeader {
-			background-color: $nepTuneOrange;
-			height: 50px;
-			position: fixed;
-			width: 960px;
-			z-index: 1;
-			#calendarNavigation {
-				display: inline-block;
-				float: left;
-				margin-left: 18px;
-				.InlineNavigation {
-					@include InlineIcons;
-				}
+		#musicDetails {
+		  @include AnimateSideMargins;
+		  display: inline-block;
+		  height: 300px;
+		  margin: 50px 0 0 40px;
+		  position: relative;
+		  width: 960px;
+		}
+	  }
+
+	  /***** About page *****/
+	  #sliderContainer {
+		background: transparentize(black, 0.25);
+		height: 360px;
+		left: 0;
+		overflow: hidden;
+		position: absolute;
+		right: 0;
+		.SliderNav {
+		  bottom: 0;
+		  color: $inactiveWhite;
+		  font-size: 60px;
+		  padding: 162px 20px;
+		  position: absolute;
+		  text-align: center;
+		  top: 0;
+		  width: 60px;
+		  z-index: 2;
+		  &:hover {
+			color: $partialActiveWhite;
+			cursor: pointer;
+		  }
+		  &.SliderNavDisabled {
+			color: $inactiveWhite;
+			cursor: default;
+		  }
+		  &#sliderNavLeft {
+			left: 0;
+		  }
+		  &#sliderNavRight {
+			right: 0;
+		  }
+		}
+		.Slider {
+		  font-size: 0;
+		  height: 360px;
+		  left: 0;
+		  overflow: visible;
+		  position: absolute;
+		  top: 0;
+		  width: auto;
+		  transition: left 0.8s;
+		  -webkit-transition: left 0.8s;
+		  .SliderElement {
+			display: inline-block;
+			height: 360px;
+			opacity: 0.15;
+			pointer-events: none;
+			position: relative;
+			transition: opacity 0.8s;
+			-webkit-transition: opacity 0.8s;
+			&.SliderElementCurrent {
+			  opacity: 1;
+			  pointer-events: auto;
 			}
-			#calendarMonth {
+			&.SliderAddElement {
+			  height: 360px;
+			  width: 560px;
+			  .SliderElementInnerContent {
+				background: $Debut;
+				border-radius: 4px;
+				color: black;
+				height: 310px;
+				margin: 10px;
+				padding: 15px;
+				.AddElementOption {
+				  display: inline-block;
+				  float: left;
+				  height: 100%;
+				  position: relative;
+				  text-align: center;
+				  width: 239px;
+				  .AddElementFace {
+					@include AnimateBackground;
+					border-radius: 3px;
+					height: 100%;
+					position: relative;
+					width: 100%;
+					&:hover {
+					  background: transparentize(#AAA, 0.65);
+					  cursor: pointer;
+					}
+					p {
+					  position: absolute;
+					  text-align: center;
+					  top: 176px;
+					  width: 100%;
+					  &.AddElementIcon {
+						font-size: 60px;
+						top: 86px;
+					  }
+					}
+				  }
+				  .AddElementInfo {
+					display: none;
+					h2 {
+					  font-family: $PTSans;
+					}
+					.UploadPreview {
+					  background: #AAA;
+					  // border: 4px dashed #888;
+					  border-radius: 2px;
+					  box-sizing: border-box;
+					  height: 132px;
+					  margin-bottom: 8px;
+					  position: relative;
+					  text-align: center;
+					  width: 100%;
+					  #imgUploadSpinner {
+						display: none;
+						margin-top: 50px;
+						width: 100%;
+					  }
+					  .ImagePreview {
+						max-height: 100%;
+						max-width: 100%;
+						text-align: center;
+					  }
+					  button {
+						left: 68px;
+						position: absolute;
+						top: 50px;
+					  }
+					  input {
+						height: 26px;
+						left: 6px;
+						position: absolute;
+						right: 6px;
+						top: 48px;
+						&.SelectImage {
+						  display: none;
+						}
+					  }
+					  #upload_target {
+						display: none;
+					  }
+					}
+					.AddElementCaption {
+					  box-sizing: border-box;
+					  height: 32px;
+					  max-height: 190px;
+					  max-width: 100%;
+					  width: 100%;
+					}
+					.AddElementActions {
+					  button {
+						margin: 6px;
+					  }
+					}
+				  }
+				}
+				#addImage {
+				  border-bottom-left-radius: 3px;
+				  border-top-left-radius: 3px;
+				  border-right: 2px groove #AAA;
+				  padding-right: 15px;
+				}
+				#addVideo {
+				  border-bottom-right-radius: 3px;
+				  border-top-right-radius: 3px;
+				  padding-left: 15px;
+				}
+			  }
+
+			}
+			.SliderElementRemoveOverlay {
+			  background: transparentize(white, 0.2);
+			  bottom: 0;
+			  left: 0;
+			  opacity: 0;
+			  position: absolute;
+			  right: 0;
+			  top: 0px;
+			  z-index: 1;
+			  transition: opacity 0.5s;
+			  -webkit-transition: opacity 0.5s;
+			  &:hover {
+				opacity: 1;
+			  }
+			  .SliderElementRemove {
+				color: $nepTuneOrange;
+				cursor: pointer;
 				display: inline-block;
+				font-size: 144px;
+				left: 0;
+				position: absolute;
+				right: 0;
+				text-align: center;
+				top: 180px;
+			  }
+			}
+			.SliderTitle {
+			  @include TranslucentBar;
+			  bottom: 0;
+			  margin: 0;
+			  z-index: 2;
+			  p {
+				font-family: $OpenSans;
+				font-size: 18px;
+				font-weight: 600;
+				margin: 10px;
+				&.TitleTextEdit {
+				  margin: 1px 10px;
+				}
+				&.ClickToEdit {
+				  color: transparentize(white, 0.5);
+				  font-size: 14px;
+				  font-weight: 400;
+				  margin: 1px 10px;
+				}
+			  }
+			}
+			img {
+			  display: block;
+			  height: 360px;
+			  max-height: 360px;
+			}
+		  }
+		}
+	  }
+	  #aboutBody {
+		margin-top: 360px;
+		white-space: normal;
+		width: 100%;
+		div {
+		  box-sizing: border-box;
+		  display: inline-block;
+		  padding: 20px;
+		  h2 {
+			font-family: $OpenSans;
+			font-size: 36px;
+			font-weight: 300;
+		  }
+		  p {
+			font-family: $OpenSans;
+			font-size: 15px;
+			font-weight: 400;
+			line-height: 1.5em;
+		  }
+		}
+	  }
+
+	  /***** Events page *****/
+	  #eventsCalendarHeader {
+		background-color: $nepTuneOrange;
+		height: 50px;
+		position: fixed;
+		width: 960px;
+		z-index: 1;
+		#calendarNavigation {
+		  display: inline-block;
+		  float: left;
+		  margin-left: 18px;
+		  .InlineNavigation {
+			@include InlineIcons;
+		  }
+		}
+		#calendarMonth {
+		  display: inline-block;
+		  font-family: $OpenSans;
+		  font-size: 28px;
+		  font-weight: 300;
+		  height: 50px;
+		  line-height: 50px;
+		  margin: 0px 16px;
+		}
+		#calendarViewMode {
+		  display: inline-block;
+		  float: right;
+		  margin-right: 18px;
+		  .InlineViewMode {
+			@include InlineIcons;
+			&#viewModeColumns {
+			  transform: rotate(90deg);
+			  -moz-transform: rotate(90deg);
+			  -ms-transform: rotate(90deg);
+			  -o-transform: rotate(90deg);
+			  -webkit-transform: rotate(90deg);
+			}
+			&:hover {
+			  color: $partialActiveWhite;
+			  cursor: pointer;
+			}
+			&.ViewModeSelected {
+			  color: white;
+			}
+		  }
+		}
+	  }
+	  .CalendarGrid {
+		.CalendarUnitContainer {
+		  border-top: 1px solid $white;
+		  .CalendarUnit {
+			background: lighten($nepTuneOrange, 45%);
+			border-bottom: $calendarBorderStyle;
+			border-right: $calendarBorderStyle;
+			box-sizing: border-box;
+			display: inline-block;
+			float: left;
+			height: 130px;
+			width: 14.2857%;	// One-seventh
+			&.CalendarUnitColLast {
+			  border-right: none;
+			}
+			&.CalendarUnitRowLast {
+			  border-bottom: none;
+			}
+			.CalendarUnitDate {
+			  .CalendarUnitMonth {
+				display: none;
+			  }
+			  .CalendarUnitDay {
+				color: $calendarUnitDayColor;
+				font-family: $Myriad;
+				font-size: 18px;
+				font-weight: 300;
+				margin: 8px;
+			  }
+			  .CalendarUnitWeekday {
+				display: none;
+			  }
+			}
+			.CalendarUnitEventHeader {
+			  text-decoration: none;
+			  img {
+				display: none;
+			  }
+			  .CalendarUnitEventName {
+				color: white;
+				text-decoration: none;
+				p {
+				  @include EventNameStyle;
+				  font-size: 14px;
+				  margin: 0 8px;
+				  text-decoration: none;
+				}
+			  }
+			}
+			&.CalendarUnitOtherMonth {
+			  background: $otherMonthBackgroundColor;
+			  .CalendarUnitDay {
+				color: $otherMonthDayColor;
+			  }
+			}
+			&.CalendarUnitHasEvent {
+			  background: $nepTuneOrange;
+			  .CalendarUnitDay {
+				color: white;
+			  }
+			  &.CalendarUnitOtherMonth {
+				background: $otherMonthHasEventBackgroundColor;
+				.CalendarUnitDay {
+				  color: $otherMonthHasEventDayColor;
+				}
+			  }
+			}
+		  }
+		}
+		#weekdayHeadings {
+		  width: 100%;
+		  .CalendarHeading {
+			background: $nepTuneOrange;
+			display: inline-block;
+			float: left;
+			width: 14.2857%;
+			h2 {
+			  color: $white;
+			  font-family: $OpenSans;
+			  font-size: 18px;
+			  font-weight: 600;
+			  margin: 12px;
+			  text-align: center;
+			}
+		  }
+		}
+	  }
+	  .CalendarColumn {
+		font-size: 0;
+		height: 100%;
+		overflow: scroll;
+		-webkit-overflow-scrolling: touch;
+		white-space: nowrap;
+		.CalendarUnitContainer {
+		  bottom: 0;
+		  position: absolute;
+		  top: 50px;
+		  .CalendarUnit {
+			/* &:nth-child(n+9) {	// Show only one week at a time
+			   display: none;
+			   } */
+			background: lighten($nepTuneOrange, 45%);
+			border-right: $calendarBorderStyle;
+			display: inline-block;
+			float: left;
+			height: 100%;
+			// position: absolute;
+			top: 0;
+			width: 60px;
+			.CalendarUnitDate {
+			  .CalendarUnitMonth {
+				display: none;
+			  }
+			  .CalendarUnitDay {
+				background: lighten($nepTuneOrange, 40%);
+				color: transparentize($calendarUnitDayColor, 0.3);
+				font-family: $OpenSans;
+				font-size: 24px;
+				font-weight: 600;
+				padding: 8px 16px;
+				text-align: center;
+			  }
+			  .CalendarUnitWeekday {
+				color: inherit;
+				font-family: inherit;
+				font-size: 16px;
+				font-weight: 400;
+
+			  }
+			}
+			.CalendarUnitEventHeader {
+			  position: relative;
+			  img {
+				height: auto;
+				width: 100%;
+			  }
+			  .CalendarUnitEventName {
+				@include TranslucentBar;
+				bottom: 0;
+				color: white;
+				display: inline-block;
+				height: auto;
+				left: 0;
+				padding: 8px;
+				right: 0;
+				position: absolute;
+				text-decoration: none;
+				p {
+				  @include EventNameStyle;
+				  font-size: 22px;
+				}
+			  }
+			}
+			&.CalendarUnitOtherMonth {
+			  display: none;
+			}
+			&.CalendarUnitHasEvent {
+			  background: $nepTuneOrange;
+			  width: 280px;
+			  .CalendarUnitDay {
+				background: $nepTuneOrange;
+				color: white;
+			  }
+			  &.CalendarUnitOtherMonth {
+				background: $otherMonthHasEventBackgroundColor;
+				.CalendarUnitDay {
+				  color: $otherMonthHasEventDayColor;
+				}
+			  }
+			}
+		  }
+		}
+		#weekdayHeadings {
+		  display: none;
+		}
+	  }
+	  .CalendarList {
+		font-size: 0;
+		overflow: scroll;
+		white-space: normal;
+		.CalendarUnitContainer {
+		  font-size: 0;
+		  min-height: 100%;
+		  position: absolute;
+		  width: 100%;
+		  top: 50px;
+		  z-index: 0;
+		  .CalendarUnit {
+			background: lighten($nepTuneOrange, 45%);
+			border-bottom: $calendarBorderStyle;
+			display: none;
+			height: 120px;
+			position: relative;
+			width: 100%;
+			.CalendarUnitDate {
+			  bottom: 0;
+			  display: inline-block;
+			  height: 120px;
+			  left: 0;
+			  position: absolute;
+			  top: 0;
+			  .CalendarUnitMonth {
+				color: transparentize($calendarUnitDayColor, 0.3);
+				font-family: $OpenSans;
+				font-size: 18px;
+				font-weight: 300;
+				margin: 8px 0 0 8px;
+			  }
+			  .CalendarUnitDay {
+				color: transparentize($calendarUnitDayColor, 0.3);
 				font-family: $OpenSans;
 				font-size: 28px;
-				font-weight: 300;
-				height: 50px;
-				line-height: 50px;
-				margin: 0px 16px;
-			}
-			#calendarViewMode {
-				display: inline-block;
-				float: right;
-				margin-right: 18px;
-				.InlineViewMode {
-					@include InlineIcons;
-					&#viewModeColumns {
-						transform: rotate(90deg);
-						-moz-transform: rotate(90deg);
-						-ms-transform: rotate(90deg);
-						-o-transform: rotate(90deg);
-						-webkit-transform: rotate(90deg);
-					}
-					&:hover {
-						color: $partialActiveWhite;
-						cursor: pointer;
-					}
-					&.ViewModeSelected {
-						color: white;
-					}
+				font-weight: 600;
+				margin: 0 0 2px 8px;
+				.CalendarUnitWeekday {
+				  font-weight: 300;
 				}
+			  }
 			}
-		}
-		.CalendarGrid {
-			.CalendarUnitContainer {
-				border-top: 1px solid $white;
-				.CalendarUnit {
-					background: lighten($nepTuneOrange, 45%);
-					border-bottom: $calendarBorderStyle;
-					border-right: $calendarBorderStyle;
-					box-sizing: border-box;
-					display: inline-block;
-					float: left;
-					height: 130px;
-					width: 14.2857%;	// One-seventh
-					&.CalendarUnitColLast {
-						border-right: none;
-					}
-					&.CalendarUnitRowLast {
-						border-bottom: none;
-					}
-					.CalendarUnitDate {
-						.CalendarUnitMonth {
-							display: none;
-						}
-						.CalendarUnitDay {
-							color: $calendarUnitDayColor;
-							font-family: $Myriad;
-							font-size: 18px;
-							font-weight: 300;
-							margin: 8px;
-						}
-						.CalendarUnitWeekday {
-							display: none;
-						}
-					}
-					.CalendarUnitEventHeader {
-						text-decoration: none;
-						img {
-							display: none;
-						}
-						.CalendarUnitEventName {
-							color: white;
-							text-decoration: none;
-							p {
-								@include EventNameStyle;
-								font-size: 14px;
-								margin: 0 8px;
-								text-decoration: none;
-							}
-						}
-					}
-					&.CalendarUnitOtherMonth {
-						background: $otherMonthBackgroundColor;
-						.CalendarUnitDay {
-							color: $otherMonthDayColor;
-						}
-					}
-					&.CalendarUnitHasEvent {
-						background: $nepTuneOrange;
-						.CalendarUnitDay {
-							color: white;
-						}
-						&.CalendarUnitOtherMonth {
-							background: $otherMonthHasEventBackgroundColor;
-							.CalendarUnitDay {
-								color: $otherMonthHasEventDayColor;
-							}
-						}
-					}
-				}
-			}
-			#weekdayHeadings {
-				width: 100%;
-				.CalendarHeading {
-					background: $nepTuneOrange;
-					display: inline-block;
-					float: left;
-					width: 14.2857%;
-					h2 {
-						color: $white;
-						font-family: $OpenSans;
-						font-size: 18px;
-						font-weight: 600;
-						margin: 12px;
-						text-align: center;
-					}
-				}
-			}
-		}
-		.CalendarColumn {
-			font-size: 0;
-			height: 100%;
-			overflow: scroll;
-			-webkit-overflow-scrolling: touch;
-			white-space: nowrap;
-			.CalendarUnitContainer {
+			.CalendarUnitEventHeader {
+			  bottom: 0;
+			  display: inline-block;
+			  position: absolute;
+			  left: 80px;
+			  top: 0;
+			  img {
+				height: 120px;
+				width: auto;
+			  }
+			  .CalendarUnitEventName {
+				@include TranslucentBar;
 				bottom: 0;
+				color: white;
+				display: inline-block;
+				height: auto;
+				left: 0;
+				padding: 8px;
+				right: 0;
 				position: absolute;
-				top: 50px;
-				.CalendarUnit {
-					/* &:nth-child(n+9) {	// Show only one week at a time
-						display: none;
-					} */
-					background: lighten($nepTuneOrange, 45%);
-					border-right: $calendarBorderStyle;
-					display: inline-block;
-					float: left;
-					height: 100%;
-					// position: absolute;
-					top: 0;
-					width: 60px;
-					.CalendarUnitDate {
-						.CalendarUnitMonth {
-							display: none;
-						}
-						.CalendarUnitDay {
-							background: lighten($nepTuneOrange, 40%);
-							color: transparentize($calendarUnitDayColor, 0.3);
-							font-family: $OpenSans;
-							font-size: 24px;
-							font-weight: 600;
-							padding: 8px 16px;
-							text-align: center;
-						}
-						.CalendarUnitWeekday {
-							color: inherit;
-							font-family: inherit;
-							font-size: 16px;
-							font-weight: 400;
-
-						}
-					}
-					.CalendarUnitEventHeader {
-						position: relative;
-						img {
-							height: auto;
-							width: 100%;
-						}
-						.CalendarUnitEventName {
-							@include TranslucentBar;
-							bottom: 0;
-							color: white;
-							display: inline-block;
-							height: auto;
-							left: 0;
-							padding: 8px;
-							right: 0;
-							position: absolute;
-							text-decoration: none;
-							p {
-								@include EventNameStyle;
-								font-size: 22px;
-							}
-						}
-					}
-					&.CalendarUnitOtherMonth {
-						display: none;
-					}
-					&.CalendarUnitHasEvent {
-						background: $nepTuneOrange;
-						width: 280px;
-						.CalendarUnitDay {
-							background: $nepTuneOrange;
-							color: white;
-						}
-						&.CalendarUnitOtherMonth {
-							background: $otherMonthHasEventBackgroundColor;
-							.CalendarUnitDay {
-								color: $otherMonthHasEventDayColor;
-							}
-						}
-					}
+				text-decoration: none;
+				p {
+				  @include EventNameStyle;
+				  font-size: 18px;
 				}
+			  }
 			}
-			#weekdayHeadings {
-				display: none;
+			&.CalendarUnitOtherMonth {
+			  background: $otherMonthBackgroundColor;
+			  .CalendarUnitDay {
+				color: $otherMonthDayColor;
+			  }
 			}
-		}
-		.CalendarList {
-			font-size: 0;
-			overflow: scroll;
-			white-space: normal;
-			.CalendarUnitContainer {
-				font-size: 0;
-				min-height: 100%;
-				position: absolute;
-				width: 100%;
-				top: 50px;
-				z-index: 0;
-				.CalendarUnit {
-					background: lighten($nepTuneOrange, 45%);
-					border-bottom: $calendarBorderStyle;
-					display: none;
-					height: 120px;
-					position: relative;
-					width: 100%;
-					.CalendarUnitDate {
-						bottom: 0;
-						display: inline-block;
-						height: 120px;
-						left: 0;
-						position: absolute;
-						top: 0;
-						.CalendarUnitMonth {
-							color: transparentize($calendarUnitDayColor, 0.3);
-							font-family: $OpenSans;
-							font-size: 18px;
-							font-weight: 300;
-							margin: 8px 0 0 8px;
-						}
-						.CalendarUnitDay {
-							color: transparentize($calendarUnitDayColor, 0.3);
-							font-family: $OpenSans;
-							font-size: 28px;
-							font-weight: 600;
-							margin: 0 0 2px 8px;
-							.CalendarUnitWeekday {
-								font-weight: 300;
-							}
-						}
-					}
-					.CalendarUnitEventHeader {
-						bottom: 0;
-						display: inline-block;
-						position: absolute;
-						left: 80px;
-						top: 0;
-						img {
-							height: 120px;
-							width: auto;
-						}
-						.CalendarUnitEventName {
-							@include TranslucentBar;
-							bottom: 0;
-							color: white;
-							display: inline-block;
-							height: auto;
-							left: 0;
-							padding: 8px;
-							right: 0;
-							position: absolute;
-							text-decoration: none;
-							p {
-								@include EventNameStyle;
-								font-size: 18px;
-							}
-						}
-					}
-					&.CalendarUnitOtherMonth {
-						background: $otherMonthBackgroundColor;
-						.CalendarUnitDay {
-							color: $otherMonthDayColor;
-						}
-					}
-					&.CalendarUnitHasEvent {
-						background: $nepTuneOrange;
-						display: inline-block;
-						.CalendarUnitMonth {
-							color: white;
-						}
-						.CalendarUnitDay {
-							color: white;
-						}
-						&.CalendarUnitOtherMonth {
-							background: $otherMonthHasEventBackgroundColor;
-							.CalendarUnitDay {
-								color: $otherMonthHasEventDayColor;
-							}
-						}
-					}
+			&.CalendarUnitHasEvent {
+			  background: $nepTuneOrange;
+			  display: inline-block;
+			  .CalendarUnitMonth {
+				color: white;
+			  }
+			  .CalendarUnitDay {
+				color: white;
+			  }
+			  &.CalendarUnitOtherMonth {
+				background: $otherMonthHasEventBackgroundColor;
+				.CalendarUnitDay {
+				  color: $otherMonthHasEventDayColor;
 				}
+			  }
 			}
-			#weekdayHeadings {
-				display: none;
-			}
+		  }
 		}
+		#weekdayHeadings {
+		  display: none;
+		}
+	  }
 	}
-}
+  }

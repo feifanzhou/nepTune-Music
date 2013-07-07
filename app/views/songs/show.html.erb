@@ -11,7 +11,7 @@
 
   <p>
     Click the button to play:  
-    <%= button_tag "Play!", onclick:"playStuff('#{@song.audio.path}')" %>
+    <%= button_tag "Play!", onclick:"playStuff('#{@song.audio.path}')", class:"btn btn-primary" %>
   </p>
   
   <script>

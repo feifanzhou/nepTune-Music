@@ -27,7 +27,7 @@ started making videos together of Jon Schmidt. It was not too long after
 that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson,
 and Al van der Beek as the studio and music technician. After the five of them started collaborating
 the group really started to take off, producing a music video each week and posting it to YouTube."""
-
+    jon.avatar = URI.parse('https://dl.dropboxusercontent.com/u/16963685/chirku/pianoguys.jpg')
     jon.save
     ci = ContactInfo.create(email: 'jon@thepianoguys.com',
                             phone: '(401) 123-4567', website: 'thepianoguys.com')
