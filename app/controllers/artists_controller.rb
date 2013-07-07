@@ -17,8 +17,9 @@ class ArtistsController < ApplicationController
   end
 
   def music
-    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
-    @is_band_member = (bm.blank?) ? false : true
+    @is_band_member = !@current_user.blank?
+    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id) if !@current_user.blank?
+    @is_band_member ||= (bm.blank?) ? false : true
   end
 
   def events

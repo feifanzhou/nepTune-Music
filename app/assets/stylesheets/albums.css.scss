@@ -5,6 +5,8 @@
 @import "fonts";
 @import "variables";
 @import "shared";
+
+@import "custom_bootstrap";
 @import "bootstrap";
 
 body {
@@ -116,6 +118,21 @@ header {
 		}
 		#album_target {
 			display: none;
+		}
+		#newAlbumFeedback {
+			display: none;
+			margin: 10px auto 0 auto;
+			width: 320px;
+		}
+		#new_album {
+			margin-top: 10px;
+			text-align: center;
+			input[type='text'] {
+				width: 170px;
+			}
+			#saveAlbumButton {
+				width: 372px;
+			}
 		}
 	}
 }

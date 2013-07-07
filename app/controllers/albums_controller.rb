@@ -1,5 +1,21 @@
 class AlbumsController < ApplicationController
   def new
+    @album = Album.new
+  end
+
+  def create
+    # TODO: Check existing albums to see if modifying existing album first
+    album = Album.new
+    album.name = params[:album][:name]
+    album.year = params[:album][:year].to_i
+    album.artist = Artist.find_by_artistname(params[:album][:artistname])
+    if (params[:album][:art_id].blank?)
+      album.image = Image.default_album_image
+    else
+      album.image = Image.find(params[:album][:art_id])
+    end
+    album.save
+    render json: { success: 1 }
   end
 
   def show

@@ -7,10 +7,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  artist_id  :integer
+#  year       :integer
 #
 
 class Album < ActiveRecord::Base
-  attr_accessible :name, :artist, :image
+  attr_accessible :artist, :name, :image, :year
 
   belongs_to :artist
   has_one :image, as: :media_holder

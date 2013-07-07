@@ -138,7 +138,7 @@ function hideNewSongFeedback() {
 $('#new_song').bind('ajax:success', function() {
 	console.log('Song created successfully');
 	$('#newSongFeedback').addClass('alert-success');
-	$('#newSongFeedback').css('display', 'block');
+	$('#newSongFeedback').slideDown();
 });
 $('#new_song > *').focus(function() {
 	hideNewSongFeedback();
