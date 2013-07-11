@@ -41,6 +41,25 @@ class SongsController < ApplicationController
   	render json: { success: 1 }
   end
 
+  def update
+    song = Song.find(params[:id])
+    if !params[:albumID].blank?
+      shouldAdd = params[:shouldAdd].to_i
+      album = Album.find(params[:albumID])
+      if shouldAdd == 1
+        song.album = album
+      else
+        song.album = nil
+      end
+    else
+      if !params[:track_number].blank?
+        song.track_number = params[:track_number]
+      end
+    end
+    song.save
+    render json: { success: 1 }
+  end
+
   private
   def authenticate_editing
   	artist = Artist.find_by_artistname(params[:artistname])

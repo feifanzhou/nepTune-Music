@@ -24,7 +24,7 @@ class AlbumsController < ApplicationController
   end
 
   def album_name_suggestions
-  	results = Album.where("name ILIKE ?", params[:input] + '%')
+  	results = Album.where("name ILIKE ?", params[:input] + '%')  # ILIKE is case-insensitive compare
     names = results.map(&:name)
     paths = results.map(&:image).map(&:path)
   	# results = Album.find :all, select: 'id, DISTINCT name', conditions: [ "(name LIKE ?)", '%' + params[:input] + '%']

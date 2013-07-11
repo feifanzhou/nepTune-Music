@@ -745,6 +745,13 @@ header {
 					}
 				}
 			}
+			#newEventButton {
+				display: inline-block;
+				float: right;
+				margin-right: 12px;
+				position: relative;
+				top: 6px;
+			}
 		}
 		.CalendarGrid {
 			.CalendarUnitContainer {
@@ -1019,6 +1026,36 @@ header {
 			#weekdayHeadings {
 				display: none;
 			}
+		}
+	}
+	#newEvent {
+		#new_event {
+			margin-bottom: 0;
+			text-align: center;
+			input, textarea {
+				font-family: $OpenSans;
+			}
+			#event_details {
+				left: 2px;
+				position: relative;
+				resize: none;
+				width: 430px;
+			}
+			#event_start_at {
+				width: 179px;
+			}
+			#event_end_at {
+				width: 179px;
+			}
+		}
+		#createEventFollowers {
+			color: transparentize(black, 0.35);
+			display: inline-block;
+			float: left;
+			font-size: 11px;
+			font-weight: 400;
+			text-align: left;
+			width: 330px;
 		}
 	}
 }

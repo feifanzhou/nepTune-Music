@@ -32,9 +32,63 @@ $('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
 	$('#newAlbumSongs').addClass('SongGridActive');
 });
 
+$('.SongSelected').click(function(event) {
+	// if (!$(this).hasClass('SelectedSong'))
+	event.preventDefault();
+	return false;
+});
+
 $('.SongGridItem').click(function() {
-	if ($(this).hasClass('SelectedSong'))
+	var shouldAddToAlbum;
+	var clicked = $(this);
+	if ($(this).hasClass('SelectedSong')) {
 		$(this).removeClass('SelectedSong');
-	else
+		shouldAddToAlbum = 0;
+	}
+	else {
 		$(this).addClass('SelectedSong');
+		shouldAddToAlbum = 1;
+	}
+	console.log('shouldAddToAlbum: ' + shouldAddToAlbum);
+	var songID = $(clicked).attr('id').slice(4);
+	console.log('songID: ' + songID);
+	var albumID = $('#newAlbumID').text();
+	console.log('albumID: ' + albumID);
+	$.ajax({
+		url: '/songs/' + songID,
+		method: 'PUT',
+		data: {
+			albumID: albumID,
+			shouldAdd: shouldAddToAlbum
+		},
+		success: function(resp) {
+			if (shouldAddToAlbum === 1)
+				console.log('Successfully added song to album');
+			else
+				console.log('Successfully removed song from album');
+		}
+	});
+});
+$('.TrackNumberField').keydown(function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).blur();
+  return false;
+});
+$('.TrackNumberField').blur(function(event) {
+	var input = $(this);
+	var tn = $(this).val();
+	var s_id = ($(this).attr('id').split("_"))[1];
+	console.log("s_id: " + s_id);
+	$.ajax({
+		url: '/songs/' + s_id,
+		method: 'PUT',
+		data: {
+			track_number: tn
+		},
+		success: function(resp) {
+			console.log('Successfully changed track number');
+		}
+	});
 });

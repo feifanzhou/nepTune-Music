@@ -562,3 +562,15 @@ $(document).on('blur', '.ContactText', function() {
   var field = $(this).attr('id');
   updateContactInfoForArtist(field, value);
 });
+
+$('#event_artistname').val(getArtistNameFromURL());
+
+$('.Datepicker').datetimepicker({
+  format: 'MM/dd/yyyy HH:mm PP',
+  language: 'en',
+  pick12HourFormat: true
+});
+
+$('#finishEventButton').click(function() {
+  $('#new_event').submit();
+});
