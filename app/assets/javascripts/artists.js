@@ -106,7 +106,7 @@ function togglePause(url) {
 }
 
 
-function primeClick() {
+ function primeClick() {
     $('.MediaDisplayLink').click(function(event) {
         event.preventDefault();
 
@@ -122,10 +122,6 @@ function primeClick() {
         var path = $(this).attr('href');
         setTimeout(function() {
             $('#musicDetailsHeader').css('z-index', 2);
-            /* if (contentScrollTop > 160)
-               $('#artistPageContent').animate({
-               scrollTop: 160
-               }, 1000); */
             $('#musicDetailsContent').load(path + ' #mainPartial', function() {
                 setTimeout(function() {
                     $('#albumTrackListing').addClass('Visible');
@@ -136,9 +132,9 @@ function primeClick() {
     });
 }
 
-$(function() {
-    primeClick();
-});
+// $(function() {
+//     primeClick();
+// }); 
 
 function returnToMusicGrid() {
     $('#musicGridContainer').removeClass('MusicGridDetails');
@@ -178,6 +174,9 @@ function setCalendarDisplayMode(cls) {
 $(function() {
     $('.ArtistNavIcon').tooltip();
 });
+$(window).bind('djaxLoad', function() {
+    $('.ArtistNavIcon').tooltip();
+});
 
 $('#sliderContainer').mouseenter(function() {
     $('.SliderTitle').fadeIn();
@@ -201,11 +200,18 @@ function setSliderOffset(sliderOffset) {
     $('#slider').css('left', (sliderOffset + 'px'));
 }
 
-$(function() {
+function initialPositionAboutGallery() {
     var firstElementWidth = $('#gallery0').width();
     var sliderContainerWidth = $('#sliderContainer').width();
     var sliderStartingOffset = (sliderContainerWidth - firstElementWidth) / 2;
     setSliderOffset(sliderStartingOffset);
+}
+$(function() {
+    initialPositionAboutGallery();
+});
+
+$(window).bind('djaxLoad', function() {
+    initialPositionAboutGallery();
 });
 
 function setGalleryNavStatus(currObj) {
@@ -248,18 +254,22 @@ function galleryToHash() {
 $(function() {
     galleryToHash();
 });
+$(window).bind('djaxLoad', function() {
+    galleryToHash();
+});
 
 $(window).bind('hashchange', function () {
     galleryToHash();
 });
 
-$('.SliderNav').click(function() {
+function sliderNavClick() {
+    console.log('slidernav click');
     if ($(this).hasClass('SliderNavDisabled'))
         return false;
 
     var objId = $(this).attr('id');
     var hash = window.location.hash.slice(1);
-    if (hash.length === 0 || isNaN(hash)) {	// No hash, default to 0
+    if (hash.length === 0 || isNaN(hash)) { // No hash, default to 0
         window.location.hash = '#1';
         return false;
     }
@@ -271,6 +281,14 @@ $('.SliderNav').click(function() {
     console.log('new hash: ' + hash);
     location.hash = ('#' + hash);
     return false;
+}
+$('.SliderNav').click(function() {
+    sliderNavClick();
+});
+$(window).bind('djaxLoad', function() {
+    $('.SliderNav').click(function() {
+        sliderNavClick();
+    });
 });
 
 /***** Editing functionality *****/

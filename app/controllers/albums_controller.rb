@@ -22,6 +22,7 @@ class AlbumsController < ApplicationController
 
   def show
   	@album = Album.find_by_name(params[:album])
+    @artist = Artist.find_by_artistname(params[:artistname])
   end
 
   def album_name_suggestions

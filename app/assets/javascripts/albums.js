@@ -1,4 +1,5 @@
-$(function() {
+// $(function() {
+$(window).bind('djaxLoad', function() {
 	$('#albumTrackListing').addClass('Visible');
 });
 

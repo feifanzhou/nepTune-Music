@@ -2,13 +2,13 @@
 	<h2 class='MusicGridGroupHeader'><span><%= title.upcase %></span></h2>
 <% items.each do |a| %>
 	<% if title == 'Albums' %>
-		<% link_path = album_for_artist_path(username: params[:username], album: a.name, isPartial: 1) %>
+		<% link_path = album_for_artist_path(username: params[:username], album: a.name) %>
 	<% elsif title == 'Songs' %>
-		<% link_path = song_for_artist_path(username: params[:username], song: a.id, isPartial: 1) %>
+		<% link_path = song_for_artist_path(username: params[:username], song: a.id) %>
 	<% else %>
 		<% link_path = '#' %>
 	<% end %>
-	<%= link_to link_path, class: 'MediaDisplayLink', data: { name: a.name, icon: label_icon } do %>
+	<%= link_to link_path, data: { name: a.name, icon: label_icon } do %>
 	  <div class='GridItem'>
 	    <%= image_tag("#{ a.image.path }", alt: a.image.caption) %>
 	    <div class='GridItemDetails'>

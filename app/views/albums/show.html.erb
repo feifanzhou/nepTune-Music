@@ -1,17 +1,21 @@
-<div class='AlbumArtMain'>
-	<%= image_tag @album.image.path, alt: @album.name, size: '500x500' %>
-	<div id='albumTrackListing'>
-		<% if @album.songs.blank? %>
-			<p class='EmptyAlbum'>This album doesn't have any songs yet&hellip;</p>
-		<% else %>
-			<ol class='AlbumSongList'>
-				<% @album.songs.each do |s| %>
-					<li class='AlbumSongListItem'><span class='AlbumSongListItemNumber'><%= s.track_number %></span><%= s.name %></li>
-				<% end %>
-			</ol>
-		<% end %>
+<div id='artistPageContainer'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <div class='DJAX XHidden' id='artistPageContent'>
+	<div class='AlbumArtMain'>
+		<%= image_tag @album.image.path, alt: @album.name, size: '500x500' %>
+		<div id='albumTrackListing'>
+			<% if @album.songs.blank? %>
+				<p class='EmptyAlbum'>This album doesn't have any songs yet&hellip;</p>
+			<% else %>
+				<ol class='AlbumSongList'>
+					<% @album.songs.each do |s| %>
+						<li class='AlbumSongListItem'><span class='AlbumSongListItemNumber'><%= s.track_number %></span><%= s.name %></li>
+					<% end %>
+				</ol>
+			<% end %>
+		</div>
 	</div>
-</div>
-<div class='AlbumDetails'>
-	<p>Comments, shares, purchases, and stuff</p>
+	<div class='AlbumDetails'>
+		<p>Comments, shares, purchases, and stuff</p>
+	</div>
 </div>
