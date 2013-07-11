@@ -129,6 +129,8 @@ module SoundmapHelper
                                    "#0072B2", "#D55E00", "#CC79A7", "#999999"]
                         })
     svg_blob = generate_svg(numbers, mood_color, opts)
+    puts "============================"
+    puts svg_blob
     #png_blob = svg_to_png(svg_blob)
     file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
     #temp_png(png_blob)
