@@ -1,5 +1,6 @@
 require 'tempfile'
 require 'RMagick'
+#require 'mini_magick'
 
 module SoundmapHelper
   Pi = Math.acos(0)*2
@@ -90,12 +91,12 @@ module SoundmapHelper
 
   def svg_to_png(svg_blob)
     #file = file_from_blob(svg_blob, original_filename: 'image.svg', content_type: 'image/svg')
-    file = Tempfile.new(['image', '.svg'])
-    file.write svg_blob
-    file.rewind
-    #image = Magick::Image.from_blob(svg_blob) { self.format = "SVG" }[0]
-    images = Magick::Image.read(file.path) { self.format = "SVG" }
-    image = images[0]
+     # file = Tempfile.new(['image', '.svg'])
+     # file.write svg_blob
+     # file.rewind
+    image = Magick::Image.from_blob(svg_blob) { self.format = "SVG" }[0]
+    #image = MiniMagick::Image.open(file.path, "svg")
+    #image = images[0]
     image.format = "PNG"
     image.to_blob
   end
@@ -128,8 +129,9 @@ module SoundmapHelper
                                    "#0072B2", "#D55E00", "#CC79A7", "#999999"]
                         })
     svg_blob = generate_svg(numbers, mood_color, opts)
-    png_blob = svg_to_png(svg_blob)
-    temp_png(png_blob)
+    #png_blob = svg_to_png(svg_blob)
+    file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
+    #temp_png(png_blob)
   end
 
 
