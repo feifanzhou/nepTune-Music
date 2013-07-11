@@ -98,11 +98,11 @@ module SoundmapHelper
     image.to_blob
   end
 
-  def temp_png(png_blob)
-    file = StringIO.new(png_blob)
+  def file_from_blob(blob, opts={original_filename: 'image.png', content_type: "image/png" } )
+    file = StringIO.new(blob)
 
-    original_filename = "soundmap.png"
-    content_type = "image/png"
+    original_filename = opts[:original_filename]
+    content_type = opts[:content_type]
 
     metaclass = class << file; self; end
     metaclass.class_eval do
@@ -111,6 +111,10 @@ module SoundmapHelper
     end
 
     return file
+  end
+
+  def temp_png(png_blob)
+    file_from_blob(png_blob, original_filename: 'soundmap.png', content_type: 'image/png')
   end
 
   def generate_soundmap(numbers, mood_color,
@@ -142,6 +146,27 @@ module SoundmapHelper
     r, g, b = t, p, v if h_i==4
     r, g, b = v, p, q if h_i==5
     s = [r,g,b].map{|c| "%02X" % (c*256).to_i}.join
+    return '#'+s
+  end
+
+  # HSV values in [0..1]
+  # returns HTML [r, g, b] values (e.g. #ff0324)
+  def hsv_to_rgb2(h, s, v)
+    hp = h*6
+    h_i = hp.to_i
+    c = v * s
+    x = c * (1-(hp % 2 - 1).abs)
+
+    r, g, b = c, x, 0 if h_i==0
+    r, g, b = x, c, 0 if h_i==1
+    r, g, b = 0, c, x if h_i==2
+    r, g, b = 0, x, c if h_i==3
+    r, g, b = x, 0, c if h_i==4
+    r, g, b = c, 0, x if h_i==5
+
+    m = v - c
+
+    s = [r+m,g+m,b+m].map{|c| "%02X" % (c*256).to_i}.join
     return '#'+s
   end
 
