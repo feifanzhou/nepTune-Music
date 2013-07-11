@@ -4,7 +4,7 @@
 </header>
 <div id='artistPageContainer'>
   <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 1, is_editing: @is_editing, is_following: @is_following %>
-  <div class='XHidden' id='artistPageContent'>
+  <div class='DJAX XHidden' id='artistPageContent'>
   	<div id='sliderContainer'>
   		<%= render 'layouts/about_gallery', artist: @artist, is_editing: @is_editing %>
 		</div>

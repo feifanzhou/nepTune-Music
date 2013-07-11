@@ -1,3 +1,5 @@
+$('body').djax('.DJAX', []);
+
 function getArtistNameFromURL() {
 	return document.URL.split("/")[3];
 }
