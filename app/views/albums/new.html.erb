@@ -34,7 +34,7 @@
 			<h1>All Songs</h1>
 			<%= link_to "Upload new song", new_song_for_artist_path(@artist.artistname), class: 'btn', id: 'newSongButton' %>
 			<div id='songGrid'>
-				<% @artist.songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
+				<% @songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
 				<div class='SongGridItem' id="song<%= s.id %>">
 					<div class='SongSelected'>
 						<span class='Icon SongSelectedCheck'>&#59415;</span>

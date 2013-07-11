@@ -2,6 +2,7 @@ class AlbumsController < ApplicationController
   def new
     @album = Album.new
     @artist = Artist.find_by_artistname(params[:artistname])
+    @songs = @artist.songs.order('updated_at DESC')
   end
 
   def create
