@@ -2,16 +2,23 @@
 #
 # Table name: songs
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  artist_id    :integer
-#  album_id     :integer
-#  track_number :integer
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  artist_id        :integer
+#  album_id         :integer
+#  track_number     :integer
+#  soundmap_numbers :string(255)
+#
 
 class Song < ActiveRecord::Base
   attr_accessible :name, :track_number, :audio, :image, :artist, :album
+
+  include SoundmapHelper
+
+  serialize :soundmap_numbers
+  before_save :make_soundmap
 
   belongs_to :artist
   belongs_to :album
@@ -23,10 +30,19 @@ class Song < ActiveRecord::Base
   validates :artist, presence: true
 
   def image
-    return super || (self.album && self.album.image) || nil  # super reads attribute :image
+    return super || (self.album && self.album.image) || nil # super reads attribute :image
   end
 
   def name
     return super || (self.audio && self.audio.name)
+  end
+
+  def make_soundmap
+    if not self.image.blank?
+      return
+    end
+    self.image = Image.create
+    self.soundmap_numbers = ([0]*5).map { rand } # 5 random numbers
+    self.image.file = generate_soundmap self.soundmap_numbers, hsv_to_rgb(rand, 0.55, 1)
   end
 end

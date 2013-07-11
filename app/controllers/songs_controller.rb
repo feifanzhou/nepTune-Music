@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
-    include LoginHelper
+  include LoginHelper
 
-    before_filter :authenticate_editing, only: [:new, :create]
+  before_filter :authenticate_editing, only: [:new, :create]
 
   def new
     @song = Song.new
@@ -12,6 +12,7 @@ class SongsController < ApplicationController
   end
 
   def create
+    puts params
     song = Song.new
     song.name = params[:song][:name]
     audio = Audio.find(params[:song][:audio_id])
@@ -24,14 +25,16 @@ class SongsController < ApplicationController
     song.artist = artist
     album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
     if album.blank?
-        album = Album.new(name: params[:song][:album], artist: artist)
+      album = Album.new(name: params[:song][:album], artist: artist)
     end
     album_art = album.image
     song.album = album
-    album_art ||= Image.find(params[:song][:album_art_id])
-    album.image = album_art unless album_art.blank?
-    album_art.is_temporary = false
-    album_art.save
+    if not params[:song][:album_art_id].blank?
+      album_art ||= Image.find(params[:song][:album_art_id])
+      album.image = album_art unless album_art.blank?
+      album_art.is_temporary = false
+      album_art.save
+    end
     song.save
     album.save
     # respond_to do |format|
@@ -46,8 +49,8 @@ class SongsController < ApplicationController
     artist = Artist.find_by_artistname(params[:artistname])
     curr_user = current_user
     if curr_user.blank? || artist.blank?
-        redirect_to artist_main_path(artist.artistname)
-        return
+      redirect_to artist_main_path(artist.artistname)
+      return
     end
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
     redirect_to artist_main_path(artist.artistname) if bm.blank?
