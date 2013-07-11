@@ -6,7 +6,7 @@ gem 'rails-boilerplate'
 gem 'bootstrap-sass', '~> 2.3.1.2'
 gem 'pg'
 gem 'paperclip', '~> 3.0'
-gem 'rmagick'
+#gem 'rmagick'
 #gem 'mini_magick'
 
 # Bundle edge Rails instead:
@@ -27,6 +27,7 @@ group :development, :production do
   gem 'retina_tag'
   gem 'aws-sdk', '~> 1.5.7'
   gem 'fb-channel-file'
+  gem "rmagick"
 end
 
 group :development, :test do

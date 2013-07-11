@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'RMagick'
+# require 'RMagick'
 #require 'mini_magick'
 
 module SoundmapHelper
@@ -134,28 +134,9 @@ module SoundmapHelper
     #temp_png(png_blob)
   end
 
-
   # HSV values in [0..1]
   # returns HTML [r, g, b] values (e.g. #ff0324)
   def hsv_to_rgb(h, s, v)
-    h_i = (h*6).to_i
-    f = h*6 - h_i
-    p = v * (1 - s)
-    q = v * (1 - f*s)
-    t = v * (1 - (1 - f) * s)
-    r, g, b = v, t, p if h_i==0
-    r, g, b = q, v, p if h_i==1
-    r, g, b = p, v, t if h_i==2
-    r, g, b = p, q, v if h_i==3
-    r, g, b = t, p, v if h_i==4
-    r, g, b = v, p, q if h_i==5
-    s = [r,g,b].map{|c| "%02X" % (c*256).to_i}.join
-    return '#'+s
-  end
-
-  # HSV values in [0..1]
-  # returns HTML [r, g, b] values (e.g. #ff0324)
-  def hsv_to_rgb2(h, s, v)
     hp = h*6
     h_i = hp.to_i
     c = v * s
@@ -170,7 +151,7 @@ module SoundmapHelper
 
     m = v - c
 
-    s = [r+m,g+m,b+m].map{|c| "%02X" % (c*256).to_i}.join
+    s = [r+m,g+m,b+m].map{|c| "%02X" % (c*255).to_i}.join
     return '#'+s
   end
 
