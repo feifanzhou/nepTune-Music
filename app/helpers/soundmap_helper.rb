@@ -89,6 +89,8 @@ module SoundmapHelper
   end
 
   def svg_to_png(svg_blob)
+    puts "===================="
+    puts svg_blob
     file = Tempfile.new(['image', '.svg'])
     file.write svg_blob
     file.rewind
@@ -126,8 +128,9 @@ module SoundmapHelper
                                    "#0072B2", "#D55E00", "#CC79A7", "#999999"]
                         })
     svg_blob = generate_svg(numbers, mood_color, opts)
-    png_blob = svg_to_png(svg_blob)
-    temp_png(png_blob)
+    # png_blob = svg_to_png(svg_blob)
+    # temp_png(png_blob)
+    file_from_blob(svg_blob, original_filename: 'soundmap.png', content_type: 'image/svg')
   end
 
 
