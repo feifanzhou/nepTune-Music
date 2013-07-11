@@ -1,5 +1,5 @@
 require 'tempfile'
-# require 'RMagick'
+require 'RMagick'
 #require 'mini_magick'
 
 module SoundmapHelper
@@ -129,9 +129,9 @@ module SoundmapHelper
                                    "#0072B2", "#D55E00", "#CC79A7", "#999999"]
                         })
     svg_blob = generate_svg(numbers, mood_color, opts)
-    #png_blob = svg_to_png(svg_blob)
-    file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
-    #temp_png(png_blob)
+    png_blob = svg_to_png(svg_blob)
+    #file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
+    temp_png(png_blob)
   end
 
   # HSV values in [0..1]
