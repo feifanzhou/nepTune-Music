@@ -21,9 +21,9 @@ header {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
-	margin: 130px auto 0px auto;
+	margin-right: 0;
 	text-align: center;
-	width: 1280px;
+	width: 960px;
 	#newSongFeedback {
 		display: none;
 		margin: 24px auto auto auto;

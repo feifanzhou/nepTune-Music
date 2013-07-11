@@ -4,6 +4,7 @@ class SongsController < ApplicationController
     before_filter :authenticate_editing, only: [:new, :create]
 
   def new
+    @artist = Artist.find_by_artistname(params[:artistname])
     @song = Song.new
   end
 

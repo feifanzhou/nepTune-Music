@@ -2,50 +2,55 @@
 	<%= render 'layouts/app_header' %>
 	<%= render 'layouts/playbar' %>
 </header>
-<div class='row-fluid' id='newAlbumContainer'>
-	<div class='span4' id='newAlbumInfo'>
-		<div id='albumArt'>
-			<img src='/images/album_default.png' alt='Default album' id='album_art' />
-			<div id='albumArtDarken'></div>
-			<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
-			<div id='albumArtPrompt'>Click to change album art</div>
-		</div>
-		<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>
-			<%= i.file_field :file %>
-		<% end %>
-		<iframe id='album_target' name='album_target' src=''></iframe>
-		<div class='alert' id='newAlbumFeedback'>Album saved successfully</div>
-		<%= form_for @album, remote: true, html: {:'data-type' => 'json'} do |a| %>
-			<input type='hidden' name='album[art_id]' id='album_art_id' />
-			<input type='hidden' name='album[artistname]' id='artistname' />
-
-			<%= a.label :name %>
-			<%= a.text_field :name, placeholder: 'Album name', required: 'required', autocomplete: :off %>
-
-			<%= a.label :year %>
-			<%= a.text_field :year, placeholder: 'Album year', required: 'required', autocomplete: :off %><br />
-
-			<%= a.submit 'Save album', class: 'btn btn-primary', id: 'saveAlbumButton' %>
-		<% end %>
-	</div>
-	<div id='newAlbumID'></div>
-	<div class='span8' id='newAlbumSongs'>
-		<div id='allSongs'>
-			<h1>All Songs</h1>
-			<%= link_to "Upload new song", new_song_for_artist_path(@artist.artistname), class: 'btn', id: 'newSongButton' %>
-			<div id='songGrid'>
-				<% @songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
-				<div class='SongGridItem' id="song<%= s.id %>">
-					<div class='SongSelected'>
-						<span class='Icon SongSelectedCheck'>&#59415;</span>
-						<form class='SongTrackForm'>
-							<input type='text' name='song[track_number]' class='TrackNumberField' id="song_<%= s.id %>_track_number" placeholder='Track number' />
-						</form>
-					</div>
-					<img class='SongImage' src='<%= s.image.path %>' />
-					<p class='SongName'><%= s.name %></p>
+<div id='artistPageContainer'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <div class='DJAX XHidden' id='artistPageContent'>
+		<div class='row-fluid' id='newAlbumContainer'>
+			<div id='newAlbumInfo'>
+				<div id='albumArt'>
+					<img src='/images/album_default.png' alt='Default album' id='album_art' />
+					<div id='albumArtDarken'></div>
+					<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
+					<div id='albumArtPrompt'>Click to change album art</div>
 				</div>
+				<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>
+					<%= i.file_field :file %>
 				<% end %>
+				<iframe id='album_target' name='album_target' src=''></iframe>
+				<div class='alert' id='newAlbumFeedback'>Album saved successfully</div>
+				<%= form_for @album, remote: true, html: {:'data-type' => 'json'} do |a| %>
+					<input type='hidden' name='album[art_id]' id='album_art_id' />
+					<input type='hidden' name='album[artistname]' id='artistname' />
+
+					<%= a.label :name %>
+					<%= a.text_field :name, placeholder: 'Album name', required: 'required', autocomplete: :off %>
+
+					<%= a.label :year %>
+					<%= a.text_field :year, placeholder: 'Album year', required: 'required', autocomplete: :off %><br />
+
+					<%= a.submit 'Save album', class: 'btn btn-primary', id: 'saveAlbumButton' %>
+				<% end %>
+			</div>
+			<div id='newAlbumID'></div>
+			<div id='newAlbumSongs'>
+				<div id='allSongs'>
+					<h1>All Songs</h1>
+					<%= link_to "Upload new song", new_song_for_artist_path(@artist.artistname), class: 'btn', id: 'newSongButton' %>
+					<div id='songGrid'>
+						<% @songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
+						<div class='SongGridItem' id="song<%= s.id %>">
+							<div class='SongSelected'>
+								<span class='Icon SongSelectedCheck'>&#59415;</span>
+								<form class='SongTrackForm'>
+									<input type='text' name='song[track_number]' class='TrackNumberField' id="song_<%= s.id %>_track_number" placeholder='Track number' />
+								</form>
+							</div>
+							<img class='SongImage' src='<%= s.image.path %>' />
+							<p class='SongName'><%= s.name %></p>
+						</div>
+						<% end %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

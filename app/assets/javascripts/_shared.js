@@ -1,4 +1,4 @@
-$('body').djax('.DJAX', []);
+$('body').djax('.DJAX', ['login', 'logout']);
 
 function getArtistNameFromURL() {
 	return document.URL.split("/")[3];

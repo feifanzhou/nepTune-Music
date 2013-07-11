@@ -2,45 +2,50 @@
   <%= render 'layouts/app_header' %>
   <%= render 'layouts/playbar' %>
 </header>
-<div class='row' id='newSongContainer'>
-	<div class='alert' id='newSongFeedback'>Song created successfully</div>
-	<div id='newSong'>
-		<div id='newSongPreview'>
-			<div id='albumImageDarken'></div>
-			<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
-			<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
-			<div id='changeAlbumArt'>Click to change picture</div>
-		</div>
-		<div id='newSongDetails'>
-			<iframe id='audio_target' name='audio_target' src=''></iframe>
-			<%= form_for Audio.new(), html: { target: 'audio_target' } do |a| %>
-				<%= a.file_field :file %>
-			<% end %>
-			<%= form_for @song, remote: true do |s| %>
-				<input type='hidden' name='artistname' id='artistname' />
-				<%= s.label :audio %>
-				<input type='hidden' name='song[audio_id]' id='song_audio_id' />
-				<%= s.button 'Select audio file', class: 'btn', id: 'select_file_button' %>
-				<p id='selectedFileName'>No audio file selected</p>
+<div id='artistPageContainer'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <div class='DJAX XHidden' id='artistPageContent'>
+		<div id='newSongContainer'>
+			<div class='alert' id='newSongFeedback'>Song created successfully</div>
+			<div id='newSong'>
+				<div id='newSongPreview'>
+					<div id='albumImageDarken'></div>
+					<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
+					<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
+					<div id='changeAlbumArt'>Click to change picture</div>
+				</div>
+				<div id='newSongDetails'>
+					<iframe id='audio_target' name='audio_target' src=''></iframe>
+					<%= form_for Audio.new(), html: { target: 'audio_target' } do |a| %>
+						<%= a.file_field :file %>
+					<% end %>
+					<%= form_for @song, remote: true do |s| %>
+						<input type='hidden' name='artistname' id='artistname' />
+						<%= s.label :audio %>
+						<input type='hidden' name='song[audio_id]' id='song_audio_id' />
+						<%= s.button 'Select audio file', class: 'btn', id: 'select_file_button' %>
+						<p id='selectedFileName'>No audio file selected</p>
 
-				<%= s.label :name %>
-				<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
+						<%= s.label :name %>
+						<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
-				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
+						<%= s.label :album %>
+						<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
 
-				<input type='hidden' name='song[album_art_id]' id='song_album_art_id' />
+						<input type='hidden' name='song[album_art_id]' id='song_album_art_id' />
 
-				<%= s.label :track_number %>
-				<%= s.text_field :track_number, placeholder: 'Track number', autocomplete: :off %><br />
+						<%= s.label :track_number %>
+						<%= s.text_field :track_number, placeholder: 'Track number', autocomplete: :off %><br />
 
-				<%= s.submit 'Upload song', class: 'btn btn-primary', id: 'submit_song' %>
-			<% end %>
-			<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>
-				<%= i.file_field :file %>
-			<% end %>
-			<iframe id='album_target' name='album_target' src=''></iframe>
-			<ul id='albumSuggestions'></ul>
+						<%= s.submit 'Upload song', class: 'btn btn-primary', id: 'submit_song' %>
+					<% end %>
+					<%= form_for Image.new(), html: { target: 'album_target' } do |i| %>
+						<%= i.file_field :file %>
+					<% end %>
+					<iframe id='album_target' name='album_target' src=''></iframe>
+					<ul id='albumSuggestions'></ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

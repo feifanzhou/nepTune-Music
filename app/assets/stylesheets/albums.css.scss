@@ -91,10 +91,11 @@ header {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
-	margin: 130px auto 0px auto;
 	text-align: center;
-	width: 1280px;
+	width: 960px;
 	#newAlbumInfo {
+		display: inline-block;
+		width: 300px;
 		#albumArt {
 			position: relative;
 			&:hover {
@@ -124,7 +125,7 @@ header {
 				bottom: 0;
 				color: $white;
 				font-family: $OpenSans;
-				font-size: 24px;
+				font-size: 18px;
 				font-weight: 700;
 				left: 0;
 				line-height: 45px;
@@ -149,8 +150,11 @@ header {
 			input[type='text'] {
 				width: 170px;
 			}
+			#album_year {
+				width: 97px;
+			}
 			#saveAlbumButton {
-				width: 372px;
+				width: 300px;
 			}
 		}
 	}
@@ -161,6 +165,10 @@ header {
 		// opacity: 0.2;
 		// pointer-events: none;
 		// -webkit-filter: blur(2px);
+		display: inline-block;
+		margin-left: 5px;
+		vertical-align: top;
+		width: 680px;
 		&.SongGridActive {
 			opacity: 1;
 			pointer-events: auto;
@@ -168,17 +176,20 @@ header {
 		}
 		h1 {
 			color: $white;
+			display: inline-block;
 			font-family: $OpenSans;
+			width: auto;
 		}
 		#inAlbum {
 
 		}
 		#allSongs {
 			text-align: left;
+			width: auto;
 			h1 {
 				display: inline-block;
 				text-align: center;
-				width: 644px;
+				width: 450px;
 			}
 			#newSongButton {
 				display: inline-block;
@@ -190,8 +201,9 @@ header {
 				margin-top: 24px;
 				position: relative;
 				.SongGridItem {
-					position: relative;
-					top: 0;
+					display: inline-block;
+					float: left;
+					vertical-align: top;
 					&.SelectedSong {
 						.SongSelected {
 							opacity: 1;
@@ -208,6 +220,7 @@ header {
 					.SongImage {
 						display: inline-block;
 						min-height: 100%;
+						vertical-align: top;
 						width: auto;
 					}
 				}
