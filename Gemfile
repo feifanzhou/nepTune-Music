@@ -25,7 +25,7 @@ group :development, :production do
   gem 'retina_tag'
   gem 'aws-sdk', '~> 1.5.7'
   gem 'fb-channel-file'
-  gem 'rmagick'
+  gem "rmagick"
 end
 
 group :development, :test do

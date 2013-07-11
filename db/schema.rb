@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130711200945) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "artist_id"
+    t.integer  "year"
   end
 
   add_index "albums", ["name"], :name => "index_albums_on_name"
@@ -76,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20130711200945) do
     t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "details"
+    t.string   "location"
   end
 
   create_table "followers", :force => true do |t|

@@ -89,7 +89,11 @@ module SoundmapHelper
   end
 
   def svg_to_png(svg_blob)
-    image = Magick::Image::from_blob(svg_blob){ self.format = "SVG" }[0]
+    file = Tempfile.new(['image', '.svg'])
+    file.write svg_blob
+    file.rewind
+    images = Magick::Image.read file.path { self.format = 'SVG' }
+    image = images[0]
     image.format = "PNG"
     image.to_blob
   end
