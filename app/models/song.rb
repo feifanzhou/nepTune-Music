@@ -23,7 +23,17 @@ class Song < ActiveRecord::Base
   validates :artist, presence: true
 
   def image
-    return super || (self.album && self.album.image) || nil  # super reads attribute :image
+    rescue_image = nil
+    # TODO: Never really loads song_default, album_default is used if default image is needed
+    if (self.album.blank? || self.album.image.blank?)
+      rescue_image = super || Image.new(custom_path: '/images/song_default.png', name: 'Missing song image')
+    else
+      rescue_image = self.album.image
+    end
+    logger.debug("song rescue_image: #{ rescue_image }")
+    # If there is album art, return that for an image without its own image
+    # If there is no album art, return default song image
+    return super || rescue_image || nil  # super reads attribute :image
   end
 
   def name

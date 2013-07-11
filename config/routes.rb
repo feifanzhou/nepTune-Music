@@ -15,6 +15,7 @@ NeptuneMusic::Application.routes.draw do
     resources :songs  # TODO: albums and songs should probably be subresources of artists
     resources :images
     resources :audio
+    resources :events
 
     root to: 'home#home'
 
@@ -41,11 +42,12 @@ NeptuneMusic::Application.routes.draw do
     match '/:artistname/events', to: 'artists#events', as: :artist_events
     match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
     match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
+    match '/:artistname/albums/new', to: 'albums#new', as: :new_album_for_artist
     match '/:artistname/albums/:album', to: 'albums#show', as: :album_for_artist
     match '/:artistname/songs/new', to: 'songs#new', as: :new_song_for_artist
     match '/:artistname/songs/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artistname/events/new', to: 'events#new', as: :new_event_for_artist
 
-    resources :events
     match '/event/:id/join', to: 'attendees#join', as: :join_event
 
 

@@ -34,6 +34,18 @@ class Image < Media
     self.name
   end
 
+  def self.default_album_image
+    img = Image.find_by_custom_path('/images/album_default.png')
+    img ||= Image.create(custom_path: '/images/album_default.png')
+    return img
+  end
+
+  def self.default_song_image
+    img = Image.find_by_custom_path('/images/song_default.png')
+    img ||= Image.create(custom_path: '/images/song_default.png')
+    return img
+  end
+
   def show_html
   	return "<img src='#{ self.path }' alt='#{ self.name }' />".html_safe
   end

@@ -9,10 +9,12 @@
 #  creator_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  details    :string(255)
+#  location   :string(255)
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :creator_id, :end_at, :name, :start_at, :creator
+  attr_accessible :creator_id, :end_at, :name, :start_at, :creator, :location, :details
 
   belongs_to :creator, class_name: 'Artist', foreign_key: :creator_id
   has_many :images, as: :media_holder
@@ -33,7 +35,7 @@ class Event < ActiveRecord::Base
   end
 
   def cover_image
-    return self.images.primary.first || self.images.first
+    return self.images.primary.first || self.images.first || Image.new(custom_path: '/images/concert.jpg', name: 'Default event cover') || nil
   end
 
   def performers

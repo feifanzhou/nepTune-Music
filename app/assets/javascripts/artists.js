@@ -591,9 +591,21 @@ $(document).on('keydown', '.ContactText', function() {
     return false;
 });
 $(document).on('blur', '.ContactText', function() {
-    // $('.ContactText').blur(function(event) {
-    var value = $(this).html();
-    console.log('value: ' + value);
-    var field = $(this).attr('id');
-    updateContactInfoForArtist(field, value);
+// $('.ContactText').blur(function(event) {
+  var value = $(this).html();
+  console.log('value: ' + value);
+  var field = $(this).attr('id');
+  updateContactInfoForArtist(field, value);
+});
+
+$('#event_artistname').val(getArtistNameFromURL());
+
+$('.Datepicker').datetimepicker({
+  format: 'MM/dd/yyyy HH:mm PP',
+  language: 'en',
+  pick12HourFormat: true
+});
+
+$('#finishEventButton').click(function() {
+  $('#new_event').submit();
 });

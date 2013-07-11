@@ -55,8 +55,8 @@ the group really started to take off, producing a music video each week and post
     i5 = Image.create(caption: 'World Music', custom_path: 'http://msitvoiceiiit.files.wordpress.com/2013/02/world-music.jpg', height: 355, width: 380, is_primary: true)
 
     puts "Preparing albums..."	# Songs belong_to albums, so create albums first
-    a1 = Album.create(name: 'Hits Volume 1', image: i1, artist: jon)
-    a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon)
+    a1 = Album.create(name: 'Hits Volume 1', image: i1, artist: jon, year: 2011)
+    a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon, year: 2012)
 
     puts "Writing songs..."
     s1 = Song.create(name: 'Bring Him Home', artist: jon, image: i3,

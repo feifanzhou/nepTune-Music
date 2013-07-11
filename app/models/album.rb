@@ -7,10 +7,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  artist_id  :integer
+#  year       :integer
 #
 
 class Album < ActiveRecord::Base
-  attr_accessible :name, :artist, :image
+  attr_accessible :artist, :name, :image, :year
 
   belongs_to :artist
   has_one :image, as: :media_holder
@@ -18,6 +19,10 @@ class Album < ActiveRecord::Base
 
   validates :artist, presence: true
   validates :name, presence: true
+
+  def image
+    return super || Image.new(custom_path: '/images/album_default.png', name: 'Missing album art') || nil
+  end
 
   def songs
     songs_list = super	# Read original song list

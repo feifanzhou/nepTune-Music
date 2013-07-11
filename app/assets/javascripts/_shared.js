@@ -1,5 +1,14 @@
 function getArtistNameFromURL() {
-  return document.URL.split("/")[3];
+	return document.URL.split("/")[3];
+}
+
+function getEventIDFromURL() {
+	var c = document.URL.split('/')[4];
+	return c.split('?')[0];
+}
+
+function JSONFromID(v_id) {
+	return JSON.parse(document.getElementById(v_id).contentWindow.document.body.textContent);
 }
 
 function youtubeEmbedForURL(ytURL) {

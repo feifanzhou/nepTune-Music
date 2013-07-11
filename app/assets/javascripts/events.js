@@ -15,3 +15,43 @@ $('.EventStatusTrigger').bind('ajax:success', function() {
 		}, 400);
 	});
 });
+
+$('#eventName').keydown(function(event) {
+	if (event.keyCode !== 13)
+    return;
+	event.preventDefault();
+	$(this).blur();
+	return false;
+});
+$('#eventName').blur(function(event) {
+	var input = $(this);
+	var e_name = $(this).text();
+	$.ajax({
+		url: '/events/' + getEventIDFromURL(),
+		type: 'PUT',
+		data: { name: e_name },
+		success: function(resp) {
+			console.log('Successfully updated event name');
+		}
+	});
+});
+
+$('#location').keydown(function(event) {
+	if (event.keyCode !== 13)
+		return;
+	event.preventDefault();
+	$(this).blur();
+	return false;
+});
+$('#location').blur(function(event) {
+	var input = $(this);
+	var e_loc = $(this).text();
+	$.ajax({
+		url: '/events/' + getEventIDFromURL(),
+		type: 'PUT',
+		data: { location: e_loc },
+		success: function(resp) {
+			console.log('Successfully updated event location');
+		}
+	});
+});
