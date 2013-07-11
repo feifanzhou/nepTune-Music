@@ -91,9 +91,9 @@ module SoundmapHelper
 
   def svg_to_png(svg_blob)
     #file = file_from_blob(svg_blob, original_filename: 'image.svg', content_type: 'image/svg')
-     # file = Tempfile.new(['image', '.svg'])
-     # file.write svg_blob
-     # file.rewind
+    # file = Tempfile.new(['image', '.svg'])
+    # file.write svg_blob
+    # file.rewind
     image = Magick::Image.from_blob(svg_blob) { self.format = "SVG" }[0]
     #image = MiniMagick::Image.open(file.path, "svg")
     #image = images[0]
@@ -123,15 +123,20 @@ module SoundmapHelper
   def generate_soundmap(numbers, mood_color,
                         opts={
                           width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
+                          filetype: "png",
                           # colorblind color palette, looks nice =D
                           # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
                           colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
                                    "#0072B2", "#D55E00", "#CC79A7", "#999999"]
                         })
     svg_blob = generate_svg(numbers, mood_color, opts)
-    png_blob = svg_to_png(svg_blob)
-    #file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
-    temp_png(png_blob)
+
+    if opts[:filetype] == "png"
+      png_blob = svg_to_png(svg_blob)
+      return temp_png(png_blob)
+    else
+      return file_from_blob(svg_blob, original_filename: 'soundmap.svg', content_type: 'image/svg')
+    end
   end
 
   # HSV values in [0..1]

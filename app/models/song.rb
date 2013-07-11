@@ -45,6 +45,6 @@ class Song < ActiveRecord::Base
     self.soundmap_numbers = ([0]*5).map { rand*0.8+0.2 } # 5 random numbers
     col = hsv_to_rgb(rand, 0.55, 1)
     puts col
-    self.image.file = generate_soundmap self.soundmap_numbers, col
+    self.image.file = generate_soundmap self.soundmap_numbers, col, filetype: "png"
   end
 end
