@@ -51,7 +51,7 @@ module SoundmapHelper
     start_angle = opts[:start_angle]
     colors = opts[:colors]
 
-    center = [width/2, height/2]
+    center = [(width/2), (height/2)]
     scale = 200/500.0 * [width, height].min
 
     out = ""
