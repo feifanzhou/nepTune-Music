@@ -2,7 +2,6 @@
   <%= render 'layouts/app_header' %>
   <%= render 'layouts/playbar' %>
 </header>
-<<<<<<< HEAD
 <div id='artistPageContainer'>
   <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
   <div class='DJAX XHidden' id='artistPageContent'>
@@ -12,7 +11,7 @@
 				<div id='newSongPreview'>
 					<div id='albumImageDarken'></div>
 					<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
-					<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
+					<%= image_tag "song_default.png", class: 'NewSongArt' %>
 					<div id='changeAlbumArt'>Click to change picture</div>
 				</div>
 				<div id='newSongDetails'>
@@ -26,40 +25,12 @@
 						<input type='hidden' name='song[audio_id]' id='song_audio_id' />
 						<%= s.button 'Select audio file', class: 'btn', id: 'select_file_button' %>
 						<p id='selectedFileName'>No audio file selected</p>
-=======
-<div class='row' id='newSongContainer'>
-	<div class='alert' id='newSongFeedback'>Song created successfully</div>
-	<div id='newSong'>
-		<div id='newSongPreview'>
-			<div id='albumImageDarken'></div>
-			<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
-			<%= image_tag "song_default.png", class: 'NewSongArt' %>
-			<!-- <img class='NewSongArt' src='/images/' /> -->
-			<div id='changeAlbumArt'>Click to change picture</div>
-		</div>
-		<div id='newSongDetails'>
-			<iframe id='audio_target' name='audio_target' src=''></iframe>
-			<%= form_for Audio.new(), html: { target: 'audio_target' } do |a| %>
-				<%= a.file_field :file %>
-			<% end %>
-			<%= form_for @song, remote: true do |s| %>
-				<input type='hidden' name='artistname' id='artistname' />
-				<%= s.label :audio %>
-				<input type='hidden' name='song[audio_id]' id='song_audio_id' />
-				<%= s.button 'Select audio file', class: 'btn', id: 'select_file_button' %>
-				<p id='selectedFileName'>No audio file selected</p>
->>>>>>> beta-soundmap
 
 						<%= s.label :name %>
 						<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
-<<<<<<< HEAD
 						<%= s.label :album %>
 						<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
-=======
-				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
->>>>>>> beta-soundmap
 
 						<input type='hidden' name='song[album_art_id]' id='song_album_art_id' />
 
