@@ -18,7 +18,8 @@ class Song < ActiveRecord::Base
   include SoundmapHelper
 
   serialize :soundmap_numbers
-  after_commit :make_soundmap_worker
+  #after_commit :make_soundmap_worker
+  before_save :make_soundmap
 
   belongs_to :artist
   belongs_to :album
@@ -41,6 +42,7 @@ class Song < ActiveRecord::Base
     # basically just calls make_soundmap
     puts self.id
     EchonestWorker.perform_async(self.id)
+    # self.make_soundmap
   end
 
   def make_soundmap
@@ -58,6 +60,6 @@ class Song < ActiveRecord::Base
     image.file = generate_soundmap self.soundmap_numbers, col, filetype: "svg"
     image.save
     self.image = image
-    self.save
+    #self.save
   end
 end
