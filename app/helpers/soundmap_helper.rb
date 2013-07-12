@@ -50,7 +50,7 @@ module SoundmapHelper
     start_angle = opts[:start_angle]
     colors = opts[:colors]
 
-    center = [width/2, height/2]
+    center = [(width/2), (height/2)]
     scale = 200/500.0 * [width, height].min
 
     out = ""
@@ -121,14 +121,15 @@ module SoundmapHelper
   end
 
   def generate_soundmap(numbers, mood_color,
-                        opts={
-                          width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
-                          filetype: "png",
-                          # colorblind color palette, looks nice =D
-                          # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
-                          colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
-                                   "#0072B2", "#D55E00", "#CC79A7", "#999999"]
-                        })
+                        opts={})
+    default_opts = { width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
+      filetype: "png",
+      # colorblind color palette, looks nice =D
+      # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+      colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
+               "#0072B2", "#D55E00", "#CC79A7", "#999999"]
+    }
+    opts = default_opts.merge(opts)
     svg_blob = generate_svg(numbers, mood_color, opts)
 
     if opts[:filetype] == "png"
