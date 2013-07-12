@@ -35,6 +35,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :attendees
   has_many :play_counts
   has_many :media, through: :play_counts
+  has_many :comments
 
   has_attached_file :avatar, s3_protocol: 'http'
 

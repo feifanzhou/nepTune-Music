@@ -6,6 +6,10 @@ gem 'rails-boilerplate'
 gem 'bootstrap-sass', '~> 2.3.1.2'
 gem 'pg'
 gem 'paperclip', '~> 3.0'
+gem 'rmagick'
+gem 'ruby-echonest'
+gem 'sidekiq'
+#gem 'mini_magick'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
