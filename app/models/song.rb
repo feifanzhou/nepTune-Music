@@ -44,10 +44,11 @@ class Song < ActiveRecord::Base
   end
 
   def make_soundmap
-    if (not self.image.blank?) or self.audio.blank?
+    if (not self.image.blank? or self.image.custom_path == 'assets/soundmap-loading.png')
+      or self.audio.blank?
       return
     end
-    puts "MAKE SOUNDMAP!!!!" + '='*50
+    puts '='*25 + "MAKE SOUNDMAP!!!!" + '='*25
 
     #self.soundmap_numbers = ([0]*5).map { rand*0.8+0.2 } # 5 random numbers
     self.soundmap_numbers = get_soundmap_numbers(self.audio)
