@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class LoginController < ApplicationController
   include ApplicationHelper
   include LoginHelper
@@ -26,7 +27,12 @@ class LoginController < ApplicationController
     user = User.find_by_facebook_id(fb_id)
     logger.debug("user by FBID: #{ user }")
     if user.blank?
+      user = User.find_by_email(fb_info[:email])
+    end
+
+    if user.blank?
       logger.debug('user blank')
+
       user_hash = { fname: fb_info[:first_name], lname: fb_info[:last_name], email: fb_info[:email], password: temporary_password, has_temp_password: true, facebook_id: fb_id }
       prms = { user: user_hash }
       logger.debug("Create user from FB prms: #{ prms }")
@@ -41,6 +47,7 @@ class LoginController < ApplicationController
         # render json: results.index_by(&:id), status: 500
       end
     else
+      update_user_for_facebook_login(user, fb_info.merge(facebook_id: fb_id))
       save_user_to_cookie(user)
       json_to_root
     end
@@ -62,7 +69,8 @@ class LoginController < ApplicationController
       if user.has_temp_password
         redirect_to pwchange_path
       else
-        redirect_to root_path
+        # redirect_to root_path
+        redirect_back
       end
     else
       # Display error message, re-render login
@@ -93,7 +101,7 @@ class LoginController < ApplicationController
 
     # FIXME: Is @user ever defined
     # if @user.errors.blank?
-    if results or results.blank?
+    if results.blank?
       (params[:user][:isArtist].to_i == 1) ? redirect_to(artist_about_path(params[:user][:artistname], edit: 1)) : redirect_to(root_path)
     else
       render "login"

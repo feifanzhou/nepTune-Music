@@ -27,10 +27,11 @@ function toggleCreateNewAccount(tag) {
         $("#goLogin").css('display', 'none');
         if (isArtistChecked)
             $('#artistUsername').slideUp();
+        $('#createLoginError').slideUp(200)
     }
 }
 
-if ($('#error_explanation').length !== 0) {
+if ($('#createLoginError').length !== 0) {
     toggleCreateNewAccount(1);
 }
 

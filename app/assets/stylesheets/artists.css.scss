@@ -6,7 +6,12 @@
 @import "variables";
 @import "shared";
 
+@import "custom_bootstrap";
+
 @import "bootstrap";
+
+@import "albums.css";
+@import "songs.css";
 
 html {
 	background: $Txture;
@@ -56,10 +61,59 @@ header {
 			pointer-events: none;
 		}
 		#artistProfile {
-			.ArtistProfilePic {
-				border: 4px solid $white;
-				border-radius: 4px;
-				margin: 10px 26px;
+			.ProfilePictureContainer {
+				margin: 0 32px;
+				&.ProfilePictureEdit {
+					position: relative;
+					&:hover {
+						cursor: pointer;
+					}
+					#profileDarken {
+						background-color: transparentize(black, 0.25);
+						display: none;
+						height: 160px;
+						left: 4px;
+						position: absolute;
+						top: 15px;
+						width: 160px;
+					}
+					#profileUploadSpinner {
+						color: $white;
+						display: none;
+						font-size: 36px;
+						left: 68px;
+						position: absolute;
+						top: 68px;
+					}
+					#changeProfilePic {
+						@include TranslucentBar;
+						color: $white;
+						font-family: $OpenSans;
+						height: 24px;
+						left: 4px;
+						position: absolute;
+						text-align: center;
+						top: 150px;
+						width: 160px;
+					}
+				}
+				.ArtistProfilePic {
+					border: 4px solid $white;
+					border-radius: 4px;
+					height: 160px;
+					margin: 10px 0;
+					max-height: 160px;
+					max-width: 160px;
+					min-height: 160px;
+					min-width: 160px;
+					width: 160px;
+				}
+			}
+			#profile_target {
+				display: none;
+			}
+			.UploadImageForm {
+				display: none;
 			}
 			.ArtistProfileName {
 				font-family: $OpenSans;
@@ -141,10 +195,11 @@ header {
 						.ArtistNavIcon {
 							display: inline-block;
 							margin-right: 12px;
-							text-align: right;
+							text-align: center;
 							width: 24px;
 						}
-						@media(max-height: 879px) {
+						// @media(max-height: 879px) {
+						@media(max-height: 599px) {
 							display: inline-block;
 							float: left;
 							padding: 11px;
@@ -169,7 +224,7 @@ header {
 		margin-left: 240px;
 		overflow-y: scroll;
 		position: absolute;
-		top: 125px;
+		top: 130px;
 		white-space: nowrap;
 		width: 960px;
 		z-index: 2;
@@ -202,7 +257,7 @@ header {
 						color: $inactiveWhite;
 						display: inline-block;
 						float: left;
-						font-family: $Myriad;
+						font-family: $OpenSans;
 						font-size: 18px;
 						font-weight: 400;
 						margin: 0 14px;
@@ -216,6 +271,31 @@ header {
 						&.SelectedFilter {
 							color: white;
 						}
+					}
+				}
+				#createNewMusic {
+					background: transparentize($nepTuneOrange, 0.25);
+					border-radius: 4px;
+					display: inline-block;
+					padding: 3px 4px;
+					position: absolute;
+					top: 10px;
+					right: 200px;
+					a {
+						color: $white;
+						font-family: $OpenSans;
+						font-size: 16px;
+						padding: 3px;
+						&:hover {
+							color: white;
+							text-decoration: none;
+						}
+					}
+					.SegmentDivider {
+						color: $white;
+						font-family: $OpenSans;
+						font-size: 18px;
+						font-weight: 300;
 					}
 				}
 				#musicFilterSearch {
@@ -415,15 +495,16 @@ header {
 			}
 			.Slider {
 				font-size: 0;
+				height: 360px;
+				left: 0;
 				overflow: visible;
 				position: absolute;
-				left: 0px;
+				top: 0;
 				width: auto;
 				transition: left 0.8s;
 				-webkit-transition: left 0.8s;
 				.SliderElement {
 					display: inline-block;
-					// float: left;
 					height: 360px;
 					opacity: 0.15;
 					pointer-events: none;
@@ -434,17 +515,167 @@ header {
 						opacity: 1;
 						pointer-events: auto;
 					}
+					&.SliderAddElement {
+						height: 360px;
+						width: 560px;
+						.SliderElementInnerContent {
+							background: $Debut;
+							border-radius: 4px;
+							color: black;
+							height: 310px;
+							margin: 10px;
+							padding: 15px;
+							.AddElementOption {
+								display: inline-block;
+								float: left;
+								height: 100%;
+								position: relative;
+								text-align: center;
+								width: 239px;
+								.AddElementFace {
+									@include AnimateBackground;
+									border-radius: 3px;
+									height: 100%;
+									position: relative;
+									width: 100%;
+									&:hover {
+										background: transparentize(#AAA, 0.65);
+										cursor: pointer;
+									}
+									p {
+										position: absolute;
+										text-align: center;
+										top: 176px;
+										width: 100%;
+										&.AddElementIcon {
+											font-size: 60px;
+											top: 86px;
+										}
+									}
+								}
+								.AddElementInfo {
+									display: none;
+									h2 {
+										font-family: $PTSans;
+									}
+									.UploadPreview {
+										background: #AAA;
+										// border: 4px dashed #888;
+										border-radius: 2px;
+										box-sizing: border-box;
+										height: 132px;
+										margin-bottom: 8px;
+										position: relative;
+										text-align: center;
+										width: 100%;
+										#imgUploadSpinner {
+											display: none;
+											margin-top: 50px;
+											width: 100%;
+										}
+										.ImagePreview {
+											max-height: 100%;
+											max-width: 100%;
+											text-align: center;
+										}
+										button {
+											left: 68px;
+											position: absolute;
+											top: 50px;
+										}
+										input {
+											height: 26px;
+											left: 6px;
+											position: absolute;
+											right: 6px;
+											top: 48px;
+											&.SelectImage {
+											  display: none;
+											}
+										}
+										#upload_target {
+											display: none;
+										}
+									}
+									.AddElementCaption {
+										box-sizing: border-box;
+										height: 32px;
+										max-height: 190px;
+										max-width: 100%;
+										width: 100%;
+									}
+									.AddElementActions {
+										button {
+											margin: 6px;
+										}
+									}
+								}
+							}
+							#addImage {
+								border-bottom-left-radius: 3px;
+								border-top-left-radius: 3px;
+								border-right: 2px groove #AAA;
+								padding-right: 15px;
+							}
+							#addVideo {
+								border-bottom-right-radius: 3px;
+								border-top-right-radius: 3px;
+								padding-left: 15px;
+							}
+						}
+
+					}
+					.SliderElementRemoveOverlay {
+						background: transparentize(white, 0.2);
+						bottom: 0;
+						left: 0;
+						opacity: 0;
+						position: absolute;
+						right: 0;
+						top: 0px;
+						z-index: 1;
+						transition: opacity 0.5s;
+						-webkit-transition: opacity 0.5s;
+						&:hover {
+							opacity: 1;
+						}
+						.SliderElementRemove {
+							color: $nepTuneOrange;
+							cursor: pointer;
+							display: inline-block;
+							font-size: 144px;
+							left: 0;
+							position: absolute;
+							right: 0;
+							text-align: center;
+							top: 180px;
+						}
+					}
 					.SliderTitle {
 						@include TranslucentBar;
 						bottom: 0;
 						margin: 0;
-						z-index: 1;
+						z-index: 2;
 						p {
 							font-family: $OpenSans;
 							font-size: 18px;
 							font-weight: 600;
 							margin: 10px;
+							&.TitleTextEdit {
+								margin: 1px 10px;
+							}
+							&.ClickToEdit {
+								color: transparentize(white, 0.5);
+								font-size: 14px;
+								font-weight: 400;
+								margin: 1px 10px;
+							}
 						}
+					}
+					img {
+						display: block;
+						height: 360px;
+						max-height: 360px;
 					}
 				}
 			}
@@ -516,6 +747,13 @@ header {
 						color: white;
 					}
 				}
+			}
+			#newEventButton {
+				display: inline-block;
+				float: right;
+				margin-right: 12px;
+				position: relative;
+				top: 6px;
 			}
 		}
 		.CalendarGrid {
@@ -791,6 +1029,36 @@ header {
 			#weekdayHeadings {
 				display: none;
 			}
+		}
+	}
+	#newEvent {
+		#new_event {
+			margin-bottom: 0;
+			text-align: center;
+			input, textarea {
+				font-family: $OpenSans;
+			}
+			#event_details {
+				left: 2px;
+				position: relative;
+				resize: none;
+				width: 430px;
+			}
+			#event_start_at {
+				width: 179px;
+			}
+			#event_end_at {
+				width: 179px;
+			}
+		}
+		#createEventFollowers {
+			color: transparentize(black, 0.35);
+			display: inline-block;
+			float: left;
+			font-size: 11px;
+			font-weight: 400;
+			text-align: left;
+			width: 330px;
 		}
 	}
 }

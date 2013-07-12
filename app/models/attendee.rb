@@ -13,17 +13,32 @@
 
 class Attendee < ActiveRecord::Base
   attr_accessible :status, :user, :artist, :event
+  validates :status, presence: true
   validates_inclusion_of :status, in: [:performing, :invited, :going, :maybe]
+  validates :event, presence: true
+
+  validate :should_have_user_or_artist
 
   belongs_to :user
   belongs_to :artist
   belongs_to :event
 
-  def status
-  	read_attribute(:status).to_sym
+  def should_have_user_or_artist
+    if user.blank? and artist.blank?
+      errors.add(:base, "user or artist should be present")
+    elsif not user.blank? and not artist.blank?
+      errors.add(:base, "user and artist should not both be present")
+    end
   end
 
-  def status=(value)
-  	write_attribute(:status, value.to_s)
+  def status
+    s = read_attribute(:status)
+    if s
+      s.to_sym
+    end
   end
+
+  # def status=(value)
+  #   write_attribute(:status, value.to_s)
+  # end
 end

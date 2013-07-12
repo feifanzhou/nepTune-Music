@@ -1,20 +1,25 @@
-<%= link_to '#' do %><div class='Icon SliderNav SliderNavDisabled' id='sliderNavLeft'>&#59399;</div><% end %>
+<div class='Icon SliderNav SliderNavDisabled' id='sliderNavLeft'>&#59399;</div>
 <div class='Slider' id='slider'>
-	<div class='SliderElement SliderElementCurrent' id='gallery0'>
-		<h2 class='SliderTitle NoblockTitle'><p>Phillip Phillips &mdash; Home (Piano/Cello Cover)</p></h2>
-		<iframe width="640" height="360" src="http://www.youtube.com/embed/aF-Z1A0ujlg?rel=0" frameborder="0" allowfullscreen></iframe>
+	<% if is_editing %>
+	<%= render 'layouts/about_gallery_add_item_element', artistname: artist.artistname %>
+	<% end %>
+	<% gallery_index = is_editing ? 1 : 0 %>
+	<% artist.media_for_location(:AboutGallery).each do |m| %>
+	<div class="SliderElement <%= 'SliderElementCurrent' if gallery_index == 0 %>" id="gallery<%= gallery_index %>">
+		<% if is_editing %>
+		<div class='SliderElementRemoveOverlay'>
+			<span class='Icon SliderElementRemove' id="remove<%= gallery_index %>" data-media-id="<%= m.id %>">&#59407;</span>
+		</div>
+		<% end %>
+		<h2 class="SliderTitle <%= 'NoblockTitle' unless is_editing %>">
+			<p class='<%= "TitleTextEdit" if is_editing %>' <%= 'contenteditable' if is_editing %> data-media-id="<%= m.id %>"><%= m.name %></p>
+			<% if is_editing %>
+			<p class='ClickToEdit'>Click on caption to edit</p>
+			<% end %>
+		</h2>
+		<%= m.show_html %>
 	</div>
-	<div class='SliderElement' id='gallery1'>
-		<h2 class='SliderTitle NoblockTitle'><p>Beethoven's 5 Secrets &mdash; OneRepublic (Cello/Orchestral Cover)</p></h2>
-		<iframe width="640" height="360" src="http://www.youtube.com/embed/mJ_fkw5j-t0" frameborder="0" allowfullscreen></iframe>
-	</div>
-	<div class='SliderElement' id='gallery2'>
-		<h2 class='SliderTitle NoblockTitle'><p>Mission Impossible (Piano/Cello/Violin) ft. Lindsey Stirling</p></h2>
-		<iframe width="640" height="360" src="http://www.youtube.com/embed/9p0BqUcQ7i0?rel=0" frameborder="0" allowfullscreen></iframe>
-	</div>
-	<div class='SliderElement' id='gallery3'>
-		<h2 class='SliderTitle NoblockTitle'><p>Coldplay &mdash; Paradise (Peponi) African Style ft. Alex Boye</p></h2>
-		<iframe width="640" height="360" src="http://www.youtube.com/embed/Cgovv8jWETM?rel=0" frameborder="0" allowfullscreen></iframe>
-	</div>
+	<% gallery_index += 1 %>
+	<% end %>
 </div>
-<%= link_to '#' do %><div class='Icon SliderNav' id='sliderNavRight'>&#59401;</div><% end %>
+<div class='Icon SliderNav' id='sliderNavRight'>&#59401;</div>

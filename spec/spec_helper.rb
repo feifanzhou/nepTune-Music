@@ -1,7 +1,14 @@
+require 'factory_girl'
 require 'rubygems'
 require 'spork'
+require 'rake'
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
+
+def set_host (host)
+  #default_url_options[:host] = host
+  Capybara.app_host = "http://" + host
+end
 
 
 Spork.prefork do
@@ -14,10 +21,25 @@ Spork.prefork do
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec/autorun'
+  require 'capybara/rails'
+  require 'capybara/rspec'
+#  require 'capybara/poltergeist'
+
+  rake = Rake::Application.new
+  Rake.application = rake
+  rake.init
+  rake.load_rakefile
+  rake['admin:fill_db'].invoke
+
+  Capybara.javascript_driver = :webkit #:poltergeist #:selenium #:webkit
+  Capybara.ignore_hidden_elements = false
+  Capybara.automatic_reload = false
+  set_host "beta.neptune.com:3000"
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
 
   RSpec.configure do |config|
     # ## Mock Framework
@@ -27,9 +49,6 @@ Spork.prefork do
     # config.mock_with :mocha
     # config.mock_with :flexmock
     # config.mock_with :rr
-
-    # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
@@ -46,14 +65,24 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    # Use named routes
+    config.include Rails.application.routes.url_helpers
   end
+
+  # Capybara.register_driver :poltergeist do |app|
+  #   Capybara::Poltergeist::Driver.new(app,
+  #                                     js_errors: false )
+  # end
 
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
-  # This code will be run each time you run your specs.
+  FactoryGirl.reload
+  ActiveSupport::Dependencies.clear
   NeptuneMusic::Application.reload_routes!
+
 end
 
 # --- Instructions ---
