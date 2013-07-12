@@ -144,7 +144,7 @@ module SoundmapHelper
   # HSV values in [0..1]
   # returns HTML [r, g, b] values (e.g. #ff0324)
   def hsv_to_rgb(h, s, v)
-    hp = h*6
+    hp = (h*6) % 6
     h_i = hp.to_i
     c = v * s
     x = c * (1-(hp % 2 - 1).abs)
@@ -154,7 +154,7 @@ module SoundmapHelper
     r, g, b = 0, c, x if h_i==2
     r, g, b = 0, x, c if h_i==3
     r, g, b = x, 0, c if h_i==4
-    r, g, b = c, 0, x if h_i==5
+    r, g, b = c, 0, x if h_i>=5
 
     m = v - c
 
