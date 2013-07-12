@@ -40,13 +40,14 @@ class Song < ActiveRecord::Base
   def make_soundmap_worker
     # basically just calls make_soundmap
     puts self.id
-    EchonestWorker.perform_async(self.id)
+    # EchonestWorker.perform_async(self.id)
+    self.make_soundmap
   end
 
   def make_soundmap
-    if (not self.image.blank? or self.image.custom_path == '/assets/soundmap-loading.png') or self.audio.blank?
-      return
-    end
+    # if (not self.image.blank? or self.image.custom_path == '/assets/soundmap-loading.png') or self.audio.blank?
+    #   return
+    # end
     puts '='*25 + "MAKE SOUNDMAP!!!!" + '='*25
 
     #self.soundmap_numbers = ([0]*5).map { rand*0.8+0.2 } # 5 random numbers
