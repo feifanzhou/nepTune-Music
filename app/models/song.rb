@@ -18,7 +18,7 @@ class Song < ActiveRecord::Base
   include SoundmapHelper
 
   serialize :soundmap_numbers
-  before_save :make_soundmap
+  after_commit :make_soundmap_worker
 
   belongs_to :artist
   belongs_to :album
@@ -37,14 +37,26 @@ class Song < ActiveRecord::Base
     return super || (self.audio && self.audio.name)
   end
 
+  def make_soundmap_worker
+    # basically just calls make_soundmap
+    puts self.id
+    EchonestWorker.perform_async(self.id)
+  end
+
   def make_soundmap
-    if not self.image.blank?
+    if (not self.image.blank?) or self.audio.blank?
       return
     end
-    self.image = Image.create
-    self.soundmap_numbers = ([0]*5).map { rand*0.8+0.2 } # 5 random numbers
+    puts "MAKE SOUNDMAP!!!!" + '='*50
+
+    #self.soundmap_numbers = ([0]*5).map { rand*0.8+0.2 } # 5 random numbers
+    self.soundmap_numbers = get_soundmap_numbers(self.audio)
     col = hsv_to_rgb(rand, 0.55, 1)
     puts col
-    self.image.file = generate_soundmap self.soundmap_numbers, col, filetype: "png"
+    image = Image.new
+    image.file = generate_soundmap self.soundmap_numbers, col, filetype: "svg"
+    image.save
+    self.image = image
+    self.save
   end
 end

@@ -1,5 +1,6 @@
 require 'tempfile'
 require 'RMagick'
+require 'echonest'
 #require 'mini_magick'
 
 module SoundmapHelper
@@ -121,14 +122,15 @@ module SoundmapHelper
   end
 
   def generate_soundmap(numbers, mood_color,
-                        opts={
-                          width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
-                          filetype: "png",
-                          # colorblind color palette, looks nice =D
-                          # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
-                          colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
-                                   "#0072B2", "#D55E00", "#CC79A7", "#999999"]
-                        })
+                        opts={})
+    default_opts = { width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
+      filetype: "png",
+      # colorblind color palette, looks nice =D
+      # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
+      colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
+               "#0072B2", "#D55E00", "#CC79A7", "#999999"]
+    }
+    opts = default_opts.merge(opts)
     svg_blob = generate_svg(numbers, mood_color, opts)
 
     if opts[:filetype] == "png"
@@ -160,4 +162,16 @@ module SoundmapHelper
     return '#'+s
   end
 
+
+  def get_soundmap_numbers(audio)
+    @echonest = Echonest('FKVZHZTMBW7LA3UYF')
+    path = audio.file.path
+    upload = @echonest.track.upload(filename: path)
+    audio_summary = upload.json.response.track.audio_summary
+    p audio_summary
+    keys = %i(danceability energy speechiness liveness acousticness valence)
+    values = keys.map { |m| audio_summary.send(m) }
+    p keys.zip(values)
+    return values
+  end
 end
