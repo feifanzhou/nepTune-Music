@@ -169,7 +169,7 @@ module SoundmapHelper
     upload = @echonest.track.upload(filename: path)
     audio_summary = upload.json.response.track.audio_summary
     p audio_summary
-    keys = %i(danceability energy speechiness liveness acousticness valence)
+    keys = %i(danceability energy liveness acousticness valence) # speechiness
     values = keys.map { |m| audio_summary.send(m) }
     p keys.zip(values)
     return values
