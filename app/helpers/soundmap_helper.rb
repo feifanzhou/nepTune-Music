@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'RMagick'
+# require 'RMagick'
 require 'echonest'
 #require 'mini_magick'
 

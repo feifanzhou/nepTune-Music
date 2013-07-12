@@ -46,7 +46,7 @@ class Song < ActiveRecord::Base
   end
 
   def make_soundmap
-    puts "SOUTNHOSENUTHESNTUHOSENUTHOE"
+    puts "GAAARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
     p self.read_attribute(:image)
     if (not self.read_attribute(:image).blank?) or self.audio.blank?
       return
