@@ -8,7 +8,8 @@
 		<div id='newSongPreview'>
 			<div id='albumImageDarken'></div>
 			<p class='Icon' id='changeAlbumImageSpinner'>&#59392;</p>
-			<img class='NewSongArt' src='https://dl.dropboxusercontent.com/u/7828009/nepTuneTest/pg1.jpg' />
+			<%= image_tag "song_default.png", class: 'NewSongArt' %>
+			<!-- <img class='NewSongArt' src='/images/' /> -->
 			<div id='changeAlbumArt'>Click to change picture</div>
 		</div>
 		<div id='newSongDetails'>
@@ -27,7 +28,7 @@
 				<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
 				<%= s.label :album %>
-				<%= s.text_field :album, placeholder: 'Album name', required: 'required', autocomplete: :off %>
+				<%= s.text_field :album, placeholder: 'Album name', autocomplete: :off %>
 
 				<input type='hidden' name='song[album_art_id]' id='song_album_art_id' />
 

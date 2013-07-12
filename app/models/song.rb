@@ -30,7 +30,7 @@ class Song < ActiveRecord::Base
   validates :artist, presence: true
 
   def image
-    return super || (self.album && self.album.image) || nil # super reads attribute :image
+    return super || (self.album && self.album.image) || Image.find_by_custom_path('/assets/soundmap_loading.png') || Image.create(custom_path: '/assets/soundmap_loading.png') || nil # super reads attribute :image
   end
 
   def name
