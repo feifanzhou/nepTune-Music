@@ -163,15 +163,24 @@ module SoundmapHelper
   end
 
 
-  def get_soundmap_numbers(audio)
+  def get_soundmap_data(audio)
     @echonest = Echonest('FKVZHZTMBW7LA3UYF')
     path = audio.file.path
     upload = @echonest.track.upload(filename: path)
-    audio_summary = upload.json.response.track.audio_summary
-    p audio_summary
+    id = upload.json.response.track.id
+    profile = @echonest.track.profile(id: id)
+    audio_summary = profile.json.response.track.audio_summary
+
     keys = %i(danceability energy liveness acousticness valence) # speechiness
-    values = keys.map { |m| audio_summary.send(m) }
+    values = keys.map { |m| audio_summary[m] }
     p keys.zip(values)
-    return values
+
+    out[:numbers] = values
+    hue = audio_summary[:key]/11.0
+    saturation = audio_summary[:mode]==1 ? 1 : 0.5
+    value = audio_summary[:energy]*0.5+0.25 # from 0.25 to 0.75
+    out[:color] = hsv_to_rgb(hue, saturation, value)
+
+    return out
   end
 end
