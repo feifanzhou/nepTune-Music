@@ -175,6 +175,7 @@ module SoundmapHelper
     values = keys.map { |m| audio_summary[m] }
     p keys.zip(values)
 
+    out = {}
     out[:numbers] = values
     hue = audio_summary[:key]/11.0
     saturation = audio_summary[:mode]==1 ? 1 : 0.5

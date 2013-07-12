@@ -46,7 +46,9 @@ class Song < ActiveRecord::Base
   end
 
   def make_soundmap
-    if (not self.image.blank? or self.image.custom_path == '/assets/soundmap-loading.png') or self.audio.blank?
+    puts "SOUTNHOSENUTHESNTUHOSENUTHOE"
+    p self.read_attribute(:image)
+    if (not self.read_attribute(:image).blank?) or self.audio.blank?
       return
     end
     puts '='*25 + "MAKE SOUNDMAP!!!!" + '='*25
