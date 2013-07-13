@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 	end
 	def can_edit
     curr_user = current_user
-    artist = Artist.find_by_artistname(params[:artistname])
+    artist = Artist.find(Event.find(params[:id]).creator_id)
     if curr_user.blank? || artist.blank?
       return false
     end
@@ -57,12 +57,18 @@ class EventsController < ApplicationController
 	def authenticate_editing
     @is_editing = false
     if params[:edit] == '0'
+    	cookies[:is_editing] = '0'
       redirect_to_current_page_without_params
       return
     end
     can_edit = can_edit()
-    @is_editing = true if can_edit && params[:edit].to_i == 1
-    @is_editing = true if can_edit && cookies[:is_editing] == '1'
+    if can_edit && params[:edit].to_i == 1
+    	@is_editing = true
+    	cookies[:is_editing] = '1'
+    end
+    if can_edit && cookies[:is_editing] == '1'
+    	@is_editing = true
+    end
 
     if !@is_editing
       cookies[:is_editing] = '0'
