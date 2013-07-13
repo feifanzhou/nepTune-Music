@@ -2,7 +2,7 @@ class EventsController < ApplicationController
 	include ApplicationHelper
 	include LoginHelper
 
-	before_filter :get_event
+	before_filter :get_event, except: [:create, :update]
 	before_filter :authenticate_editing
 
 	def show 
@@ -12,6 +12,7 @@ class EventsController < ApplicationController
 	end
 
 	def create
+		logger.debug("=========== Event create =============")
 		artistname = params[:event][:artistname]
 		event = Event.new()
 		event.name = params[:event][:name]

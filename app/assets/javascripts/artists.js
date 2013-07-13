@@ -179,6 +179,16 @@ function setCalendarDisplayMode(cls) {
     $(viewModeID).addClass('ViewModeSelected');
 }
 
+$('body').on('click', '#newEventButton', function() {
+    console.log('New event clicked');
+    $('#backdrop').addClass('In');
+    $('#newEvent').addClass('In');
+});
+$('body').on('click', '.ModalDismiss', function() {
+    $('#backdrop').removeClass('In');
+    $('#newEvent').removeClass('In');
+});
+
 $(function() {
     $('.ArtistNavIcon').tooltip();
 });
@@ -630,13 +640,20 @@ $(document).on('blur', '.ContactText', function() {
 });
 
 $('#event_artistname').val(getArtistNameFromURL());
-
+$(window).bind('djaxLoad', function() {
+    $('.Datepicker').datetimepicker({
+      format: 'MM/dd/yyyy HH:mm PP',
+      language: 'en',
+      pick12HourFormat: true
+    });
+});
 $('.Datepicker').datetimepicker({
   format: 'MM/dd/yyyy HH:mm PP',
   language: 'en',
   pick12HourFormat: true
 });
 
-$('#finishEventButton').click(function() {
+// $('#finishEventButton').click(function() {
+$('body').on('click', '#finishEventButton', function() {
   $('#new_event').submit();
 });
