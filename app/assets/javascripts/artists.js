@@ -641,6 +641,9 @@ $(document).on('blur', '.ContactText', function() {
 
 $('#event_artistname').val(getArtistNameFromURL());
 $(window).bind('djaxLoad', function() {
+    $('#event_artistname').val(getArtistNameFromURL());
+});
+$(window).bind('djaxLoad', function() {
     $('.Datepicker').datetimepicker({
       format: 'MM/dd/yyyy HH:mm PP',
       language: 'en',

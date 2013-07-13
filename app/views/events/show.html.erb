@@ -13,7 +13,7 @@
 			<%= image_tag 'concert.jpg', size: '960x360' %>
 			<div id='eventBasicInfo'>
 				<p id='eventName' <%= 'contenteditable' if @is_editing %>><%= @event.name %></p>
-				<p id='eventLoc'>Tomorrow at 6pm &bull; <span id='location' <%= 'contenteditable' if @is_editing %>><%= @event.location %></span></p>
+				<p id='eventLoc'><span id='when'><%= @date_string %></span> &bull; <span id='location' <%= 'contenteditable' if @is_editing %>><%= @event.location %></span></p>
 				<div id='eventResponse'>
 					<!-- TODO: Include current user id in link path -->
 					<!-- TODO: Check current user's status, and change button status accordingly (may set status in :invited rather than :going or :maybe) -->
