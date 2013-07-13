@@ -282,7 +282,7 @@ $(window).bind('hashchange', function () {
 
 function sliderNavClick(n) {
     console.log('slidernav click');
-    if ($(this).hasClass('SliderNavDisabled'))
+    if ($(n).hasClass('SliderNavDisabled'))
         return false;
 
     var objId = $(n).attr('id');
