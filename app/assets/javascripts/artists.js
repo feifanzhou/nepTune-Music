@@ -20,6 +20,14 @@ $(function() {
     $('#sidebarShadowBottom').css('left', (left + 'px'));
 });
 
+$('body').on('click', '#editButton', function() {
+    createCookie('is_editing', '1');
+    $('#editButton').attr('id', 'uneditButton');
+});
+$('body').on('click', '#uneditButton', function() {
+    createCookie('is_editing', '0');
+    $('#uneditButton').attr('id', 'editButton');
+});
 function filterMusic(tag) {
     $(".FilterItem").each(function() {
         $(this).removeClass('SelectedFilter');
@@ -262,32 +270,37 @@ $(window).bind('hashchange', function () {
     galleryToHash();
 });
 
-function sliderNavClick() {
+function sliderNavClick(n) {
     console.log('slidernav click');
     if ($(this).hasClass('SliderNavDisabled'))
         return false;
 
-    var objId = $(this).attr('id');
+    var objId = $(n).attr('id');
+    console.log('slider nav id: ' + objId);
     var hash = window.location.hash.slice(1);
     if (hash.length === 0 || isNaN(hash)) { // No hash, default to 0
         window.location.hash = '#1';
         return false;
     }
     hash = parseInt(hash, 10);
-    if (objId == 'sliderNavLeft')
+    if (objId == 'sliderNavLeft') {
+        console.log('Slider nav left');
         hash -= 1;
-    else
+    }
+    else {
+        console.log('Slider nav right');
         hash += 1;
+    }
     console.log('new hash: ' + hash);
     location.hash = ('#' + hash);
     return false;
 }
 $('.SliderNav').click(function() {
-    sliderNavClick();
+    sliderNavClick($(this));
 });
 $(window).bind('djaxLoad', function() {
     $('.SliderNav').click(function() {
-        sliderNavClick();
+        sliderNavClick($(this));
     });
 });
 

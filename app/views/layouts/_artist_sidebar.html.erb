@@ -16,12 +16,21 @@
     </form>
     <p class='ArtistProfileName'>The Piano Guys</p>
   </section>
+  <% if !is_band_member %>
   <section id='artistActions'>
     <button class="ArtistAction <%= 'ArtistActionOn' if is_following %>"
 id='artistFollow'>Following</button>
     <button class='ArtistAction' id='artistSupport'>Support</button>
   </section>
-  <section class='ArtistNav'>
+  <% else %>
+  <section id='editButtonBlock'>
+    <% edit_param = (is_editing) ? '0' : '1' %>
+    <%= link_to params.merge(edit: edit_param) do %>
+      <button class='btn EditButton' id="<%= (is_editing) ? 'uneditButton' : 'editButton'%>"><%= (is_editing) ? 'Finish editing' : 'Edit profile'%></button>
+    <% end %>
+  </section>
+  <% end %>
+  <section class="ArtistNav <%='ArtistNavSmallTop' if is_band_member %>">
     <ul>
       <%= link_to artist_about_path(@artist.artistname) do %>
         <li class="ArtistNavFirst <%= 'ArtistNavCurrent' if curr_nav == 1 %>" id='artistAbout'>

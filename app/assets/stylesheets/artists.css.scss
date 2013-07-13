@@ -166,8 +166,18 @@ header {
 				}
 			}
 		}
+		#editButtonBlock {
+			text-align: center;
+			width: 100%;
+			.EditButton {
+				width: 180px;
+			}
+		}
 		.ArtistNav {
 			margin-top: 80px;
+			&.ArtistNavSmallTop {
+				margin-top: 30px;
+			}
 			ul {
 				list-style: none;
 				margin: 0;

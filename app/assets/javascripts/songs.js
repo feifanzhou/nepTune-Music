@@ -17,7 +17,44 @@ $('#audio_file').change(function() {
 	var fileName = $(this).val().split('/').pop().split('\\').pop();
 	$('#selectedFileName').text("'" + fileName + "' selected");
 	$('#new_audio').submit();
+
+	var re = /^\d+ [^0-9-\s][^.]+/;
+	var songName;
+	var trackNumber;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /^\d+\s?-\s?[^0-9-\s][^.]+/;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /^\d+\.\s?[^0-9-\s][^.]+/;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /Track \d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Track\s?-\s?\d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Song \d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Song\s?-\s?\d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /[^0-9-\s][^.]+/;
+	if (re.test(fileName))
+		songName = (fileName.match(re))[0];
+	trackNumber = trackNumber.replace(/^0+/, '');
+	$('#song_name').val($.trim(songName));
+	$('#song_track_number').val($.trim(trackNumber));
 });
+
 $('#audio_target').load(function() {
 	var json = JSON.parse(document.getElementById('audio_target').contentWindow.document.body.textContent);
 	$('#song_audio_id').val(json['audio_id']);
