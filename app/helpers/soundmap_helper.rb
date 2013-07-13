@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'RMagick'
+# require 'RMagick'
 require 'echonest'
 #require 'mini_magick'
 
@@ -144,7 +144,7 @@ module SoundmapHelper
   # HSV values in [0..1]
   # returns HTML [r, g, b] values (e.g. #ff0324)
   def hsv_to_rgb(h, s, v)
-    hp = h*6
+    hp = (h*6) % 6
     h_i = hp.to_i
     c = v * s
     x = c * (1-(hp % 2 - 1).abs)
@@ -154,7 +154,7 @@ module SoundmapHelper
     r, g, b = 0, c, x if h_i==2
     r, g, b = 0, x, c if h_i==3
     r, g, b = x, 0, c if h_i==4
-    r, g, b = c, 0, x if h_i==5
+    r, g, b = c, 0, x if h_i>=5
 
     m = v - c
 
@@ -163,15 +163,25 @@ module SoundmapHelper
   end
 
 
-  def get_soundmap_numbers(audio)
+  def get_soundmap_data(audio)
     @echonest = Echonest('FKVZHZTMBW7LA3UYF')
     path = audio.file.path
     upload = @echonest.track.upload(filename: path)
-    audio_summary = upload.json.response.track.audio_summary
-    p audio_summary
+    id = upload.json.response.track.id
+    profile = @echonest.track.profile(id: id)
+    audio_summary = profile.json.response.track.audio_summary
+
     keys = %i(danceability energy liveness acousticness valence) # speechiness
-    values = keys.map { |m| audio_summary.send(m) }
+    values = keys.map { |m| audio_summary[m] }
     p keys.zip(values)
-    return values
+
+    out = {}
+    out[:numbers] = values
+    hue = audio_summary[:key]/11.0
+    saturation = audio_summary[:mode]==1 ? 1 : 0.5
+    value = audio_summary[:energy]*0.5+0.25 # from 0.25 to 0.75
+    out[:color] = hsv_to_rgb(hue, saturation, value)
+
+    return out
   end
 end

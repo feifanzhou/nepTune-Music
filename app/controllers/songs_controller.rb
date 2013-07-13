@@ -14,6 +14,7 @@ class SongsController < ApplicationController
   end
 
   def create
+    puts "CREATE"
     song = Song.new
     song.name = params[:song][:name]
     audio = Audio.find(params[:song][:audio_id])
