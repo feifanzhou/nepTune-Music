@@ -44,6 +44,7 @@ class Event < ActiveRecord::Base
     when 3
       date_end_string = 'rd'
     end
+    date_end_string = 'th' if self.start_at.day == 11 || self.start_at.day == 12 || self.start_at.day == 13
     display_string = self.start_at.strftime("%b. %-d#{ date_end_string }")
     d = self.start_at.to_date
     t = self.start_at.strftime("%l:%M %P")
