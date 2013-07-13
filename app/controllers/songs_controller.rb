@@ -20,7 +20,6 @@ class SongsController < ApplicationController
     audio = Audio.find(params[:song][:audio_id])
     audio.is_temporary = false
     audio.save
-    logger.debug("========== 0 audio: #{ audio }")
     song.audio = audio
     song.track_number = params[:song][:track_number] if !params[:song][:track_number].blank?
     artist = Artist.find_by_artistname(params[:artistname])
