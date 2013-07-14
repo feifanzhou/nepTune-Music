@@ -91,12 +91,13 @@ header {
 
 			#select_file_button {
 			  @include vendor-prefix(box-sizing, border-box);
+			  display: block;
 			  margin-bottom: 6px;
 			  width: 274px;
             }
             
             #new_song {
-				display: inline-block;
+				display: block;
 				margin-bottom: 0;
 				#selectedFileName {
 					color: white;
@@ -159,6 +160,7 @@ header {
 				top: 168px;
 				width: 150px;
 				.AlbumSuggestion {
+					color: transparentize(black, 0.15);
 					font-family: $OpenSans;
 					font-size: 14px;
 					font-weight: 600;
