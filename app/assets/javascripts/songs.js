@@ -1,4 +1,5 @@
-$('#clearGeneralFields').click(function(event) {
+$('body').on('click', '#clearGeneralFields', function() {
+// $('#clearGeneralFields').click(function(event) {
 	event.preventDefault();
 	$('#all_songs_song_name').val('');
 	$('#all_songs_song_album').val('');
@@ -8,11 +9,16 @@ $('#clearGeneralFields').click(function(event) {
 
 // Fill in artist name from URL
 $('#artistname').val(getArtistNameFromURL());
+$(window).on('djaxLoad', function() {
+	$('#artistname').val(getArtistNameFromURL());
+});
 
-$('#select_file_button').click(function() {
+$('body').on('click', '#select_file_button', function() {
+// $('#select_file_button').click(function() {
 	$('#audio_file').click();
 });
-$('#audio_file').change(function() {
+$('body').on('change', '#audio_file', function() {
+// $('#audio_file').change(function() {
 	// http://stackoverflow.com/a/10683277/472768
 	var fileName = $(this).val().split('/').pop().split('\\').pop();
 	$('#selectedFileName').text("'" + fileName + "' selected");
@@ -55,13 +61,28 @@ $('#audio_file').change(function() {
 	$('#song_track_number').val($.trim(trackNumber));
 });
 
-$('#audio_target').load(function() {
-	var json = JSON.parse(document.getElementById('audio_target').contentWindow.document.body.textContent);
+// $('#newSongDetails').on('load', '#audio_target', function() {
+
+// $('#audio_target').load(function() {
+function audio_target_loaded() {
+	console.log('audio target load');
+	var iframeText = document.getElementById('audio_target').contentWindow.document.body.textContent;
+	console.log('iframeText: ' + iframeText);
+	var scriptStart = iframeText.indexOf('window');
+	if (scriptStart !== -1) {
+		console.log('Script found');
+		iframeText = iframeText.substring(0, scriptStart);
+	}
+	var json = JSON.parse(iframeText);
 	$('#song_audio_id').val(json['audio_id']);
+}
+$('#audio_target').bind('load', function() {
+	audio_target_loaded();
 });
 
 var suggestionImagePaths;
-$('#song_album').keyup(function(event) {
+$('body').on('keyup', '#song_album', function() {
+// $('#song_album').keyup(function(event) {
 	console.log('song album keyup');
 	if (event.keyCode == 8 && $(this).val().length < 1) {	// backspace
 		$('#albumSuggestions').empty();
@@ -102,7 +123,8 @@ function endAlbumArtUpdate() {
 	$('#changeAlbumImageSpinner').removeClass('Spinner');
 }
 // TODO: Remove duplicate code here
-$('#song_album').keydown(function(event) {
+$('body').on('keydown', '#song_album', function() {
+// $('#song_album').keydown(function(event) {
 	if (event.keyCode == 13)	// return key
 		event.preventDefault();
 	if (event.keyCode !== 40 && event.keyCode !== 38)
@@ -146,23 +168,29 @@ $('#song_album').keydown(function(event) {
 		event.preventDefault();
 	}
 });
-$('#song_album').blur(function() {
+$('body').on('blur', '#song_album', function() {
+// $('#song_album').blur(function() {
 	$('#albumSuggestions').empty();
 });
-$('.NewSongArt').load(function() {
+$('body').on('load', '.NewSongArt', function() {
+// $('.NewSongArt').load(function() {
 	endAlbumArtUpdate();
 });
 
-$('#newSongPreview').click(function() {
+$('body').on('click', '#newSongPreview', function() {
+// $('#newSongPreview').click(function() {
 	$('#image_file').click();
 });
-$('#image_file').change(function() {
+$('body').on('change', '#image_file', function() {
+// $('#image_file').change(function() {
 	$('#new_image').submit();
 });
-$('#new_image').submit(function() {
+$('body').on('submit', '#new_image', function() {
+// $('#new_image').submit(function() {
 	beginAlbumArtUpdate();
 });
-$('#album_target').load(function() {
+$('body').on('load', '#album_target', function() {
+// $('#album_target').load(function() {
 	endAlbumArtUpdate();
 	var json = JSON.parse(document.getElementById('album_target').contentWindow.document.body.textContent);
 	$('.NewSongArt').attr('src', json['img_src']);
@@ -177,6 +205,7 @@ $('#new_song').bind('ajax:success', function() {
 	$('#newSongFeedback').addClass('alert-success');
 	$('#newSongFeedback').slideDown();
 });
-$('#new_song > *').focus(function() {
+$('body').on('focus', '#new_song > *', function() {
+// $('#new_song > *').focus(function() {
 	hideNewSongFeedback();
 });

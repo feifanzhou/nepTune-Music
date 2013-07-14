@@ -16,14 +16,16 @@ $('.EventStatusTrigger').bind('ajax:success', function() {
 	});
 });
 
-$('#eventName').keydown(function(event) {
+$('body').on('keydown', '#eventName', function() {
+// $('#eventName').keydown(function(event) {
 	if (event.keyCode !== 13)
     return;
 	event.preventDefault();
 	$(this).blur();
 	return false;
 });
-$('#eventName').blur(function(event) {
+$('body').on('blur', '#eventName', function() {
+// $('#eventName').blur(function(event) {
 	var input = $(this);
 	var e_name = $(this).text();
 	$.ajax({
@@ -36,14 +38,16 @@ $('#eventName').blur(function(event) {
 	});
 });
 
-$('#location').keydown(function(event) {
+$('body').on('keydown', '#location', function() {
+// $('#location').keydown(function(event) {
 	if (event.keyCode !== 13)
 		return;
 	event.preventDefault();
 	$(this).blur();
 	return false;
 });
-$('#location').blur(function(event) {
+$('body').on('blur', '#location', function() {
+// $('#location').blur(function(event) {
 	var input = $(this);
 	var e_loc = $(this).text();
 	$.ajax({
