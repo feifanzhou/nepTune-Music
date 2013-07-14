@@ -24,17 +24,21 @@ class SongsController < ApplicationController
     song.track_number = params[:song][:track_number] if !params[:song][:track_number].blank?
     artist = Artist.find_by_artistname(params[:artistname])
     song.artist = artist
-    # TODO: Songs don't need to have an album
-    album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
-    if album.blank?
+
+    if not params[:song][:album].blank?
+      album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
+      if album.blank?
         album = Album.new(name: params[:song][:album], artist: artist)
+      end
+      album_art = album.image
+      song.album = album
+      album_art ||= Image.find(params[:song][:album_art_id])
+      album.image = album_art unless album_art.blank?
+      album_art.is_temporary = false
+      album_art.save
+    else
+      song.image = Image.find(params[:song][:album_art_id])
     end
-    album_art = album.image
-    song.album = album
-    album_art ||= Image.find(params[:song][:album_art_id])
-    album.image = album_art unless album_art.blank?
-    album_art.is_temporary = false
-    album_art.save
     song.save
     album.save
     # respond_to do |format|

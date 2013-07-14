@@ -1,4 +1,4 @@
-soundsoundManager.reset();
+soundManager.reset();
 soundManager.setup({
     url: '/swf/',
     flashVersion: 9, // optional: shiny features (default = 8)
