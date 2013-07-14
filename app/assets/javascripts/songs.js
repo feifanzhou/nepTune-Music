@@ -76,8 +76,13 @@ function audio_target_loaded() {
 	var json = JSON.parse(iframeText);
 	$('#song_audio_id').val(json['audio_id']);
 }
-$('#audio_target').bind('load', function() {
+$('#audio_target').load(function() {
 	audio_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+	$('#audio_target').load(function() {
+		audio_target_loaded();
+	});
 });
 
 var suggestionImagePaths;
@@ -176,6 +181,14 @@ $('body').on('load', '.NewSongArt', function() {
 // $('.NewSongArt').load(function() {
 	endAlbumArtUpdate();
 });
+// $('.NewSongArt').load(function() {
+// 	endAlbumArtUpdate;
+// });
+$(window).bind('djaxLoad', function() {
+	$('.NewSongArt').load(function() {
+		endAlbumArtUpdate;
+	});
+});
 
 $('body').on('click', '#newSongPreview', function() {
 // $('#newSongPreview').click(function() {
@@ -189,21 +202,36 @@ $('body').on('submit', '#new_image', function() {
 // $('#new_image').submit(function() {
 	beginAlbumArtUpdate();
 });
-$('body').on('load', '#album_target', function() {
-// $('#album_target').load(function() {
+function album_target_loaded() {
 	endAlbumArtUpdate();
 	var json = JSON.parse(document.getElementById('album_target').contentWindow.document.body.textContent);
 	$('.NewSongArt').attr('src', json['img_src']);
 	$('#song_album_art_id').val(json['img_id']);
+}
+$('#album_target').load(function() {
+	album_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+	$('#album_target').load(function() {
+		album_target_loaded();
+	});
 });
 function hideNewSongFeedback() {
 	$('#newSongFeedback').removeClass('alert-success');
 	$('#newSongFeedback').css('display', 'none');
 }
-$('#new_song').bind('ajax:success', function() {
+function new_song_success() {
 	console.log('Song created successfully');
 	$('#newSongFeedback').addClass('alert-success');
 	$('#newSongFeedback').slideDown();
+}
+$('#new_song').bind('ajax:success', function() {
+	new_song_success()
+});
+$(window).bind('djaxLoad', function() {
+	$('#new_song').bind('ajax:success', function() {
+		new_song_success()
+	});
 });
 $('body').on('focus', '#new_song > *', function() {
 // $('#new_song > *').focus(function() {

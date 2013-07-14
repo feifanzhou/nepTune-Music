@@ -1,8 +1,9 @@
-$('.EventStatusTrigger').bind('ajax:success', function() {
+function event_status_trigger_success(trigger) {
 	// TODO: Get current user id from item's data attribute
+	console.log('event status trigger success');
 	var uID = 1;
 	var liID = '#' + 'attendeeUser' + uID;
-	var destListID = '#' + $(this).data('status') + 'List';
+	var destListID = '#' + $(trigger).data('status') + 'List';
 	$(liID).animate({
 		marginLeft: '-300px'
 	}, 400, function() {
@@ -13,6 +14,14 @@ $('.EventStatusTrigger').bind('ajax:success', function() {
 		$(liID).animate({
 			marginLeft: '0px'
 		}, 400);
+	});
+}
+$('.EventStatusTrigger').bind('ajax:success', function() {
+	event_status_trigger_success($(this));
+});
+$(window).bind('djaxLoad', function() {
+	$('.EventStatusTrigger').bind('ajax:success', function() {
+		event_status_trigger_success($(this));
 	});
 });
 

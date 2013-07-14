@@ -359,7 +359,6 @@ $('body').on('submit', '#uploadProfileForm', function() {
 });
 var img_id = -1;
 function profile_target_loaded() {
-// $('#profile_target').load(function() {
     console.log('profile target loaded');
     finishProfilePictureUpload();
     var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
@@ -444,8 +443,7 @@ $('body').on('submit', '#uploadImageForm', function() {
     beginUpload(true);
 });
 var img_id = -1;
-$('body').on('load', '#upload_target', function() {
-// $('#upload_target').load(function() {
+function upload_target_loaded() {
     console.log('gallery image uploaded');
     finishUpload();
     var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
@@ -453,6 +451,14 @@ $('body').on('load', '#upload_target', function() {
     img_id = parseInt(resp['extra_data'], 10);
     var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
     $('#imageUploadPreview').append(i);
+}
+$('#upload_target').load(function() {
+    upload_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+   $('#upload_target').load(function() {
+        upload_target_loaded();
+    }); 
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
     var se = "<div class='SliderElement' id='gallery" + index + "'>";
