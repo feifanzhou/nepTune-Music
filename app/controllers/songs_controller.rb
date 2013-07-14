@@ -36,9 +36,10 @@ class SongsController < ApplicationController
       album.image = album_art unless album_art.blank?
       album_art.is_temporary = false
       album_art.save
-    else
-      song.image = Image.find(params[:song][:album_art_id])
     end
+
+    song.image = Image.find(params[:song][:album_art_id])
+
     song.save
     album.save
     # respond_to do |format|
