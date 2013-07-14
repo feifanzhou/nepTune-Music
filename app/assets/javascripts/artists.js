@@ -358,7 +358,7 @@ $('body').on('submit', '#uploadProfileForm', function() {
     beginProfilePictureUpload();
 });
 var img_id = -1;
-$('body').on('load', '#profile_target', function() {
+function profile_target_loaded() {
 // $('#profile_target').load(function() {
     console.log('profile target loaded');
     finishProfilePictureUpload();
@@ -368,6 +368,14 @@ $('body').on('load', '#profile_target', function() {
        var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
        $('#imageUploadPreview').append(i); */
     $('.ArtistProfilePic').attr('src', resp['obj_data']);
+}
+$('#profile_target').load(function() {
+    profile_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+    $('#profile_target').load(function() {
+        profile_target_loaded();
+    });
 });
 
 $('body').on('click', '.AddElementFace', function() {
