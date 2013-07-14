@@ -369,6 +369,9 @@ function profile_target_loaded() {
        $('#imageUploadPreview').append(i); */
     $('.ArtistProfilePic').attr('src', resp['obj_data']);
 }
+$('#profile_target').load(function() {
+    profile_target_loaded();
+});
 $(window).bind('djaxLoad', function() {
     $('#profile_target').load(function() {
         profile_target_loaded();
