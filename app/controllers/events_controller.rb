@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 	include LoginHelper
 
 	before_filter :get_event, except: [:create, :update]
-	before_filter :authenticate_editing
+	before_filter :authenticate_editing, except: [:create]
 
 	def show 
 		@event = Event.find(params[:id])
@@ -21,8 +21,10 @@ class EventsController < ApplicationController
 		date_format = "%m/%d/%Y %I:%M %p"
 		event.start_at = DateTime.strptime(params[:event][:start_at], date_format)
 		event.end_at = DateTime.strptime(params[:event][:end_at], date_format)
-		event.creator_id = Artist.find_by_artistname(artistname).id;
+		artist = Artist.find_by_artistname(artistname)
+		event.creator_id = artist.id
 		event.save
+		attendee = Attendee.create(artist: artist, status: :performing, event: event)
 		redirect_to event
 	end
 
