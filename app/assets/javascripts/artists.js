@@ -196,21 +196,26 @@ $(window).bind('djaxLoad', function() {
     $('.ArtistNavIcon').tooltip();
 });
 
-$('#sliderContainer').mouseenter(function() {
+$('body').on('mouseenter', '#sliderContainer', function() {
+// $('#sliderContainer').mouseenter(function() {
     $('.SliderTitle').fadeIn();
     $('.SliderTitle').css('bottom', '0px');
 });
-$('#sliderContainer').mouseleave(function() {
+// $('#sliderContainer').mouseleave(function() {
+$('body').on('mouseleave', '#sliderContainer', function() {
     $('.SliderTitle').fadeOut();
     $('.SliderTitle').css('bottom', '-50px');
 });
-$('.NoblockTitle').mouseenter(function() {
+$('body').on('mouseenter', '.NoblockTitle', function() {
+// $('.NoblockTitle').mouseenter(function() {
     $(this).fadeOut();
 });
-$('.SliderTitle').mouseenter(function() {
+$('body').on('mouseenter', '.SliderTitle', function() {
+// $('.SliderTitle').mouseenter(function() {
     $(this).css('background', 'rgba(0, 0, 0, 0.90)');
 });
-$('.SliderTitle').mouseleave(function() {
+$('body').on('mouseleave', '.SliderTitle', function() {
+// $('.SliderTitle').mouseleave(function() {
     $(this).css('background', 'rgba(0, 0, 0, 0.70)');
 });
 
@@ -305,7 +310,8 @@ function sliderNavClick(n) {
     location.hash = ('#' + hash);
     return false;
 }
-$('.SliderNav').click(function() {
+$('body').on('click', '.SliderNav', function() {
+// $('.SliderNav').click(function() {
     sliderNavClick($(this));
 });
 $(window).bind('djaxLoad', function() {
@@ -337,19 +343,23 @@ function finishProfilePictureUpload() {
     $('#profileUploadSpinner').css('display', 'none');
     $('#profileDarken').css('display', 'none');
 }
-$('.ProfilePictureEdit').click(function() {
+$('body').on('click', '.ProfilePictureEdit', function() {
+// $('.ProfilePictureEdit').click(function() {
     $('#selectProfile').click();
 });
-$('#selectProfile').change(function() {
+$('body').on('change', '#selectProfile', function() {
+// $('#selectProfile').change(function() {
     console.log('files changed');
     $('#uploadProfileForm').submit();
 });
-$('#uploadProfileForm').submit(function() {
+$('body').on('submit', '#uploadProfileForm', function() {
+// $('#uploadProfileForm').submit(function() {
     console.log('profile form submit');
     beginProfilePictureUpload();
 });
 var img_id = -1;
-$('#profile_target').load(function() {
+$('body').on('load', '#profile_target', function() {
+// $('#profile_target').load(function() {
     console.log('profile target loaded');
     finishProfilePictureUpload();
     var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
@@ -360,7 +370,8 @@ $('#profile_target').load(function() {
     $('.ArtistProfilePic').attr('src', resp['obj_data']);
 });
 
-$('.AddElementFace').click(function() {
+$('body').on('click', '.AddElementFace', function() {
+// $('.AddElementFace').click(function() {
     var clicked = $(this);
     $('.AddElementOption').each(function() {
         var face = $(this).children('.AddElementFace');
@@ -376,7 +387,8 @@ $('.AddElementFace').click(function() {
     });
 });
 var shouldDeleteImage = true;
-$('.AddElementCancel').click(function() {
+$('body').on('click', '.AddElementCancel', function() {
+// $('.AddElementCancel').click(function() {
     var info = $(this).closest('.AddElementInfo');
     var face = $(info).siblings('.AddElementFace');
     $(face).css('display', 'block');
@@ -408,20 +420,24 @@ $('.AddElementCancel').click(function() {
         $('#addVideoCaption').val('');
     }
 });
-$('#selectImageButton').click(function() {
+$('body').on('click', '#selectImageButton', function() {
+// $('#selectImageButton').click(function() {
     $('#selectGalleryImage').click();
 });
-$('#selectGalleryImage').change(function() {
+$('body').on('change', '#selectGalleryImage', function() {
+// $('#selectGalleryImage').change(function() {
     console.log('select gallery image');
     // beginUpload();
     $('#uploadImageForm').submit();
 });
-$('#uploadImageForm').submit(function() {
+$('body').on('submit', '#uploadImageForm', function() {
+// $('#uploadImageForm').submit(function() {
     console.log('gallery image upload submit');
     beginUpload(true);
 });
 var img_id = -1;
-$('#upload_target').load(function() {
+$('body').on('load', '#upload_target', function() {
+// $('#upload_target').load(function() {
     console.log('gallery image uploaded');
     finishUpload();
     var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
@@ -440,7 +456,8 @@ function createGalleryItemWithContent(ctc, caption, index, m_id) {
     se += "" + ctc + "</div>";
     $('#slider').append(se);
 }
-$('#saveImage').click(function() {
+$('body').on('click', '#saveImage', function() {
+// $('#saveImage').click(function() {
     var caption = $('#addImageCaption').val();
     var order = $('.SliderElement').length;
     $.ajax({
@@ -462,14 +479,16 @@ $('#saveImage').click(function() {
         }
     });
 });
-$('.AddVideoURL').keydown(function(event) {
+$('body').on('keydown', '.AddVideoURL', function() {
+// $('.AddVideoURL').keydown(function(event) {
     if (event.keyCode !== 13)
         return;
     event.preventDefault();
     $(this).blur();
     return false;
 });
-$('.AddVideoURL').blur(function(event) {
+$('body').on('blur', '.AddVideoURL', function() {
+// $('.AddVideoURL').blur(function(event) {
     var input = $(this);
     var URL = $(this).val();
     console.log('URL input text: ' + URL);
@@ -481,7 +500,8 @@ $('.AddVideoURL').blur(function(event) {
         $('#videoUploadPreview').append(iframe);
     }
 });
-$('#saveVideo').click(function() {
+$('body').on('click', '#saveVideo', function() {
+// $('#saveVideo').click(function() {
     var URL = youtubeEmbedForURL($('.AddVideoURL').val());
     var caption = $('#addVideoCaption').val();
     var order = $('.SliderElement').length;
