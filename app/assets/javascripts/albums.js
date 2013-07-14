@@ -36,11 +36,15 @@ function image_target_loaded() {
 	$('#album_art_id').val(json['img_id']);
 	$('#album_art').attr('src', json['img_src']);
 }
-$('#album_target').bind('load', function() {
+$('#album_target').load(function() {
 	image_target_loaded();
 });
-$('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
-	// var JSON = eval(xhr);
+$(window).bind('djaxLoad', function() {
+	$('#album_target').load(function() {
+		image_target_loaded();
+	});
+});
+function new_album_success(xhr) {
 	var JSON = jQuery.parseJSON(xhr.responseText);
 	$('#newAlbumID').text(JSON['album_id']);
 	console.log('Successfully created new album');
@@ -49,6 +53,14 @@ $('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
 	$('#newAlbumFeedback').addClass('alert-success');
 	$('#newAlbumFeedback').slideDown();
 	$('#newAlbumSongs').addClass('SongGridActive');
+}
+$('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
+	new_album_success(xhr);
+});
+$(window).bind('djaxLoad', function() {
+	$('#new_album').bind('ajax:success', function(evt, data, status, xhr) {
+		new_album_success(xhr);
+	});
 });
 
 $('body').on('click', '.SongSelected', function() {
