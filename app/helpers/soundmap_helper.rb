@@ -179,7 +179,8 @@ module SoundmapHelper
     out[:numbers] = values
     hue = audio_summary[:key]/11.0
     saturation = audio_summary[:mode]==1 ? 1 : 0.5
-    value = audio_summary[:energy]*0.5+0.25 # from 0.25 to 0.75
+    # value = audio_summary[:energy]*0.5+0.25 # from 0.25 to 0.75
+    value = 0.7
     out[:color] = hsv_to_rgb(hue, saturation, value)
 
     return out

@@ -88,14 +88,16 @@ header {
 			#new_audio {
 				display: none;
 			}
-			#new_song {
+
+			#select_file_button {
+			  @include vendor-prefix(box-sizing, border-box);
+			  margin-bottom: 6px;
+			  width: 274px;
+            }
+            
+            #new_song {
 				display: inline-block;
 				margin-bottom: 0;
-				#select_file_button {
-					@include vendor-prefix(box-sizing, border-box);
-					margin-bottom: 6px;
-					width: 274px;
-				}
 				#selectedFileName {
 					color: white;
 					font-family: $OpenSans;

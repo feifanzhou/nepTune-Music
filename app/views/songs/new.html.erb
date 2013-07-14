@@ -3,7 +3,8 @@
   <%= render 'layouts/playbar' %>
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_band_member: @is_band_member, is_editing: @is_editing, is_following: @is_following  %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2,
+      is_band_member:@is_band_member, is_editing: @is_editing, is_following: @is_following  %>
   <div class='DJAX XHidden' id='artistPageContent'>
 		<div id='newSongContainer'>
 			<div class='alert' id='newSongFeedback'>Song created successfully</div>
@@ -19,13 +20,12 @@
 					<%= form_for Audio.new(), html: { target: 'audio_target' } do |a| %>
 						<%= a.file_field :file %>
 					<% end %>
+                    <button class="btn" id="select_file_button" name="button">Select audio file</button>
 					<%= form_for @song, remote: true do |s| %>
 						<input type='hidden' name='artistname' id='artistname' />
 						<%= s.label :audio %>
 						<input type='hidden' name='song[audio_id]' id='song_audio_id' />
-						<button class="btn" id="select_file_button" name="button">Select audio file</button>
-						<p id='selectedFileName'>No audio file selected</p>
-
+										<p id='selectedFileName'>No audio file selected</p>
 						<%= s.label :name %>
 						<%= s.text_field :name, placeholder: 'Song name', required: 'required', autocomplete: :off %><br />
 
@@ -48,4 +48,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div>   
