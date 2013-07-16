@@ -456,9 +456,13 @@ $('#upload_target').load(function() {
     upload_target_loaded();
 });
 $(window).bind('djaxLoad', function() {
-   $('#upload_target').load(function() {
-        upload_target_loaded();
-    }); 
+  console.log('djax load bind upload target');
+  // http://stackoverflow.com/a/11613013/472768
+  $('#upload_target').off('load.upload');
+  $('#upload_target').on('load.upload', function() {
+      console.log('djax load bound upload target');
+      upload_target_loaded();
+  }); 
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
     var se = "<div class='SliderElement' id='gallery" + index + "'>";

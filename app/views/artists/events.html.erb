@@ -10,7 +10,7 @@
 	  		<span class='InlineNavigation'>&#59399;</span>
 	  		<span class='InlineNavigation'>&#59401;</span>
 	  	</div>
-  		<span id='calendarMonth'>June 2013</span>
+  		<span id='calendarMonth'><%= Date.today.strftime("%B %Y") %></span>
   		<div id='calendarViewMode'>
   			<span class='InlineViewMode ViewModeSelected' id='calendarGrid' onclick="setCalendarDisplayMode('CalendarGrid')">&#59402;</span>
   			<span class='InlineViewMode' id='calendarColumn' onclick="setCalendarDisplayMode('CalendarColumn')">&#59404;</span>

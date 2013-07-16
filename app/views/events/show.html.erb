@@ -3,33 +3,46 @@
   <%= render 'layouts/playbar' %>
 </header>
 
-<div id='eventPageContainer'>
-	<div id='attendeesListBar'>
-	<%= render 'layouts/attendees_list', event: @event %>
-	</div>
+<div id='eventPageContainer' class='m-body'>
+  <div id='attendeesListBar'>
+  <%= render 'layouts/attendees_list', event: @event %>
+  </div>
 
-	<div id='eventInfo'>
-		<div id='eventHeader'>
-			<%= image_tag 'concert.jpg', size: '960x360' %>
-			<div id='eventBasicInfo'>
-				<p id='eventName' <%= 'contenteditable' if @is_editing %>><%= @event.name %></p>
-				<p id='eventLoc'><span id='when'><%= @date_string %></span> &bull; <span id='location' <%= 'contenteditable' if @is_editing %>><%= @event.location %></span></p>
-				<div id='eventResponse'>
-					<!-- TODO: Include current user id in link path -->
-					<!-- TODO: Check current user's status, and change button status accordingly (may set status in :invited rather than :going or :maybe) -->
-					<%= link_to join_event_path(@event, status: :going), remote: true, data: { status: 'going' }, class: 'EventStatusTrigger' do %>
-					<span class='EventResponseAction' id='eventGoing'>Going</span>
-					<% end %>
-					<%= link_to join_event_path(@event, status: :maybe), remote: true, data: { status: 'maybe' }, class: 'EventStatusTrigger' do %>
-					<span class='EventResponseAction' id='eventMaybe'>Maybe</span>
-					<% end %>
-				</div>
-			</div>
-		</div>
-		<p>Event Info</p>
-	</div>
+  <div id='eventInfo'>
+    <div id='eventHeader'>
+      <%= image_tag 'concert.jpg', size: '960x360' %>
+      <div id='eventBasicInfo'>
+        <p id='eventName' <%= 'contenteditable' if @is_editing %>><%= @event.name %></p>
+        <div id='eventLoc'>
+          <% if @is_editing %>
+            <div id="whenPicker" class="input-append">
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Event start time' id='startTime' />
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+          <% else %>
+            <span id='when' data-date-format='mm/dd/yyyy'><%= @date_string %></span>
+          <% end %>
+          <span> &bull; </span>
+          <span id='location' <%= 'contenteditable' if @is_editing %>><%= @event.location %></span>
+        </div>
+        <div id='eventResponse'>
+          <!-- TODO: Include current user id in link path -->
+          <!-- TODO: Check current user's status, and change button status accordingly (may set status in :invited rather than :going or :maybe) -->
+          <%= link_to join_event_path(@event, status: :going), remote: true, data: { status: 'going' }, class: 'EventStatusTrigger' do %>
+          <span class='EventResponseAction' id='eventGoing'>Going</span>
+          <% end %>
+          <%= link_to join_event_path(@event, status: :maybe), remote: true, data: { status: 'maybe' }, class: 'EventStatusTrigger' do %>
+          <span class='EventResponseAction' id='eventMaybe'>Maybe</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <p>Event Info</p>
+  </div>
 
-	<div id='eventActions'>
-		<p>Actions</p>
-	</div>
+  <div id='eventActions'>
+    <p>Actions</p>
+  </div>
 </div>
