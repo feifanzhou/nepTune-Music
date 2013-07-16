@@ -107,6 +107,9 @@ header {
 					font-size: 18px;
 					font-weight: 300;
 					margin: 10px 8px;
+					#startTime, #endTime {
+						width: 160px;
+					}
 				}
 				#eventResponse {
 					background: transparentize(gray, 0.25);

@@ -69,20 +69,41 @@ $('body').on('blur', '#location', function() {
   });
 });
 
-$('#whenPicker').datetimepicker({
+// TODO: Refactor and remove duplicate code
+$('#startPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
 
-$('#startTime').change(function() {
+$('#startPicker').on('changeDate', function(e) {
   console.log('startTime change');
-  var startTime = $(this).val();
+  console.log(e.date.toString());
+  var startTime = $('#startTime').val();
   $.ajax({
     url: '/events/' + getEventIDFromURL(),
     type: 'PUT',
     data: { start_at: startTime },
     success: function(resp) {
       console.log('Successfully updated event start');
+    }
+  });
+});
+
+$('#endPicker').datetimepicker({
+  language: 'en',
+  pick12HourFormat: true
+});
+
+$('#endPicker').on('changeDate', function(e) {
+  console.log('endTime change');
+  console.log(e.date.toString());
+  var startTime = $('#endTime').val();
+  $.ajax({
+    url: '/events/' + getEventIDFromURL(),
+    type: 'PUT',
+    data: { end_at: startTime },
+    success: function(resp) {
+      console.log('Successfully updated event end');
     }
   });
 });

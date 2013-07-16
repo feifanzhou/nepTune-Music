@@ -38,9 +38,19 @@ class EventsController < ApplicationController
     end
     if !params[:start_at].blank?
       date_format = "%m/%d/%Y %I:%M %p"
-      event.start_at = DateTime.strptime(params[:start_at], date_format)
+      new_date = DateTime.strptime(params[:start_at], date_format)
+      event.start_at = new_date
     end
-    event.save
+    if !params[:end_at].blank?
+    	date_format = "%m/%d/%Y %I:%M %p"
+      new_date = DateTime.strptime(params[:end_at], date_format)
+      event.end_at = new_date
+    end
+    logger.debug("Updated event start at: #{ event.start_at }")
+    logger.debug('===== Saving event =====')
+    result = event.save
+    logger.debug('===== Saving event succeeds') if result
+    logger.debug('===== Saving event fails') unless result
     render json: { success: 1 }
   end
 

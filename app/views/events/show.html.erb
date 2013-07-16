@@ -15,8 +15,14 @@
         <p id='eventName' <%= 'contenteditable' if @is_editing %>><%= @event.name %></p>
         <div id='eventLoc'>
           <% if @is_editing %>
-            <div id="whenPicker" class="input-append">
-              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Event start time' id='startTime' />
+            <div id="startPicker" class="input-append">
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Start time' id='startTime' />
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+            <div id="endPicker" class="input-append">
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='End time' id='endTime' />
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
               </span>
