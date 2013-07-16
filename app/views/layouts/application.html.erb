@@ -34,6 +34,7 @@
        if you need the modernizr, but remember to only do the actual checks
        that you need. -->
   <%= javascript_tag "Modernizr.load();" %>
+  <%= yield(:head) %>
 </head>
 <body>
   <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
@@ -43,7 +44,7 @@
   <!-- Add your site or application content here -->
   <%= yield %>
 
-	<%= debug(params) if Rails.env.development? %>
+	<%= debug(params) if Rails.env.development? || Rails.env.test? %>
 	
   <!-- JavaScript at the bottom for fast page loading: http://developer.yahoo.com/performance/rules.html#js_bottom -->
   <%= javascript_include_tag 'application' %>

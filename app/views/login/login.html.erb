@@ -1,62 +1,103 @@
+<div id="fb-root"></div>
+
 <div class='LoginContainer' id='loginContainer'>
-	<%= link_to image_tag('logo.png', size:"259x50", id:'headerLogo', alt:'nepTune'), root_url(subdomain: "www") %>	
-	<div class='Login' id='login'>
-		
-		<% if !(@login_error.blank?) %>
-			<div class='alert alert-error' id='loginError'>
-				<%= @login_error %>
-			</div>
-		<% end %>
-		
-		<%= form_for(:login, url: login_path, html: { id: 'loginForm' }) do |f| %>
-			<div class='LoginHidden' id='newAccountNames'>
-				<%= f.label :fname %>
-				<%= f.text_field :fname, placeholder: "First name" %>
+  <%= link_to image_tag('logo.png', size:"259x50", id:'headerLogo', alt:'nepTune'),      
+      root_url(subdomain: "www") %>	
+  <div class='Login' id='login'>
+    <p class='Icon Spinner' id='fbLoginSpinner'>&#59392;</p>
+    <div class='btn btn-primary' id='fbLogin'>
+    	<a href="#" onclick="fb_login();">
+    		<%= image_tag 'fb_login.png', size: '320x44' %>
+    	</a>
+    </div>
+  	<hr />
 	
-				<%= f.label :lname %>
-				<%= f.text_field :lname, placeholder: "Last name" %>
-				
-				<%= f.hidden_field :fullAccountCreate, value: "1" %>
-			</div>
-			
-			<%= f.label :email %>
-			<%= f.email_field :email, placeholder: "Email address" %>
-	
-			<%= f.label :password %>
-			<%= f.password_field :password, placeholder: "Password" %>
-
-			<div class='LoginHidden' id='loginRule'><hr /></div>
-
-			<div class='LoginHidden' id='isArtistToggle'>
-				<span id='artistToggle'>
-					<%= f.label :isArtist %>
-					<%= f.check_box :isArtist, id: 'isArtist' %>
-					<span class='CheckboxLabel'>I'm an artist</span>
-				</span>
-				<a href='#artistModal' data-toggle="modal"><span class='Subtext' id='artistExplain'>What will this do?</span></a>
-			</div>
-
-			<div id='artistUsername'>
-				<%= f.label :artistname %>
-				<%= f.text_field :artistname, placeholder: "Artist name (stage name)" %>
-			</div>
-	
-			<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
-		<% end %>
-		<p class='Subtext' id='forgotPassword'><%= link_to "Password help&hellip;".html_safe, pwhelp_path %></p>
-		<p class='Subtext' id='createAccount' onclick="toggleCreateNewAccount(1)">Create a new account</p>
-		<p class='Subtext' id='goLogin' onclick="toggleCreateNewAccount(0)">Login with existing account</p>
+	<% if !(@login_error.blank?) %>
+	<div class='alert alert-error' id='loginError'>
+	  <%= @login_error %>
 	</div>
-	<div id="artistModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3 class='modal-title'>Creating an artist page</h3>
-	  </div>
-	  <div class="modal-body">
-	    <p>If you make music, then you're an artist. nepTune gives you the opportunity to share your creations with the world &mdash; but if you prefer, it can also be your private music portfolio.</p>
-	    <p>When you sign up, we'll create a personal profile for you, so you can discover and enjoy music from around the world. We'll also create an artist profile, where you will be able to share your story and your work with other users.</p>
-	    <p>If you're a member of a band or musical group, only one member needs to create an artist page, but everyone should create personal accounts. You can then invite all the other members into the artist page.</p>
-	  </div>
+	<% end %>
+	
+	<%= form_for(@user, url: login_path, html: { id: 'loginForm' }) do |f| %>
+    <% if @user and @user.errors.any? %>
+    <div id="createLoginError">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(@user.errors.count, "error") %>.
+      <ul>
+        <% @user.nice_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+    <% end %>
+
+	<div class='LoginHidden' id='newAccountNames'>
+	  <%= f.label :fname %>
+	  <%= f.text_field :fname, placeholder: "First name" %>
+	  
+	  <%= f.label :lname %>
+	  <%= f.text_field :lname, placeholder: "Last name" %>
+	  
+	  <%= f.hidden_field :fullAccountCreate, value: "1" %>
 	</div>
+	
+	<%= f.label :email %>
+	<%= f.email_field :email, placeholder: "Email address" %>
+	
+	<%= f.label :password %>
+	<%= f.password_field :password, placeholder: "Password" %>
+
+  <!-- This field should never be filled out. If it is, form was filled out by a script -->
+  <%= f.label :id %>
+  <%= f.text_field :id, placeholder: "Leave blank", autocomplete: 'off' %>
+
+	<div class='LoginHidden' id='loginRule'><hr /></div>
+
+	<div class='LoginHidden' id='isArtistToggle'>
+	  <span id='artistToggle'>
+		<%= f.label :isArtist %>
+		<%= f.check_box :isArtist, id: 'isArtist' %>
+		<span class='CheckboxLabel'>I'm an artist</span>
+	  </span>
+	  <a href='#artistModal' data-toggle="modal"><span class='Subtext'                                                       
+                                                       id='artistExplain'>What will this
+          do?</span></a>
+	</div>
+
+	<div id='artistUsername'>
+	  <%= f.label :artistname %>
+	  <%= f.text_field :artistname, placeholder: "Artist name (stage name)" %>
+	</div>
+	
+	<%= f.submit "Log in", class: "btn btn-large btn-primary", id: 'loginButtonMain' %>
+	<% end %>
+	<p class='Subtext' id='forgotPassword'><%= link_to "Password help&hellip;".html_safe,                                               
+                                               pwhelp_path %></p>
+	<p class='Subtext' id='createAccount' onclick="toggleCreateNewAccount(1)">Create a new      
+      account</p>
+	<p class='Subtext' id='goLogin' onclick="toggleCreateNewAccount(0)">Login with existing      
+      account</p>
+  </div>
+  <div id="artistModal" class="modal hide fade" tabindex="-1" role="dialog"       
+       aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	  <h3 class='modal-title'>Creating an artist page</h3>
+	</div>
+	<div class="modal-body">
+	  <p>If you make music, then you're an artist. nepTune gives you the opportunity to share your        
+        creations with the world &mdash; but if you prefer, it can also be your private music
+        portfolio.</p>
+	  <p>When you sign up, we'll create a personal profile for you, so you can discover and enjoy        
+        music from around the world. We'll also create an artist profile, where you will be able to
+        share        
+        your story and your work with other users.</p>
+	  <p>If you're a member of a band or musical group, only one member needs to create an artist        
+        page, but everyone should create personal accounts. You can then invite all the other
+        members into        
+        the artist page.</p>
+	</div>
+  </div>
 </div>
-<!-- <%= render 'layouts/footer', footer_id: "appFooter" %> -->
+<!-- <%= render 'layouts/footer', footer_id: "appFooter" %> -->          

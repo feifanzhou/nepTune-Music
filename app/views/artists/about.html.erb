@@ -3,21 +3,20 @@
   <%= render 'layouts/playbar' %>
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', curr_nav: 1 %>
-  <div class='XHidden' id='artistPageContent'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 1, is_editing: @is_editing, is_following: @is_following %>
+  <div class='DJAX XHidden' id='artistPageContent'>
   	<div id='sliderContainer'>
-  		<%= render 'layouts/about_gallery' %>
+  		<%= render 'layouts/about_gallery', artist: @artist, is_editing: @is_editing %>
 		</div>
 		<div class='row' id='aboutBody'>
 			<div class='span8' id='aboutStory'>
 				<h2>Our Story</h2>
-				<p>Paul Anderson owned a piano shop in St. George, Utah. He met musician Jon Schmidt as the latter walked in to ask if he could practice there for an upcoming concert. Months later, Paul Anderson and Tel Stewart (then just for fun) started making videos together of Jon Schmidt. It was not too long after that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson, and Al van der Beek as the studio and music technician. After the five of them started collaborating the group really started to take off, producing a music video each week and posting it to YouTube.</p>
-				<p>The team also includes Tel Stewart (videography and editing) and Al van der Beek (production and recording).</p>
+				<p class='ArtistStory' <%= 'contenteditable' if @is_editing %>><%= @artist.story %></p>
 			</div>
 			<div class='span4' id='aboutContact'>
 				<h2>Contact</h2>
-				<p class='ContactText'>(123) 456-7890</p>
-				<p class='ContactText'>jon@thepianoguys.com</p>
+				<p class='ContactText' id='phone' <%= 'contenteditable' if @is_editing %>><%= @contact_info.phone %></p>
+				<p class='ContactText' id='email' <%= 'contenteditable' if @is_editing %>><%= @contact_info.email %></p>
 			</div>
 		</div>
   </div>

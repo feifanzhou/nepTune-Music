@@ -1,34 +1,58 @@
 NeptuneMusic::Application.routes.draw do
 
-  # Routes for resources
-  resources :users
-  
+  get "audio/create"
+
+  get "images/new"
+
+  get "images_controller/new"
+
   # Routes for beta subdomain
   constraints subdomain: "beta" do
+    # Routes for resources
+    resources :users
+    resources :events
+    resources :albums
+    resources :songs  # TODO: albums and songs should probably be subresources of artists
+    resources :images
+    resources :audio
+    resources :events
+
     root to: 'home#home'
-    
+
     get "/login" => "login#login", as: :login
     post "/login" => "login#sign_in_user", as: :sign_in
+    post "/login/create" => "login#create_new_user", as: :login_create_user
+    post "/login/fb_login" => "login#fb_login", as: :fb_login
     match 'logout', to: 'login#destroy', as: :logout
-    
+
     match '/pwhelp', to: 'login#password_help', as: :pwhelp
     get "/pwreset" => 'login#reset_password', as: :resetpw
     match '/pwchange', to: 'login#password_change', as: :pwchange
     post "/changepw" => 'login#change_password', as: :changepw
 
-    match '/:username', to: 'users#show', as: :username
+    match '/upload', to: 'users#upload', as: :upload
+    post '/:artistname/update_content', to: 'artists#update_content', as: :update_content
+    post '/:artistname/remove_media', to: 'artists#remove_media', as: :remove_media
+
+    match '/json/album_name_suggestions', to: 'albums#album_name_suggestions', as: :album_name_suggestions
+
+    match '/:artistname', to: 'artists#show', as: :artist_main
     match '/:artistname/about', to: 'artists#about', as: :artist_about
     match '/:artistname/music', to: 'artists#music', as: :artist_music
     match '/:artistname/events', to: 'artists#events', as: :artist_events
     match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
     match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
-    match '/:artistname/album/:album', to: 'albums#show', as: :album_for_artist
-    match '/:artistname/song/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artistname/albums/new', to: 'albums#new', as: :new_album_for_artist
+    match '/:artistname/albums/:album', to: 'albums#show', as: :album_for_artist
+    match '/:artistname/songs/new', to: 'songs#new', as: :new_song_for_artist
+    match '/:artistname/songs/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artistname/events/new', to: 'events#new', as: :new_event_for_artist
 
-    resources :events
     match '/event/:id/join', to: 'attendees#join', as: :join_event
+
+
   end
-  
+
   # Routes for landing site
   constraints subdomain: "www" do
     get "errors/not_found"
@@ -40,7 +64,7 @@ NeptuneMusic::Application.routes.draw do
     match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
 
     root to: 'static_pages#home'
-  
+
     match '/market', to: 'static_pages#market', as: :market
     match '/team', to: 'static_pages#team', as: :team
     match '/news', to: 'static_pages#news', as: :news
@@ -50,12 +74,12 @@ NeptuneMusic::Application.routes.draw do
     match '/terms', to: 'static_pages#terms', as: :terms
     match '/logout', to: 'login_#destroy', as: :logout
   end
-  
+
   root to: 'static_pages#home'
-  
+
   # Any routes that aren't defined go to 404
   match "*a", to: 'errors#not_found'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

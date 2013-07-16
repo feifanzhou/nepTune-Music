@@ -11,20 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130623020333) do
+ActiveRecord::Schema.define(:version => 20130711200945) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "artist_id"
+    t.integer  "year"
   end
 
+  add_index "albums", ["name"], :name => "index_albums_on_name"
+
   create_table "artists", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.string   "type"
     t.string   "artistname"
+    t.text     "story"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   create_table "attendees", :force => true do |t|
@@ -43,6 +51,25 @@ ActiveRecord::Schema.define(:version => 20130623020333) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "comments", :force => true do |t|
+    t.string   "text"
+    t.integer  "upvotes"
+    t.string   "location"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contact_infos", :force => true do |t|
+    t.string   "phone"
+    t.string   "email"
+    t.string   "website"
+    t.integer  "contactable_id"
+    t.string   "contactable_type", :limit => 64
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "events", :force => true do |t|
     t.string   "name"
     t.datetime "start_at"
@@ -50,44 +77,75 @@ ActiveRecord::Schema.define(:version => 20130623020333) do
     t.integer  "creator_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "details"
+    t.string   "location"
   end
 
-  create_table "images", :force => true do |t|
-    t.string   "caption"
-    t.string   "path"
+  create_table "followers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.boolean  "is_following"
+  end
+
+  create_table "media", :force => true do |t|
+    t.string   "name"
+    t.string   "details"
+    t.string   "type"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "location"
+    t.integer  "collection_order"
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
     t.integer  "height"
     t.integer  "width"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
     t.boolean  "is_primary"
-    t.integer  "imageable_id"
-    t.string   "imageable_type", :limit => 64
+    t.integer  "media_holder_id"
+    t.string   "media_holder_type", :limit => 64
+    t.string   "custom_path"
+    t.boolean  "is_temporary"
   end
 
-  add_index "images", ["imageable_type", "imageable_id"], :name => "index_images_on_imageable_type_and_imageable_id"
+  create_table "play_counts", :force => true do |t|
+    t.integer  "media_id"
+    t.integer  "user_id"
+    t.integer  "count"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "songs", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "artist_id"
     t.integer  "album_id"
     t.integer  "track_number"
+    t.string   "soundmap_numbers"
   end
 
   create_table "users", :force => true do |t|
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.boolean  "willingToBetaTest", :default => false
-    t.boolean  "isBetaTester",      :default => false
-    t.boolean  "isArtist",          :default => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
+    t.boolean  "willingToBetaTest",                :default => false
+    t.boolean  "isBetaTester",                     :default => false
+    t.boolean  "isArtist",                         :default => false
     t.string   "password_digest"
     t.boolean  "has_temp_password"
     t.string   "remember_token"
-    t.boolean  "is_group",          :default => false
+    t.boolean  "is_group",                         :default => false
+    t.integer  "facebook_id",         :limit => 8
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

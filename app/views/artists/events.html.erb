@@ -3,8 +3,8 @@
   <%= render 'layouts/playbar' %>
 </header>
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', curr_nav: 3 %>
-  <div id='artistPageContent'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 3, is_editing: @is_editing, is_following: @is_following  %>
+  <div class='DJAX' id='artistPageContent'>
   	<div id='eventsCalendarHeader'>
   		<div id='calendarNavigation'>
 	  		<span class='InlineNavigation'>&#59399;</span>
@@ -16,6 +16,9 @@
   			<span class='InlineViewMode' id='calendarColumn' onclick="setCalendarDisplayMode('CalendarColumn')">&#59404;</span>
   			<span class='InlineViewMode' id='calendarList' onclick="setCalendarDisplayMode('CalendarList')">&#59403;</span>
   		</div>
+      <div id='newEventButton'>
+        <a href='#newEvent' id='createEventButton' class='btn' data-toggle='modal'>Create new event</a>
+      </div>
   	</div>
   	<div class='CalendarGrid' id='eventsCalendar'>
   		<div id='weekdayHeadings'>
@@ -43,5 +46,48 @@
   		</div>
       <%= render 'layouts/events_calendar', month_start: Date.today.beginning_of_month, events: @events %>
   	</div>
+  </div>
+  <div class="modal hide fade" id='newEvent'>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>New event</h3>
+    </div>
+    <div class="modal-body">
+      <%= form_for Event.new() do |e| %>
+        <input type='hidden' id='event_artistname' name='event[artistname]' />
+        <%= e.label :name %>
+        <%= e.text_field :name, placeholder: 'Event name' %>
+
+        <%= e.label :location %>
+        <%= e.text_field :location, placeholder: 'Add a place' %>
+
+        <%= e.label :details %>
+        <%= e.text_area :details, rows: '5', placeholder: 'More info about event', class: 'TextareaNoResize' %>
+        <br />
+
+        <div class='Datepicker input-append date'>
+          <!-- <%= e.label :start_at %> -->
+          <%= e.text_field :start_at, placeholder: 'Start time' %>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+        </div>
+
+        <div class='Datepicker input-append date'>
+          <!-- <%= e.label :end_at %> -->
+          <%= e.text_field :end_at, placeholder: 'End time' %>
+          <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+          </span>
+        </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <p id='createEventFollowers'>Your followers and subscribers will see this event in their Burble.<br />They can share this event with their friends.</p>
+      <a href="#" class="btn" data-dismiss="modal" id='cancelCreateEventButton'>Cancel</a>
+      <a href="#" class="btn btn-primary" id='finishEventButton'>Create event</a>
+    </div>
   </div>
 </div>

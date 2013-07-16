@@ -7,10 +7,34 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  artist_id  :integer
+#  year       :integer
 #
 
 require 'spec_helper'
 
 describe Album do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @artist = FactoryGirl.create(:artist)
+    @album = Album.new(name: "Touch of Grey", artist: @artist)
+  end
+
+  subject { @album }
+
+  it { should respond_to(:name) }
+  it { should respond_to(:artist) }
+  it { should respond_to(:image) }
+  it { should respond_to(:songs) }
+  it { should be_valid }
+
+  describe "without artist" do
+    before { @album.artist = nil }
+    it { should_not be_valid }
+  end
+
+  describe "with blank name" do
+    before { @album.name = " " }
+    it { should_not be_valid }
+  end
+
+
 end

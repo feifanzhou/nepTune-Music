@@ -30,6 +30,8 @@ body {
 }
 
 /***** Login styles *****/
+$fbBlue: #3B5996;
+$fbBlueHighlight: lighten($fbBlue, 10%);
 div.LoginContainer {
 	margin: 15% auto;
 	text-align: center;
@@ -37,6 +39,17 @@ div.LoginContainer {
 		margin: 30px auto;
 		text-align: left;
 		width: 320px;
+		#fbLoginSpinner {
+			display: none;
+		}
+		#fbLogin {
+			@include buttonBackground($fbBlueHighlight, $fbBlue);
+			box-sizing: border-box;
+			display: inline-block;
+			height: 44px;
+			padding-top: 1px;
+			width: 320px;
+		}
 		div.LoginHidden {
 			display: none;
 		}
@@ -49,10 +62,13 @@ div.LoginContainer {
 			height: 38px;
 			width: 320px;
 		}
-		input#login_fname {
+		input#user_id {
+			display: none;
+		}
+		input#user_fname {
 			width: 158px;
 		}
-		input#login_lname {
+		input#user_lname {
 			width: 158px;
 		}
 		input#login_password {
