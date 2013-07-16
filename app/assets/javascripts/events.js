@@ -74,6 +74,20 @@ $('#startPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
+var start_time_string = $('#start_time_text').text();
+var dt = start_time_string.split(' ');
+var d = (dt[0]).split('/');
+var month = d[0];
+var day = d[1];
+var year = d[2];
+var t = (dt[1]).split(':');
+var hour = t[0];
+var minute = t[1];
+if (dt[2] == 'PM')
+  hour += 12;
+var date = new Date(year, month, day, hour, minute);
+var picker = $('#startPicker').data('datetimepicker');
+picker.setDate(date);
 
 $('#startPicker').on('changeDate', function(e) {
   console.log('startTime change');
@@ -93,6 +107,20 @@ $('#endPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
+var end_time_string = $('#end_time_text').text();
+var dt = end_time_string.split(' ');
+var d = (dt[0]).split('/');
+var month = d[0];
+var day = d[1];
+var year = d[2];
+var t = (dt[1]).split(':');
+var hour = t[0];
+var minute = t[1];
+if (dt[2] == 'PM')
+  hour += 12;
+var date = new Date(year, month, day, hour, minute);
+var picker = $('#endPicker').data('datetimepicker');
+picker.setDate(date);
 
 $('#endPicker').on('changeDate', function(e) {
   console.log('endTime change');

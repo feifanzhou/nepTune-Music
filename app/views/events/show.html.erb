@@ -16,13 +16,15 @@
         <div id='eventLoc'>
           <% if @is_editing %>
             <div id="startPicker" class="input-append">
-              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Start time' id='startTime' />
+              <span class='Hidden' id='start_time_text'><%= @event.start_at.strftime("%m/%d/%Y %I:%M %p") %></span>
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Start: <%= @event.start_at.strftime("%m/%d/%Y %I:%M %p") %>' id='startTime' />
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
               </span>
             </div>
             <div id="endPicker" class="input-append">
-              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='End time' id='endTime' />
+              <span class='Hidden' id='end_time_text'><%= @event.end_at.strftime("%m/%d/%Y %I:%M %p") %></span>
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='End: <%= @event.end_at.strftime("%m/%d/%Y %I:%M %p") %>' id='endTime' />
               <span class="add-on">
                 <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
               </span>
