@@ -69,25 +69,38 @@ $('body').on('blur', '#location', function() {
   });
 });
 
+function setDefaultPickerTime(start_or_end) {
+  var time_string = $('#' + start_or_end + '_time_text').text();
+  console.log('time_string: ' + time_string);
+  var dt = time_string.split(' ');
+  console.log('dt: ' + dt);
+  var d = (dt[0]).split('/');
+  console.log('d: ' + d);
+  var month = parseInt(d[0], 10) - 1;   // Minus one because months start from 0
+  console.log('month: ' + month);
+  var day = d[1];
+  console.log('day: ' + day);
+  var year = d[2];
+  console.log('year: ' + year);
+  var t = (dt[1]).split(':');
+  console.log('t: ' + t);
+  var hour = parseInt(t[0], 10);
+  var minute = t[1];
+  console.log('minute: ' + minute);
+  if (dt[2] == 'PM')
+    hour += 12;
+  console.log('hour: ' + hour);
+  var date = new Date(year, month, day, hour, minute);
+  console.log('date: ' + date);
+  var picker = $('#' + start_or_end + 'Picker').data('datetimepicker');
+  picker.setLocalDate(date);
+}
 // TODO: Refactor and remove duplicate code
 $('#startPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
-var start_time_string = $('#start_time_text').text();
-var dt = start_time_string.split(' ');
-var d = (dt[0]).split('/');
-var month = d[0];
-var day = d[1];
-var year = d[2];
-var t = (dt[1]).split(':');
-var hour = t[0];
-var minute = t[1];
-if (dt[2] == 'PM')
-  hour += 12;
-var date = new Date(year, month, day, hour, minute);
-var picker = $('#startPicker').data('datetimepicker');
-picker.setDate(date);
+setDefaultPickerTime('start');
 
 $('#startPicker').on('changeDate', function(e) {
   console.log('startTime change');
@@ -107,20 +120,7 @@ $('#endPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
-var end_time_string = $('#end_time_text').text();
-var dt = end_time_string.split(' ');
-var d = (dt[0]).split('/');
-var month = d[0];
-var day = d[1];
-var year = d[2];
-var t = (dt[1]).split(':');
-var hour = t[0];
-var minute = t[1];
-if (dt[2] == 'PM')
-  hour += 12;
-var date = new Date(year, month, day, hour, minute);
-var picker = $('#endPicker').data('datetimepicker');
-picker.setDate(date);
+setDefaultPickerTime('end');
 
 $('#endPicker').on('changeDate', function(e) {
   console.log('endTime change');
