@@ -59,7 +59,7 @@ class Song < ActiveRecord::Base
     col = sd[:color] #hsv_to_rgb(rand, 0.55, 1)
     puts col
     image = Image.new
-    image.file = generate_soundmap sd[:numbers], sd[:color], filetype: "svg"
+    image.file = generate_soundmap sd[:numbers], sd[:color], filetype: "png"
     image.save
     self.image = image
   end
