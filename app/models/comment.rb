@@ -17,10 +17,25 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   has_many :media, as: :media_holder
+  belongs_to :comment
+  has_many :comments
 
   validates :user, presence: true
 
   def defaults
     self.upvotes ||= 1
+  end
+
+  def parent
+    self.comment
+  end
+
+  def children
+    self.comments
+  end
+
+  # returns comments sorted so that top comments show first in list
+  def sorted_for_location(location)
+    Comment.where(location: location, parent: nil).sort { |a,b| b.created_at <=> a.created_at }
   end
 end
