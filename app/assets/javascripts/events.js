@@ -73,3 +73,16 @@ $('#whenPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
+
+$('#startTime').change(function() {
+  console.log('startTime change');
+  var startTime = $(this).val();
+  $.ajax({
+    url: '/events/' + getEventIDFromURL(),
+    type: 'PUT',
+    data: { start_at: startTime },
+    success: function(resp) {
+      console.log('Successfully updated event start');
+    }
+  });
+});
