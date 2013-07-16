@@ -6,6 +6,8 @@
 @import "variables";
 @import "shared";
 
+@import "bootstrap";
+
 html {
 	background: $Txture;
 }
@@ -15,6 +17,7 @@ header {
 }
 
 #eventPageContainer {
+	background: $Txture;
 	clear: both;
 	margin: 125px auto auto auto;
 	overflow-x: hidden;
@@ -79,6 +82,9 @@ header {
 			height: 360px;
 			position: relative;
 			width: 960px;
+			img {
+				height: 360px;
+			}
 			#eventBasicInfo {
 				@include TranslucentBar;
 				bottom: 0;
@@ -91,6 +97,9 @@ header {
 					font-weight: 400;
 					margin: 6px 8px;
 				}
+				#datetimepicker {
+					// display: none;
+				}
 				#eventLoc {
 					color: $white;
 					display: inline-block;
@@ -98,6 +107,9 @@ header {
 					font-size: 18px;
 					font-weight: 300;
 					margin: 10px 8px;
+					#startTime, #endTime {
+						width: 180px;
+					}
 				}
 				#eventResponse {
 					background: transparentize(gray, 0.25);

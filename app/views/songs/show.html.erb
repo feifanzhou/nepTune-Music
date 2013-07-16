@@ -1,6 +1,6 @@
 
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following, is_band_member: @is_band_member %>
   <div class='DJAX XHidden' id='artistPageContent'>
     <!-- <%= javascript_include_tag "soundmanager2-jsmin" %> -->
     <div id="mainPartial">
@@ -15,4 +15,4 @@
       
     </div>
   </div>
-</div>
+</div> 

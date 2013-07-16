@@ -3,7 +3,7 @@ class ImagesController < ApplicationController
   	img = Image.new(params[:image])
   	img.is_temporary = true
   	img.save
-  	logger.debug("============== 1 img: #{ img }")
-  	render json: { img_id: img.id, img_src: img.path }
+  	# render json: { img_id: img.id, img_src: img.path }
+  	render text: '{"img_id":' + img.id.to_s + ',"img_src":"' + img.path + '"}<script type="text/javascript">window.onload = function() { parent.image_target_loaded();}</script>'
   end
 end

@@ -20,6 +20,14 @@ $(function() {
     $('#sidebarShadowBottom').css('left', (left + 'px'));
 });
 
+$('body').on('click', '#editButton', function() {
+    createCookie('is_editing', '1');
+    $('#editButton').attr('id', 'uneditButton');
+});
+$('body').on('click', '#uneditButton', function() {
+    createCookie('is_editing', '0');
+    $('#uneditButton').attr('id', 'editButton');
+});
 function filterMusic(tag) {
     $(".FilterItem").each(function() {
         $(this).removeClass('SelectedFilter');
@@ -171,6 +179,16 @@ function setCalendarDisplayMode(cls) {
     $(viewModeID).addClass('ViewModeSelected');
 }
 
+$('body').on('click', '#newEventButton', function() {
+    console.log('New event clicked');
+    $('#backdrop').addClass('In');
+    $('#newEvent').addClass('In');
+});
+$('body').on('click', '.ModalDismiss', function() {
+    $('#backdrop').removeClass('In');
+    $('#newEvent').removeClass('In');
+});
+
 $(function() {
     $('.ArtistNavIcon').tooltip();
 });
@@ -178,21 +196,26 @@ $(window).bind('djaxLoad', function() {
     $('.ArtistNavIcon').tooltip();
 });
 
-$('#sliderContainer').mouseenter(function() {
+$('body').on('mouseenter', '#sliderContainer', function() {
+// $('#sliderContainer').mouseenter(function() {
     $('.SliderTitle').fadeIn();
     $('.SliderTitle').css('bottom', '0px');
 });
-$('#sliderContainer').mouseleave(function() {
+// $('#sliderContainer').mouseleave(function() {
+$('body').on('mouseleave', '#sliderContainer', function() {
     $('.SliderTitle').fadeOut();
     $('.SliderTitle').css('bottom', '-50px');
 });
-$('.NoblockTitle').mouseenter(function() {
+$('body').on('mouseenter', '.NoblockTitle', function() {
+// $('.NoblockTitle').mouseenter(function() {
     $(this).fadeOut();
 });
-$('.SliderTitle').mouseenter(function() {
+$('body').on('mouseenter', '.SliderTitle', function() {
+// $('.SliderTitle').mouseenter(function() {
     $(this).css('background', 'rgba(0, 0, 0, 0.90)');
 });
-$('.SliderTitle').mouseleave(function() {
+$('body').on('mouseleave', '.SliderTitle', function() {
+// $('.SliderTitle').mouseleave(function() {
     $(this).css('background', 'rgba(0, 0, 0, 0.70)');
 });
 
@@ -262,32 +285,38 @@ $(window).bind('hashchange', function () {
     galleryToHash();
 });
 
-function sliderNavClick() {
+function sliderNavClick(n) {
     console.log('slidernav click');
-    if ($(this).hasClass('SliderNavDisabled'))
+    if ($(n).hasClass('SliderNavDisabled'))
         return false;
 
-    var objId = $(this).attr('id');
+    var objId = $(n).attr('id');
+    console.log('slider nav id: ' + objId);
     var hash = window.location.hash.slice(1);
     if (hash.length === 0 || isNaN(hash)) { // No hash, default to 0
         window.location.hash = '#1';
         return false;
     }
     hash = parseInt(hash, 10);
-    if (objId == 'sliderNavLeft')
+    if (objId == 'sliderNavLeft') {
+        console.log('Slider nav left');
         hash -= 1;
-    else
+    }
+    else {
+        console.log('Slider nav right');
         hash += 1;
+    }
     console.log('new hash: ' + hash);
     location.hash = ('#' + hash);
     return false;
 }
-$('.SliderNav').click(function() {
-    sliderNavClick();
+$('body').on('click', '.SliderNav', function() {
+// $('.SliderNav').click(function() {
+    sliderNavClick($(this));
 });
 $(window).bind('djaxLoad', function() {
     $('.SliderNav').click(function() {
-        sliderNavClick();
+        sliderNavClick($(this));
     });
 });
 
@@ -314,19 +343,22 @@ function finishProfilePictureUpload() {
     $('#profileUploadSpinner').css('display', 'none');
     $('#profileDarken').css('display', 'none');
 }
-$('.ProfilePictureEdit').click(function() {
+$('body').on('click', '.ProfilePictureEdit', function() {
+// $('.ProfilePictureEdit').click(function() {
     $('#selectProfile').click();
 });
-$('#selectProfile').change(function() {
+$('body').on('change', '#selectProfile', function() {
+// $('#selectProfile').change(function() {
     console.log('files changed');
     $('#uploadProfileForm').submit();
 });
-$('#uploadProfileForm').submit(function() {
+$('body').on('submit', '#uploadProfileForm', function() {
+// $('#uploadProfileForm').submit(function() {
     console.log('profile form submit');
     beginProfilePictureUpload();
 });
 var img_id = -1;
-$('#profile_target').load(function() {
+function profile_target_loaded() {
     console.log('profile target loaded');
     finishProfilePictureUpload();
     var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
@@ -335,9 +367,18 @@ $('#profile_target').load(function() {
        var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
        $('#imageUploadPreview').append(i); */
     $('.ArtistProfilePic').attr('src', resp['obj_data']);
+}
+$('#profile_target').load(function() {
+    profile_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+    $('#profile_target').load(function() {
+        profile_target_loaded();
+    });
 });
 
-$('.AddElementFace').click(function() {
+$('body').on('click', '.AddElementFace', function() {
+// $('.AddElementFace').click(function() {
     var clicked = $(this);
     $('.AddElementOption').each(function() {
         var face = $(this).children('.AddElementFace');
@@ -353,7 +394,8 @@ $('.AddElementFace').click(function() {
     });
 });
 var shouldDeleteImage = true;
-$('.AddElementCancel').click(function() {
+$('body').on('click', '.AddElementCancel', function() {
+// $('.AddElementCancel').click(function() {
     var info = $(this).closest('.AddElementInfo');
     var face = $(info).siblings('.AddElementFace');
     $(face).css('display', 'block');
@@ -385,20 +427,23 @@ $('.AddElementCancel').click(function() {
         $('#addVideoCaption').val('');
     }
 });
-$('#selectImageButton').click(function() {
+$('body').on('click', '#selectImageButton', function() {
+// $('#selectImageButton').click(function() {
     $('#selectGalleryImage').click();
 });
-$('#selectGalleryImage').change(function() {
+$('body').on('change', '#selectGalleryImage', function() {
+// $('#selectGalleryImage').change(function() {
     console.log('select gallery image');
     // beginUpload();
     $('#uploadImageForm').submit();
 });
-$('#uploadImageForm').submit(function() {
+$('body').on('submit', '#uploadImageForm', function() {
+// $('#uploadImageForm').submit(function() {
     console.log('gallery image upload submit');
     beginUpload(true);
 });
 var img_id = -1;
-$('#upload_target').load(function() {
+function upload_target_loaded() {
     console.log('gallery image uploaded');
     finishUpload();
     var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
@@ -406,6 +451,18 @@ $('#upload_target').load(function() {
     img_id = parseInt(resp['extra_data'], 10);
     var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
     $('#imageUploadPreview').append(i);
+}
+$('#upload_target').load(function() {
+    upload_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+  console.log('djax load bind upload target');
+  // http://stackoverflow.com/a/11613013/472768
+  $('#upload_target').off('load.upload');
+  $('#upload_target').on('load.upload', function() {
+      console.log('djax load bound upload target');
+      upload_target_loaded();
+  }); 
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
     var se = "<div class='SliderElement' id='gallery" + index + "'>";
@@ -417,7 +474,8 @@ function createGalleryItemWithContent(ctc, caption, index, m_id) {
     se += "" + ctc + "</div>";
     $('#slider').append(se);
 }
-$('#saveImage').click(function() {
+$('body').on('click', '#saveImage', function() {
+// $('#saveImage').click(function() {
     var caption = $('#addImageCaption').val();
     var order = $('.SliderElement').length;
     $.ajax({
@@ -439,14 +497,16 @@ $('#saveImage').click(function() {
         }
     });
 });
-$('.AddVideoURL').keydown(function(event) {
+$('body').on('keydown', '.AddVideoURL', function() {
+// $('.AddVideoURL').keydown(function(event) {
     if (event.keyCode !== 13)
         return;
     event.preventDefault();
     $(this).blur();
     return false;
 });
-$('.AddVideoURL').blur(function(event) {
+$('body').on('blur', '.AddVideoURL', function() {
+// $('.AddVideoURL').blur(function(event) {
     var input = $(this);
     var URL = $(this).val();
     console.log('URL input text: ' + URL);
@@ -458,7 +518,8 @@ $('.AddVideoURL').blur(function(event) {
         $('#videoUploadPreview').append(iframe);
     }
 });
-$('#saveVideo').click(function() {
+$('body').on('click', '#saveVideo', function() {
+// $('#saveVideo').click(function() {
     var URL = youtubeEmbedForURL($('.AddVideoURL').val());
     var caption = $('#addVideoCaption').val();
     var order = $('.SliderElement').length;
@@ -617,13 +678,23 @@ $(document).on('blur', '.ContactText', function() {
 });
 
 $('#event_artistname').val(getArtistNameFromURL());
-
+$(window).bind('djaxLoad', function() {
+    $('#event_artistname').val(getArtistNameFromURL());
+});
+$(window).bind('djaxLoad', function() {
+    $('.Datepicker').datetimepicker({
+      format: 'MM/dd/yyyy HH:mm PP',
+      language: 'en',
+      pick12HourFormat: true
+    });
+});
 $('.Datepicker').datetimepicker({
   format: 'MM/dd/yyyy HH:mm PP',
   language: 'en',
   pick12HourFormat: true
 });
 
-$('#finishEventButton').click(function() {
+// $('#finishEventButton').click(function() {
+$('body').on('click', '#finishEventButton', function() {
   $('#new_event').submit();
 });

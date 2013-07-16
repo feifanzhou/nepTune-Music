@@ -88,14 +88,17 @@ header {
 			#new_audio {
 				display: none;
 			}
-			#new_song {
-				display: inline-block;
+
+			#select_file_button {
+			  @include vendor-prefix(box-sizing, border-box);
+			  display: block;
+			  margin-bottom: 6px;
+			  width: 274px;
+            }
+            
+            #new_song {
+				display: block;
 				margin-bottom: 0;
-				#select_file_button {
-					@include vendor-prefix(box-sizing, border-box);
-					margin-bottom: 6px;
-					width: 274px;
-				}
 				#selectedFileName {
 					color: white;
 					font-family: $OpenSans;
@@ -157,6 +160,7 @@ header {
 				top: 168px;
 				width: 150px;
 				.AlbumSuggestion {
+					color: transparentize(black, 0.15);
 					font-family: $OpenSans;
 					font-size: 14px;
 					font-weight: 600;

@@ -25,19 +25,15 @@ class LoginController < ApplicationController
     # If one exists, sign in and redirect
     # If one doesn't exist, create user
     user = User.find_by_facebook_id(fb_id)
-    logger.debug("user by FBID: #{ user }")
     if user.blank?
       user = User.find_by_email(fb_info[:email])
     end
 
     if user.blank?
-      logger.debug('user blank')
 
       user_hash = { fname: fb_info[:first_name], lname: fb_info[:last_name], email: fb_info[:email], password: temporary_password, has_temp_password: true, facebook_id: fb_id }
       prms = { user: user_hash }
-      logger.debug("Create user from FB prms: #{ prms }")
       results = create_user(prms)
-      logger.debug("Create user results: #{ results }")
       if results
         # redirect_to root_path
         json_to_root
@@ -58,7 +54,6 @@ class LoginController < ApplicationController
     # Users should not fill it out—it's hidden and says to leave blank
     # If it is filled out, then a script did it
     # Return an error
-    logger.debug("params id: #{ params[:user][:id] }")
     if !params[:user][:id].blank?
       flash[:login_error] = "You filled in stuff that shouldn't be. Contact us for help."
       redirect_to login_path
@@ -89,7 +84,6 @@ class LoginController < ApplicationController
   def create_new_user
     # Duplicated code in sign_in_user
     # TODO: Refactor honeypot check code
-    logger.debug("params id: #{ params[:user][:id] }")
     if !params[:user][:id].blank?
       flash[:login_error] = "You filled in stuff that shouldn't be. Contact us for help."
       redirect_to login_path
@@ -113,7 +107,6 @@ class LoginController < ApplicationController
     user = User.find_by_email(email)
     if user.blank?
       flash[:reset_password_error] = "Couldn't find account with that email."
-      logger.debug("squid")
       redirect_to pwhelp_path
       return
     end
