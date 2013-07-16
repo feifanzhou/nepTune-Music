@@ -1,4 +1,5 @@
-$('#clearGeneralFields').click(function(event) {
+$('body').on('click', '#clearGeneralFields', function() {
+// $('#clearGeneralFields').click(function(event) {
 	event.preventDefault();
 	$('#all_songs_song_name').val('');
 	$('#all_songs_song_album').val('');
@@ -8,23 +9,85 @@ $('#clearGeneralFields').click(function(event) {
 
 // Fill in artist name from URL
 $('#artistname').val(getArtistNameFromURL());
+$(window).on('djaxLoad', function() {
+	$('#artistname').val(getArtistNameFromURL());
+});
 
-$('#select_file_button').click(function() {
+$('body').on('click', '#select_file_button', function() {
+// $('#select_file_button').click(function() {
 	$('#audio_file').click();
 });
-$('#audio_file').change(function() {
+$('body').on('change', '#audio_file', function() {
+// $('#audio_file').change(function() {
 	// http://stackoverflow.com/a/10683277/472768
 	var fileName = $(this).val().split('/').pop().split('\\').pop();
 	$('#selectedFileName').text("'" + fileName + "' selected");
 	$('#new_audio').submit();
+
+	var re = /^\d+ [^0-9-\s][^.]+/;
+	var songName;
+	var trackNumber;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /^\d+\s?-\s?[^0-9-\s][^.]+/;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /^\d+\.\s?[^0-9-\s][^.]+/;
+	if (re.test(fileName)) {
+		songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+		trackNumber = (fileName.match(/^\d+/))[0];
+	}
+	re = /Track \d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Track\s?-\s?\d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Song \d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /Song\s?-\s?\d+/;
+	if (re.test(fileName))
+		trackNumber = (fileName.match(/\d+/))[0];
+	re = /[^0-9-\s][^.]+/;
+	if (re.test(fileName))
+		songName = (fileName.match(re))[0];
+	trackNumber = trackNumber.replace(/^0+/, '');
+	$('#song_name').val($.trim(songName));
+	$('#song_track_number').val($.trim(trackNumber));
 });
-$('#audio_target').load(function() {
-	var json = JSON.parse(document.getElementById('audio_target').contentWindow.document.body.textContent);
+
+// $('#newSongDetails').on('load', '#audio_target', function() {
+
+// $('#audio_target').load(function() {
+function audio_target_loaded() {
+	console.log('audio target load');
+	var iframeText = document.getElementById('audio_target').contentWindow.document.body.textContent;
+	console.log('iframeText: ' + iframeText);
+	var scriptStart = iframeText.indexOf('window');
+	if (scriptStart !== -1) {
+		console.log('Script found');
+		iframeText = iframeText.substring(0, scriptStart);
+	}
+	var json = JSON.parse(iframeText);
 	$('#song_audio_id').val(json['audio_id']);
+}
+$('#audio_target').load(function() {
+	audio_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+	$('#audio_target').load(function() {
+		audio_target_loaded();
+	});
 });
 
 var suggestionImagePaths;
-$('#song_album').keyup(function(event) {
+$('body').on('keyup', '#song_album', function() {
+// $('#song_album').keyup(function(event) {
 	console.log('song album keyup');
 	if (event.keyCode == 8 && $(this).val().length < 1) {	// backspace
 		$('#albumSuggestions').empty();
@@ -65,7 +128,8 @@ function endAlbumArtUpdate() {
 	$('#changeAlbumImageSpinner').removeClass('Spinner');
 }
 // TODO: Remove duplicate code here
-$('#song_album').keydown(function(event) {
+$('body').on('keydown', '#song_album', function() {
+// $('#song_album').keydown(function(event) {
 	if (event.keyCode == 13)	// return key
 		event.preventDefault();
 	if (event.keyCode !== 40 && event.keyCode !== 38)
@@ -109,37 +173,67 @@ $('#song_album').keydown(function(event) {
 		event.preventDefault();
 	}
 });
-$('#song_album').blur(function() {
+$('body').on('blur', '#song_album', function() {
+// $('#song_album').blur(function() {
 	$('#albumSuggestions').empty();
 });
-$('.NewSongArt').load(function() {
+$('body').on('load', '.NewSongArt', function() {
+// $('.NewSongArt').load(function() {
 	endAlbumArtUpdate();
 });
+// $('.NewSongArt').load(function() {
+// 	endAlbumArtUpdate;
+// });
+$(window).bind('djaxLoad', function() {
+	$('.NewSongArt').load(function() {
+		endAlbumArtUpdate;
+	});
+});
 
-$('#newSongPreview').click(function() {
+$('body').on('click', '#newSongPreview', function() {
+// $('#newSongPreview').click(function() {
 	$('#image_file').click();
 });
-$('#image_file').change(function() {
+$('body').on('change', '#image_file', function() {
+// $('#image_file').change(function() {
 	$('#new_image').submit();
 });
-$('#new_image').submit(function() {
+$('body').on('submit', '#new_image', function() {
+// $('#new_image').submit(function() {
 	beginAlbumArtUpdate();
 });
-$('#album_target').load(function() {
+function album_target_loaded() {
 	endAlbumArtUpdate();
 	var json = JSON.parse(document.getElementById('album_target').contentWindow.document.body.textContent);
 	$('.NewSongArt').attr('src', json['img_src']);
 	$('#song_album_art_id').val(json['img_id']);
+}
+$('#album_target').load(function() {
+	album_target_loaded();
+});
+$(window).bind('djaxLoad', function() {
+	$('#album_target').load(function() {
+		album_target_loaded();
+	});
 });
 function hideNewSongFeedback() {
 	$('#newSongFeedback').removeClass('alert-success');
 	$('#newSongFeedback').css('display', 'none');
 }
-$('#new_song').bind('ajax:success', function() {
+function new_song_success() {
 	console.log('Song created successfully');
 	$('#newSongFeedback').addClass('alert-success');
 	$('#newSongFeedback').slideDown();
+}
+$('#new_song').bind('ajax:success', function() {
+	new_song_success()
 });
-$('#new_song > *').focus(function() {
+$(window).bind('djaxLoad', function() {
+	$('#new_song').bind('ajax:success', function() {
+		new_song_success()
+	});
+});
+$('body').on('focus', '#new_song > *', function() {
+// $('#new_song > *').focus(function() {
 	hideNewSongFeedback();
 });

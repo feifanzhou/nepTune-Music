@@ -3,7 +3,7 @@ class AudioController < ApplicationController
   	audio = Audio.new(params[:audio])
   	audio.is_temporary = true;
   	audio.save
-  	logger.debug("========= 2 audio: #{ audio }")
-  	render json: { audio_id: audio.id }
+  	# render json: { audio_id: audio.id }
+  	render text: '{"audio_id":' + audio.id.to_s + '}<script type="text/javascript">window.onload = function() { parent.audio_target_loaded();}</script>'
   end
 end

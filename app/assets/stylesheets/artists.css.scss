@@ -166,8 +166,18 @@ header {
 				}
 			}
 		}
+		#editButtonBlock {
+			text-align: center;
+			width: 100%;
+			.EditButton {
+				width: 180px;
+			}
+		}
 		.ArtistNav {
 			margin-top: 80px;
+			&.ArtistNavSmallTop {
+				margin-top: 30px;
+			}
 			ul {
 				list-style: none;
 				margin: 0;
@@ -703,6 +713,130 @@ header {
 		}
 
 		/***** Events page *****/
+		#backdrop {
+			transition: opacity 0.75s;
+			position: fixed;
+		  top: 0;
+		  right: 0;
+		  bottom: 0;
+		  left: 0;
+		  z-index: 1040;
+		  background-color: transparentize(black, 0.25);
+		  display: none;
+		  opacity: 0;
+		  &.In {
+		  	display: block;
+		  	opacity: 1;
+		  }
+		}
+		#newEvent {
+			transition: opacity 0.75s;
+			display: none;
+			opacity: 0;
+			&.In {
+				display: block;
+				opacity: 1;
+			}
+			position: fixed;
+		  top: 20%;
+		  left: 50%;
+		  z-index: 1050;
+		  width: 560px;
+		  margin-left: -280px;
+		  background-color: rgba(255, 255, 255, 0.85);
+		  border: 1px solid #999;
+		  border: 1px solid rgba(0, 0, 0, 0.3);
+		  *border: 1px solid #999;
+		  /* IE6-7 */
+		  -webkit-border-radius: 6px;
+		  -moz-border-radius: 6px;
+		  border-radius: 6px;
+		  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+		  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+		  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+		  -webkit-background-clip: padding-box;
+		  -moz-background-clip: padding-box;
+		  background-clip: padding-box;
+		  outline: none;
+		  #new_event {
+				margin-bottom: 0;
+				text-align: center;
+				input, textarea {
+					font-family: $OpenSans;
+				}
+				#event_details {
+					left: 2px;
+					position: relative;
+					resize: none;
+					width: 430px;
+				}
+				#event_start_at {
+					width: 179px;
+				}
+				#event_end_at {
+					width: 179px;
+				}
+			}
+			#createEventFollowers {
+				color: transparentize(black, 0.35);
+				display: inline-block;
+				float: left;
+				font-size: 11px;
+				font-weight: 400;
+				text-align: left;
+				width: 330px;
+			}
+		  .m-header {
+		  	padding: 9px 15px;
+			  border-bottom: 1px solid #eee;
+			  // Close icon
+			  .close { margin-top: 2px; }
+			  // Heading
+			  h3 {
+			  	color: $nepTuneOrange;
+			  	font-family: $OpenSans;
+			    margin: 0;
+			    line-height: 30px;
+			  }
+		  }
+		  .m-body {
+		  	background: transparentize(#ddd, 0.25);
+		  	position: relative;
+			  overflow-y: auto;
+			  max-height: 400px;
+			  padding: 15px;
+			  .dropdown-menu {
+			  	background-color: transparentize(#666, 0.1);
+			  }
+			  .bootstrap-datetimepicker-widget td.day:hover, .bootstrap-datetimepicker-widget td.hour:hover, .bootstrap-datetimepicker-widget td.minute:hover, .bootstrap-datetimepicker-widget td.second:hover {
+			  	background: #AAA;
+			  }
+		  }
+		  .m-footer {
+		  	padding: 14px 15px 15px;
+			  margin-bottom: 0;
+			  text-align: right; // right align buttons
+			  background-color: #f5f5f5;
+			  border-top: 1px solid #ddd;
+			  @include border-radius(0 0 6px 6px);
+			  @include box-shadow(inset 0 1px 0 $white);
+			  @include clearfix(); // clear it in case folks use .pull-* classes on buttons
+
+			  // Properly space out buttons
+			  .btn + .btn {
+			    margin-left: 5px;
+			    margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+			  }
+			  // but override that for button groups
+			  .btn-group .btn + .btn {
+			    margin-left: -1px;
+			  }
+			  // and override it for block buttons as well
+			  .btn-block + .btn-block {
+			    margin-left: 0;
+			  }
+		  }
+		}
 		#eventsCalendarHeader {
 			background-color: $nepTuneOrange;
 			height: 50px;
@@ -1029,36 +1163,6 @@ header {
 			#weekdayHeadings {
 				display: none;
 			}
-		}
-	}
-	#newEvent {
-		#new_event {
-			margin-bottom: 0;
-			text-align: center;
-			input, textarea {
-				font-family: $OpenSans;
-			}
-			#event_details {
-				left: 2px;
-				position: relative;
-				resize: none;
-				width: 430px;
-			}
-			#event_start_at {
-				width: 179px;
-			}
-			#event_end_at {
-				width: 179px;
-			}
-		}
-		#createEventFollowers {
-			color: transparentize(black, 0.35);
-			display: inline-block;
-			float: left;
-			font-size: 11px;
-			font-weight: 400;
-			text-align: left;
-			width: 330px;
 		}
 	}
 }

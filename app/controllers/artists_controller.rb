@@ -4,6 +4,7 @@ class ArtistsController < ApplicationController
   include LoginHelper
   before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :get_current_user_status, only: [:show, :about, :music, :events, :burble, :fans]
+  before_filter :get_band_member, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :authenticate_editing
   before_filter :check_logged_in, only: [:update_content, :remove_media]
   before_filter :redirect_if_not_logged_in, only: [:update_content, :remove_media]
@@ -17,10 +18,6 @@ class ArtistsController < ApplicationController
   end
 
   def music
-    @is_band_member = !@current_user.blank?
-    logger.debug("======== music current_user: #{ @current_user }")
-    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id) if !@current_user.blank?
-    @is_band_member = (bm.blank?) ? false : true
   end
 
   def events
@@ -91,33 +88,38 @@ class ArtistsController < ApplicationController
   end
 
   private
-  def authenticate_editing
-    @is_editing = false
-    return if params[:edit].blank?  # Bail, don't bury: http://blog.wilshipley.com/2005/07/code-insults-mark-i.html
-    # If edit param is anything other than 1, redirect to same page, without edit param
-    if params[:edit].to_i != 1
-      redirect_to_current_page_without_params
-      return
-    end
-
-    if !is_logged_in
-      redirect_to_current_page_without_params
-      return
-    end
-    # Artist page should only be edited by members of the artist
-    # TODO: Only allow editing artist page by designed member(s)
+  def can_edit
     curr_user = current_user
     artist = Artist.find_by_artistname(params[:artistname])
     if curr_user.blank? || artist.blank?
-      redirect_to_current_page_without_params
+      return false
     end
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
     if bm.blank?
-      redirect_to_current_page_without_params
-    else
-      @is_editing = true
+      return false
     end
-    # @is_editing = true unless bm.blank?
+    return true
+  end
+  def authenticate_editing
+    @is_editing = false
+    if params[:edit] == '0'
+      redirect_to_current_page_without_params
+      return
+    end
+    can_edit = can_edit()
+    @is_editing = true if can_edit && params[:edit].to_i == 1
+    @is_editing = true if can_edit && cookies[:is_editing] == '1'
+
+    if !@is_editing
+      cookies[:is_editing] = '0'
+      redirect_to_current_page_without_params if !params[:edit].blank?
+    end
+  end
+
+  def get_band_member
+    @is_band_member = !@current_user.blank?
+    bm = BandMember.find_by_user_id_and_artist_id(@current_user.id, @artist.id) if !@current_user.blank?
+    @is_band_member = (bm.blank?) ? false : true
   end
 
   def get_current_user_status

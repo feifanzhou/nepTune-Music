@@ -24,7 +24,6 @@ class StaticPagesController < ApplicationController
     
     set_user
     get_errors
-    logger.debug "Static pages user: #{ @user }"
     # @has_new_user = session[:did_create_new_user]
   end
 

@@ -45,14 +45,12 @@ module UsersHelper
   end
 
   def update_user_for_facebook_login(a_user, input)
-    logger.debug("Update with FBID user: #{ a_user.display_name }, fb_id: #{ input[:facebook_id] }")
     # a_user.facebook_id = input[:facebook_id].to_i
     # a_user.password = input[:password] if a_user.has_temp_password
     # a_user.save
 
     # update_column to bypass validation (was getting some issues with the password not being 6 characters)
     a_user.update_column(:facebook_id, input[:facebook_id])
-    logger.debug("Update user errors: #{ a_user.errors.full_messages }")
   end
 
   def user_exists_by_email(target_email)
@@ -64,16 +62,13 @@ module UsersHelper
   # This way, I can set other, hidden properties on the user like facebook_id
   # The use of this method in Logins#fb_login prompted this thought
   def create_user(params)
-    logger.debug("create_user with params #{ params }")
     input = params[:user]
     if input.blank?
       input = params[:login]
     end
-    logger.debug("create_user input #{ input }")
     # FB Login—check if email already exists
     # If it does, update user with Facebook ID and return
     # emUser = User.find_by_email(input[:email].downcase)
-    # logger.debug("emUser: #{ emUser }")
     # if !emUser.blank?
     #   update_user_for_facebook_login(emUser, input)
     #   save_user_to_cookie(emUser)
@@ -96,7 +91,6 @@ module UsersHelper
 
     # TODO: Show message if signing up with an email that already exists
     session[:new_user] = @user
-    logger.debug "Session user: #{ session[:new_user] }"
     if should_save && @user.save
       save_user_to_cookie(@user)
       if isArtist == 1
@@ -107,7 +101,6 @@ module UsersHelper
       if (!email.blank?)  # If they enter an existing email, sign them in
         @user = User.find_by_email(email)
         if @user
-          logger.debug "Found user for email: #{ email }"
           save_user_to_cookie(@user)
         end
       end
