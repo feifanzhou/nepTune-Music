@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 killall ruby
 killall redis-server
-git co develop
+git checkout develop
 git pull origin develop
 rake db:migrate
 
