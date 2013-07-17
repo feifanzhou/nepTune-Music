@@ -175,6 +175,9 @@
     float: right;
     position: relative;
     top: 7px;
+    .Icon {
+      font-family: $Zonda !important;   
+    }
     .dropdown-menu {
       width: 100px;
       li {
