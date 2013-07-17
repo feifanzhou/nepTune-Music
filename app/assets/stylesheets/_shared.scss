@@ -176,8 +176,9 @@
     position: relative;
     top: 7px;
     .dropdown-menu {
+      width: 100px;
       li {
-        padding: 2px 8px;
+        padding: 4px 8px;
         @include vendor-prefix('transition', 'background 0.25s');
         &:hover {
           background: $nepTuneOrange;
@@ -186,6 +187,10 @@
         }
         a {
           background: none;
+          color: inherit;
+          font-family: $OpenSans;
+          font-size: 16px;
+          font-weight: 600;
           padding: 0px;
           &:hover {
             background: none;
