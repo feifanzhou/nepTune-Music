@@ -13,7 +13,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :upvotes, :location, :user
+  attr_accessible :text, :upvotes, :location, :user, :comment_id
   after_initialize :defaults
 
   belongs_to :user

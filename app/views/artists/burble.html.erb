@@ -7,7 +7,10 @@
       @is_band_member, is_editing: @is_editing, is_following: @is_following %>
   <div class='DJAX XHidden' id='artistPageContent'>
 	<div class='row' id='burbleBody'>
-      <%= render 'layouts/all_comments', comments: @comments %>
+      <div class='span8'>
+        <%= render 'layouts/all_comments', comments: @comments %>
+      </div>
 	</div>
   </div>
 </div>  
+

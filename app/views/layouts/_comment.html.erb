@@ -1,5 +1,22 @@
-<div class="comment">
-  <%= comment.text %>
-  <%= render 'layouts/all_comments',
-      comments: comment.sorted_children %>
+<% if comment.parent %>
+<% c = "Comment" %>
+<% else %>
+<% c = "Comment-toplevel Comment" %>
+<% end %>
+<%= "<div class='#{c}'>".html_safe %>
+<div class="Comment-header">
+  ^ 
+  <div class="Username"> <%= comment.user.display_name %> </div>
+  <div class="Time">
+    <%= distance_of_time_in_words_to_now(comment.created_at)+" ago" %>
+  </div>
 </div>
+<div class="Comment-text">
+  <p>
+    <%= comment.text %>
+  </p>
+</div>
+<%= render 'layouts/all_comments',
+    comments: comment.sorted_children %>
+
+</div>   
