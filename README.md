@@ -1,7 +1,6 @@
-nepTune-Music
-=============
+# Karmonix
 
-# Initial setup
+## Initial setup
 Our app is currently routed through a ```beta``` subdomain, and will be deployed as such for the
 near future. Therefore, we have to map a ```beta``` subdomain on any main domain to ```localhost```
 to test on our system. This can be done by editing ```/etc/hosts```, which requires special
@@ -25,7 +24,7 @@ you ```cd``` to the Rails app's root directory, and run:
 This will create the proper database tables and fill them with sample database entries. This fill_db task is in ```lib/tasks/fill_db.rake``` if you want to check it out. 
 *Note that the fill_db rake task wipes the database when it runs to prevent problems with old associations and ids*. 
 
-# Easy server run
+## Easy server run
 Once you've performed the initial setup once, we have a script for quickly running the server. Just
 ```cd``` to the Rails app and then do:
 
@@ -37,14 +36,13 @@ Once you are done, to kill the servers, you can do:
 
     ./die
 
-
-# Navigation
+## Navigation
 
 Using this setup, you can access the app at ```beta.neptune.com:3000```. An artist's page is at
 ```beta.neptune.com:3000/thepianoguys```, and from there it links to other pages as well. 
 A proper home page is in the works.
 
-# Development workflow
+## Development workflow
 The ```master``` branch reflects what is currently deployed/in production. The ```develop``` branch
 is the central repository for our day-to-day development, and ```develop``` will get merged into
 ```master``` right before we push. This works for now, as we aren't pushing code live all that
