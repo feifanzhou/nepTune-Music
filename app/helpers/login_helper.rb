@@ -13,6 +13,10 @@ module LoginHelper
     return User.find_by_remember_token(cookies[:current_user])
   end
 
+  def json_to_path(path)
+    render json: { redir_path: path }, status: 200
+  end
+  
   def json_to_root
     render json: { redir_path: root_path }, status: 200
   end
