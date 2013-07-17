@@ -21,7 +21,7 @@ header {
 	@include AppHeader;
 }
 
-#artistPageContainer {
+#container {
 	background: $Txture;
 	height: 100%;
 	margin: auto;
@@ -189,6 +189,7 @@ header {
 						font-size: 24px;
 						font-weight: 400;
 						padding: 6px 0 6px 22px;
+						text-align: left;
 						transition: background-color 0.5s;
 						-webkit-transition: background-color 0.5s;
 						&:hover {
@@ -234,6 +235,7 @@ header {
 		margin-left: 240px;
 		overflow-y: scroll;
 		position: absolute;
+		text-align: left;
 		top: 60px;
 		white-space: nowrap;
 		width: 960px;

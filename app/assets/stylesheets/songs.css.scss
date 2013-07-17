@@ -9,6 +9,8 @@
 
 @import "bootstrap";
 
+@import "artists.css";
+
 body {
 	background: $Txture;
 }
@@ -17,7 +19,7 @@ header {
 	@include AppHeader;
 }
 
-#newSongContainer {
+#container {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
