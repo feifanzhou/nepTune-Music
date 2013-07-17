@@ -1,5 +1,5 @@
 <div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following  %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following, is_band_member: @is_band_member  %>
   <div class='DJAX XHidden' id='artistPageContent'>
 	<div class='AlbumArtMain'>
 		<%= image_tag @album.image.path, alt: @album.name, size: '500x500' %>
@@ -18,4 +18,4 @@
 	<div class='AlbumDetails'>
 		<p>Comments, shares, purchases, and stuff</p>
 	</div>
-</div>
+</div> 

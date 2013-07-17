@@ -9,6 +9,7 @@
 #  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  comment_id :integer
 #
 
 class Comment < ActiveRecord::Base
@@ -34,8 +35,18 @@ class Comment < ActiveRecord::Base
     self.comments
   end
 
-  # returns comments sorted so that top comments show first in list
-  def sorted_for_location(location)
-    Comment.where(location: location, parent: nil).sort { |a,b| b.created_at <=> a.created_at }
+  def sorted_children
+    self.children.sort { |a,b| a.created_at <=> b.created_at }
   end
+
+  # returns comments sorted so that top comments show first in list
+  def self.sorted_for_location(location)
+    opts = {location: location, comment_id: nil}
+    if not location
+      opts.delete(location)
+    end
+    Comment.where(opts).sort { |a,b| b.created_at <=> a.created_at }
+  end
+
+
 end

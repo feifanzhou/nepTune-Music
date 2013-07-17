@@ -20,6 +20,10 @@ class ArtistsController < ApplicationController
   def music
   end
 
+  def burble
+    @comments = Comment.sorted_for_location(nil)
+  end
+
   def events
     @events = @artist.events.sort_by! { |e| e.start_at }
   end

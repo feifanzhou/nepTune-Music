@@ -1,0 +1,5 @@
+<div class="comment">
+  <%= comment.text %>
+  <%= render 'layouts/all_comments',
+      comments: comment.sorted_children %>
+</div>
