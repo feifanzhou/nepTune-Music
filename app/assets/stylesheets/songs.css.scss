@@ -9,6 +9,8 @@
 
 @import "bootstrap";
 
+@import "artists.css";
+
 body {
 	background: $Txture;
 }
@@ -17,17 +19,19 @@ header {
 	@include AppHeader;
 }
 
-#newSongContainer {
+#container {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
 	margin-right: 0;
-	text-align: center;
 	width: 960px;
 	#newSongFeedback {
 		display: none;
 		margin: 24px auto auto auto;
 		width: 486px;
+	}
+	#newSongContainer {
+		text-align: center;
 	}
 	#newSong {
 		display: inline-block;

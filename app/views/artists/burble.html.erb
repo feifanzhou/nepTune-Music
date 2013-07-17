@@ -2,8 +2,9 @@
   <%= render 'layouts/app_header' %>
   <%= render 'layouts/playbar' %>
 </header>
-<div id='artistPageContainer'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 4, is_band_member:             @is_band_member, is_editing: @is_editing, is_following: @is_following %>
+<div id='container'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 4, is_band_member:            
+      @is_band_member, is_editing: @is_editing, is_following: @is_following %>
   <div class='DJAX XHidden' id='artistPageContent'>
 	<div class='row' id='burbleBody'>
       <%= render 'layouts/all_comments', comments: @comments %>

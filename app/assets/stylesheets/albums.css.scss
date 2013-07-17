@@ -87,12 +87,14 @@ header {
 	}
 }
 
-#newAlbumContainer {
+#container {
 	@include AppContentLayerShadow;
 	background: $Txture;
 	bottom: 0;
-	text-align: center;
 	width: 960px;
+	#newAlbumContainer {
+		text-align: center;
+	}
 	#newAlbumInfo {
 		display: inline-block;
 		width: 300px;
