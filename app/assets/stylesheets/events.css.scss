@@ -109,6 +109,30 @@ header {
             font-weight: 400;
           }
         }
+        #inviteSelect {
+          display: none;
+          padding: 0;
+          .SelectFollower {
+            border-radius: 4px;
+            padding: 8px;
+            width: 70px;
+            // @include vendor-prefix(transition, outline 0.5s);
+            @include vendor-prefix(transition, background 0.25s);
+            &:hover {
+              cursor: pointer;
+            }
+            &.Selected {
+              // outline: 2px solid transparentize($nepTuneOrange, 0.5);
+              background: transparentize($nepTuneOrange, 0.75);
+            }
+            .SelectFollowerName {
+              font-size: 12px;
+              font-weight: 400;
+              margin: 4px auto 0 auto;
+              text-align: center;
+            }
+          }
+        }
       }
     }
   }

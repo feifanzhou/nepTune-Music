@@ -14,11 +14,23 @@
           <button class="btn InviteToggle" id='inviteNoOne'>No one</button>
           <button class="btn InviteToggle" id='inviteTopFans'>Top fans</button>
           <button class="btn InviteToggle" id='inviteChoose'>Choose:</button>
+          <!-- TODO: Add 'Email' option -->
         </div>
         <div class='btn-group-label' id='inviteExplanation'>
           <p id='inviteNoOneLabel'>No one will be sent an invitation. However, this event will still show up in your followers' Burble.</p>
           <p id='inviteTopFansLabel'>Your top fans will be sent an invitation. This event will also show up in all your followers' Burble.</p>
           <p id='inviteChooseLabel'>Choose which followers you want to invite to this event.</p>
+        </div>
+        <div id='inviteSelect'>
+          <!-- TODO: Load followers via AJAX, when requested -->
+          <% @followers.each do |f| %>
+          <% puts "===== follower: #{ f.email } =====" %>
+            <div class='SelectFollower'>
+              <!-- <img src='<%= f.avatar.url %>'  /> -->
+              <%= image_tag f.avatar.url %>
+              <p class='SelectFollowerName'><%= f.display_name %></p>
+            </div>
+          <% end %>
         </div>
       </div>
       <div class="m-footer">

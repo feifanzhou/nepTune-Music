@@ -143,9 +143,6 @@ function triggerInviteModal() {
 $('body').on('click', '#invitePrompt', function() {
   triggerInviteModal();  
 });
-$('#invitePrompt').click(function() {
-  triggerInviteModal();
-});
 $('body').on('click', '.ModalDismiss', function() {
   $('#backdrop').removeClass('In');
   $('#inviteModal').removeClass('In');
@@ -156,10 +153,16 @@ function inviteToggleClicked(toggle) {
   var t_id = $(toggle).attr('id');
   var l_id = t_id + 'Label';
   $('#' + l_id).css('display', 'block');
+
+  if (t_id != 'inviteNoOne')
+    $('#inviteSelect').slideDown();
+  else
+    $('#inviteSelect').slideUp();
 }
-$('.InviteToggle').click(function() {
-  inviteToggleClicked($(this));
-});
 $('body').on('click', '.InviteToggle', function() {
   inviteToggleClicked($(this));
+});
+
+$('body').on('click', '.SelectFollower', function() {
+  $(this).toggleClass('Selected');
 });
