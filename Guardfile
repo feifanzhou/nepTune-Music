@@ -25,6 +25,17 @@ end
 
 puts os
 
+if os == :macosx # feifan (and bobby?)
+  guard 'livereload', grace_period: 0 do
+    watch(%r{app/views/.+\.(erb|haml|slim)$})
+    watch(%r{app/helpers/.+\.rb})
+    watch(%r{public/.+\.(css|js|html)})
+    watch(%r{config/locales/.+\.yml})
+    # Rails Assets Pipeline
+    watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
+  end
+end
+
 if os == :linux # for Pierre
   notification :libnotify
 end
@@ -67,16 +78,4 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch(%r{spec/support/(.+)\.rb}) { :rspec }
   watch('test/test_helper.rb') { :test_unit }
   watch(%r{features/support/}) { :cucumber }
-end
-
-
-if os == :macosx # feifan (and bobby?)
-  guard 'livereload', grace_period: 0 do
-    watch(%r{app/views/.+\.(erb|haml|slim)$})
-    watch(%r{app/helpers/.+\.rb})
-    watch(%r{public/.+\.(css|js|html)})
-    watch(%r{config/locales/.+\.yml})
-    # Rails Assets Pipeline
-    watch(%r{(app|vendor)(/assets/\w+/(.+\.(css|js|html))).*}) { |m| "/assets/#{m[3]}" }
-  end
 end

@@ -9,7 +9,17 @@
     <div id='backdrop'></div>
     <div class="" id='inviteModal'>
       <div class="m-body">
-        <p>Modal body</p>
+        <h3>Invite people</h3>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button class="btn InviteToggle" id='inviteNoOne'>No one</button>
+          <button class="btn InviteToggle" id='inviteTopFans'>Top fans</button>
+          <button class="btn InviteToggle" id='inviteChoose'>Choose:</button>
+        </div>
+        <div class='btn-group-label' id='inviteExplanation'>
+          <p id='inviteNoOneLabel'>No one will be sent an invitation. However, this event will still show up in your followers' Burble.</p>
+          <p id='inviteTopFansLabel'>Your top fans will be sent an invitation. This event will also show up in all your followers' Burble.</p>
+          <p id='inviteChooseLabel'>Choose which followers you want to invite to this event.</p>
+        </div>
       </div>
       <div class="m-footer">
         <p id='inviteFollowers'>Your followers and subscribers will see this event in their Burble.<br />They can share this event with their friends.</p>

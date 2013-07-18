@@ -150,3 +150,16 @@ $('body').on('click', '.ModalDismiss', function() {
   $('#backdrop').removeClass('In');
   $('#inviteModal').removeClass('In');
 });
+
+function inviteToggleClicked(toggle) {
+  $('.btn-group-label > p').css('display', 'none');
+  var t_id = $(toggle).attr('id');
+  var l_id = t_id + 'Label';
+  $('#' + l_id).css('display', 'block');
+}
+$('.InviteToggle').click(function() {
+  inviteToggleClicked($(this));
+});
+$('body').on('click', '.InviteToggle', function() {
+  inviteToggleClicked($(this));
+});

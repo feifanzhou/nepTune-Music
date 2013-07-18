@@ -90,6 +90,26 @@ header {
     #inviteModal {
       @include Modal;
       padding: 0;
+      .m-body {
+        h3 {
+          margin-top: 0;
+        }
+        .btn-group {
+          padding: 0;
+        }
+        .btn-group-label {
+          display: inline-block;
+          position: relative;
+          vertical-align: top;
+          width: 270px;
+          p {
+            color: transparentize(black, 0.25);
+            display: none;
+            font-size: 12px;
+            font-weight: 400;
+          }
+        }
+      }
     }
   }
 

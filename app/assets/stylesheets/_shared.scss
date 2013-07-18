@@ -274,6 +274,9 @@
   -moz-background-clip: padding-box;
   background-clip: padding-box;
   outline: none;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $OpenSans;
+  }
   .m-header {
     padding: 9px 15px;
     border-bottom: 1px solid #eee;
