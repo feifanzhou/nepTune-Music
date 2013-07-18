@@ -8,6 +8,7 @@
   <div class='DJAX XHidden' id='artistPageContent'>
 	<div class='row' id='burbleBody'>
       <div class='span8'>
+        <%= render 'layouts/comment_box', reply_id: nil %>
         <%= render 'layouts/all_comments', comments: @comments %>
       </div>
 	</div>

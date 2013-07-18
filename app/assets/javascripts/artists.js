@@ -142,7 +142,7 @@ function togglePause(url) {
 
 // $(function() {
 //     primeClick();
-// }); 
+// });
 
 function returnToMusicGrid() {
     $('#musicGridContainer').removeClass('MusicGridDetails');
@@ -462,7 +462,7 @@ $(window).bind('djaxLoad', function() {
   $('#upload_target').on('load.upload', function() {
       console.log('djax load bound upload target');
       upload_target_loaded();
-  }); 
+  });
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
     var se = "<div class='SliderElement' id='gallery" + index + "'>";
@@ -698,3 +698,20 @@ $('.Datepicker').datetimepicker({
 $('body').on('click', '#finishEventButton', function() {
   $('#new_event').submit();
 });
+
+
+$('body').on('click', ".Comment-form > .buttons > #submit", function() {
+    $(this).parent().parent().find('#new_comment').submit();
+});
+
+$('body').on('click', ".Comment-form > .buttons > #cancel", function() {
+    $(this).parent().parent().parent().hide();
+});
+
+function reply_to(a) {
+    comment = $(a).parent().parent()
+    parent_id = comment.attr("data-id");
+    r = comment.find('> .Reply');
+    r.show();
+//    r.css("display", "block");
+}
