@@ -13,7 +13,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :upvotes, :location, :user, :comment_id
+  attr_accessible :text, :upvotes, :location, :user, :parent
   after_initialize :defaults
 
   belongs_to :user
@@ -29,6 +29,10 @@ class Comment < ActiveRecord::Base
 
   def parent
     self.comment
+  end
+
+  def parent=(p)
+    self.comment = p
   end
 
   def children
