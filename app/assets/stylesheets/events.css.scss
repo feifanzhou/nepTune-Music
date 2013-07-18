@@ -6,6 +6,7 @@
 @import "variables";
 @import "shared";
 
+@import "custom_bootstrap";
 @import "bootstrap";
 
 html {
@@ -71,6 +72,24 @@ header {
           white-space: nowrap;
         }
       }
+    }
+    #invite {
+      border-top: 2px groove #333;
+      padding-top: 12px;
+      p {
+        color: $inactiveWhite;
+        font-size: 13px;
+        font-weight: 600;
+        @include vendor-prefix(transition, color 0.25s);
+        &:hover {
+          color: $white;
+          cursor: pointer;
+        }
+      }
+    }
+    #inviteModal {
+      @include Modal;
+      padding: 0;
     }
   }
 

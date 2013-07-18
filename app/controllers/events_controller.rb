@@ -10,6 +10,13 @@ class EventsController < ApplicationController
     @curr_user = current_user
     # @attendee = Attendee.find_by_user_id_and_event_id(@curr_user.id, @event.id)
     @date_string = @event.display_time_string
+    if !@curr_user.blank?
+      creator = @event.creator
+      bm = BandMember.find_by_user_id_and_artist_id(@curr_user.id, creator.id)
+      @is_bm = (bm.blank?) ? false : true
+    else
+      @is_bm = false
+    end
   end
 
   def create

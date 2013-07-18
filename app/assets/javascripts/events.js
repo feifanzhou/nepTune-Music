@@ -100,11 +100,11 @@ $('#startPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
-setDefaultPickerTime('start');
+var is_editing_cookie = readCookie('is_editing');
+if (is_editing_cookie == '1')
+  setDefaultPickerTime('start');
 
 $('#startPicker').on('changeDate', function(e) {
-  console.log('startTime change');
-  console.log(e.date.toString());
   var startTime = $('#startTime').val();
   $.ajax({
     url: '/events/' + getEventIDFromURL(),
@@ -120,11 +120,10 @@ $('#endPicker').datetimepicker({
   language: 'en',
   pick12HourFormat: true
 });
-setDefaultPickerTime('end');
+if (is_editing_cookie == '1')
+  setDefaultPickerTime('end');
 
 $('#endPicker').on('changeDate', function(e) {
-  console.log('endTime change');
-  console.log(e.date.toString());
   var startTime = $('#endTime').val();
   $.ajax({
     url: '/events/' + getEventIDFromURL(),
@@ -134,4 +133,20 @@ $('#endPicker').on('changeDate', function(e) {
       console.log('Successfully updated event end');
     }
   });
+});
+
+// TODO: Refactor modal trigger into shared
+function triggerInviteModal() {
+  $('#backdrop').addClass('In');
+  $('#inviteModal').addClass('In');
+}
+$('body').on('click', '#invitePrompt', function() {
+  triggerInviteModal();  
+});
+$('#invitePrompt').click(function() {
+  triggerInviteModal();
+});
+$('body').on('click', '.ModalDismiss', function() {
+  $('#backdrop').removeClass('In');
+  $('#inviteModal').removeClass('In');
 });

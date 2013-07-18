@@ -5,7 +5,18 @@
 
 <div id='container' class='DJAX m-body'>
   <div class='DJAX' id='attendeesListBar'>
-  <%= render 'layouts/attendees_list', event: @event %>
+  <%= render 'layouts/attendees_list', event: @event, can_invite: @is_bm %>
+    <div id='backdrop'></div>
+    <div class="" id='inviteModal'>
+      <div class="m-body">
+        <p>Modal body</p>
+      </div>
+      <div class="m-footer">
+        <p id='inviteFollowers'>Your followers and subscribers will see this event in their Burble.<br />They can share this event with their friends.</p>
+        <a href="#" class="btn ModalDismiss" id='cancelCreateEventButton'>Cancel</a>
+        <a href="#" class="btn btn-primary" id='finishEventButton'>Invite selected</a>
+      </div>
+    </div>
   </div>
 
   <div class='DJAX' id='eventInfo'>
