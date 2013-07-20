@@ -182,22 +182,23 @@ header {
           }
         }
         #eventResponse {
-          background: transparentize(gray, 0.25);
-          border-radius: 6px;
+          color: transparentize(black, 0.5);
           display: inline-block;
           float: right;
           margin: 8px;
           padding: 6px;
-          .EventResponseAction {
-            color: $inactiveWhite;
-            font-family: $OpenSans;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 6px 12px;
-            width: 100px;
-            &:hover {
-              color: $partialActiveWhite;
-              cursor: pointer;
+          top: -4px;
+          .btn {
+            color: inherit;
+            &.SelectedButton {
+              color: transparentize(black, 0.15);
+            }
+            a {
+              color: inherit;
+              text-decoration: none;
+              &:hover {
+                color: inherit;
+              }
             }
           }
         }

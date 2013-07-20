@@ -14,6 +14,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree ../../../vendor/assets/javascripts/.
-//= require_tree .
 //= require bootstrap
+//= require_tree .
 //= require retina_tag

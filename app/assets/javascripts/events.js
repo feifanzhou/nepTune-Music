@@ -1,3 +1,5 @@
+$('.SelectedButton').button('toggle');
+
 function event_status_trigger_success(trigger) {
   // TODO: Get current user id from item's data attribute
   console.log('event status trigger success');

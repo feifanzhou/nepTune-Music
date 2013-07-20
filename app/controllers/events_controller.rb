@@ -18,6 +18,8 @@ class EventsController < ApplicationController
       @is_bm = false
     end
     @followers = @creator.followers.map(&:user)
+    attendee = Attendee.find_by_user_id_and_event_id(@curr_user.id, @event.id)
+    @going_status = (attendee.blank?) ? :none : attendee.status
   end
 
   def create
