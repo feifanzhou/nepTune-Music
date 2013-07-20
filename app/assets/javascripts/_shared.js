@@ -1,4 +1,4 @@
-$('body').djax('.DJAX', ['login', 'logout', '#']);
+// $('body').djax('.DJAX', ['login', 'logout', '#']);
 
 function createCookie(name, value, days) {
     if (days) {

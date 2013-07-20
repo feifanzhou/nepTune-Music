@@ -1,11 +1,14 @@
 $('.SelectedButton').button('toggle');
 
 function event_status_trigger_success(trigger) {
-  // TODO: Get current user id from item's data attribute
-  console.log('event status trigger success');
-  var uID = 1;
+  $('.SelectedButton').button('toggle');
+  var uID = $(trigger).data('userid');
   var liID = '#' + 'attendeeUser' + uID;
-  var destListID = '#' + $(trigger).data('status') + 'List';
+  var newStatus = $(trigger).data('status');
+  var destListID = '#' + newStatus + 'List';
+  $('.SelectedButton').removeClass('SelectedButton');
+  $('#' + newStatus + 'Button').addClass('SelectedButton');
+  $('.SelectedButton').button('toggle');
   $(liID).animate({
     marginLeft: '-300px'
   }, 400, function() {

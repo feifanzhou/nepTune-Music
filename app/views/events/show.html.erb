@@ -72,12 +72,12 @@
           <!-- TODO: Include current user id in link path -->
           <!-- TODO: Check current user's status, and change button status accordingly (may set status in :invited rather than :going or :maybe) -->
           <% going_class = (@going_status == :going) ? 'EventStatusTrigger SelectedStatus' : 'EventStatusTrigger' %>
-          <button class='btn <%= "SelectedButton" if @going_status == :going %>'>
-            <%= link_to "Going", join_event_path(@event, status: :going), remote: true, data: { status: 'going' }, class: going_class %>
+          <button class='btn <%= "SelectedButton" if @going_status == :going %>' id='goingButton'>
+            <%= link_to "Going", join_event_path(@event, status: :going), remote: true, data: { userid: @curr_user.id, status: 'going' }, class: going_class %>
           </button>
           <% maybe_class = (@going_status == :maybe) ? 'EventStatusTrigger SelectedStatus' : 'EventStatusTrigger' %>
-          <button class='btn <%= "SelectedButton" if @going_status == :maybe %>'>
-          <%= link_to "Maybe", join_event_path(@event, status: :maybe), remote: true, data: { status: 'maybe' }, class: maybe_class %>
+          <button class='btn <%= "SelectedButton" if @going_status == :maybe %>' id='maybeButton'>
+          <%= link_to "Maybe", join_event_path(@event, status: :maybe), remote: true, data: { userid: @curr_user.id, status: 'maybe' }, class: maybe_class %>
           </button>
         </div>
       </div>
