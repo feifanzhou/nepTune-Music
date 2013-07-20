@@ -28,6 +28,10 @@
     <% event.invited.each do |p| %>
     <li id="attendeeUser<%= p.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= p.fname %> <%= p.lname %></p></li>
     <% end %>
+    <!-- Create li item for current user, so the user can join event -->
+    <% if going_status == :none %>
+      <li class='ReserveAttendee' id="attendeeUser<%= curr_user.id %>"><%= image_tag 'team_bobby.jpg', size: '30x30', class: 'AttendeePhoto' %><p class='AttendeeName'><%= curr_user.display_name %></p></li>
+    <% end %>
   </ul>
 </div>
 <div id='invite'>

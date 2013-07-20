@@ -53,6 +53,9 @@ header {
         height: 40px;
         overflow: hidden;
         position: relative;
+        &.ReserveAttendee {
+          display: none;
+        }
         .AttendeePhoto {
           display: inline-block;
           left: 0;
@@ -193,6 +196,18 @@ header {
             padding: 0;
             &.SelectedButton {
               color: transparentize(black, 0.15);
+              .EventStatusTrigger {
+                display: none;
+              }
+              .EventLeaveTrigger {
+                display: inline-block;
+              }
+            }
+            .EventStatusTrigger {
+              display: inline-block;
+            }
+            .EventLeaveTrigger {
+              display: none;
             }
             a {
               color: inherit;

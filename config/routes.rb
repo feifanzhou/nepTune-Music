@@ -49,7 +49,7 @@ NeptuneMusic::Application.routes.draw do
     match '/:artistname/events/new', to: 'events#new', as: :new_event_for_artist
 
     match '/event/:id/join', to: 'attendees#join', as: :join_event
-
+    match '/event/:id/leave', to: 'attendees#leave', as: :leave_event
 
   end
 
