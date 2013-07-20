@@ -190,12 +190,17 @@ header {
           top: -4px;
           .btn {
             color: inherit;
+            padding: 0;
             &.SelectedButton {
               color: transparentize(black, 0.15);
             }
             a {
               color: inherit;
+              display: inline-block;
+              height: 28px;
+              line-height: 28px;
               text-decoration: none;
+              width: 62px;
               &:hover {
                 color: inherit;
               }
