@@ -163,6 +163,10 @@ $('body').on('click', '.InviteToggle', function() {
   inviteToggleClicked($(this));
 });
 
+var selectedFollowerIDs = new Array();
 $('body').on('click', '.SelectFollower', function() {
   $(this).toggleClass('Selected');
+  var s_id = $(this).attr('id');
+  s_id = s_id.substring(8);
+  selectedFollowerIDs.push(s_id);
 });

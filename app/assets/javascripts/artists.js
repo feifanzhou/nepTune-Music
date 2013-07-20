@@ -306,12 +306,11 @@ function sliderNavClick(n) {
   location.hash = ('#' + hash);
   return false;
 }
-$('body').on('click', '.SliderNav', function() {
-// $('.SliderNav').click(function() {
+$('body').on('click.nav', '.SliderNav', function() {
   sliderNavClick($(this));
 });
 $(window).bind('djaxLoad', function() {
-  $('.SliderNav').click(function() {
+  $('body').off('.nav').on('click.nav', '.SliderNav', function() {
     sliderNavClick($(this));
   });
 });

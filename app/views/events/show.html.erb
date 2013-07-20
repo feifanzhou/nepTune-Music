@@ -25,7 +25,7 @@
           <!-- TODO: Load followers via AJAX, when requested -->
           <% @followers.each do |f| %>
           <% puts "===== follower: #{ f.email } =====" %>
-            <div class='SelectFollower'>
+            <div class='SelectFollower' id='follower<%= f.id %>'>
               <!-- <img src='<%= f.avatar.url %>'  /> -->
               <%= image_tag f.avatar.url %>
               <p class='SelectFollowerName'><%= f.display_name %></p>
