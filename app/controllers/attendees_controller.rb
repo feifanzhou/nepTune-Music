@@ -5,7 +5,7 @@ class AttendeesController < ApplicationController
     # Use currently signed in user, or user param if available
     # This way, we can send 'accept' links in emails and such
     a = get_attendee
-    a = Attendee.create(user: @user, event: @event)
+    a = Attendee.create(user: @user, event: @event) if a.blank?
     a.status = params[:status]
     a.save
     respond_to do |format|  

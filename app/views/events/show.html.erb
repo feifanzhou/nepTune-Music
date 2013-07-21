@@ -77,7 +77,7 @@
           </button>
           <button class='btn <%= "SelectedButton" if @going_status == :maybe %>' id='maybeButton'>
           <%= link_to "Maybe", join_event_path(@event, status: :maybe), remote: true, data: { userid: @curr_user.id, status: 'maybe' }, class: 'EventStatusTrigger' %>
-          <%= link_to "Maybe", leave_event_path(@event), remote: true, data: { userid: @curr_user.id, currstatus: 'going' }, class: 'EventLeaveTrigger' %>
+          <%= link_to "Maybe", leave_event_path(@event), remote: true, data: { userid: @curr_user.id, currstatus: 'maybe' }, class: 'EventLeaveTrigger' %>
           </button>
         </div>
       </div>
