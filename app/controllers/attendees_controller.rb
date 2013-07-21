@@ -10,7 +10,7 @@ class AttendeesController < ApplicationController
     a.save
     respond_to do |format|  
       format.html { redirect_to(@event) }  
-      format.js   { render :nothing => true }  
+      format.js   { render json: { success: 1 } }
     end
   end
 
@@ -19,7 +19,7 @@ class AttendeesController < ApplicationController
     a.destroy
     respond_to do |format|
       format.html { redirect_to(@event) }
-      format.js   { render :nothing => true }
+      format.js   { render json: { success: 1 } }
     end
   end
 

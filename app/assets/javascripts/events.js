@@ -21,14 +21,31 @@ function event_status_trigger_success(trigger) {
     }, 400);
   });
 }
-$('.EventStatusTrigger').bind('ajax:success', function() {
-  event_status_trigger_success($(this));
-});
-$(window).bind('djaxLoad', function() {
-  $('.EventStatusTrigger').bind('ajax:success', function() {
-    event_status_trigger_success($(this));
+$('body').on('click', '.EventStatusTrigger', function(event) {
+  console.log('EventStatusTrigger click');
+  event.preventDefault();
+  var trigger = $(this);
+  var url = $(this).attr('href');
+  $.ajax({
+    dataType: 'json',
+    type: 'POST',
+    url: url,
+    success: function(resp) {
+      console.log('resp: ' + resp.success);
+      if (resp.success == 1)
+        event_status_trigger_success(trigger);
+    }
   });
+  return false;
 });
+// $('.EventStatusTrigger').bind('ajax:success', function() {
+//   event_status_trigger_success($(this));
+// });
+// $(window).bind('djaxLoad', function() {
+//   $('.EventStatusTrigger').bind('ajax:success', function() {
+//     event_status_trigger_success($(this));
+//   });
+// });
 
 function leave_event_trigger_success(trigger) {
   var buttonID = '#' + $(trigger).data('currstatus') + 'Button';
@@ -44,14 +61,30 @@ function leave_event_trigger_success(trigger) {
     });
   });
 }
-$('.EventLeaveTrigger').bind('ajax:success', function() {
-  leave_event_trigger_success($(this));
-});
-$(window).bind('djaxLoad', function() {
-  $('.EventLeaveTrigger').bind('ajax:success', function() {
-    leave_event_trigger_success($(this));
+$('body').on('click', '.EventLeaveTrigger', function(event) {
+  console.log('EventLeaveTrigger click');
+  event.preventDefault();
+  var trigger = $(this);
+  var url = $(this).attr('href');
+  $.ajax({
+    dataType: 'json',
+    type: 'POST',
+    url: url,
+    success: function(resp) {
+      if (resp.success == 1)
+        leave_event_trigger_success(trigger);
+    }
   });
+  return false;
 });
+// $('.EventLeaveTrigger').bind('ajax:success', function() {
+//   leave_event_trigger_success($(this));
+// });
+// $(window).bind('djaxLoad', function() {
+//   $('.EventLeaveTrigger').bind('ajax:success', function() {
+//     leave_event_trigger_success($(this));
+//   });
+// });
 
 
 /***** Editing functionality *****/
