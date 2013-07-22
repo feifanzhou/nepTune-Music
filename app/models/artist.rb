@@ -58,6 +58,10 @@ class Artist < ActiveRecord::Base
     return true		# Every artist…is an artist
   end
 
+  def is_headless
+    return self.route.blank?
+  end
+
   def media_for_location(loc)
     return Media.where(media_holder_id: self.id, location: loc.to_s).order('collection_order ASC')
   end
