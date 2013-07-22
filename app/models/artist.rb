@@ -13,12 +13,13 @@
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  route               :string(255)
 #
 
 class Artist < ActiveRecord::Base
   # attr_accessible :title, :body
 
-  attr_accessible :artistname, :story
+  attr_accessible :artistname, :story, :route, :contact_info
 
   has_attached_file :avatar, s3_protocol: 'http'
 

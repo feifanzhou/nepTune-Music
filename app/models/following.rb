@@ -2,12 +2,12 @@
 #
 # Table name: followings
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  artist_id    :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  is_following :boolean
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  target_id  :integer
+#  user_id    :integer
+#  artist_id  :integer
 #
 
 class Following < ActiveRecord::Base

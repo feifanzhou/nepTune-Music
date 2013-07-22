@@ -7,8 +7,6 @@
 #  updated_at :datetime         not null
 #
 
-require 'spec_helper'
-
-describe Influences do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Influences < ActiveRecord::Base
+  # attr_accessible :title, :body
 end

@@ -35,7 +35,7 @@ function changePlayButton(name) {
     return n;
 }
 
-function playStuff(url) {
+function playStuff(url, name) {
     // Ready to use; soundManager.createSound() etc. can now be called.
     //alert('ready!');
     soundManager.destroySound('sound');
@@ -50,7 +50,7 @@ function playStuff(url) {
     });
     mySound.play();
     currentSound = mySound;
-    var name = $('#detailsHeaderTitle').html();
+    // var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
     $('#playbar').css('display', 'inline-block');
 }

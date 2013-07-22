@@ -35,6 +35,8 @@ class User < ActiveRecord::Base
   has_many :play_counts
   has_many :media, through: :play_counts
   has_many :comments
+  has_many :band_members
+  has_many :artists, through: :band_members
 
   has_many :inverse_followings, :class_name => "Following", :foreign_key => "user_id"
   has_many :inverse_followers, :through => :inverse_followings, :source => :user

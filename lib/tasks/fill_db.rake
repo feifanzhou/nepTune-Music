@@ -18,7 +18,7 @@ namespace :admin do
     u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar')
 
     puts "Discovering artists..."
-    jon = Artist.new(artistname: 'thepianoguys')
+    jon = Artist.new(artistname: 'The Piano Guys', route: 'thepianoguys')
     jon.story = """Paul Anderson owned a piano shop in St. George, Utah.
 He met musician Jon Schmidt as the latter walked in to ask
 if he could practice there for an upcoming concert.
