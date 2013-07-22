@@ -96,12 +96,10 @@ class LoginController < ApplicationController
     end
     sign_out
     # errors = create_user(params)
-    results = create_user(params)
+    user = create_user(params)
 
-    # FIXME: Is @user ever defined
-    # if @user.errors.blank?
-    if results.blank?
-      (params[:user][:isArtist].to_i == 1) ? redirect_to(artist_about_path(params[:user][:artistname], edit: 1)) : redirect_to(root_path)
+    if user.valid?
+      user.isArtist ? redirect_to(artist_about_path(user.artists[0].route, edit: 1)) : redirect_to(root_path)
     else
       render "login"
     end

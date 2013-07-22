@@ -57,47 +57,39 @@ module UsersHelper
     return !(User.find_by_email(target_email).blank?)
   end
 
+  def route_from_artistname(name)
+    regexp = %r{[^a-z0-9\-._~#\[\]@!$&()*+,;]}
+    name.strip.downcase.gsub(" ", "_").gsub(regexp, "")
+  end
 
-  # TODO: I feel like this method should return the user, and there should be another method that saves and logins in etc.
-  # This way, I can set other, hidden properties on the user like facebook_id
-  # The use of this method in Logins#fb_login prompted this thought
   def create_user(params)
     input = params[:user]
     if input.blank?
       input = params[:login]
     end
-    # FB Login—check if email already exists
-    # If it does, update user with Facebook ID and return
-    # emUser = User.find_by_email(input[:email].downcase)
-    # if !emUser.blank?
-    #   update_user_for_facebook_login(emUser, input)
-    #   save_user_to_cookie(emUser)
-    #   return true
-    # end
-    # ?? Above could be written as
-    # update_user_with_facebook_id(emUser, input[:facebook_id]) if !emUser.blank? and return
 
     fullAccountCreate = input[:fullAccountCreate].to_i
-    # if fullAccountCreate and !emUser.blank? # Signing up when email already exists
-    #   flash[:login_error] = "You're already registered! Sign in below"
-    # end
+
     isArtist = input[:isArtist].to_i
-    # @user = (isArtist == 1) ? Artist.new(input.except(:fullAccountCreate)) : User.new(input.except(:fullAccountCreate, :username))
+
     @user = User.new(input.except(:fullAccountCreate, :artistname))
+    @user.isArtist = (isArtist == 1)
 
     should_save = @user.valid?
 
     # TODO: check for artist name duplicates
 
-    # TODO: Show message if signing up with an email that already exists
     session[:new_user] = @user.id
     if should_save && @user.save
       save_user_to_cookie(@user)
       if isArtist == 1
-        artist = Artist.create(:artistname => input[:artistname])
+        route = route_from_artistname(input[:artistname])
+        contact_info = ContactInfo.create
+        artist = Artist.create(artistname: input[:artistname], route: route, contact_info: contact_info)
         member = BandMember.create(user_id: @user.id, artist_id: artist.id)
       end
     elsif fullAccountCreate.blank? or fullAccountCreate == 0
+      # TODO: This is an awful security hole. Needs to be fixed!
       if (!email.blank?)  # If they enter an existing email, sign them in
         @user = User.find_by_email(email)
         if @user
@@ -106,6 +98,6 @@ module UsersHelper
       end
     end
 
-    return @user.errors
+    return @user
   end
 end

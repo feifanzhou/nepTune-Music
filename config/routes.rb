@@ -32,22 +32,22 @@ NeptuneMusic::Application.routes.draw do
     post "/changepw" => 'login#change_password', as: :changepw
 
     match '/upload', to: 'users#upload', as: :upload
-    post '/:artistname/update_content', to: 'artists#update_content', as: :update_content
-    post '/:artistname/remove_media', to: 'artists#remove_media', as: :remove_media
+    post '/:artist_route/update_content', to: 'artists#update_content', as: :update_content
+    post '/:artist_route/remove_media', to: 'artists#remove_media', as: :remove_media
 
     match '/json/album_name_suggestions', to: 'albums#album_name_suggestions', as: :album_name_suggestions
 
-    match '/:artistname', to: 'artists#show', as: :artist_main
-    match '/:artistname/about', to: 'artists#about', as: :artist_about
-    match '/:artistname/music', to: 'artists#music', as: :artist_music
-    match '/:artistname/events', to: 'artists#events', as: :artist_events
-    match '/:artistname/burble', to: 'artists#burble', as: :artist_burble
-    match '/:artistname/fans', to: 'artists#fans', as: :artist_fans
-    match '/:artistname/albums/new', to: 'albums#new', as: :new_album_for_artist
-    match '/:artistname/albums/:album', to: 'albums#show', as: :album_for_artist
-    match '/:artistname/songs/new', to: 'songs#new', as: :new_song_for_artist
-    match '/:artistname/songs/:song', to: 'songs#show', as: :song_for_artist
-    match '/:artistname/events/new', to: 'events#new', as: :new_event_for_artist
+    match '/:artist_route', to: 'artists#show', as: :artist_main
+    match '/:artist_route/about', to: 'artists#about', as: :artist_about
+    match '/:artist_route/music', to: 'artists#music', as: :artist_music
+    match '/:artist_route/events', to: 'artists#events', as: :artist_events
+    match '/:artist_route/burble', to: 'artists#burble', as: :artist_burble
+    match '/:artist_route/fans', to: 'artists#fans', as: :artist_fans
+    match '/:artist_route/albums/new', to: 'albums#new', as: :new_album_for_artist
+    match '/:artist_route/albums/:album', to: 'albums#show', as: :album_for_artist
+    match '/:artist_route/songs/new', to: 'songs#new', as: :new_song_for_artist
+    match '/:artist_route/songs/:song', to: 'songs#show', as: :song_for_artist
+    match '/:artist_route/events/new', to: 'events#new', as: :new_event_for_artist
 
     match '/event/:id/join', to: 'attendees#join', as: :join_event
     match '/event/:id/leave', to: 'attendees#leave', as: :leave_event
