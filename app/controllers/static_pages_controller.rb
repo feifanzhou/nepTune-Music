@@ -3,9 +3,9 @@ class StaticPagesController < ApplicationController
 
   def set_user
     if cookies[:new_user]
-      @user = User.find_by_id(cookies[:new_user])
+      @user = User.find(cookies[:new_user])
     elsif session[:new_user]
-      @user = session[:new_user]
+      @user = User.find(session[:new_user])
     else
       @user = User.new
     end
