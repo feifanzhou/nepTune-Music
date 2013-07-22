@@ -99,6 +99,15 @@ the group really started to take off, producing a music video each week and post
     at9 = Attendee.create(user: u5, event: e1, status: :maybe)
     at10 = Attendee.create(user: u6, event: e1, status: :going)
 
+    puts "Writing comments..."
+    c1 = Comment.create(text: "Why, this rivals some of my own work!", user: u1)
+    c2 = Comment.create(text: "AMAZING!", user: u6)
+    c3 = Comment.create(text: "Waka waka waka", user: u4)
+    c4 = Comment.create(text: "Thanks for the feedback! It really means a lot coming from you!", user: u3, parent: c1)
+    c5 = Comment.create(text: "No problem!", user: u1, parent: c4)
+    c6 = Comment.create(text: "Waka.", user: u2, parent: c3)
+    c7 = Comment.create(text: "I second this.", user: u2, parent: c1)
+
     puts "Done!"
   end
 end

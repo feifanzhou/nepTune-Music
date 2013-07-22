@@ -16,6 +16,7 @@ NeptuneMusic::Application.routes.draw do
     resources :images
     resources :audio
     resources :events
+    resources :comments
 
     root to: 'home#home'
 

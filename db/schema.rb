@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130722154927) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "comment_id"
   end
 
   create_table "contact_infos", :force => true do |t|
