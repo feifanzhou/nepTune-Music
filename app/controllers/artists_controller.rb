@@ -2,7 +2,7 @@
 class ArtistsController < ApplicationController
   include ArtistsHelper
   include LoginHelper
-  before_filter :get_artist_from_params, only: [:show, :about, :music, :events, :burble, :fans]
+  before_filter :get_artist, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :get_current_user_status, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :get_band_member, only: [:show, :about, :music, :events, :burble, :fans]
   before_filter :authenticate_editing
@@ -29,7 +29,7 @@ class ArtistsController < ApplicationController
   end
 
   def update_content
-    artist = Artist.find_by_artistname(params[:artistname])
+    artist = get_artist_from_params(params)
     obj_data = -1
     extra_data = -1
     case params[:location]
@@ -94,7 +94,7 @@ class ArtistsController < ApplicationController
   private
   def can_edit
     curr_user = current_user
-    artist = Artist.find_by_artistname(params[:artistname])
+    artist = get_artist_from_params(params)
     if curr_user.blank? || artist.blank?
       return false
     end
@@ -142,7 +142,7 @@ class ArtistsController < ApplicationController
     # Especially in pulling the artist info
     # Should pull only id—but code isn't working (undefined methods)
     # a_id = Artist.select(:id).find_by_artistname(params[:artistname]).limit(1)
-    a_id = Artist.find_by_artistname(params[:artistname]).id
+    a_id = get_artist_from_params(params).id
     m = Media.where(media_holder_id: a_id, location: loc.to_s, id: m_index)
     # FIXME: If m is nil, return 500 error, and handle in JS
     m.first.destroy  # Call destroy so we get callbacks such as before_destroy, where we can do undo
@@ -157,10 +157,17 @@ class ArtistsController < ApplicationController
   end
 
   def check_logged_in
-    a_id = Artist.find_by_artistname(params[:artistname]).id
+    a_id = get_artist_from_params(params).id
     bm = BandMember.find_by_user_id_and_artist_id(current_user.id, a_id)
     if bm.blank?
       redirect_to root_path
+    end
+  end
+
+  def get_artist
+    @artist = get_artist_from_params(params)
+    if @artist.blank?
+      not_found
     end
   end
 

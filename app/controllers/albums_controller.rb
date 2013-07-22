@@ -21,15 +21,15 @@ class AlbumsController < ApplicationController
   end
 
   def show
-  	@album = Album.find_by_name(params[:album])
-    @artist = Artist.find_by_artistname(params[:artistname])
+    @album = Album.find_by_name(params[:album])
+    @artist = get_artist_from_params(params)
   end
 
   def album_name_suggestions
-  	results = Album.where("name ILIKE ?", params[:input] + '%')  # ILIKE is case-insensitive compare
+    results = Album.where("name ILIKE ?", params[:input] + '%')  # ILIKE is case-insensitive compare
     names = results.map(&:name)
     paths = results.map(&:image).map(&:path)
-  	# results = Album.find :all, select: 'id, DISTINCT name', conditions: [ "(name LIKE ?)", '%' + params[:input] + '%']
-  	render json: { names: names,  paths: paths }
+    # results = Album.find :all, select: 'id, DISTINCT name', conditions: [ "(name LIKE ?)", '%' + params[:input] + '%']
+    render json: { names: names,  paths: paths }
   end
 end

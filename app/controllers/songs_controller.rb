@@ -1,15 +1,16 @@
 class SongsController < ApplicationController
   include LoginHelper
+  include ArtistsHelper
 
   before_filter :authenticate_editing, only: [:new, :create]
 
   def new
-    @artist = Artist.find_by_artistname(params[:artistname])
+    @artist = get_artist_from_params(params)
     @song = Song.new
   end
 
   def show
-    @artist = Artist.find_by_artistname(params[:artistname])
+    @artist = get_artist_from_params(params)
     @song = Song.find_by_id(params[:song])
   end
 
@@ -22,7 +23,7 @@ class SongsController < ApplicationController
     audio.save
     song.audio = audio
     song.track_number = params[:song][:track_number] if !params[:song][:track_number].blank?
-    artist = Artist.find_by_artistname(params[:artistname])
+    artist = get_artist_from_params(params)
     song.artist = artist
 
     if not params[:song][:album].blank?
@@ -73,13 +74,13 @@ class SongsController < ApplicationController
 
   private
   def authenticate_editing
-    artist = Artist.find_by_artistname(params[:artistname])
+    artist = get_artist_from_params(params)
     curr_user = current_user
     if curr_user.blank? || artist.blank?
-      redirect_to artist_main_path(artist.artistname)
+      redirect_to artist_main_path(artist.route)
       return
     end
     bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
-    redirect_to artist_main_path(artist.artistname) if bm.blank?
+    redirect_to artist_main_path(artist.route) if bm.blank?
   end
 end
