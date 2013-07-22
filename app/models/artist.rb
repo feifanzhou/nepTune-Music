@@ -29,8 +29,11 @@ class Artist < ActiveRecord::Base
   has_many :media, as: :media_holder, class_name: "Media"
   has_many :band_members
   has_many :users, through: :band_members
-  has_many :followers
-  has_many :users, through: :followers, as: :fans
+  has_many :followings
+  has_many :users, through: :followings
+  has_many :artists, through: :followings
+  has_many :inverse_followings, :class_name => "Following", :foreign_key => "artist_id"
+  has_many :inverse_followers, :through => :inverse_followings, :source => :artist
 
   validates :artistname, presence: true
 

@@ -771,7 +771,7 @@ header {
       white-space: normal;
       width: 100%;
       div {
-        box-sizing: border-box;
+        @include vendor-prefix(box-sizing, border-box);
         display: inline-block;
         padding: 20px;
         h2 {
@@ -784,6 +784,18 @@ header {
           font-size: 15px;
           font-weight: 400;
           line-height: 1.5em;
+        }
+      }
+    }
+    #artistGraph {
+      width: 100%;
+      div {
+        @include vendor-prefix(box-sizing, border-box);
+        padding: 20px;
+        h2 {
+          font-family: $OpenSans;
+          font-size: 36px;
+          font-weight: 300;
         }
       }
     }

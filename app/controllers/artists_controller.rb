@@ -132,7 +132,8 @@ class ArtistsController < ApplicationController
       @is_following = false
       return
     end
-    f = Follower.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    # f = Following.find_by_user_id_and_artist_id(@current_user.id, @artist.id)
+    f = Following.find_by_user_id_and_target_id(@current_user.id, @artist.id)
     @is_following = !f.blank?
   end
 
