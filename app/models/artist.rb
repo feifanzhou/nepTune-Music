@@ -34,6 +34,10 @@ class Artist < ActiveRecord::Base
   has_many :artists, through: :followings
   has_many :inverse_followings, :class_name => "Following", :foreign_key => "artist_id"
   has_many :inverse_followers, :through => :inverse_followings, :source => :artist
+  has_many :influences
+  has_many :artists, through: :influences
+  has_many :inverse_influences, :class_name => "Influence", :foreign_key => "influence_id"
+  has_many :inverse_artists, :through => :inverse_influences, :source => :artist
 
   validates :artistname, presence: true
 

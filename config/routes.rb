@@ -6,10 +6,11 @@ NeptuneMusic::Application.routes.draw do
 
   get "images_controller/new"
 
+  resources :users
+  
   # Routes for beta subdomain
   constraints subdomain: "beta" do
     # Routes for resources
-    resources :users
     resources :events
     resources :albums
     resources :songs  # TODO: albums and songs should probably be subresources of artists

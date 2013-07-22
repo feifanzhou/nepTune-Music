@@ -98,6 +98,7 @@ module UsersHelper
         member = BandMember.create(user_id: @user.id, artist_id: artist.id)
       end
     elsif fullAccountCreate.blank? or fullAccountCreate == 0
+      email = input[:email]
       if (!email.blank?)  # If they enter an existing email, sign them in
         @user = User.find_by_email(email)
         if @user

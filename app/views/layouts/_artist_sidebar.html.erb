@@ -14,7 +14,7 @@
     <form class='UploadImageForm' action="/<%= artist.artistname %>/update_content?location=ProfilePictureUpload" method='POST' enctype='multipart/form-data' target='profile_target' id='uploadProfileForm'>
       <input type='file' name='select_image' id='selectProfile' />
     </form>
-    <p class='ArtistProfileName'>The Piano Guys</p>
+    <p class='ArtistProfileName'><%= artist.artistname %></p>
   </section>
   <% if !is_band_member %>
   <section id='artistActions'>
