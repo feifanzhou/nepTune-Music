@@ -92,10 +92,8 @@ ActiveRecord::Schema.define(:version => 20130722172407) do
   end
 
   create_table "influences", :force => true do |t|
-    t.integer  "artist_id"
-    t.integer  "influence_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "media", :force => true do |t|
