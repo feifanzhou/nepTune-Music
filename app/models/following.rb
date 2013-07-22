@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: followers
+# Table name: followings
 #
 #  id           :integer          not null, primary key
 #  user_id      :integer
@@ -10,9 +10,10 @@
 #  is_following :boolean
 #
 
-class Follower < ActiveRecord::Base
-  attr_accessible :artist_id, :is_following, :user_id
+class Following < ActiveRecord::Base
+  attr_accessible :target_id, :user_id, :artist_id
 
-  belongs_to :artist
   belongs_to :user
+  belongs_to :artist
+  belongs_to :target, class_name: 'Artist'
 end

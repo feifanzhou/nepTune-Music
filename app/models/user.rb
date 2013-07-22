@@ -30,12 +30,14 @@ class User < ActiveRecord::Base
 
   include UsersHelper
 
-  has_many :artists, through: :followers, as: :followed_artists
   has_many :attendees
   has_many :events, through: :attendees
   has_many :play_counts
   has_many :media, through: :play_counts
   has_many :comments
+
+  has_many :inverse_followings, :class_name => "Following", :foreign_key => "user_id"
+  has_many :inverse_followers, :through => :inverse_followings, :source => :user
 
   has_attached_file :avatar, s3_protocol: 'http'
 

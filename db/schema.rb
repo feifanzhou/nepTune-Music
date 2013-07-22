@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130711200945) do
+ActiveRecord::Schema.define(:version => 20130722154927) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(:version => 20130711200945) do
     t.string   "location"
   end
 
-  create_table "followers", :force => true do |t|
+  create_table "followings", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "target_id"
     t.integer  "user_id"
     t.integer  "artist_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.boolean  "is_following"
   end
 
   create_table "media", :force => true do |t|
