@@ -35,7 +35,7 @@
 			<div id='newAlbumSongs'>
 				<div id='allSongs'>
 					<h1>All Songs</h1>
-					<%= link_to "Upload new song", new_song_for_artist_path(@artist.artistname), class: 'btn', id: 'newSongButton' %>
+					<%= link_to "Upload new song", new_song_for_artist_path(@artist.route), class: 'btn', id: 'newSongButton' %>
 					<div id='songGrid'>
 						<% @songs.each do |s| %> <!-- TODO: Sort songs by latest to earliest added -->
 						<div class='SongGridItem' id="song<%= s.id %>">
@@ -54,4 +54,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> 

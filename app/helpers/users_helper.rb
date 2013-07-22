@@ -59,7 +59,7 @@ module UsersHelper
 
   def route_from_artistname(name)
     regexp = %r{[^a-z0-9\-._~#\[\]@!$&()*+,;]}
-    name.strip.downcase.gsub(" ", "_").gsub(regexp, "")
+    name.strip.downcase.gsub(regexp, "")
   end
 
   def create_user(params)

@@ -18,9 +18,9 @@
         </ul>
         <% if @is_band_member %>
         <div id='createNewMusic'>
-          <%= link_to 'Create New Album', new_album_for_artist_path(@artist.artistname) %>
+          <%= link_to 'Create New Album', new_album_for_artist_path(@artist.route) %>
           <span class='SegmentDivider'>|</span>
-          <%= link_to 'Upload Song', new_song_for_artist_path(@artist.artistname) %>
+          <%= link_to 'Upload Song', new_song_for_artist_path(@artist.route) %>
         </div>
         <% end %>
         <form id='musicFilterSearch'>
