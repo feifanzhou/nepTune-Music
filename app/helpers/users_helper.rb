@@ -90,7 +90,7 @@ module UsersHelper
     # TODO: check for artist name duplicates
 
     # TODO: Show message if signing up with an email that already exists
-    session[:new_user] = @user
+    session[:new_user] = @user.id
     if should_save && @user.save
       save_user_to_cookie(@user)
       if isArtist == 1
