@@ -744,7 +744,6 @@ function fileAdded(file) {
 
   var pe = file.previewElement;
   var fileName = file.name;
-  console.log('fileName: ' + file.name);
   var re = /^\d+ [^0-9-\s][^.]+/;
   var songName = '';
   var trackNumber = '';
@@ -778,8 +777,6 @@ function fileAdded(file) {
   if (re.test(fileName))
     songName = (fileName.match(re))[0];
   trackNumber = trackNumber.replace(/^0+/, '');
-  console.log('songName: ' + songName);
-  console.log('trackNumber: ' + trackNumber);
 
   var nf = $(pe).find('.song_name');
   $(nf).val($.trim(songName));
@@ -810,6 +807,16 @@ function addSongToMusicGrid(imgPath, imgCaption, songName) {
   var s = "<div class='GridItem'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
   $(s).insertBefore($('#musicGridSongs .GridItem').first());
 }
+function resetSongUpload() {
+  $('#commitSongUploadButton').addClass('disabled');
+  $('#saveSongsSpinner').css('display', 'none');
+  $('#saveSongsText').css('display', 'inline');
+  $('#songsComment').css('display', 'none');
+  $('#uploadSongsPrompt').css('display', 'inline-block');
+  $('#uploadSongsTarget').css('border', '4px dashed transparentize(#AAA, 0.5)');
+  $('#uploadSongsTarget').removeClass('NoPointer');
+  $('.dz-preview').remove();
+}
 $('body').on('click', '#commitSongUploadButton', function() {
   var btn = $(this);
   $('#saveSongsText').css('display', 'none');
@@ -829,10 +836,8 @@ $('body').on('click', '#commitSongUploadButton', function() {
         song_audio_id: aid
       },
       success: function(resp) { 
-        console.log('Successfully saved song');
-        console.log('resp: ' + resp);
-        console.log('name: ' + resp['song_name']);
         addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name']);
+        resetSongUpload();
       }
     });
   });
