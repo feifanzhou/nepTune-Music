@@ -30,12 +30,18 @@
     </div>
 
     <div id='musicGridContainer'>
+      <div class='' id='showMusic'>
+        <div class="m-body">
+          <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>
+          <div class='Load'></div>
+        </div>
+      </div>
       <div id='musicGrid'>
         <!-- TODO: Load filter content with AJAX -->
-        <%= render 'layouts/music_grid_group', title: 'Albums', group_id: 'musicGridAlbums', items:
+        <%= render 'layouts/music_grid_group', title: 'Albums', items:
 @artist.albums, label_icon: '&#59405;'.html_safe, is_band_member: @is_band_member %>
         
-        <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items:
+        <%= render 'layouts/music_grid_group', title: 'Songs', items:
 @artist.reverse_songs, label_icon: '&#59406;'.html_safe, is_band_member: @is_band_member %>
 
         <div id='noFilterMatches'>

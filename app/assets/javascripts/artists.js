@@ -102,7 +102,6 @@ function playStuff(url) {
     url: url //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
   });
   mySound.play();
-
 }
 
 function togglePause(url) {
@@ -177,7 +176,7 @@ $('body').on('click', '#newEventButton', function() {
   $('#backdrop').addClass('In');
   $('#newEvent').addClass('In');
 });
-$('body').on('click', '.ModalDismiss', function() {
+$('body').on('click', '#newEvent .ModalDismiss', function() {
   $('#backdrop').removeClass('In');
   $('#newEvent').removeClass('In');
 });
@@ -722,6 +721,7 @@ $('body').on('click', '#uploadSongPrompt', function() {
 });
 $('body').on('click', '#uploadSongs .ModalDismiss', function() {
   dismissNewSongModal();
+  resetSongUpload();
 });
 $('body').on('click', '#uploadSongsTarget', function() {
   if ($(this).hasClass('NoPointer'))
@@ -842,4 +842,28 @@ $('body').on('click', '#commitSongUploadButton', function() {
     });
   });
   dismissNewSongModal();
+});
+
+/***** Music grid navigation *****/
+function showMusicModal(name, URL) {
+  var m = $('#showMusic');
+  $.get(URL, function(resp) {
+    var s = resp.indexOf('<!-- BEGIN_MODAL -->');
+    var e = resp.indexOf('<!-- END_MODAL -->');
+    console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
+    $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
+  });
+  $('#backdrop').addClass('In');
+  $(m).addClass('In');
+}
+function dismissMusicModal() {
+  $('#showMusic .m-body Load').html('');
+  $('#showMusic').removeClass('In');
+  $('#backdrop').removeClass('In');
+}
+$('body').on('click', '.GridItem', function() {
+  showMusicModal($(this).data('name'), $(this).data('path'));
+});
+$('body').on('click', '#showMusic .ModalDismiss', function() {
+  dismissMusicModal();
 });

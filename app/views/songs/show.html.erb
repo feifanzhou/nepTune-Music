@@ -1,15 +1,22 @@
 <div id='container'>
   <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing, is_following: @is_following, is_band_member: @is_band_member %>
   <div class='DJAX XHidden' id='artistPageContent'>
+    <!-- BEGIN_MODAL -->
     <!-- <%= javascript_include_tag "soundmanager2-jsmin" %> -->
     <div id="mainPartial">
-      <%= image_tag @song.image.path %>
-
-      <p>
-        Click the button to play:
-        <%= button_tag "Play!", onclick:"playStuff('#{escape_javascript @song.audio.path}',                                      '#{escape_javascript @song.name}')", class:"btn btn-primary" %>
-      </p>
-      
+      <div id='songDetails'>
+        <%= image_tag @song.image.path, class: 'SongImage' %>
+        <div id='songControls'>
+          <div id='playPause', onclick="playStuff('<%= "#{escape_javascript @song.audio.path}', '#{escape_javascript @song.name}" %>')">
+            <span class='Icon' id='playIcon'>&#59416;</span>
+            <span class='Icon' id='pauseIcon'>&#59417;</span>
+          </div>
+        </div>
+      </div>
+      <div id='songBurble'>
+        <h2>Comments/Burble</h2>
+      </div>
     </div>
+    <!-- END_MODAL -->
   </div>
 </div>  

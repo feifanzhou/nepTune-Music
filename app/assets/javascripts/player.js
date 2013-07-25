@@ -13,12 +13,25 @@ soundManager.setup({
     }
 });
 
+var playerProgress;
+function createPlayerProgress() {
+    playerProgress = new CircularProgress({
+        radius: 48,
+        strokeStyle: 'white',
+        lineCap: 'round',
+        lineWidth: 8
+    });
+    document.getElementById('songControls').appendChild(playerProgress.el);
+    playerProgress.update(0);
+}
 
 var currentSound = false;
 
 function updateBarPlaying() {
     if(currentSound) {
-        $('.position').css('width', 100*currentSound.position/currentSound.durationEstimate + '%');
+        var pgp = 100 * currentSound.position / currentSound.durationEstimate;
+        $('.position').css('width', pgp + '%');
+        playerProgress.update(pgp);
     }
 }
 
@@ -31,6 +44,14 @@ function updateBarLoading() {
 function changePlayButton(name) {
     function n() {
         $('#playPauseBtn').text(name);
+        if (name == 'Pause') {
+            $('#pauseIcon').css('display', 'inline-block');
+            $('#playIcon').css('display', 'none');
+        }
+        else if (name == 'Resume') {
+            $('#pauseIcon').css('display', 'none');
+            $('#playIcon').css('display', 'inline-block');
+        }
     }
     return n;
 }
@@ -39,6 +60,7 @@ function playStuff(url, name) {
     // Ready to use; soundManager.createSound() etc. can now be called.
     //alert('ready!');
     soundManager.destroySound('sound');
+    createPlayerProgress();
     var mySound = soundManager.createSound({
         id: 'sound',
         url: url,

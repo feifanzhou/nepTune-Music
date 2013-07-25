@@ -2,6 +2,7 @@
   "name": "zonda",
   "css_prefix_text": "icon-",
   "css_use_suffix": false,
+  "hinting": true,
   "glyphs": [
     {
       "uid": "72109d2fb3088d0e66ea6a9204297651",
@@ -128,6 +129,30 @@
       "css": "grid",
       "code": 59402,
       "src": "modernpics"
+    },
+    {
+      "uid": "3711151b8b34536498e2a7f4d5188ed2",
+      "css": "play",
+      "code": 59416,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "164f35b55c3346b03fa89a711a4f3980",
+      "css": "pause",
+      "code": 59417,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "dcda6b27f1f63fbd7b8bf8d45cc4d340",
+      "css": "to-end",
+      "code": 59418,
+      "src": "mfglabs"
+    },
+    {
+      "uid": "75b228ebc26946ca00360ca10f052e3c",
+      "css": "to-start",
+      "code": 59419,
+      "src": "mfglabs"
     },
     {
       "uid": "2c576f7c6c3233c31abad0899fc9f4af",

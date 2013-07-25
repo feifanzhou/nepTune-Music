@@ -431,6 +431,9 @@ header {
       &.MusicGridDetails {
         margin-left: -1000px;
       }
+      #showMusic {
+        @include Modal;
+      }
       #musicGrid {
         display: inline-block;
         float: left;
@@ -471,6 +474,9 @@ header {
             margin: 10px;
             position: relative;
             width: 220px;
+            &:hover {
+              cursor: pointer;
+            }
             img {
               height: auto;
               max-width: 100%;
