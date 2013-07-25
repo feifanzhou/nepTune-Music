@@ -732,11 +732,6 @@ $('body').on('click', '#uploadSongsTarget', function() {
 $('body').on('click', '#new_songs_input', function(event) {
   event.stopPropagation();
 });
-$('#new_song_form').ajaxForm({
-  beforeSend: function() {},
-  uploadProgress: function(event, position, total, percentComplete) {},
-  complete: function(xhr) {}
-});
 var uploadQ = [];
 function fileAdded(file) {
   var l = uploadQ.push(1);
@@ -810,6 +805,11 @@ Dropzone.options.newSongForm = {
   previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\"></span></div>\n  <div class=\"SoundmapPreview\">\n    <img data-dz-thumbnail=\"\">\n    <img class=\"SongDefaultImage\" alt=\"Song_default\" hidpi_src=\"/assets/song_default@2x.png\" src=\"/assets/song_default.png\">  </div>\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name=\"\"></span></div>\n    <div class=\"dz-filesize\"><span data-dz-size></span></div>\n    <form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" method=\"post\">\n    <input class=\"AudioID\" name=\"audio_id\" type=\"hidden\" />      <label for=\"song_name\">Name</label>\n      <input class=\"song_name\" name=\"song[name]\" placeholder=\"Song name\" required=\"required\" size=\"30\" type=\"text\">\n   <br />   <label for=\"song_track_number\">Track number</label>\n      <input class=\"song_track_number\" name=\"song[track_number]\" placeholder=\"Track number\" required=\"required\" size=\"30\" type=\"text\">\n</form>  </div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div>\n</div>"
 };
 
+function addSongToMusicGrid(imgPath, imgCaption, songName) {
+  console.log('add songName: ' + songName);
+  var s = "<div class='GridItem'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
+  $(s).insertBefore($('#musicGridSongs .GridItem').first());
+}
 $('body').on('click', '#commitSongUploadButton', function() {
   var btn = $(this);
   $('#saveSongsText').css('display', 'none');
@@ -828,7 +828,12 @@ $('body').on('click', '#commitSongUploadButton', function() {
         song_track_number: tn,
         song_audio_id: aid
       },
-      success: function() { console.log('Successfully saved song'); }
+      success: function(resp) { 
+        console.log('Successfully saved song');
+        console.log('resp: ' + resp);
+        console.log('name: ' + resp['song_name']);
+        addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name']);
+      }
     });
   });
   dismissNewSongModal();

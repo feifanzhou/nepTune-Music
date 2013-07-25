@@ -51,7 +51,7 @@ class SongsController < ApplicationController
     #   format.html { redirct_to artist_music_path(artist) }
     #   format.js { render json: { success: 1 } }
     # end
-    render json: { success: 1 }
+    render json: { success: 1, song_name: song.name }
   end
 
   def update
