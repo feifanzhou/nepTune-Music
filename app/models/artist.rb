@@ -70,4 +70,8 @@ class Artist < ActiveRecord::Base
     BandMember.create(artist_id: self.id, user_id: user.id)
   end
 
+  def reverse_songs   # Songs, newest first
+    return self.songs.order('created_at DESC')
+  end
+
 end

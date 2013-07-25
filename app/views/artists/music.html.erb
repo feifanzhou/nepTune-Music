@@ -36,7 +36,7 @@
 @artist.albums, label_icon: '&#59405;'.html_safe, is_band_member: @is_band_member %>
         
         <%= render 'layouts/music_grid_group', title: 'Songs', group_id: 'musicGridSongs', items:
-@artist.songs, label_icon: '&#59406;'.html_safe, is_band_member: @is_band_member %>
+@artist.reverse_songs, label_icon: '&#59406;'.html_safe, is_band_member: @is_band_member %>
 
         <div id='noFilterMatches'>
           <p>Nothing matches that filter</p>
