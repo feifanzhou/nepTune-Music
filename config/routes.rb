@@ -47,6 +47,7 @@ NeptuneMusic::Application.routes.draw do
     match '/:artist_route/albums/new', to: 'albums#new', as: :new_album_for_artist
     match '/:artist_route/albums/:album', to: 'albums#show', as: :album_for_artist
     match '/:artist_route/songs/new', to: 'songs#new', as: :new_song_for_artist
+    post '/:artist_route/songs' => 'songs#create', as: :post_song_for_artist
     match '/:artist_route/songs/:song', to: 'songs#show', as: :song_for_artist
     match '/:artist_route/events/new', to: 'events#new', as: :new_event_for_artist
 

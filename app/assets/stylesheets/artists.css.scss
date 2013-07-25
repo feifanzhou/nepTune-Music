@@ -278,10 +278,15 @@ header {
               background-color: $nepTuneOrangeHighlight;
             }
             .ArtistNavIcon {
+              background: -webkit-linear-gradient(left, rgba(242,245,246,1) 0%,rgba(220,220,220,1) 50%,rgba(242,245,246,1) 100%);
               display: inline-block;
-              margin-right: 12px;
+              font-size: 20px;
+              margin-right: 8px;
               text-align: center;
+              vertical-align: center;
               width: 24px;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
             }
             // @media(max-height: 879px)
             @media(max-height: 599px) {
@@ -367,13 +372,14 @@ header {
           position: absolute;
           top: 10px;
           right: 200px;
-          a {
+          a, span {
             color: $white;
             font-family: $OpenSans;
             font-size: 16px;
             padding: 3px;
             &:hover {
               color: white;
+              cursor: pointer;
               text-decoration: none;
             }
           }
@@ -543,6 +549,105 @@ header {
         margin: 50px 0 0 40px;
         position: relative;
         width: 960px;
+      }
+    }
+    #uploadSongs {
+      @include Modal;
+      #songsComment {
+        display: none;
+        font-family: $OpenSans;
+        height: auto;
+        width: 515px;
+      }
+      #uploadSongsTarget {
+        border: 4px dashed transparentize(#AAA, 0.5);
+        border-radius: 10px;
+        height: 100%;
+        min-height: 150px;
+        padding: 6px;
+        &:hover {
+          cursor: pointer;
+        }
+        &.NoPointer {
+          &:hover {
+            cursor: auto;
+          }
+        }
+        #uploadSongsPrompt {
+          color: transparentize(black, 0.35);
+          display: inline-block;
+          font-family: $OpenSans;
+          line-height: 150px;
+          pointer-events: none;
+          text-align: center;
+          width: 100%;
+        }
+        #new_song_form {
+          height: 100%;
+          margin: 0;
+          min-height: 100%;
+          min-width: 100%;
+          width: 100%;
+          #new_songs_input {
+            display: none;
+          }
+          .dz-preview {
+            border-bottom: 1px solid #AAA;
+            margin: 24px auto 0 auto;
+            overflow: hidden; // Force border down etc
+            padding-bottom: 6px;
+            position: relative;
+            .SoundmapPreview {
+              // display: none;
+              display: inline-block;
+              float: left;
+              margin-top: 6px;
+              .SongDefaultImage {
+                display: inline-block;
+                height: 100px;
+                width: 100px;
+              }
+            }
+            .dz-details {
+              color: $black;
+              display: inline-block;
+              float: left;
+              font-family: $OpenSans;
+              margin-left: 8px;
+              position: relative;
+              top: 18px;
+              .dz-filename {
+                display: none;
+              }
+              .dz-filesize {
+                display: none;
+              }
+              .new_song {
+                width: 392px;
+                input {
+                  width: 100%;
+                }
+              }
+            }
+            .dz-progress {
+              background: #EAEAEA;
+              height: 10px;
+              width: 100%;
+              .dz-upload {
+                background: $nepTuneOrange;
+                display: inline-block;
+                height: 100%;
+                position: relative;
+                top: -4px;
+              }
+            }
+          }
+        }
+      }
+      #commitSongUploadButton {
+        #saveSongsSpinner {
+          display: none;
+        }
       }
     }
 

@@ -4,10 +4,13 @@
       <li><strong><%= link_to 'Karmonix', root_path %></strong></li>
       <% if !cookies[:current_user].blank? %>
         <% cu = User.find_by_remember_token(cookies[:current_user]) %>
-        <% bms = BandMember.where("user_id = #{ cu.id }") %>
-        <% bms.each do |bm| %>
-          <% an = Artist.find(bm.artist_id).artistname %>
-          <li><%= link_to an, artist_main_path(an) %></li>
+        <% unless cu.blank? %>
+          <% bms = BandMember.where("user_id = #{ cu.id }") %>
+          <% bms.each do |bm| %>
+            <% a = Artist.find(bm.artist_id) %>
+            <% an = a.artistname %>
+            <li><%= link_to an, artist_main_path(a.route) %></li>
+          <% end %>
         <% end %>
       <% end %>
       <li>Me</li>

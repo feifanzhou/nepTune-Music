@@ -15,36 +15,38 @@ class SongsController < ApplicationController
   end
 
   def create
-    puts "CREATE"
+    puts "===== CREATE SONG ====="
     song = Song.new
-    song.name = params[:song][:name]
-    audio = Audio.find(params[:song][:audio_id])
+    song.name = params[:song_name]
+    audio = Audio.find(params[:song_audio_id])
     audio.is_temporary = false
     audio.save
     song.audio = audio
-    song.track_number = params[:song][:track_number] if !params[:song][:track_number].blank?
+    song.track_number = params[:song_track_number] if !params[:song_track_number].blank?
     artist = get_artist_from_params(params)
     song.artist = artist
 
-    if not params[:song][:album].blank?
-      album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
-      if album.blank?
-        album = Album.new(name: params[:song][:album], artist: artist)
-      end
-      album_art = album.image
-      song.album = album
-      album_art ||= Image.find(params[:song][:album_art_id])
-      album.image = album_art unless album_art.blank?
-      album_art.is_temporary = false
-      album_art.save
-          album.save
-    end
+    # if not params[:song][:album].blank?
+    #   album = Album.find_by_name_and_artist_id(params[:song][:album], artist.id)
+    #   if album.blank?
+    #     album = Album.new(name: params[:song][:album], artist: artist)
+    #   end
+    #   album_art = album.image
+    #   song.album = album
+    #   album_art ||= Image.find(params[:song][:album_art_id])
+    #   album.image = album_art unless album_art.blank?
+    #   album_art.is_temporary = false
+    #   album_art.save
+    #       album.save
+    # end
 
-    if not params[:song][:album_art_id].blank?
-      song.image = Image.find(params[:song][:album_art_id])
-    end
+    # if not params[:song][:album_art_id].blank?
+    #   song.image = Image.find(params[:song][:album_art_id])
+    # end
 
     song.save
+    puts "===== New Song: #{ song.to_s } "
+    # 
     # respond_to do |format|
     #   format.html { redirct_to artist_music_path(artist) }
     #   format.js { render json: { success: 1 } }
