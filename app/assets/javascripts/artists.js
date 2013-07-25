@@ -845,7 +845,7 @@ $('body').on('click', '#commitSongUploadButton', function() {
 });
 
 /***** Music grid navigation *****/
-function showMusicModal(name, URL) {
+function showMusicModal(URL) {
   var m = $('#showMusic');
   $.get(URL, function(resp) {
     var s = resp.indexOf('<!-- BEGIN_MODAL -->');
@@ -862,7 +862,7 @@ function dismissMusicModal() {
   $('#backdrop').removeClass('In');
 }
 $('body').on('click', '.GridItem', function() {
-  showMusicModal($(this).data('name'), $(this).data('path'));
+  showMusicModal($(this).data('path'));
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();

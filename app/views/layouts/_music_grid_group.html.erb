@@ -8,7 +8,7 @@
   <% else %>
     <% link_path = '#' %>
   <% end %>
-    <div class='GridItem' data-path='<%= link_path %>' data-name='<%= a.name %>'>
+    <div class='GridItem' data-path='<%= link_path %>'>
       <%= image_tag("#{ a.image.path }", alt: a.image.caption) if a.image %>
       <div class='GridItemDetails'>
         <p class='GridItemName'>

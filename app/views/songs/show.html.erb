@@ -12,6 +12,11 @@
             <span class='Icon' id='pauseIcon'>&#59417;</span>
           </div>
         </div>
+        <h3 id='songName'><%= @song.name %></h3>
+        <% if !@song.album_id.blank? %>
+        <p id='songAlbum'><strong><%= @song.album.name %></strong></p>
+        <% end %>
+        <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text %></span></strong></p>
       </div>
       <div id='songBurble'>
         <h2>Comments/Burble</h2>

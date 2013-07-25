@@ -63,4 +63,13 @@ class Song < ActiveRecord::Base
     image.save
     self.image = image
   end
+
+  def added_on_text
+    md = self.created_at.strftime("%b %-d")
+    if (self.created_at.year < DateTime.now.year)
+      y = self.created_at.strftime("%Y")
+      md = "#{ md }, #{ y }"
+    end
+    return md
+  end
 end
