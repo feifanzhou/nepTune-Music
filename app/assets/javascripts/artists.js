@@ -845,6 +845,18 @@ $('body').on('click', '#commitSongUploadButton', function() {
   dismissNewSongModal();
 });
 
+// $('body').on('click', '#backdrop', function() {
+//   console.log('Backdrop click');
+//   $('#backdrop').removeClass('In');
+//   $('#uploadSongs').removeClass('In');
+//   $('#showMusic').removeClass('In');
+// });
+$('body').on('click', '.MusicGridGroup', function() {
+  $('#backdrop').removeClass('In');
+  $('#uploadSongs').removeClass('In');
+  $('#showMusic').removeClass('In');
+});
+
 /***** Music grid navigation *****/
 function showMusicModal(URL, id) {
   var m = $('#showMusic');
@@ -863,8 +875,9 @@ function dismissMusicModal() {
   $('#showMusic').removeClass('In');
   $('#backdrop').removeClass('In');
 }
-$('body').on('click', '.GridItem', function() {
+$('body').on('click', '.GridItem', function(event) {
   showMusicModal($(this).data('path'), $(this).data('id'));
+  event.stopPropagation();
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();
