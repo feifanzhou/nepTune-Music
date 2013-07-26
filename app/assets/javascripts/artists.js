@@ -783,7 +783,7 @@ function fileAdded(file) {
   // Leave out track number; otherwise you'll just have a field with a seemingly random number
   // var tnf = $(pe).find('.song_track_number');
   // $(tnf).val($.trim(trackNumber));
-  
+
   $('#songsComment').css('display', 'block');
 }
 function fileUploaded(file, resp) {
@@ -846,13 +846,14 @@ $('body').on('click', '#commitSongUploadButton', function() {
 });
 
 /***** Music grid navigation *****/
-function showMusicModal(URL) {
+function showMusicModal(URL, id) {
   var m = $('#showMusic');
   $.get(URL, function(resp) {
     var s = resp.indexOf('<!-- BEGIN_MODAL -->');
     var e = resp.indexOf('<!-- END_MODAL -->');
     console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
     $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
+    setupSongDisplay(id);
   });
   $('#backdrop').addClass('In');
   $(m).addClass('In');
@@ -863,7 +864,7 @@ function dismissMusicModal() {
   $('#backdrop').removeClass('In');
 }
 $('body').on('click', '.GridItem', function() {
-  showMusicModal($(this).data('path'));
+  showMusicModal($(this).data('path'), $(this).data('id'));
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();

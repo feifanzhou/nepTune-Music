@@ -27,8 +27,11 @@ function createPlayerProgress() {
 
 var currentSound = false;
 
+var playingID = false;
+var currentID = false;
+
 function updateBarPlaying() {
-    if(currentSound) {
+    if(currentSound && (playingID == currentID)) {
         var pgp = 100 * currentSound.position / currentSound.durationEstimate;
         $('.position').css('width', pgp + '%');
         playerProgress.update(pgp);
@@ -60,7 +63,7 @@ function playStuff(url, name) {
     // Ready to use; soundManager.createSound() etc. can now be called.
     //alert('ready!');
     soundManager.destroySound('sound');
-    createPlayerProgress();
+    //createPlayerProgress();
     var mySound = soundManager.createSound({
         id: 'sound',
         url: url,
@@ -72,12 +75,23 @@ function playStuff(url, name) {
     });
     mySound.play();
     currentSound = mySound;
+    playingID = currentID;
     // var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
     $('#playbar').css('display', 'inline-block');
+    $('#playIcon').attr('onclick', "togglePause()");
 }
 
 function togglePause() {
     soundManager.togglePause('sound');
+}
 
+function setupSongDisplay(id) {
+    currentID = id;
+    createPlayerProgress();
+    //alert('hello: ' + id);
+    if(currentID == playingID) {
+        $('#pauseIcon').css('display', 'inline-block');
+        $('#playIcon').css('display', 'none');
+    }
 }
