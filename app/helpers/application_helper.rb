@@ -6,10 +6,14 @@ module ApplicationHelper
   end
 
   def redirect_to_current_page_without_params
-  	redirect_to request.fullpath.split("?")[0]  # http://stackoverflow.com/a/5266133/472768
+    redirect_to request.fullpath.split("?")[0]  # http://stackoverflow.com/a/5266133/472768
   end
 
   def not_found
-  	raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
+  def escape_data_url(x)
+    x.gsub("'", "%27").gsub('"', "%22")
   end
 end

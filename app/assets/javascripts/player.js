@@ -59,7 +59,14 @@ function changePlayButton(name) {
     return n;
 }
 
-function playStuff(url, name) {
+function playThis(e) {
+    console.log(e);
+    url = $(e).data('url');
+    name = $(e).data('name');
+    playStuff(name, url);
+}
+
+function playStuff(name, url) {
     // Ready to use; soundManager.createSound() etc. can now be called.
     //alert('ready!');
     soundManager.destroySound('sound');
@@ -79,7 +86,7 @@ function playStuff(url, name) {
     // var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
     $('#playbar').css('display', 'inline-block');
-    $('#playIcon').attr('onclick', "togglePause()");
+    //$('#playIcon').attr('onclick', "togglePause()");
 }
 
 function togglePause() {

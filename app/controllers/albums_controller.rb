@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  include ArtistsHelper
   def new
     @album = Album.new
     @artist = Artist.find_by_artistname(params[:artistname])

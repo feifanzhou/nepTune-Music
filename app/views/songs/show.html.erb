@@ -1,5 +1,6 @@
 <div id='container'>
-  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing,       is_following: @is_following, is_band_member: @is_band_member %>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 2, is_editing: @is_editing,      
+is_following: @is_following, is_band_member: @is_band_member %>
   <div class='DJAX XHidden' id='artistPageContent'>
     <!-- BEGIN_MODAL -->
     <!-- <%= javascript_include_tag "soundmanager2-jsmin" %> -->
@@ -8,7 +9,12 @@
         <%= image_tag @song.image.path, class: 'SongImage' %>
         <div id='songControls'>
           <div id='playPause'>
-            <span class='Icon' id='playIcon' onclick="playStuff('<%= "#{escape_javascript @song.audio.path}', '#{escape_javascript @song.name}" %>')">&#59416;</span>
+            <span class='Icon' id='playIcon'
+                  data-url='<%= escape_data_url @song.audio.path %>'
+                  data-name='<%= CGI::escape_html @song.name %>'
+                  onclick='playThis(this)'>
+              &#59416;
+            </span>
             <span class='Icon' id='pauseIcon' onclick="togglePause()">&#59417;</span>
           </div>
         </div>
@@ -16,10 +22,12 @@
         <% if !@song.album_id.blank? %>
         <p id='songAlbum'><strong><%= @song.album.name %></strong></p>
         <% end %>
-        <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text                                                                         %></span></strong></p>
+        <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text                                                                        
+%></span></strong></p>
       </div>
       <div id='songBurble'>
         <h2>Comments/Burble</h2>
+        <%= render 'layouts/comment_box', reply_id: nil %>
       </div>
     </div>
     <!-- END_MODAL -->
