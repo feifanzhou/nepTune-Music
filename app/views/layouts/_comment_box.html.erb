@@ -2,6 +2,8 @@
 <div class='Comment-form'>
   <%= form_for Comment.new do |f| %>
   <%= f.hidden_field :comment_id, value: reply_id if reply_id%>
+  <%= f.hidden_field :commentable_id, value: commentable.id if commentable %>
+  <%= f.hidden_field :commentable_type, value: commentable.class.name if commentable %>
   <%= f.text_area :text %>
   <% end %>
   
@@ -12,5 +14,3 @@
     <% end %>
   </div>
 </div>
-
-

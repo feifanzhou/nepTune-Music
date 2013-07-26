@@ -99,7 +99,33 @@ header {
       }
     }
   }
-  
+
+  #songBurble {
+    .Comment {
+      .Comment-text {
+        p {
+          color: $black;
+        }
+      }
+    }
+    .Comment-header {
+      color: transparentize($black, 0.3);
+      
+      .Username {
+        color: $blueDark;
+      }
+
+      .Time {
+      }
+    }
+    .Comment-footer {
+      color: transparentize($black, 0.3);
+      a {
+        color: transparentize($black, 0.5);
+      }
+    }
+    
+  }
   
   #artistSidebar {
     background: $Txture;

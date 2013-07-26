@@ -3,7 +3,6 @@
 is_following: @is_following, is_band_member: @is_band_member %>
   <div class='DJAX XHidden' id='artistPageContent'>
     <!-- BEGIN_MODAL -->
-    <!-- <%= javascript_include_tag "soundmanager2-jsmin" %> -->
     <div id="mainPartial">
       <div id='songDetails'>
         <%= image_tag @song.image.path, class: 'SongImage' %>
@@ -27,7 +26,8 @@ is_following: @is_following, is_band_member: @is_band_member %>
       </div>
       <div id='songBurble'>
         <h2>Comments/Burble</h2>
-        <%= render 'layouts/comment_box', reply_id: nil %>
+        <%= render 'layouts/comment_box', reply_id: nil, commentable: @song %>
+        <%= render 'layouts/all_comments', comments: @comments %>
       </div>
     </div>
     <!-- END_MODAL -->

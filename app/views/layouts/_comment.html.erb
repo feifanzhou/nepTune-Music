@@ -20,9 +20,8 @@
   <a href='javascript:void(0)' onclick="reply_to(this)">reply</a>
 </div>
 <div class="Reply" style="display:none;">
-  <%= render 'layouts/comment_box', reply_id: comment.id %>
+  <%= render 'layouts/comment_box', reply_id: comment.id, commentable: nil %>
 </div>
 <%= render 'layouts/all_comments',
     comments: comment.sorted_children %>
-
-</div>    
+</div>

@@ -12,6 +12,7 @@ class SongsController < ApplicationController
   def show
     @artist = get_artist_from_params(params)
     @song = Song.find_by_id(params[:song])
+    @comments = @song.comments
   end
 
   def create
@@ -46,7 +47,7 @@ class SongsController < ApplicationController
 
     song.save
     puts "===== New Song: #{ song.to_s } "
-    # 
+    #
     # respond_to do |format|
     #   format.html { redirct_to artist_music_path(artist) }
     #   format.js { render json: { success: 1 } }

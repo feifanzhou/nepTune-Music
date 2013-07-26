@@ -15,7 +15,7 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :upvotes, :location, :user, :parent, :comment_id
+  attr_accessible :text, :upvotes, :location, :user, :parent, :comment_id, :commentable_id, :commentable_type
   after_initialize :defaults
 
   belongs_to :user
@@ -53,6 +53,10 @@ class Comment < ActiveRecord::Base
       opts.delete(location)
     end
     Comment.where(opts).sort { |a,b| b.created_at <=> a.created_at }
+  end
+
+  def self.sorted_for_commentable(c)
+    c.comments.sort { |a,b| b.created_at <=> a.created_at }
   end
 
 

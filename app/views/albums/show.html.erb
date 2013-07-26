@@ -4,22 +4,27 @@
   <div class='DJAX XHidden' id='artistPageContent'>
     <!-- BEGIN_MODAL -->
 	<div class='AlbumArtMain'>
-	  <%= image_tag @album.image.path, alt: @album.name, size: '500x500' %>
+	  <%= image_tag @album.image.path, alt: @album.name, class: 'SongImage' %>
 	  <div id='albumTrackListing'>
 		<% if @album.songs.blank? %>
 		<p class='EmptyAlbum'>This album doesn't have any songs yet&hellip;</p>
 		<% else %>
 		<ol class='AlbumSongList'>
 		  <% @album.songs.each do |s| %>
-		  <li class='AlbumSongListItem'><span class='AlbumSongListItemNumber'><%= s.track_number
-                                                                                  %></span><%= s.name %></li>
+		  <li class='AlbumSongListItem'>
+            <span class='AlbumSongListItemNumber'>
+              <%= s.track_number  %>
+            </span>
+            <%= s.name%>
+          </li>
 		  <% end %>
 		</ol>
 		<% end %>
 	  </div>
 	</div>
-	<div class='AlbumDetails'>
-	  <p>Comments, shares, purchases, and stuff</p>
+	<div class='songBurble'>
+      <h2>Comments/Burble</h2>
+      <%= render 'layouts/comment_box', reply_id: nil %>
 	</div>
     <!-- END_MODAL -->
   </div> 
