@@ -89,7 +89,6 @@ function togglePause() {
 function setupSongDisplay(id) {
     currentID = id;
     createPlayerProgress();
-    //alert('hello: ' + id);
     if(currentID == playingID) {
         $('#pauseIcon').css('display', 'inline-block');
         $('#playIcon').css('display', 'none');
