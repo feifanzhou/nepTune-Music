@@ -227,6 +227,7 @@ header {
         }
         canvas {
           left: 54px;
+          pointer-events: none;
           position: absolute;
           top: 48px;
         }
