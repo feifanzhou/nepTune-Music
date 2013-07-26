@@ -20,6 +20,7 @@ class Comment < ActiveRecord::Base
   has_many :media, as: :media_holder
   belongs_to :comment
   has_many :comments
+  belongs_to :commentable, polymorphic: true
 
   validates :user, presence: true
 

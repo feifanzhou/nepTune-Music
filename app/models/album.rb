@@ -16,6 +16,7 @@ class Album < ActiveRecord::Base
   belongs_to :artist
   has_one :image, as: :media_holder
   has_many :songs
+  has_many :comments, as: :commentable
 
   validates :artist, presence: true
   validates :name, presence: true

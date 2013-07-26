@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722172407) do
+ActiveRecord::Schema.define(:version => 20130726173004) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -57,9 +57,11 @@ ActiveRecord::Schema.define(:version => 20130722172407) do
     t.integer  "upvotes"
     t.string   "location"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
     t.integer  "comment_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type", :limit => 64
   end
 
   create_table "contact_infos", :force => true do |t|

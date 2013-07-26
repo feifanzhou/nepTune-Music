@@ -39,6 +39,7 @@ class Artist < ActiveRecord::Base
   has_many :artists, through: :influences
   has_many :inverse_influences, :class_name => "Influence", :foreign_key => "influence_id"
   has_many :inverse_artists, :through => :inverse_influences, :source => :artist
+  has_many :comments, as: :commentable
 
   validates :artistname, presence: true
 
