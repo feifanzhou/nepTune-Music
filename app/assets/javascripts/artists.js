@@ -353,7 +353,6 @@ function profile_target_loaded() {
   console.log('profile target loaded');
   finishProfilePictureUpload();
   var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
-  console.log('profile image resp: ' + resp);
   /* img_id = parseInt(resp['extra_data'], 10);
      var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
      $('#imageUploadPreview').append(i); */
