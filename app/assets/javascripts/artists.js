@@ -802,9 +802,9 @@ Dropzone.options.newSongForm = {
   previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\"></span></div>\n  <div class=\"SoundmapPreview\">\n    <img data-dz-thumbnail=\"\">\n    <img class=\"SongDefaultImage\" alt=\"Song_default\" hidpi_src=\"/assets/song_default@2x.png\" src=\"/assets/song_default.png\">  </div>\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name=\"\"></span></div>\n    <div class=\"dz-filesize\"><span data-dz-size></span></div>\n    <form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" method=\"post\">\n    <input class=\"AudioID\" name=\"audio_id\" type=\"hidden\" />      <label for=\"song_name\">Name</label>\n      <input class=\"song_name\" name=\"song[name]\" placeholder=\"Song name\" required=\"required\" size=\"30\" type=\"text\">\n   <br />   <label for=\"song_track_number\">Track number</label>\n      <input class=\"song_track_number\" name=\"song[track_number]\" placeholder=\"Track number\" required=\"required\" size=\"30\" type=\"text\">\n</form>  </div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div>\n</div>"
 };
 
-function addSongToMusicGrid(imgPath, imgCaption, songName) {
+function addSongToMusicGrid(imgPath, imgCaption, songName, songPath) {
   console.log('add songName: ' + songName);
-  var s = "<div class='GridItem'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
+  var s = "<div class='GridItem' data-path='" + songPath + "'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
   $(s).insertBefore($('#musicGridSongs .GridItem').first());
 }
 function resetSongUpload() {
@@ -835,8 +835,9 @@ $('body').on('click', '#commitSongUploadButton', function() {
         song_track_number: tn,
         song_audio_id: aid
       },
-      success: function(resp) { 
-        addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name']);
+      success: function(resp) {
+        var sp = '/' + getArtistNameFromURL() + '/songs/' + resp['song_id'];
+        addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name'], sp);
         resetSongUpload();
       }
     });
