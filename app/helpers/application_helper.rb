@@ -1,7 +1,9 @@
 module ApplicationHelper
   def redirect_back
-    redirect_to :back
+    redirect_to session[:return_to]
     rescue ActionController::RedirectBackError
+      redirect_to root_path
+    rescue ActionController::ActionControllerError
       redirect_to root_path
   end
 

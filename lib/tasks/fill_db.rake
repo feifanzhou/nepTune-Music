@@ -77,12 +77,12 @@ the group really started to take off, producing a music video each week and post
                      image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/tardis.jpg'))
 
     puts "Planning events..."
-    e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 6, 7, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 7, 19, 30, 0, '-4'))
+    e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 7, 28, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 7, 28, 20, 0, 0, '-4'))
     e1.creator = jon
     e1.images.push i4
     e1.save
 
-    e2 = Event.new(name: '24 Hour Sesh', start_at: DateTime.new(2013, 6, 1, 10, 0, 0, '-4'), end_at: DateTime.new(2013, 6, 2, 10, 0, 0, '-4'))
+    e2 = Event.new(name: 'Jam Sesh', start_at: DateTime.new(2013, 7, 31, 10, 0, 0, '-4'), end_at: DateTime.new(2013, 7, 31, 13, 0, 0, '-4'))
     e2.creator = jon
     e2.images.push i5
     e2.save

@@ -39,7 +39,7 @@ class LoginController < ApplicationController
       if results
         # redirect_to root_path
         # json_to_root
-        json_to_path(session[:return_to])
+        json_to_path(session[:return_to] || root_path)
       # else
         # index_by: http://stackoverflow.com/a/412940/472768
         # status: http://stackoverflow.com/a/7238119/472768
@@ -49,7 +49,7 @@ class LoginController < ApplicationController
       update_user_for_facebook_login(user, fb_info.merge(facebook_id: fb_id))
       save_user_to_cookie(user)
       # json_to_root
-      json_to_path(session[:return_to])
+      json_to_path(session[:return_to] || root_path)
     end
   end
 
@@ -69,8 +69,8 @@ class LoginController < ApplicationController
         redirect_to pwchange_path
       else
         # redirect_to root_path
-        # redirect_back
-        redirect_to session[:return_to]
+        redirect_back
+        # redirect_to session[:return_to]
       end
     else
       # Display error message, re-render login

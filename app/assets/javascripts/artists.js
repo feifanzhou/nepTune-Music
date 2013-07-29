@@ -793,6 +793,10 @@ function fileUploaded(file, resp) {
   if (uploadQ.length === 0)
     $('#commitSongUploadButton').removeClass('disabled');
 }
+$(window).bind('djaxLoad', function() {
+  // TODO: Check for music page URL before proceeding
+  $('.dropzone').dropzone({ url: '/audio' });
+});
 Dropzone.options.newSongForm = {
   init: function() {
     this.on('addedfile', function(file) { fileAdded(file); });
@@ -804,7 +808,10 @@ Dropzone.options.newSongForm = {
 function addSongToMusicGrid(imgPath, imgCaption, songName, songPath) {
   console.log('add songName: ' + songName);
   var s = "<div class='GridItem' data-path='" + songPath + "'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
-  $(s).insertBefore($('#musicGridSongs .GridItem').first());
+  if ($('#musicGridSongs .GridItem').length == 0)
+    $('#musicGridSongs').append(s);
+  else
+    $(s).insertBefore($('#musicGridSongs .GridItem').first());
 }
 function resetSongUpload() {
   $('#commitSongUploadButton').addClass('disabled');
