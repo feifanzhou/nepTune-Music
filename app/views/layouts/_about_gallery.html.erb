@@ -1,7 +1,7 @@
 <div class='Icon SliderNav SliderNavDisabled' id='sliderNavLeft'>&#59399;</div>
 <div class='Slider' id='slider'>
 	<% if is_editing %>
-	<%= render 'layouts/about_gallery_add_item_element', artistname: artist.artistname %>
+	<%= render 'layouts/about_gallery_add_item_element', artistroute: artist.route %>
 	<% end %>
 	<% gallery_index = is_editing ? 1 : 0 %>
 	<% artist.media_for_location(:AboutGallery).each do |m| %>

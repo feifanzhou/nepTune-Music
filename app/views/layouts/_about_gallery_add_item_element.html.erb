@@ -1,48 +1,48 @@
 <div class='SliderElement SliderElementCurrent SliderAddElement' id='gallery0'>
-	<div class='SliderElementInnerContent' id='addGalleryElement'>
-		<div class='AddElementOption' id='addImage'>
-			<div class='AddElementFace'>
-				<p class='Icon AddElementIcon'>&#59413;</p>
-				<p>Add image</p>
-			</div>
-			<div class='AddElementInfo' id='addImageOptions'>
-				<h2><span class='Icon'>&#59413;</span> Add Image</h2>
-				<div class='UploadPreview' id='imageUploadPreview'>
-					<button class='btn btn-primary' id='selectImageButton'>Select Image</button>
-					<p class='Icon UploadSpinner' id='imgUploadSpinner'>&#59392;</p>
-					<form class='UploadImageForm' id='uploadImageForm' action="/<%= artistname %>/update_content?location=AboutGalleryImageUpload" method="POST" enctype='multipart/form-data' target='upload_target'>
-						<input type='file' name='select_image' class='SelectImage' id='selectGalleryImage' />
-						<!-- <input type='submit' class='btn btn-primary' value='Submit' /> -->
-					</form>
-					<iframe id='upload_target' name='upload_target' src=''>
-					</iframe>
-				</div>
-				<input type='text' class='AddElementCaption' id='addImageCaption'
+  <div class='SliderElementInnerContent' id='addGalleryElement'>
+    <div class='AddElementOption' id='addImage'>
+      <div class='AddElementFace'>
+        <p class='Icon AddElementIcon'>&#59413;</p>
+        <p>Add image</p>
+      </div>
+      <div class='AddElementInfo' id='addImageOptions'>
+        <h2><span class='Icon'>&#59413;</span> Add Image</h2>
+        <div class='UploadPreview' id='imageUploadPreview'>
+          <button class='btn btn-primary' id='selectImageButton'>Select Image</button>
+          <p class='Icon UploadSpinner' id='imgUploadSpinner'>&#59392;</p>
+          <form class='UploadImageForm' id='uploadImageForm' action="/<%= artistroute %>/update_content?location=AboutGalleryImageUpload" method="POST" enctype='multipart/form-data' target='upload_target'>
+            <input type='file' name='select_image' class='SelectImage' id='selectGalleryImage' />
+            <!-- <input type='submit' class='btn btn-primary' value='Submit' /> -->
+          </form>
+          <iframe id='upload_target' name='upload_target' src=''>
+          </iframe>
+        </div>
+        <input type='text' class='AddElementCaption' id='addImageCaption'
 placeholder='Caption for this picture' />
-				<div class='AddElementActions'>
-					<button class='btn AddElementCancel' id='cancelImage'>Cancel</button>
-					<button class='btn btn-primary' id='saveImage'>Save Image</button>
-				</div>
-			</div>
-		</div>
-		<div class='AddElementOption' id='addVideo'>
-			<div class='AddElementFace'>
-				<p class='Icon AddElementIcon'>&#59414;</p>
-				<p>Add video</p>
-			</div>
-			<div class='AddElementInfo' id='addVideoOptions'>
-				<h2><span class='Icon'>&#59414;</span> Add Video</h2>
-				<div class='UploadPreview' id='videoUploadPreview'>
-					<input type='text' class='AddVideoURL' placeholder='Video URL' id='videoURL'
+        <div class='AddElementActions'>
+          <button class='btn AddElementCancel' id='cancelImage'>Cancel</button>
+          <button class='btn btn-primary' id='saveImage'>Save Image</button>
+        </div>
+      </div>
+    </div>
+    <div class='AddElementOption' id='addVideo'>
+      <div class='AddElementFace'>
+        <p class='Icon AddElementIcon'>&#59414;</p>
+        <p>Add video</p>
+      </div>
+      <div class='AddElementInfo' id='addVideoOptions'>
+        <h2><span class='Icon'>&#59414;</span> Add Video</h2>
+        <div class='UploadPreview' id='videoUploadPreview'>
+          <input type='text' class='AddVideoURL' placeholder='Video URL' id='videoURL'
 />
-				</div>
-				<input type='text' class='AddElementCaption' id='addVideoCaption'
+        </div>
+        <input type='text' class='AddElementCaption' id='addVideoCaption'
 placeholder='Caption for this video'/>
-				<div class='AddElementActions'>
-					<button class='btn AddElementCancel' id='cancelVideo'>Cancel</button>
-					<button class='btn btn-primary' id='saveVideo'>Save Video</button>
-				</div>
-			</div>
-		</div>
-	</div>
+        <div class='AddElementActions'>
+          <button class='btn AddElementCancel' id='cancelVideo'>Cancel</button>
+          <button class='btn btn-primary' id='saveVideo'>Save Video</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>  
