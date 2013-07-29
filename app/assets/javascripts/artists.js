@@ -156,8 +156,9 @@ function returnToMusicGrid() {
 // TODO: Clean up duplicate code
 var sm = 25;  // Speed multiplier—lower value is faster ticker scroll speed
 var st = 210; // Width threshold for scrolling in pixels
-$('body').on('mouseover', '.GridItemName', function() {
-  var n = $(this);
+$('body').on('mouseover', '.GridItem', function() {
+  var n = $(this).find('.GridItemName').first();
+  $(n).stop(true);  // Stop animation and clear queue
   var w = $(n).width();
   if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
     return;
@@ -167,8 +168,9 @@ $('body').on('mouseover', '.GridItemName', function() {
     left: ('-' + diff + 'px')
   }, t);
 });
-$('body').on('mouseout', '.GridItemName', function() {
-  var n = $(this);
+$('body').on('mouseout', '.GridItem', function() {
+  var n = $(this).find('.GridItemName').first();
+  $(n).stop(true);
   var w = $(n).width();
   if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
     return;
