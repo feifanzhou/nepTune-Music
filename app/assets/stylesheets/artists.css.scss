@@ -513,6 +513,7 @@ header {
               color: white;
               height: 30px;
               left: 0;
+              overflow: hidden;
               position: absolute;
               right: 0;
               width: 100%;
@@ -527,6 +528,9 @@ header {
                 font-size: 13px;
                 font-weight: 600;
                 margin: 5px 0 0 8px;
+                position: relative;
+                overflow: hidden;
+                white-space: nowrap;
               }
             }
           }

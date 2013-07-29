@@ -153,6 +153,32 @@ function returnToMusicGrid() {
   }, 750);
 }
 
+// TODO: Clean up duplicate code
+var sm = 25;  // Speed multiplier—lower value is faster ticker scroll speed
+var st = 210; // Width threshold for scrolling in pixels
+$('body').on('mouseover', '.GridItemName', function() {
+  var n = $(this);
+  var w = $(n).width();
+  if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
+    return;
+  var diff = w - st;
+  var t = diff * sm;
+  $(n).animate({
+    left: ('-' + diff + 'px')
+  }, t);
+});
+$('body').on('mouseout', '.GridItemName', function() {
+  var n = $(this);
+  var w = $(n).width();
+  if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
+    return;
+  var diff = w - st;
+  var t = diff * sm;
+  $(n).animate({
+    left: ('0px')
+  }, t);
+});
+
 $(function() {
   $('#detailsHeaderBack').click(returnToMusicGrid());
 });
