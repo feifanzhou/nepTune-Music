@@ -52,12 +52,18 @@ class Comment < ActiveRecord::Base
     if not location
       opts.delete(location)
     end
-    Comment.where(opts).sort { |a,b| b.created_at <=> a.created_at }
+    c = Comment.where(opts)
+    Comment.sort_comments(c)
   end
 
   def self.sorted_for_commentable(c)
-    c.comments.sort { |a,b| b.created_at <=> a.created_at }
+    Comment.sort_comments(c.comments)
   end
+
+  def self.sort_comments(c)
+    c.sort { |a,b| b.created_at <=> a.created_at }
+  end
+
 
 
 end

@@ -76,40 +76,6 @@ function filterMusic(tag) {
 
 var contentScrollTop = 0;
 
-soundManager.reset();
-soundManager.setup({
-  url: '/swf/',
-  flashVersion: 9, // optional: shiny features (default = 8)
-  // optional: ignore Flash where possible, use 100% HTML5 mode
-  preferFlash: false,
-  onready: function() {
-    //playStuff()
-  },
-  ontimeout: function() {
-    // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
-    alert('broken');
-  }
-});
-
-
-
-function playStuff(url) {
-  // Ready to use; soundManager.createSound() etc. can now be called.
-  //alert('ready!');
-  soundManager.destroySound('sound');
-  var mySound = soundManager.createSound({
-    id: 'sound',
-    url: url //'/system/audio/files/000/000/011/original/dr_who_next_stop_everywhere.mp3'
-  });
-  mySound.play();
-}
-
-function togglePause(url) {
-  soundManager.togglePause('sound');
-
-}
-
-
 function primeClick() {
   $('.MediaDisplayLink').click(function(event) {
     event.preventDefault();
@@ -717,23 +683,6 @@ $('body').on('click', '#finishEventButton', function() {
   $('#new_event').submit();
 });
 
-
-$('body').on('click', ".Comment-form > .buttons > #submit", function() {
-  $(this).parent().parent().find('#new_comment').submit();
-});
-
-$('body').on('click', ".Comment-form > .buttons > #cancel", function() {
-  $(this).parent().parent().parent().hide();
-});
-
-function reply_to(a) {
-  comment = $(a).parent().parent()
-  parent_id = comment.attr("data-id");
-  r = comment.find('> .Reply');
-  r.show();
-  //  r.css("display", "block");
-}
-
 /***** Songs upload *****/
 function showNewSongModal() {
   $('#backdrop').addClass('In');
@@ -915,4 +864,101 @@ $('body').on('click', '.GridItem', function(event) {
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();
+});
+
+/***** Comments *****/
+
+function refresh_comments() {
+    all_comments = $("#all_comments");
+    type = all_comments.data('type');
+    id = all_comments.data('id');
+    console.log('hello ' + type + id);
+    path = '/comments/by_type_id/' + type + '/' + id;
+
+    $.get(path, function(data) {
+        all_comments.replaceWith(data);
+    });
+//    $('#all_comments').djax(path);
+
+};
+
+$('body').on('click', '#refresh_comments', function(event) {
+    event.preventDefault();
+    refresh_comments();
+});
+
+$('body').on('click', ".Comment-form > .buttons > #submit", function() {
+    form = $(this).closest('.Comment-form').find('#new_comment');
+    form.submit();
+});
+
+$('body').on('click', ".Comment-form > .buttons > #cancel", function() {
+  $(this).closest('.Reply').hide();
+});
+
+function reply_to(a) {
+  comment = $(a).parent().parent()
+  parent_id = comment.attr("data-id");
+  r = comment.find('> .Reply');
+  r.show();
+  //  r.css("display", "block");
+}
+
+
+// next few lines stolen from:
+// http://stackoverflow.com/questions/5004233/jquery-ajax-post-example
+
+// variable to hold request
+var request;
+// bind to the submit event of our form
+$('body').on("submit", "#new_comment", function(event){
+
+    // prevent default posting of form
+    event.preventDefault();
+
+    // abort any pending request
+    if (request) {
+        request.abort();
+    }
+
+    // setup some local variables
+    var form = $(this);
+    // let's select and cache all the fields
+    var inputs = form.find("input, select, button, textarea");
+    // serialize the data in the form
+    var serializedData = form.serialize();
+
+    // let's disable the inputs for the duration of the ajax request
+    inputs.prop("disabled", true);
+
+    // fire off the request to /form.php
+    request = $.ajax({
+        url: "/comments",
+        type: "post",
+        data: serializedData
+    });
+
+    // callback handler that will be called on success
+    request.done(function (response, textStatus, jqXHR){
+        // log a message to the console
+        //console.log(jqXHR);
+        refresh_comments();
+    });
+
+    // callback handler that will be called on failure
+    request.fail(function (jqXHR, textStatus, errorThrown){
+        // log the error to the console
+        console.error(
+            "The following error occured: "+
+            textStatus, errorThrown
+        );
+    });
+
+    // callback handler that will be called regardless
+    // if the request failed or succeeded
+    request.always(function () {
+        // reenable the inputs
+        inputs.prop("disabled", false);
+    });
+
 });

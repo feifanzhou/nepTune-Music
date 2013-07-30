@@ -86,11 +86,11 @@ function playStuff(name, url) {
     // var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
     $('#playbar').css('display', 'inline-block');
-    //$('#playIcon').attr('onclick', "togglePause()");
 }
 
 function togglePause() {
     soundManager.togglePause('sound');
+    $('#playIcon').attr('onclick', "togglePause()");
 }
 
 function setupSongDisplay(id) {

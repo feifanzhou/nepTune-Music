@@ -7,7 +7,7 @@ NeptuneMusic::Application.routes.draw do
   get "images_controller/new"
 
   resources :users
-  
+
   # Routes for beta subdomain
   constraints subdomain: "beta" do
     # Routes for resources
@@ -53,6 +53,8 @@ NeptuneMusic::Application.routes.draw do
 
     match '/event/:id/join', to: 'attendees#join', as: :join_event
     match '/event/:id/leave', to: 'attendees#leave', as: :leave_event
+
+    match '/comments/by_type_id/:type/:id', to: 'comments#by_type_id', as: :all_comments_by_type_id
 
   end
 

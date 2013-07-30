@@ -12,7 +12,7 @@ class SongsController < ApplicationController
   def show
     @artist = get_artist_from_params(params)
     @song = Song.find_by_id(params[:song])
-    @comments = @song.comments
+    @comments = Comment.sorted_for_commentable(@song)
   end
 
   def create
