@@ -24,20 +24,24 @@ $('body').on('change', '#audio_file', function() {
     $('#selectedFileName').text("'" + fileName + "' selected");
     $('#new_audio').submit();
 
+    console.log('Matching name regex');
     var re = /^\d+ [^0-9-\s][^.]+/;
     var songName;
     var trackNumber;
     if (re.test(fileName)) {
+        console.log('Match 1');
         songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
         trackNumber = (fileName.match(/^\d+/))[0];
     }
     re = /^\d+\s?-\s?[^0-9-\s][^.]+/;
     if (re.test(fileName)) {
+        console.log('Match 2');
         songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
         trackNumber = (fileName.match(/^\d+/))[0];
     }
     re = /^\d+\.\s?[^0-9-\s][^.]+/;
     if (re.test(fileName)) {
+        console.log('Match 3');
         songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
         trackNumber = (fileName.match(/^\d+/))[0];
     }
@@ -56,6 +60,7 @@ $('body').on('change', '#audio_file', function() {
     re = /[^0-9-\s][^.]+/;
     if (re.test(fileName))
         songName = (fileName.match(re))[0];
+    console.log('songName: ' + songName + ', trackNumber: ' + trackNumber);
     trackNumber = trackNumber.replace(/^0+/, '');
     $('#song_name').val($.trim(songName));
     $('#song_track_number').val($.trim(trackNumber));
