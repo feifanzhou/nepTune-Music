@@ -11,12 +11,12 @@
     <div class='row' id='aboutBody'>
       <div class='span8' id='aboutStory'>
         <h2>Our Story</h2>
-        <p class='ArtistStory' <%= 'contenteditable' if @is_editing %>><%= @artist.story %><%= 'Click to edit' if @artist.story.blank? and @is_editing %></p>
+        <p class='ArtistStory' <%= "contenteditable=true" if @is_editing %>><%= @artist.story %><%= 'Click to edit' if @artist.story.blank? and @is_editing %></p>
       </div>
       <div class='span4' id='aboutContact'>
         <h2>Contact</h2>
-        <p class='ContactText' id='phone' <%= 'contenteditable' if @is_editing %>><%= @contact_info.phone %><%= 'Phone number' if @contact_info.phone.blank? and @is_editing %></p>
-        <p class='ContactText' id='email' <%= 'contenteditable' if @is_editing %>><%= @contact_info.email %><%= 'Email address' if @contact_info.email.blank? and @is_editing %></p>
+        <p class='ContactText' id='phone' <%= "contenteditable=true" if @is_editing %>><%= @contact_info.phone %><%= 'Phone number' if @contact_info.phone.blank? and @is_editing %></p>
+        <p class='ContactText' id='email' <%= "contenteditable=true" if @is_editing %>><%= @contact_info.email %><%= 'Email address' if @contact_info.email.blank? and @is_editing %></p>
       </div>
     </div>
     <div class='row' id='artistGraph'>

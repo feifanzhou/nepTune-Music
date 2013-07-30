@@ -376,6 +376,19 @@
 	top: 2px;
 }
 
+*[contenteditable=true] {
+  &:hover {
+    // border: 1px solid #CCC;
+    @include vendor-prefix(box-shadow, inset 0 2px 3px transparentize(black, 0.5));
+    background: $white;
+    border-radius: 4px;
+    color: $partialActiveBlack;
+    padding: 0 2px;
+    transition: background 0.25s, color 0.25s;
+    -webkit-transition: background 0.25s, color 0.25s;
+  }
+}
+
 .Icon {
 	font-family: $Zonda;
 }
