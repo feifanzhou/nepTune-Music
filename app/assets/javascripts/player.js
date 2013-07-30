@@ -31,10 +31,12 @@ var playingID = false;
 var currentID = false;
 
 function updateBarPlaying() {
-    if(currentSound && (playingID == currentID)) {
+    if(currentSound) {
         var pgp = 100 * currentSound.position / currentSound.durationEstimate;
         $('.position').css('width', pgp + '%');
-        playerProgress.update(pgp);
+        if (playingID == currentID) {
+            playerProgress.update(pgp);
+        }
     }
 }
 
@@ -97,7 +99,11 @@ function setupSongDisplay(id) {
     currentID = id;
     createPlayerProgress();
     if(currentID == playingID) {
-        $('#pauseIcon').css('display', 'inline-block');
-        $('#playIcon').css('display', 'none');
+        $('#playIcon').attr('onclick', "togglePause()");
+        if(!currentSound.paused) {
+            $('#pauseIcon').css('display', 'inline-block');
+            $('#playIcon').css('display', 'none');
+        }
+        updateBarPlaying();
     }
 }

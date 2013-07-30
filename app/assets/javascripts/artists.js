@@ -875,10 +875,14 @@ function refresh_comments() {
     console.log('hello ' + type + id);
     path = '/comments/by_type_id/' + type + '/' + id;
 
-    $.get(path, function(data) {
-        all_comments.replaceWith(data);
+    $.ajax({
+        'url': path,
+        'success': function(data) {
+            all_comments.html(data);
+            // i don't know why this is necessary, but it is
+            load_djax();
+        }
     });
-//    $('#all_comments').djax(path);
 
 };
 
@@ -889,7 +893,7 @@ $('body').on('click', '#refresh_comments', function(event) {
 
 $('body').on('click', ".Comment-form > .buttons > #submit", function() {
     form = $(this).closest('.Comment-form').find('#new_comment');
-    form.submit();
+    handle_comment_form(form);
 });
 
 $('body').on('click', ".Comment-form > .buttons > #cancel", function() {
@@ -912,9 +916,12 @@ function reply_to(a) {
 var request;
 // bind to the submit event of our form
 $('body').on("submit", "#new_comment", function(event){
-
     // prevent default posting of form
     event.preventDefault();
+    handle_comment_form($(this));
+});
+
+function handle_comment_form(form) {
 
     // abort any pending request
     if (request) {
@@ -922,7 +929,6 @@ $('body').on("submit", "#new_comment", function(event){
     }
 
     // setup some local variables
-    var form = $(this);
     // let's select and cache all the fields
     var inputs = form.find("input, select, button, textarea");
     // serialize the data in the form
@@ -961,4 +967,4 @@ $('body').on("submit", "#new_comment", function(event){
         inputs.prop("disabled", false);
     });
 
-});
+}

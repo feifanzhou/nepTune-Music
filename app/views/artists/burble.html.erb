@@ -12,7 +12,8 @@
         <button id="refresh_comments">
           Refresh comments
         </button>
-        <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>' class="DJAX">
+        <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>'
+             class="DJAX">
           <%= render 'layouts/all_comments', comments: @comments %>
         </div>
       </div>

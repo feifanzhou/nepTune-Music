@@ -28,7 +28,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
         <h2>Comments/Burble</h2>
         <%= render 'layouts/comment_box', reply_id: nil, commentable: @song %>
         <button id="refresh_comments"> Refresh comments </button>
-        <div id="all_comments" data-type="Song" data-id='<%= @song.id %>' class="DJAX">
+        <div id="all_comments" data-type="Song" data-id='<%= @song.id %> class="DJAX">
           <%= render 'layouts/all_comments', comments: @comments %>
         </div>
       </div>
