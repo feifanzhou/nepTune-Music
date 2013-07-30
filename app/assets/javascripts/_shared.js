@@ -1,4 +1,7 @@
+function load_djax() {
 $('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave']);
+}
+load_djax();
 
 function createCookie(name, value, days) {
     if (days) {
