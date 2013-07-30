@@ -4,12 +4,12 @@
   <% if title == 'Albums' %>
     <% link_path = album_for_artist_path(artist_route: params[:artist_route], album: a.name) %>
   <% elsif title == 'Songs' %>
-    <% link_path = song_for_artist_path(username: params[:username], song: a.id) %>
+    <% link_path = song_for_artist_path(artist_route: params[:artist_route], song: a.id) %>
   <% else %>
     <% link_path = '#' %>
   <% end %>
     <div class='GridItem' data-path='<%= link_path %>' data-id='<%= a.id %>'>
-      <%= image_tag("#{ a.image.path }", alt: a.image.caption) if a.image %>
+      <%= image_tag("#{ a.image.path }", alt: a.image.caption, size: '220x220') if a.image %>
       <div class='GridItemDetails'>
         <p class='GridItemName'>
           <% if !label_icon.blank? %>

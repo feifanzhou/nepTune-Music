@@ -14,7 +14,6 @@
 #  password_digest     :string(255)
 #  has_temp_password   :boolean
 #  remember_token      :string(255)
-#  username            :string(255)
 #  is_group            :boolean          default(FALSE)
 #  facebook_id         :integer
 #  avatar_file_name    :string(255)
@@ -35,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :attendees
   has_many :play_counts
   has_many :media, through: :play_counts
-  has_many :comments
+  has_many :comments, as: :commenter
   has_many :band_members
   has_many :artists, through: :band_members
 

@@ -1,0 +1,26 @@
+<div class="CommentContainer">
+ <!-- CommentLevel -->
+  <div class='CommenterInfo'>
+    <%= image_tag(comment.commenter.avatar.url, size: "60x60", alt: comment.commenter.display_name, class: 'CommenterImage') %>
+    <h2 class='CommenterName'><%= comment.commenter.display_name %></h2>
+  </div>
+  <div class='CommentContent'>
+    <div class='CommentText'><%= comment.text %></div>
+    <% if !comment.commentings.blank? %>
+      <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can only contain one type of media %>
+      <% partial_name = "comment_media_#{ commenting_name }" %>
+      <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
+        <% comment.commentings.each do |c| %>
+          <%= render "shared/#{ partial_name }", element: c %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class='CommentActions'>
+    <ul>
+      <li>Reply</li>
+      <li>Share</li>
+    </ul>
+  </div>
+  <!-- TODO: Display subcomments -->
+</div>

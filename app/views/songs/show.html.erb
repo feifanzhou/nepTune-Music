@@ -6,17 +6,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
     <div id="mainPartial">
       <div id='songDetails'>
         <%= image_tag @song.image.path, class: 'SongImage' %>
-        <div id='songControls'>
-          <div id='playPause'>
-            <span class='Icon' id='playIcon'
-                  data-url='<%= escape_data_url @song.audio.path %>'
-                  data-name='<%= CGI::escape_html @song.name %>'
-                  onclick='playThis(this)'>
-              &#59416;
-            </span>
-            <span class='Icon' id='pauseIcon' onclick="togglePause()">&#59417;</span>
-          </div>
-        </div>
+        <%= render 'shared/song_controls', song: @song %>
         <h3 id='songName'><%= @song.name %></h3>
         <% if !@song.album_id.blank? %>
         <p id='songAlbum'><strong><%= @song.album.name %></strong></p>
@@ -28,7 +18,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
         <h2>Comments/Burble</h2>
         <%= render 'layouts/comment_box', reply_id: nil, commentable: @song %>
         <button id="refresh_comments"> Refresh comments </button>
-        <div id="all_comments" data-type="Song" data-id='<%= @song.id %> class="DJAX">
+        <div id="all_comments" data-type="Song" data-id='<%= @song.id %>' class="DJAX">
           <%= render 'layouts/all_comments', comments: @comments %>
         </div>
       </div>

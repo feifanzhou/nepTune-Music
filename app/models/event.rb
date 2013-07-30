@@ -21,7 +21,9 @@ class Event < ActiveRecord::Base
   has_many :attendees
   has_many :users, through: :attendees
   has_many :artists, through: :attendees
-  has_many :comments, as: :commentable
+  # has_many :comments, as: :commentable
+  has_many :commentings, :as => :commentable
+  has_many :comments, :through => :commentings
 
   validates :name, presence: true
   validates :creator, presence: true

@@ -1,0 +1,8 @@
+<% link_path = song_for_artist_path(artist_route: params[:artist_route], song: a.id) %>
+<div class='CommentSong' data-path='<%= link_path %>'>
+  <%= image_tag element.image.path, class: 'CommentSongImage', size: '60x60' %>
+  <!-- Show playback controls after pause -->
+  <!-- This way, users can click directly on the item to load the song modal -->
+  <!-- But if they wait a second, they can start playback immediately -->
+  <%= render 'shared/song_controls', song: element %>
+</div>

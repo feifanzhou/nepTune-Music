@@ -189,6 +189,7 @@ header {
   #mainPartial {
     height: auto;
     overflow: auto;
+    white-space: normal;
     width: 100%;
     #songDetails {
       display: inline-block;

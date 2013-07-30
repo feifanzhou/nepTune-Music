@@ -12,6 +12,8 @@
 #  comment_id       :integer
 #  commentable_id   :integer
 #  commentable_type :string(64)
+#  commenter_id     :integer
+#  commenter_type   :string(255)
 #
 
 require 'spec_helper'

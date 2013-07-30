@@ -338,8 +338,7 @@
   }
 }
 
-/***** Shared styles *****/
-#backdrop {
+@mixin ModalBackdrop {
   @include vendor-prefix(transition, opacity 0.5s);
   position: fixed;
   top: 0;
@@ -353,6 +352,11 @@
   &.In {
     opacity: 1;
   }
+}
+
+/***** Shared styles *****/
+#backdrop {
+  @include ModalBackdrop;
 }
 
 .btn {

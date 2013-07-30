@@ -30,12 +30,7 @@
     </div>
 
     <div id='musicGridContainer'>
-      <div class='' id='showMusic'>
-        <div class="m-body">
-          <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>
-          <div class='Load'></div>
-        </div>
-      </div>
+      <%= render 'layouts/modal_load', custom_id: 'showMusic' %>
       <div id='musicGrid'>
         <!-- TODO: Load filter content with AJAX -->
         <%= render 'layouts/music_grid_group', title: 'Albums', items:
@@ -60,7 +55,6 @@ onclick='returnToMusicGrid()'>&#59399;</span>
         </div>
       </div>
     </div>
-    <div class='' id='backdrop'></div>
     <div class="" id='uploadSongs'>
       <div class="m-header">
         <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>

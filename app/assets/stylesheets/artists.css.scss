@@ -1317,3 +1317,54 @@ header {
     }
   }
 }
+
+/***** Burble Styles *****/
+.CommentContainer {
+  background: $white;
+  border: 1px solid #DEDEDE;
+  border-radius: 4px;
+  color: black;
+  font-family: $Lato;
+  margin: 18px 10px;
+  overflow: hidden;
+  position: relative;
+  .CommenterInfo {
+    border-right: 1px solid #CCC;
+    display: inline-block;
+    overflow: hidden;
+    margin: 8px auto;
+    padding: 8px;
+    text-align: center;
+    vertical-align: top;
+    width: 80px;
+    .CommenterName {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.25em;
+      margin: 6px auto;
+      white-space: normal;
+      width: 100%;
+    }
+  }
+  .CommentContent {
+    display: inline-block;
+    margin: 8px;
+    vertical-align: top;
+  }
+  .CommentActions {
+    bottom: 0;
+    position: absolute;
+    right: 10px;
+    ul {
+      list-style: none;
+      margin-left: 0;
+      li {
+        display: inline-block;
+        padding: 0 10px;
+        &:last-child {
+          padding: 0;
+        }
+      }
+    }
+  }
+}

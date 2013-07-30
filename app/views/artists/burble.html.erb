@@ -6,7 +6,7 @@
   <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 4, is_band_member:            
       @is_band_member, is_editing: @is_editing, is_following: @is_following %>
   <div class='DJAX XHidden' id='artistPageContent'>
-	<div class='row' id='burbleBody'>
+  	<div class='row' id='burbleBody'>
       <div class='span8'>
         <%= render 'layouts/comment_box', reply_id: nil, commentable: @artist %>
         <button id="refresh_comments">
@@ -16,7 +16,13 @@
           <%= render 'layouts/all_comments', comments: @comments %>
         </div>
       </div>
-	</div>
+      <%= render 'layouts/modal_load', custom_id: 'commentingsContent' %>
+  	</div>
+    <div id='partialsTest'>
+      <% Comment.all.each do |c| %>
+        <%= render 'shared/comment_base', comment: c %>
+      <% end %>
+    </div>
   </div>
 </div>  
 
