@@ -1,4 +1,5 @@
-<div class="CommentContainer">
+<% level ||= 0 %>
+<div class="CommentContainer CommentLevel<%= level %>">
  <!-- CommentLevel -->
   <div class='CommenterInfo'>
     <%= image_tag(comment.commenter.avatar.url, size: "60x60", alt: comment.commenter.display_name, class: 'CommenterImage') %>
@@ -22,5 +23,9 @@
       <li>Share</li>
     </ul>
   </div>
-  <!-- TODO: Display subcomments -->
+  <% if !comment.replies.blank? %>
+    <% comment.sorted_replies.each do |r| %>
+      <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
+    <% end %>
+  <% end %>
 </div>

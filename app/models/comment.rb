@@ -53,11 +53,19 @@ class Comment < ActiveRecord::Base
   end
 
   def children
-    self.comments
+    return self.comments
+  end
+
+  def replies
+    return self.comments
   end
 
   def sorted_children
     self.children.sort { |a,b| a.created_at <=> b.created_at }
+  end
+
+  def sorted_replies
+    return sorted_children
   end
 
   # returns comments sorted so that top comments show first in list

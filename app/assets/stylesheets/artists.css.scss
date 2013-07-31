@@ -1320,19 +1320,23 @@ header {
 
 /***** Burble Styles *****/
 .CommentContainer {
-  background: $white;
-  border: 1px solid #DEDEDE;
-  border-radius: 4px;
-  color: black;
+  border-top: 1px solid #AAA;
   font-family: $Lato;
-  margin: 18px 10px;
+  margin-left: 40px;
   overflow: hidden;
   position: relative;
+  &.CommentLevel0 {
+    background: $white;
+    border: 1px solid #DEDEDE;
+    border-radius: 4px;
+    color: black;
+    margin: 12px;
+  }
   .CommenterInfo {
     border-right: 1px solid #CCC;
     display: inline-block;
     overflow: hidden;
-    margin: 8px auto;
+    margin: 14px auto 8px auto;
     padding: 8px;
     text-align: center;
     vertical-align: top;
@@ -1348,12 +1352,15 @@ header {
   }
   .CommentContent {
     display: inline-block;
-    margin: 8px;
+    margin: 14px 8px 8px 8px;
     vertical-align: top;
   }
   .CommentActions {
     bottom: 0;
-    position: absolute;
+    // display: inline-block;
+    // float: right;
+    position: relative;
+    text-align: right;
     right: 10px;
     ul {
       list-style: none;
