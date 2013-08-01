@@ -20,7 +20,7 @@
   	</div>
     <div id='partialsTest'>
       <% Comment.all.each do |c| %>
-        <%= render 'shared/comment_base', comment: c %>
+        <%= render 'shared/comment_base', context: 'artist', comment: c %>
       <% end %>
     </div>
   </div>

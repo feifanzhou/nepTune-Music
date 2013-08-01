@@ -1,6 +1,6 @@
 <% level ||= 0 %>
 <div class="CommentContainer CommentLevel<%= level %>">
- <!-- CommentLevel -->
+  
   <div class='CommenterInfo'>
     <%= image_tag(comment.commenter.avatar.url, size: "60x60", alt: comment.commenter.display_name, class: 'CommenterImage') %>
     <h2 class='CommenterName'><%= comment.commenter.display_name %></h2>
@@ -12,7 +12,9 @@
       <% partial_name = "comment_media_#{ commenting_name }" %>
       <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
         <% comment.commentings.each do |c| %>
-          <%= render "shared/#{ partial_name }", element: c %>
+          <% if (defined? context) && context != commenting_name %>
+            <%= render "shared/#{ partial_name }", element: c %>
+          <% end %>
         <% end %>
       </div>
     <% end %>
