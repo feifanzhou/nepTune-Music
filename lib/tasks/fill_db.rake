@@ -100,13 +100,14 @@ the group really started to take off, producing a music video each week and post
     at10 = Attendee.create(user: u6, event: e1, status: :going)
 
     puts "Writing comments..."
-    c1 = Comment.create(text: "Why, this rivals some of my own work!", commenter: u1, artists: [jon])
-    c2 = Comment.create(text: "AMAZING!", commenter: u6, artists: [jon])
-    c3 = Comment.create(text: "Waka waka waka", commenter: u4, artists: [jon])
-    c4 = Comment.create(text: "Thanks for the feedback! It really means a lot coming from you!", commenter: u3, parent: c1, artists: [jon])
-    c5 = Comment.create(text: "No problem!", commenter: u1, parent: c4, artists: [jon])
-    c6 = Comment.create(text: "Waka.", commenter: u2, parent: c3, artists: [jon])
-    c7 = Comment.create(text: "I second this.", commenter: u2, parent: c1, artists: [jon])
+    c1 = Comment.create(text: "Why, this rivals some of my own work!", user: u1, commentable: jon)
+    c2 = Comment.create(text: "AMAZING!", user: u6, commentable: jon)
+    c3 = Comment.create(text: "Waka waka waka", user: u4, commentable: jon)
+    c4 = Comment.create(text: "Thanks for the feedback! It really means a lot coming from you!",
+                        user: u3, parent: c1, commentable: jon)
+    c5 = Comment.create(text: "No problem!", user: u1, parent: c4, commentable: jon)
+    c6 = Comment.create(text: "Waka.", user: u2, parent: c3, commentable: jon)
+    c7 = Comment.create(text: "I second this.", user: u2, parent: c1, commentable: jon)
 
     puts "Done!"
   end

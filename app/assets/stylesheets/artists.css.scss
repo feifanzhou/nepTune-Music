@@ -1323,8 +1323,9 @@ header {
   border-top: 1px solid #AAA;
   font-family: $Lato;
   margin-left: 40px;
+  white-space: normal;
   overflow: hidden;
-  position: relative;
+//  position: relative;
   &.CommentLevel0 {
     background: $white;
     border: 1px solid #DEDEDE;
@@ -1336,7 +1337,7 @@ header {
     border-right: 1px solid #CCC;
     display: inline-block;
     overflow: hidden;
-    margin: 14px auto 8px auto;
+    // margin: 14px auto 8px auto;
     padding: 8px;
     text-align: center;
     vertical-align: top;
@@ -1345,19 +1346,20 @@ header {
       font-size: 13px;
       font-weight: 600;
       line-height: 1.25em;
-      margin: 6px auto;
+      // margin: 6px auto;
       white-space: normal;
       width: 100%;
     }
   }
   .CommentContent {
-    display: inline-block;
-    margin: 14px 8px 8px 8px;
+    // display: inline-block;
+    margin-left: 7px;
+    // margin: 14px 8px 8px 8px;
     vertical-align: top;
   }
   .CommentActions {
     bottom: 0;
-    // display: inline-block;
+    display: inline-block;
     // float: right;
     position: relative;
     text-align: right;

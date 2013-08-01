@@ -32,8 +32,8 @@ class Media < ActiveRecord::Base
   has_many :users, through: :play_counts
   has_attached_file :file, s3_protocol: 'https', s3_permissions: { original: :private }
 
-  has_many :commentings, :as => :commentable
-  has_many :comments, :through => :commentings
+  # has_many :commentings, :as => :commentable
+  # has_many :comments, :through => :commentings
 
   validate :should_have_some_path
 

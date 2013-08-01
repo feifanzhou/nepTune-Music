@@ -12,17 +12,19 @@
         <button id="refresh_comments">
           Refresh comments
         </button>
-        <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>' class="DJAX">
+        <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>'>
           <%= render 'layouts/all_comments', comments: @comments %>
         </div>
       </div>
       <%= render 'layouts/modal_load', custom_id: 'commentingsContent' %>
   	</div>
+    <% if false %>
     <div id='partialsTest'>
       <% Comment.all.each do |c| %>
         <%= render 'shared/comment_base', context: 'artist', comment: c %>
       <% end %>
     </div>
+    <% end %>
   </div>
 </div>  
 

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     opts = params[:comment]
     c = Comment.new(opts)
-    c.commenter = current_user
+    c.user = current_user
     c.save
     #redirect_to :back
   end

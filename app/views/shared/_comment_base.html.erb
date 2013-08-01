@@ -1,13 +1,24 @@
 <% level ||= 0 %>
 <div class="CommentContainer CommentLevel<%= level %>">
-  
+
+  <!--
   <div class='CommenterInfo'>
-    <%= image_tag(comment.commenter.avatar.url, size: "60x60", alt: comment.commenter.display_name, class: 'CommenterImage') %>
-    <h2 class='CommenterName'><%= comment.commenter.display_name %></h2>
+     <%= image_tag(comment.user.avatar.url, size: "60x60",
+        alt: comment.user.display_name, class: 'CommenterImage') %>
+    <h2 class='CommenterName'><%= comment.user.display_name %></h2>
+    
+    <div class='CommentActions'>
+    <ul>
+      <li>Reply</li>
+      <li>Share</li>
+    </ul>
   </div>
+  </div>
+      --> 
+
   <div class='CommentContent'>
-    <div class='CommentText'><%= comment.text %></div>
-    <% if !comment.commentings.blank? %>
+    <div class='CommentText'><%= (sanitize comment.text, tags: %w(br)).html_safe %></div>
+    <% if false #!comment.commentings.blank? %>
       <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can only contain one type of media %>
       <% partial_name = "comment_media_#{ commenting_name }" %>
       <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
@@ -18,12 +29,6 @@
         <% end %>
       </div>
     <% end %>
-  </div>
-  <div class='CommentActions'>
-    <ul>
-      <li>Reply</li>
-      <li>Share</li>
-    </ul>
   </div>
   <% if !comment.replies.blank? %>
     <% comment.sorted_replies.each do |r| %>
