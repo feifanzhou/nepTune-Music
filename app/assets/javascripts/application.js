@@ -18,3 +18,4 @@
 //= require_tree .
 //= require retina_tag
 // require jquery.fileupload
+// require react

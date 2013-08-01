@@ -26,9 +26,9 @@ class Song < ActiveRecord::Base
 
   has_one :image, as: :media_holder
   has_one :audio, as: :media_holder
-  # has_many :comments, as: :commentable
-  has_many :commentings, :as => :commentable
-  has_many :comments, :through => :commentings
+  has_many :comments, as: :commentable
+  # has_many :commentings, :as => :commentable
+  # has_many :comments, :through => :commentings
 
   validates :audio, presence: true
   validates :artist, presence: true
@@ -74,5 +74,8 @@ class Song < ActiveRecord::Base
       md = "#{ md }, #{ y }"
     end
     return md
+  end
+
+  def rating
   end
 end
