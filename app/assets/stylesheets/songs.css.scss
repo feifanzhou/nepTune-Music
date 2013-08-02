@@ -262,9 +262,45 @@ header {
             width: 50px;
           }
         }
-        .CommentSong {
+        .RelatedMediaGalleryFadeTop {
+          background: -moz-linear-gradient(top, rgba(221,221,221,1) 0%, rgba(221,221,221,0) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(221,221,221,1)), color-stop(100%,rgba(221,221,221,0))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(221,221,221,1) 0%,rgba(221,221,221,0) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(221,221,221,1) 0%,rgba(221,221,221,0) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(221,221,221,1) 0%,rgba(221,221,221,0) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(221,221,221,1) 0%,rgba(221,221,221,0) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#00dddddd',GradientType=0 ); /* IE6-9 */
           display: inline-block;
-          margin: 4px;
+          height: 20px;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 28px;
+        }
+        .RelatedMediaGalleryFadeBottom {
+          background: -moz-linear-gradient(top, rgba(221,221,221,0) 0%, rgba(221,221,221,1) 100%); /* FF3.6+ */
+          background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(221,221,221,0)), color-stop(100%,rgba(221,221,221,1))); /* Chrome,Safari4+ */
+          background: -webkit-linear-gradient(top, rgba(221,221,221,0) 0%,rgba(221,221,221,1) 100%); /* Chrome10+,Safari5.1+ */
+          background: -o-linear-gradient(top, rgba(221,221,221,0) 0%,rgba(221,221,221,1) 100%); /* Opera 11.10+ */
+          background: -ms-linear-gradient(top, rgba(221,221,221,0) 0%,rgba(221,221,221,1) 100%); /* IE10+ */
+          background: linear-gradient(to bottom, rgba(221,221,221,0) 0%,rgba(221,221,221,1) 100%); /* W3C */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00dddddd', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+          bottom: 0;
+          display: inline-block;
+          height: 20px;
+          left: 0;
+          position: absolute;
+          right: 0;
+        }
+        .RelatedMediaGallery {
+          max-height: 160px;
+          overflow-y: scroll;
+          padding-bottom: 20px;
+          position: relative;
+          .CommentSong {
+            display: inline-block;
+            margin: 4px;
+          }
         }
       }
     }
