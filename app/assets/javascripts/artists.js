@@ -846,7 +846,6 @@ function showMusicModal(URL, id) {
   $.get(URL, function(resp) {
     var s = resp.indexOf('<!-- BEGIN_MODAL -->');
     var e = resp.indexOf('<!-- END_MODAL -->');
-    console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
     $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
     setupSongDisplay(id);
   });

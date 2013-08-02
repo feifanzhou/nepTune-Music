@@ -87,6 +87,8 @@ class Comment < ActiveRecord::Base
     c.sort { |a,b| b.created_at <=> a.created_at }
   end
 
-
+  def rating
+    return self.read_attribute('rating')
+  end
 
 end

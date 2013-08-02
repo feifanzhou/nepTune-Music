@@ -77,5 +77,10 @@ class Song < ActiveRecord::Base
   end
 
   def rating
+    # THIS IS PROBABLY WRONG: return self.comments.map { |c| c.average('rating') }  # average() uses the database to calculate the average—yay!
+  end
+
+  def related_media
+    return Song.all
   end
 end

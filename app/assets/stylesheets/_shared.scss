@@ -380,6 +380,10 @@
 	top: 2px;
 }
 
+.CommentSong {
+  position: relative;
+}
+
 *[contenteditable=true] {
   &:hover {
     // border: 1px solid #CCC;
@@ -424,6 +428,11 @@
 }
 
 .SongControls {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
   .PlayPause {
     background: transparentize(black, 0.45);
     border-radius: 40px;
@@ -445,6 +454,20 @@
       width: 100%;
       &.PauseIcon {
         display: none;
+      }
+    }
+  }
+  &.SongControlsSmall {
+    .PlayPause {
+      border-radius: 20px;
+      height: 40px;
+      left: 10px;
+      top: 10px;
+      width: 40px;
+      span {
+        color: $white;
+        font-size: 18px;
+        line-height: 40px;
       }
     }
   }

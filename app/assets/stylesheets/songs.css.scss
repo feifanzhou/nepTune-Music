@@ -224,6 +224,14 @@ header {
       float: left;
       margin-left: 20px;
       width: 310px;
+      .RelatedMedia {
+        font-size: 0;
+        position: relative;
+        .CommentSong {
+          display: inline-block;
+          margin: 4px;
+        }
+      }
     }
   }
 }
