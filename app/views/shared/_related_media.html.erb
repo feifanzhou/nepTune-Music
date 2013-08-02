@@ -1,0 +1,7 @@
+<div class='RelatedMedia'>
+  <% media.each do |m| %>
+    <% m_name = m.class.name.underscore %>
+    <% partial_name = "comment_media_#{ m_name }" %>
+    <%= render "shared/#{ partial_name }", element: m %>
+  <% end %>
+</div>

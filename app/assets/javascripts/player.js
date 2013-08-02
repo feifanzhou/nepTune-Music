@@ -21,7 +21,8 @@ function createPlayerProgress() {
         lineCap: 'round',
         lineWidth: 8
     });
-    document.getElementById('songControls').appendChild(playerProgress.el);
+    // document.getElementById('songControls').appendChild(playerProgress.el);
+    $('.SongControls').first().append(playerProgress.el);
     playerProgress.update(0);
 }
 
@@ -50,12 +51,12 @@ function changePlayButton(name) {
     function n() {
         $('#playPauseBtn').text(name);
         if (name == 'Pause') {
-            $('#pauseIcon').css('display', 'inline-block');
-            $('#playIcon').css('display', 'none');
+            $('.PauseIcon').css('display', 'inline-block');
+            $('.PlayIcon').css('display', 'none');
         }
         else if (name == 'Resume') {
-            $('#pauseIcon').css('display', 'none');
-            $('#playIcon').css('display', 'inline-block');
+            $('.PauseIcon').css('display', 'none');
+            $('.PlayIcon').css('display', 'inline-block');
         }
     }
     return n;
@@ -92,17 +93,17 @@ function playStuff(name, url) {
 
 function togglePause() {
     soundManager.togglePause('sound');
-    $('#playIcon').attr('onclick', "togglePause()");
+    $('.PlayIcon').attr('onclick', "togglePause()");
 }
 
 function setupSongDisplay(id) {
     currentID = id;
     createPlayerProgress();
     if(currentID == playingID) {
-        $('#playIcon').attr('onclick', "togglePause()");
+        $('.PlayIcon').attr('onclick', "togglePause()");
         if(!currentSound.paused) {
-            $('#pauseIcon').css('display', 'inline-block');
-            $('#playIcon').css('display', 'none');
+            $('.PauseIcon').css('display', 'inline-block');
+            $('.PlayIcon').css('display', 'none');
         }
         updateBarPlaying();
     }
