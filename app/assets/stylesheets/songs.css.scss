@@ -201,38 +201,6 @@ header {
         height: 100%;
         width: 100%;
       }
-      .SongControls {
-        .PlayPause {
-          background: transparentize(black, 0.45);
-          border-radius: 40px;
-          height: 80px;
-          left: 60px;
-          position: absolute;
-          top: 60px;
-          width: 80px;
-          @include vendor-prefix(transition, background 0.5s);
-          &:hover {
-            background: transparentize(black, 0.3);
-            cursor: pointer;
-          }
-          span {
-            display: inline-block;
-            font-size: 36px;
-            line-height: 80px;
-            text-align: center;
-            width: 100%;
-            &.PauseIcon {
-              display: none;
-            }
-          }
-        }
-        canvas {
-          left: 52px;
-          pointer-events: none;
-          position: absolute;
-          top: 52px;
-        }
-      }
       #songName {
         color: $nepTuneOrange;
         font-size: 14px;
