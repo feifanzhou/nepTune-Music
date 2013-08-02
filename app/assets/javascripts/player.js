@@ -37,6 +37,11 @@ function songControlsID() {
   return '#songControls' + songUIID;
 }
 
+function resetOnClickForCurrent() {
+  var oc = 'playThis(this, ' + songUIID + ')';
+  $(songControlsID()).find('.PlayIcon').attr('onclick', oc);
+}
+
 function updateBarPlaying() {
   if(currentSound) {
     var pgp = 100 * currentSound.position / currentSound.durationEstimate;
@@ -69,6 +74,20 @@ function changePlayButton(name) {
 }
 
 function playThis(e, songID) {
+  // If the user goes on to play another song (like another remix)
+  // while the current song is playing, we'll have to reset the display
+  // and the `onclick` trigger before we clear out the current sound
+  // and then load the next one
+  if (currentSound) {
+    console.log('There is a currentSound');
+    if (!currentSound.paused) {
+      console.log('Current sound is not paused');
+      // TODO: Clean up duplicate from setupSongDisplay()
+      $(songControlsID()).find('.PlayIcon').css('display', 'inline-block');
+      $(songControlsID()).find('.PauseIcon').css('display', 'none');
+    }
+    resetOnClickForCurrent();
+  }
   songUIID = songID;
   console.log('Play this');
   url = $(e).data('url');
