@@ -32,7 +32,7 @@ var currentSound = false;
 var playingID = false;
 var currentID = false;
 
-var songUIID;
+var songUIID = false;
 function songControlsID() {
   return '#songControls' + songUIID;
 }
@@ -126,7 +126,8 @@ function togglePause() {
 function setupSongDisplay(id) {
   console.log('Setup song display');
   currentID = id;
-  createPlayerProgress();
+  if (songUIID) // Don't create circular progress for small players…too busy
+    createPlayerProgress();
   if(currentID == playingID) {
     $(songControlsID()).find('.PlayIcon').first().attr('onclick', "togglePause()");
     if(!currentSound.paused) {
