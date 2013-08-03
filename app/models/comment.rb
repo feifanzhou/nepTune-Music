@@ -39,7 +39,7 @@ class Comment < ActiveRecord::Base
   #   c.has_many :albums, source_type: 'Album'
   #   c.has_many :artists, source_type: 'Artist'
   # end
-
+  validates :text, presence: true
   validates :user, presence: true
 
   def process_text

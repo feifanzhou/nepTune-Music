@@ -16,39 +16,41 @@
   </div>
   <% end %>
 
-
   <div class='CommentContent'>
-    <div class='CommentHeader'>
-      <div class='CommenterImage'>
-        <%= image_tag(comment.user.avatar.url, size: "25x25",
-            alt: comment.user.display_name, class: 'CommenterImage') %>
-      </div>
-      <div class='CommentNameTime'>
+
+    <div class='CommenterImage'>
+      <%= image_tag(comment.user.avatar.url, size: "30x30",
+          alt: comment.user.display_name, class: 'CommenterImage') %>
+    </div>
+
+    <div class='CommentStuff'>
+      <div class='CommentHeader'>
+
         <div class='CommenterName'><%= comment.user.display_name %></div>
         <div class='CommentTime'>
           <%= distance_of_time_in_words_to_now(comment.created_at)+" ago" %>
         </div>
-      </div>
 
-
-      <span class='CommentActions'>
-        <ul>
-          <li>
-            <a href='javascript:void(0)' onclick="reply_to(this)">reply</a>
-          </li>
-        </ul>
-      </span>
-      <% if comment.rating %>
-      <span class='CommentRating'>
-        Rating:
-        <span class='CommentRatingNumber'>
-          <%= comment.rating %>
+        <span class='CommentActions'>
+          <ul>
+            <li>
+              <a href='javascript:void(0)' onclick="reply_to(this)">reply</a>
+            </li>
+          </ul>
         </span>
-      </span>
-      <% end %>
+        <% if comment.rating %>
+        <span class='CommentRating'>
+          Rating:
+          <span class='CommentRatingNumber'>
+            <%= comment.rating %>
+          </span>
+        </span>
+        <% end %>
 
+      </div>
+      <span class='CommentText'><%= simple_format comment.text %></span>
     </div>
-    <span class='CommentText'><%= simple_format comment.text %></span>
+    
     <% if false #!comment.commentings.blank? %>
     <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can
        only contain one type of media %>
@@ -61,6 +63,7 @@
       <% end %>
     </div>
     <% end %>
+    
   </div>
   <div class="Reply" style="display:none;">
     <%= render 'layouts/comment_box', reply_id: comment.id, commentable: nil %>
@@ -68,4 +71,4 @@
   <% comment.sorted_children.each do |r| %>
   <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
   <% end %>
-</div>
+</div>  

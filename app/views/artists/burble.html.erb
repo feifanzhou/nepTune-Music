@@ -9,22 +9,27 @@
   	<div class='row' id='burbleBody'>
       <div class='span8'>
         <%= render 'layouts/comment_box', reply_id: nil, commentable: @artist %>
-        <div>
         <button id="refresh_comments">
           Refresh comments
         </button>
+
         <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>'>
           <%= render 'layouts/all_comments', comments: @comments %>
+        </div>
+
+        <% if false %>
+        <%= render 'layouts/modal_load', custom_id: 'commentingsContent' %>
+        <% end %>
       </div>
-      <%= render 'layouts/modal_load', custom_id: 'commentingsContent' %>
-  	</div>
-    <% if false %>
-    <div id='partialsTest'>
-      <% Comment.all.each do |c| %>
+      <% if false %>
+      <div id='partialsTest'>
+        <% Comment.all.each do |c| %>
         <%= render 'shared/comment_base', context: 'artist', comment: c %>
+        <% end %>
+      </div>
       <% end %>
+      
     </div>
-    <% end %>
   </div>
-</div>  
+</div>
 

@@ -1224,7 +1224,6 @@ header {
 /***** Burble Styles *****/
 .CommentContainer {
 
-  font-family: $Lato;
   margin-left: 30px;
   white-space: normal;
   // overflow: hidden;
@@ -1274,54 +1273,64 @@ header {
     font-size: 15px;
     color: #000000;
     line-height: 1em;
-    padding: 0 0 5px 10px;
+    padding: 3px 0 5px 10px;
+    font-family: $standard;
     
     .CommentText {
       //      display: inline;
        p {
-         font-size: 14px;
+         font-size: 13px;
          margin: 0 0 0px;
          color: #000000;
          line-height: 1em;
-         font-family: inherited;
+         font-family: $standard;
        }
     }
 
+    .CommenterImage {
+      display: block;
+      float: left;
+      position: relative;
+      margin: 1px 0 1px 0; //top right bottom left
+    }
+
+    .CommentStuff {
+      display: block;
+      margin-left: 40px;
+    }
+    
     .CommentHeader {
       margin-bottom: 3px;
       margin-right: 5px;
+      
       .CommenterName {
         // color: #69CFFF;
         color: #284E9E; 
         display: inline;
-        font-size: 15px;
-        font-family: inherited;
+        font-size: 13px;
+        font-family: $standard;
         margin-right: 5px;
         display: inline;
       }
       .CommentTime {
         color: transparentize($black, 0.3);
         // color: transparentize($white, 0.3);
-        font-size: 12.5px;
+        font-size: 11px;
         display: inline;
+        font-family: $standard;
       }
 
       .CommentNameTime {
         display: inline-block;
       }
-      
-      .CommenterImage {
-        display: inline-block;
-        position: relative;
-        margin: 1px 0 1px 0; //top right bottom left
-      }
 
       .CommentRating {
-        font-size: 12.5px;
+        font-family: $standard;
+        font-size: 12px;
         display: inline-block;
         float: right;
         margin-right: 5px;
-        margin-top: 6px;
+        // margin-top: 6px;
         color: transparentize($black, 0.3);
         .CommentRatingNumber {
           color: #000;
@@ -1333,7 +1342,7 @@ header {
         display: inline-block;
         position: relative;
         text-align: right;
-        margin-top: 2px;
+        margin-top: -5px;
         margin-right: 5px;
         float: right;
         ul {
@@ -1348,6 +1357,8 @@ header {
             }
             a {
               // color: #69CFFF;
+font-size: 13px;
+font-family: $standard;
             }
           }
         }
