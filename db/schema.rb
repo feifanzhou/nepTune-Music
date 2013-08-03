@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730203755) do
+ActiveRecord::Schema.define(:version => 20130801151919) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130730203755) do
     t.string   "commentable_type", :limit => 64
     t.integer  "commenter_id"
     t.string   "commenter_type"
+    t.float    "rating"
   end
 
   create_table "contact_infos", :force => true do |t|
