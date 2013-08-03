@@ -905,14 +905,15 @@ function reply_to(a) {
   // parent_id = comment.attr("data-id");
     r = comment.find('> .Reply');
     r.show();
-    submit = r.find('> .Comment-form > .new_comment > #comment_text');
+    // submit = r.find('> .Comment-form > .new_comment > #comment_text');
+    // text = comment.find('.CommentContent').first()
     modal = $("#showMusic > .m-body").first();
     if(modal.length > 0) {
         scrolly = modal;
     } else {
         scrolly = $("#artistPageContent");
     }
-    scrolly.scrollTo(submit);
+    scrolly.scrollTo(comment, {offsetTop : 100});
   //  r.css("display", "block");
 }
 
