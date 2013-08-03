@@ -4,13 +4,15 @@
   <%= f.hidden_field :comment_id, value: reply_id if reply_id%>
   <%= f.hidden_field :commentable_id, value: commentable.id if commentable %>
   <%= f.hidden_field :commentable_type, value: commentable.class.name if commentable %>
-  <%= f.text_area :text %>
+  <%= f.text_area :text %> <br>
+  Rating: <%= f.text_field :rating %>
   <% end %>
-  
+
   <div class='buttons'>
     <button class='btn' id="submit">Comment</button>
     <% if reply_id %>
     <button class='btn' id="cancel">Cancel</button>
     <% end %>
   </div>
+
 </div>

@@ -846,7 +846,7 @@ function showMusicModal(URL, id) {
   $.get(URL, function(resp) {
     var s = resp.indexOf('<!-- BEGIN_MODAL -->');
     var e = resp.indexOf('<!-- END_MODAL -->');
-    console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
+    // console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
     $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
     setupSongDisplay(id);
   });
@@ -901,10 +901,18 @@ $('body').on('click', ".Comment-form > .buttons > #cancel", function() {
 });
 
 function reply_to(a) {
-  comment = $(a).parent().parent()
-  parent_id = comment.attr("data-id");
-  r = comment.find('> .Reply');
-  r.show();
+    comment = $(a).closest('.CommentContainer')
+  // parent_id = comment.attr("data-id");
+    r = comment.find('> .Reply');
+    r.show();
+    submit = r.find('> .Comment-form > .new_comment > #comment_text');
+    modal = $("#showMusic > .m-body").first();
+    if(modal.length > 0) {
+        scrolly = modal;
+    } else {
+        scrolly = $("#artistPageContent");
+    }
+    scrolly.scrollTo(submit);
   //  r.css("display", "block");
 }
 

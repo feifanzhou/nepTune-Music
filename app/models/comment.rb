@@ -14,15 +14,16 @@
 #  commentable_type :string(64)
 #  commenter_id     :integer
 #  commenter_type   :string(255)
+#  rating           :float
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :upvotes, :location, :commentable, :parent, :comment_id, :commentable_id, :commentable_type, :user #:commentings, :artists
+  attr_accessible :text, :upvotes, :location, :commentable, :parent, :comment_id, :commentable_id, :commentable_type, :user, :rating #:commentings, :artists
   after_initialize :defaults
 
   before_save :process_text
   belongs_to :user
-  belongs_to :commenter, polymorphic: true
+  #belongs_to :commenter, polymorphic: true
   has_many :media, as: :media_holder
   belongs_to :comment
   has_many :comments
@@ -42,7 +43,7 @@ class Comment < ActiveRecord::Base
   validates :user, presence: true
 
   def process_text
-    self.text.gsub!("\n", "<br/>")
+    self.text.gsub!("\r\n", "<br/>")
   end
 
   def defaults
@@ -66,11 +67,8 @@ class Comment < ActiveRecord::Base
   end
 
   def sorted_children
-    self.children.sort { |a,b| a.created_at <=> b.created_at }
-  end
-
-  def sorted_replies
-    return sorted_children
+    # sort in reverse chronological order
+    self.children.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   # returns comments sorted so that top comments show first in list
@@ -84,7 +82,13 @@ class Comment < ActiveRecord::Base
   end
 
   def self.sorted_for_commentable(c)
-    Comment.sort_comments(c.comments)
+    opts = {
+      commentable_type: c.class.to_s,
+      commentable_id: c.id,
+      comment_id: nil
+    }
+    comments = Comment.where(opts)
+    Comment.sort_comments(comments)
   end
 
   def self.sort_comments(c)

@@ -32,7 +32,7 @@ var currentID = false;
 
 function updateBarPlaying() {
     if(currentSound) {
-        var pgp = 100 * currentSound.position / currentSound.durationEstimate;
+        var pgp = (100.0 * currentSound.position) / currentSound.durationEstimate;
         $('.position').css('width', pgp + '%');
         if (playingID == currentID) {
             playerProgress.update(pgp);
@@ -42,7 +42,8 @@ function updateBarPlaying() {
 
 function updateBarLoading() {
     if(currentSound) {
-        $('.loading').css('width', 100*currentSound.duration/currentSound.durationEstimate + '%');
+        var pgp = (100.0 * currentSound.bytesLoaded) / currentSound.bytesTotal
+        $('.loading').css('width', pgp + '%');
     }
 }
 
@@ -53,7 +54,7 @@ function changePlayButton(name) {
             $('#pauseIcon').css('display', 'inline-block');
             $('#playIcon').css('display', 'none');
         }
-        else if (name == 'Resume') {
+        else if (name == 'Resume' || name == 'Play') {
             $('#pauseIcon').css('display', 'none');
             $('#playIcon').css('display', 'inline-block');
         }
@@ -62,7 +63,6 @@ function changePlayButton(name) {
 }
 
 function playThis(e) {
-    console.log(e);
     url = $(e).data('url');
     name = $(e).data('name');
     playStuff(name, url);
@@ -80,11 +80,14 @@ function playStuff(name, url) {
         whileloading: updateBarLoading,
         onplay: changePlayButton('Pause'),
         onpause: changePlayButton('Resume'),
-        onresume: changePlayButton('Pause')
+        onresume: changePlayButton('Pause'),
+        onfinish: changePlayButton('Play')
     });
     mySound.play();
     currentSound = mySound;
     playingID = currentID;
+    $('.position').css('width', '0%');
+    $('.loading').css('width', '0%');
     // var name = $('#detailsHeaderTitle').html();
     $('#nowPlaying').html(name);
     $('#playbar').css('display', 'inline-block');
