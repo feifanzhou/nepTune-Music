@@ -14,6 +14,7 @@
 #  commentable_type :string(64)
 #  commenter_id     :integer
 #  commenter_type   :string(255)
+#  rating           :float
 #
 
 class Comment < ActiveRecord::Base
@@ -86,6 +87,8 @@ class Comment < ActiveRecord::Base
     c.sort { |a,b| b.created_at <=> a.created_at }
   end
 
-
+  def rating
+    return self.read_attribute('rating')
+  end
 
 end

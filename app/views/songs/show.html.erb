@@ -10,11 +10,13 @@ is_following: @is_following, is_band_member: @is_band_member %>
         <h3 id='songName'><%= @song.name %></h3>
         <% if !@song.album_id.blank? %>
         <p id='songAlbum'><strong><%= @song.album.name %></strong></p>
+        <p id='songRating'><strong>Rating:</strong> <%= @song.rating %></p>
         <% end %>
         <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text                                                                        
 %></span></strong></p>
       </div>
       <div id='songBurble'>
+        <%= render 'shared/related_media', media: @song.related_media %>
         <h2>Comments/Burble</h2>
         <%= render 'layouts/comment_box', reply_id: nil, commentable: @song %>
         <button id="refresh_comments"> Refresh comments </button>

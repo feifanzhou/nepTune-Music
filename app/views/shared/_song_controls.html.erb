@@ -1,11 +1,12 @@
-<div id='songControls'>
-  <div id='playPause'>
-    <span class='Icon' id='playIcon'
+<% is_small ||= false %>
+<div class="SongControls <%= 'SongControlsSmall' if is_small %>" id="songControls<%= song.id %>">
+  <div class='PlayPause'>
+    <span class='Icon PlayIcon'
           data-url='<%= escape_data_url song.audio.path %>'
           data-name='<%= CGI::escape_html song.name %>'
-          onclick='playThis(this)'>
+          onclick="playThis(this, <%= song.id %>)">
       &#59416;
     </span>
-    <span class='Icon' id='pauseIcon' onclick="togglePause()">&#59417;</span>
+    <span class='Icon PauseIcon' onclick="togglePause()">&#59417;</span>
   </div>
 </div>

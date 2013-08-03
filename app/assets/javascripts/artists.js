@@ -428,10 +428,8 @@ $('body').on('submit', '#uploadImageForm', function() {
 });
 var img_id = -1;
 function upload_target_loaded() {
-  console.log('gallery image uploaded');
   finishUpload();
   var resp = JSON.parse(document.getElementById('upload_target').contentWindow.document.body.textContent);
-  console.log('upload image resp: ' + resp);
   img_id = parseInt(resp['extra_data'], 10);
   var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
   $('#imageUploadPreview').append(i);
@@ -440,7 +438,6 @@ $('#upload_target').load(function() {
   upload_target_loaded();
 });
 $(window).bind('djaxLoad', function() {
-  console.log('djax load bind upload target');
   // http://stackoverflow.com/a/11613013/472768
   $('#upload_target').off('load.upload');
   $('#upload_target').on('load.upload', function() {
@@ -628,7 +625,6 @@ $(document).on('keydown', '.ArtistStory', function() {
 $(document).on('blur', '.ArtistStory', function() {
   // $('.ArtistStory').blur(function(event) {
   var nTxt = $(this).html();
-  console.log('nTxt: ' + nTxt);
   updateStoryForArtist(nTxt);
 });
 
@@ -656,7 +652,6 @@ $(document).on('keydown', '.ContactText', function() {
 $(document).on('blur', '.ContactText', function() {
   // $('.ContactText').blur(function(event) {
   var value = $(this).html();
-  console.log('value: ' + value);
   var field = $(this).attr('id');
   updateContactInfoForArtist(field, value);
 });
@@ -783,7 +778,6 @@ Dropzone.options.newSongForm = {
 };
 
 function addSongToMusicGrid(imgPath, imgCaption, songName, songPath) {
-  console.log('add songName: ' + songName);
   var s = "<div class='GridItem' data-path='" + songPath + "'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
   if ($('#musicGridSongs .GridItem').length == 0)
     $('#musicGridSongs').append(s);
@@ -846,7 +840,6 @@ function showMusicModal(URL, id) {
   $.get(URL, function(resp) {
     var s = resp.indexOf('<!-- BEGIN_MODAL -->');
     var e = resp.indexOf('<!-- END_MODAL -->');
-    console.log('resp: ' + resp.slice(s, e).replace(/&#x27;/g,"\'"));
     $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
     setupSongDisplay(id);
   });
