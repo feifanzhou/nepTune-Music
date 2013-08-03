@@ -194,7 +194,7 @@ header {
     #songDetails {
       display: inline-block;
       float: left;
-      position: relative;
+      position: fixed;
       width: 200px;
       .SongImage {
         display: inline-block;
@@ -254,7 +254,7 @@ header {
       color: $black;
       display: inline-block;
       float: left;
-      margin-left: 20px;
+      margin-left: 220px;
       width: 295px;
     }
   }

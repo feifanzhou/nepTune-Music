@@ -1478,6 +1478,12 @@ color: transparentize($white, 0.5);
             &:last-child {
               margin-right: 0;
             }
+            a {
+              color: $nepTuneOrange;
+              &:hover {
+                text-decoration: none;
+              }
+            }
           }
         }
       }
