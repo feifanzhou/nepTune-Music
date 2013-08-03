@@ -226,7 +226,9 @@ header {
       width: 310px;
       .RelatedMedia {
         font-size: 0;
+        margin: auto;
         position: relative;
+        width: 280px;
         .RelatedMediaCaption {
           color: $inactiveBlack;
           font-family: $OpenSans;
@@ -297,6 +299,7 @@ header {
           overflow-y: scroll;
           padding-bottom: 20px;
           position: relative;
+          width: 280px;
           .CommentSong {
             display: inline-block;
             margin: 4px;
