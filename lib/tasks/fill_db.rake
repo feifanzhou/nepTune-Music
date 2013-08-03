@@ -59,11 +59,11 @@ the group really started to take off, producing a music video each week and post
     a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon, year: 2012)
 
     puts "Writing songs..."
-    s1 = Song.create(name: 'Bring Him Home', artist: jon, image: i3,
+    s1 = Song.create(name: 'Bring Him Home', artist: jon, album: a1, #image: i3,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/8.%20Bring%20Him%20Home%20%28Les%20Miserables%29.mp3'))
     s2 = Song.create(name: 'Moonlight', track_number: 1, artist: jon, album: a1,
-                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/2.%20Moonlight.mp3'),
-                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/test2.png'))
+                     #image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/test2.png'),
+                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/2.%20Moonlight.mp3'))
     s3 = Song.create(name: 'More Than Words', track_number: 3, artist: jon, album: a1,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/12.%20More%20Than%20Words.mp3'))
     s4 = Song.create(name: 'All Of Me', track_number: 2, artist: jon, album: a1,
@@ -73,8 +73,8 @@ the group really started to take off, producing a music video each week and post
     s6 = Song.create(name: 'Titanium/Pavane', track_number: 1, artist: jon, album: a2,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/titanium.mp3'))
     s6 = Song.create(name: 'Next Stop Everywhere', artist: jon,
-                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3'),
-                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/tardis.jpg'))
+                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/tardis.jpg'),
+                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3'))
 
     puts "Planning events..."
     e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 7, 28, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 7, 28, 20, 0, 0, '-4'))
