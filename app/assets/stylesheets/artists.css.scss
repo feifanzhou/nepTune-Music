@@ -1222,151 +1222,151 @@ header {
 }
 
 /***** Burble Styles *****/
-.CommentContainer {
+// .CommentContainer {
 
-  margin-left: 30px;
-  white-space: normal;
-  // overflow: hidden;
-  //  position: relative;
-  &.CommentLevel0 {
-    // background: transparentize($white, 0.05);
-    // border: 1px solid #DEDEDE;
-    // border-radius: 4px;
-    color: black;
-    margin: 12px;
-    .CommentHeader {
-      // border-top: 1px solid #c9c9c9;
-      border-bottom: 1px solid #999;
-    }
-  }
+//   margin-left: 30px;
+//   white-space: normal;
+//   // overflow: hidden;
+//   //  position: relative;
+//   &.CommentLevel0 {
+//     // background: transparentize($white, 0.05);
+//     // border: 1px solid #DEDEDE;
+//     // border-radius: 4px;
+//     color: black;
+//     margin: 12px;
+//     .CommentHeader {
+//       // border-top: 1px solid #c9c9c9;
+//       border-bottom: 1px solid #999;
+//     }
+//   }
 
-  &.CommentLevel1 {
-    .CommentHeader {
-      // border-top: 1px solid #999;
-    }    
-  }
+//   &.CommentLevel1 {
+//     .CommentHeader {
+//       // border-top: 1px solid #999;
+//     }    
+//   }
   
-  .CommenterInfo {
-    border-right: 1px solid #CCC;
-    display: inline-block;
-    overflow: hidden;
-    // margin: 14px auto 8px auto;
-    padding: 8px;
-    text-align: center;
-    vertical-align: top;
-    width: 80px;
-  /* .CommenterName { */
-  /*   font-size: 13px; */
-  /*   font-weight: 600; */
-  /*   line-height: 1.25em; */
-  /*   display: inline-block; */
-  /*   // margin: 6px auto; */
-  /*   white-space: normal; */
-  /*   width: 100%; */
-  /* } */
-  }
-  .CommentContent {
-    background: transparentize($white, 0.1);
-    border-radius: 6px;
-    margin: 0px 0px 5px 5px; //top right bottom left
-    vertical-align: top;
-    font-size: 15px;
-    color: #000000;
-    line-height: 1em;
-    padding: 3px 0 5px 10px;
-    font-family: $standard;
+//   .CommenterInfo {
+//     border-right: 1px solid #CCC;
+//     display: inline-block;
+//     overflow: hidden;
+//     // margin: 14px auto 8px auto;
+//     padding: 8px;
+//     text-align: center;
+//     vertical-align: top;
+//     width: 80px;
+//   /* .CommenterName { */
+//   /*   font-size: 13px; */
+//   /*   font-weight: 600; */
+//   /*   line-height: 1.25em; */
+//   /*   display: inline-block; */
+//   /*   // margin: 6px auto; */
+//   /*   white-space: normal; */
+//   /*   width: 100%; */
+//   /* } */
+//   }
+//   .CommentContent {
+//     background: transparentize($white, 0.1);
+//     border-radius: 6px;
+//     margin: 0px 0px 5px 5px; //top right bottom left
+//     vertical-align: top;
+//     font-size: 15px;
+//     color: #000000;
+//     line-height: 1em;
+//     padding: 3px 0 5px 10px;
+//     font-family: $standard;
     
-    .CommentText {
-      //      display: inline;
-       p {
-         font-size: 13px;
-         margin: 0 0 0px;
-         color: #000000;
-         line-height: 1em;
-         font-family: $standard;
-       }
-    }
+//     .CommentText {
+//       //      display: inline;
+//        p {
+//          font-size: 13px;
+//          margin: 0 0 0px;
+//          color: #000000;
+//          line-height: 1em;
+//          font-family: $standard;
+//        }
+//     }
 
-    .CommenterImage {
-      display: block;
-      float: left;
-      position: relative;
-      margin: 1px 0 1px 0; //top right bottom left
-    }
+//     .CommenterImage {
+//       display: block;
+//       float: left;
+//       position: relative;
+//       margin: 1px 0 1px 0; //top right bottom left
+//     }
 
-    .CommentStuff {
-      display: block;
-      margin-left: 40px;
-    }
+//     .CommentStuff {
+//       display: block;
+//       margin-left: 40px;
+//     }
     
-    .CommentHeader {
-      margin-bottom: 3px;
-      margin-right: 5px;
+//     .CommentHeader {
+//       margin-bottom: 3px;
+//       margin-right: 5px;
       
-      .CommenterName {
-        // color: #69CFFF;
-        color: #284E9E; 
-        display: inline;
-        font-size: 13px;
-        font-family: $standard;
-        margin-right: 5px;
-        display: inline;
-      }
-      .CommentTime {
-        color: transparentize($black, 0.3);
-        // color: transparentize($white, 0.3);
-        font-size: 11px;
-        display: inline;
-        font-family: $standard;
-      }
+//       .CommenterName {
+//         // color: #69CFFF;
+//         color: #284E9E; 
+//         display: inline;
+//         font-size: 13px;
+//         font-family: $standard;
+//         margin-right: 5px;
+//         display: inline;
+//       }
+//       .CommentTime {
+//         color: transparentize($black, 0.3);
+//         // color: transparentize($white, 0.3);
+//         font-size: 11px;
+//         display: inline;
+//         font-family: $standard;
+//       }
 
-      .CommentNameTime {
-        display: inline-block;
-      }
+//       .CommentNameTime {
+//         display: inline-block;
+//       }
 
-      .CommentRating {
-        font-family: $standard;
-        font-size: 12px;
-        display: inline-block;
-        float: right;
-        margin-right: 5px;
-        // margin-top: 6px;
-        color: transparentize($black, 0.3);
-        .CommentRatingNumber {
-          color: #000;
-        }
-      }
+//       .CommentRating {
+//         font-family: $standard;
+//         font-size: 12px;
+//         display: inline-block;
+//         float: right;
+//         margin-right: 5px;
+//         // margin-top: 6px;
+//         color: transparentize($black, 0.3);
+//         .CommentRatingNumber {
+//           color: #000;
+//         }
+//       }
       
-      .CommentActions {
-        bottom: 0;
-        display: inline-block;
-        position: relative;
-        text-align: right;
-        margin-top: -5px;
-        margin-right: 5px;
-        float: right;
-        ul {
-          list-style: none;
-          margin-left: 0;
-          padding: 0;
-          li {
-            display: inline-block;
-            padding: 0 10px;
-            &:last-child {
-              padding: 0;
-            }
-            a {
-              // color: #69CFFF;
-font-size: 13px;
-font-family: $standard;
-            }
-          }
-        }
-      }
-    }
-  }
+//       .CommentActions {
+//         bottom: 0;
+//         display: inline-block;
+//         position: relative;
+//         text-align: right;
+//         margin-top: -5px;
+//         margin-right: 5px;
+//         float: right;
+//         ul {
+//           list-style: none;
+//           margin-left: 0;
+//           padding: 0;
+//           li {
+//             display: inline-block;
+//             padding: 0 10px;
+//             &:last-child {
+//               padding: 0;
+//             }
+//             a {
+//               // color: #69CFFF;
+// font-size: 13px;
+// font-family: $standard;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
   
-}
+// }
 
 /*
   .Comment {
@@ -1415,73 +1415,81 @@ color: transparentize($white, 0.5);
 }
 */
 
-#songBurble {
-  .Comment {
-    .Comment-text {
-      p {
-        color: $black;
-      }
-    }
-  }
-  .Comment-header {
-    color: transparentize($black, 0.3);
-    
-    .Username {
-      color: $blueDark;
-    }
-
-    .Time {
-    }
-  }
-  .Comment-footer {
-    color: transparentize($black, 0.3);
-    a {
-      color: transparentize($black, 0.5);
-    }
-  }
-
+.CommentContainer {
+  border-top: 1px solid #666;
+  font-family: $OpenSans;
+  margin: 2px 0 auto 34px;
+  padding-top: 4px;
   &.CommentLevel0 {
-    .CommentHeader {
-      border-top: 1px solid #999;
-      border-bottom: 1px solid #ccc;
-    }
+    background: lighten($nepTuneOrange, 47%);
+    border-radius: 4px;
+    border-top: none;
+    margin: 10px 0;
+    padding: 4px;
   }
-  
   .CommentContent {
-    color: #000000;
-    
-    .CommentText {
-      //      display: inline;
-       p {
-         color: #000000;
-       }
+    overflow: hidden;
+    position: relative;
+    .CommenterImage {
+      float: left;
     }
-
-    .CommentHeader {
-      .CommenterName {
-        color: #284E9E; 
+    .CommentStuff {
+      margin-left: 34px;
+      position: relative;
+      .CommentHeader {
+        border-bottom: 1px solid #DDD;
+        margin-bottom: 8px;
+        position: relative;
+        top: 4px;
+        .CommenterName {
+          font-weight: 600;
+        }
+        .CommentTime {
+          color: $inactiveBlack;
+          font-size: 12px;
+          margin-left: 8px;
+        }
       }
-
-      .CommentActions {
-        ul {
-          li {
-            color: $white;
+      .CommentText {
+        p {
+          font-family: $OpenSans;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.25em;
+          &:last-child {
+            margin-bottom: 0;
           }
         }
       }
-      .CommentTime {
-        color: transparentize($black, 0.3);
-        font-size: 12px;
+      .CommentRating {
+        font-size: 13px;
+        .RatingLabel {
+          color: $inactiveBlack;
+          font-weight: 600;
+        }
+      }
+      .CommentActions {
+        ul {
+          list-style: none;
+          margin: 0;
+          li {
+            display: inline-block;
+            margin-right: 6px;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
       }
     }
   }
-  
 }
 
 .NewCommentForm {
   background: white;
   border-radius: 4px;
   box-shadow: inset 0 -1px 1px 1px transparentize(#AAA, 0.5);
+  position: relative;
   input, textarea {
     background: transparent !important;
     box-shadow: none !important;
@@ -1492,7 +1500,13 @@ color: transparentize($white, 0.5);
     border: none !important;
     display: inline-block;
     margin-top: 6px !important;
-    width: 228px;
+    width: 50%;
+  }
+  #submitComment {
+    float: right;
+    position: relative;
+    right: 4px;
+    top: 4px;
   }
   textarea {
     border-radius: 0;
