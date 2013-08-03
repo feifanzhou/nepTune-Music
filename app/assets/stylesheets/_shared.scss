@@ -355,6 +355,10 @@
 }
 
 /***** Shared styles *****/
+textarea.Autoresize {
+  resize: none;
+}
+
 #backdrop {
   @include ModalBackdrop;
 }

@@ -891,13 +891,9 @@ $('body').on('click', '#refresh_comments', function(event) {
     refresh_comments();
 });
 
-$('body').on('click', ".Comment-form > .buttons > #submit", function() {
-    form = $(this).closest('.Comment-form').find('#new_comment');
+$('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() {
+    form = $(this).closest('.NewCommentForm').find('#new_comment');
     handle_comment_form(form);
-});
-
-$('body').on('click', ".Comment-form > .buttons > #cancel", function() {
-  $(this).closest('.Reply').hide();
 });
 
 function reply_to(a) {
@@ -924,7 +920,7 @@ function reply_to(a) {
 // variable to hold request
 var request;
 // bind to the submit event of our form
-$('body').on("submit", "#new_comment", function(event){
+$('body').on("submit", ".NewCommentForm", function(event){
     // prevent default posting of form
     event.preventDefault();
     handle_comment_form($(this));
