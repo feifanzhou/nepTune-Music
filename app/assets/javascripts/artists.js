@@ -481,7 +481,7 @@ $('body').on('click', '#saveImage', function() {
     }
   });
 });
-$('body').on('keydown', '.AddVideoURL', function() {
+$('body').on('keydown', '.AddVideoURL', function(event) {
   // $('.AddVideoURL').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -587,7 +587,7 @@ function updateCaptionForGalleryItem(newText, m_id) {
     }
   });
 }
-$(document).on('keydown', '.TitleTextEdit', function() {
+$(document).on('keydown', '.TitleTextEdit', function(event) {
   // $('.TitleTextEdit').keydown(function(event){
   if (event.keyCode !== 13)  // Check for Return key
     return;
@@ -617,7 +617,7 @@ function updateStoryForArtist(newText) {
     }
   });
 }
-$(document).on('keydown', '.ArtistStory', function() {
+$(document).on('keydown', '.ArtistStory', function(event) {
   // $('.ArtistStory').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -645,7 +645,7 @@ function updateContactInfoForArtist(field, value) {
     }
   });
 }
-$(document).on('keydown', '.ContactText', function() {
+$(document).on('keydown', '.ContactText', function(event) {
   // $('.ContactText').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -897,19 +897,20 @@ $('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() 
 });
 
 function reply_to(a) {
-    comment = $(a).closest('.CommentContainer')
+    comment = $(a).closest('.CommentContainer');
+    $(a).css('display', 'none');
   // parent_id = comment.attr("data-id");
-    r = comment.find('> .Reply');
+    r = comment.find('> .CommentReply');
     r.show();
     // submit = r.find('> .Comment-form > .new_comment > #comment_text');
     // text = comment.find('.CommentContent').first()
-    modal = $("#showMusic > .m-body").first();
-    if(modal.length > 0) {
-        scrolly = modal;
-    } else {
-        scrolly = $("#artistPageContent");
-    }
-    scrolly.scrollTo(comment, {offsetTop : 100});
+    // modal = $("#showMusic > .m-body").first();
+    // if(modal.length > 0) {
+    //     scrolly = modal;
+    // } else {
+    //     scrolly = $("#artistPageContent");
+    // }
+    // scrolly.scrollTo(comment, {offsetTop : 100});
   //  r.css("display", "block");
 }
 
@@ -925,6 +926,10 @@ $('body').on("submit", ".NewCommentForm", function(event){
     event.preventDefault();
     handle_comment_form($(this));
 });
+$('body').on('submit', '.CommentReplyForm', function(event) {
+  event.preventDefault();
+  handle_comment_form($(this));
+});
 
 function handle_comment_form(form) {
 
@@ -938,6 +943,7 @@ function handle_comment_form(form) {
     var inputs = form.find("input, select, button, textarea");
     // serialize the data in the form
     var serializedData = form.serialize();
+    console.log('Serialized: ' + serializedData);
 
     // let's disable the inputs for the duration of the ajax request
     inputs.prop("disabled", true);
@@ -973,3 +979,11 @@ function handle_comment_form(form) {
     });
 
 }
+
+$('body').on('keydown', '.CommentReplyField', function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).closest('.CommentReplyForm').submit();
+  return false;
+});

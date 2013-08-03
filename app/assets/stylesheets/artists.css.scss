@@ -1470,6 +1470,8 @@ color: transparentize($white, 0.5);
       }
       .CommentActions {
         ul {
+          height: auto;
+          line-height: 0;
           list-style: none;
           margin: 0;
           li {
@@ -1485,6 +1487,23 @@ color: transparentize($white, 0.5);
               }
             }
           }
+        }
+      }
+    }
+  }
+  .CommentReply {
+    display: none;
+    margin-left: 34px;
+    .CommentReplyForm {
+      margin-bottom: 0;
+      .CommentReplyField {
+        @include vendor-prefix(box-sizing, border-box);
+        font-size: 12px;
+        height: 24px;
+        width: 100%;
+        &:focus {
+          border: 1px solid #CCC !important;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
         }
       }
     }

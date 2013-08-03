@@ -60,9 +60,13 @@
     <% end %>
   </div>
 
-  <div class="Reply" style="display:none;">
-    <%= render 'layouts/comment_box', reply_id: comment.id, commentable: nil %>
+  <div class="CommentReply" style="display:none;">
+    <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
+      <%= f.hidden_field :comment_id, value: comment.id %>
+      <%= f.text_field :text, class: 'CommentReplyField', placeholder: 'Write a reply' %>
+    <% end %>
   </div>
+
   <% comment.sorted_children.each do |r| %>
   <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
   <% end %>
