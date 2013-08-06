@@ -1498,8 +1498,7 @@ color: transparentize($white, 0.5);
     }
   }
   .CommentReply {
-    display: none;
-    margin-left: 34px;
+    margin: 6px 0 0 34px;
     .CommentReplyForm {
       margin-bottom: 0;
       .CommentReplyField {

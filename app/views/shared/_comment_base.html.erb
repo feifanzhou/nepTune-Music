@@ -30,9 +30,13 @@
 
       <div class='CommentActions'>
         <ul>
-          <li><a href='javascript:void(0)' onclick="reply_to(this)">reply</a></li>
+          <% if level != 0 %>
+            <li><a href='javascript:void(0)' onclick="reply_to(this)">reply</a></li>
+          <% end %>
           <% if !comment.children.blank? %>
-            <span class='ListSeparator'>&bull;</span>
+            <% if level != 0 %>
+              <span class='ListSeparator'>&bull;</span>
+            <% end %>
             <li><a class='CommentActionCollapse'>hide replies</a><a class='CommentActionUncollapse'>show replies</a></li>
           <% end %>
         </ul>
@@ -53,10 +57,10 @@
   </div>
 
   <% if replyable %>
-  <div class="CommentReply" style="display:none;">
+  <div class="CommentReply <%= 'Hidden' if level != 0 %>">
     <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
       <%= f.hidden_field :comment_id, value: comment.id %>
-      <%= f.text_field :text, class: 'CommentReplyField', placeholder: 'Write a reply' %>
+      <%= f.text_field :text, class: 'CommentReplyField', placeholder: "Reply to #{ comment.user.fname }" %>
     <% end %>
   </div>
   <% end %>
