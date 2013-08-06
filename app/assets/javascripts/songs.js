@@ -254,3 +254,18 @@ $('body').on('mouseover', '.CommentSong', function() {
   $('.RelatedMediaName').text(name);
   $('.RelatedMediaCreator').text(creator);
 });
+
+$('body').on('click', '.CommentActionCollapse', function() {
+  var c = $(this);
+  $(c).css('display', 'none');
+  var p = $(c).closest('.CommentContainer').first();
+  $(p).children('.CommentContainer').slideUp();
+  $(c).parent().children('.CommentActionUncollapse').css('display', 'inline');
+});
+$('body').on('click', '.CommentActionUncollapse', function() {
+  var c = $(this);
+  $(c).css('display', 'none');
+  var p = $(c).closest('.CommentContainer').first();
+  $(p).children('.CommentContainer').slideDown();
+  $(c).parent().children('.CommentActionCollapse').css('display', 'inline');
+});

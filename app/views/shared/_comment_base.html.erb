@@ -1,20 +1,10 @@
 <% level ||= 0 %>
+<% if replyable %>
+  <% puts '===== 2 replyable' %>
+<% else %>
+  <% puts '===== 2 not replayble' %>
+<% end %>
 <div class="CommentContainer CommentLevel<%= level %>" >
-
-  <% if false %>
-  <div class='CommenterInfo'>
-    <%= image_tag(comment.user.avatar.url, size: "60x60",
-        alt: comment.user.display_name, class: 'CommenterImage') %>
-    <h2 class='CommenterName'><%= comment.user.display_name %></h2>
-    
-    <div class='CommentActions'>
-      <ul>
-        <li>Reply</li>
-        <li>Share</li>
-      </ul>
-    </div>
-  </div>
-  <% end %>
 
   <div class='CommentContent'>
     <div class='CommenterImage'>
@@ -40,9 +30,11 @@
 
       <div class='CommentActions'>
         <ul>
-          <li>
-            <a href='javascript:void(0)' onclick="reply_to(this)">reply</a>
-          </li>
+          <li><a href='javascript:void(0)' onclick="reply_to(this)">reply</a></li>
+          <% if !comment.children.blank? %>
+            <span class='ListSeparator'>&bull;</span>
+            <li><a class='CommentActionCollapse'>hide replies</a><a class='CommentActionUncollapse'>show replies</a></li>
+          <% end %>
         </ul>
       </div>
     </div>
@@ -60,14 +52,16 @@
     <% end %>
   </div>
 
+  <% if replyable %>
   <div class="CommentReply" style="display:none;">
     <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
       <%= f.hidden_field :comment_id, value: comment.id %>
       <%= f.text_field :text, class: 'CommentReplyField', placeholder: 'Write a reply' %>
     <% end %>
   </div>
+  <% end %>
 
   <% comment.sorted_children.each do |r| %>
-  <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
+  <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable %>
   <% end %>
 </div>  

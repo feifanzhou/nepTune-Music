@@ -115,6 +115,7 @@
 
   #playbar {
     color: $white;
+    display: none;
     height: 100%;
     margin: auto;
     text-align: center;
@@ -130,13 +131,13 @@
       top: -6px;
       width: 100%;
       .loading {
-        background-color: transparentize(gray, 0.5);
+        background-color: transparentize(black, 0.4);
         height: 100%;
         position: absolute;
         top: 0;
       }
       .position {
-        background-color: transparentize(black, 0.2);
+        background-color: transparentize(white, 0.2);
         height: 100%;
         position: absolute;
         top: 0;
@@ -432,6 +433,13 @@ textarea.Autoresize {
 
 .Icon {
 	font-family: $Zonda;
+}
+
+.ListSeparator {
+  color: transparentize(gray, 0.5);
+  font-size: 8px;
+  position: relative;
+  top: -2px;
 }
 
 .modal-header {

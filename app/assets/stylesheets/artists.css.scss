@@ -10,9 +10,9 @@
 
 @import "bootstrap";
 
-// @import "albums.css";
-// @import "songs.css";
-// @import "events.css";
+@import "albums.css";
+@import "songs.css";
+@import "events.css";
 
 html {
   background: $Txture;
@@ -1476,14 +1476,20 @@ color: transparentize($white, 0.5);
           margin: 0;
           li {
             display: inline-block;
-            margin-right: 6px;
+            margin: auto 3px;
+            &:first-child {
+              margin-left: 0;
+            }
             &:last-child {
               margin-right: 0;
             }
             a {
               color: $nepTuneOrange;
               &:hover {
-                text-decoration: none;
+                cursor: pointer;
+              }
+              &.CommentActionUncollapse {
+                display: none;
               }
             }
           }

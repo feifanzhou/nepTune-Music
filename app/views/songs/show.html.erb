@@ -12,8 +12,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
         <p id='songAlbum'><strong><%= @song.album.name %></strong></p>
         <p id='songRating'><strong>Rating:</strong> <%= @song.rating %></p>
         <% end %>
-        <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text                                                                        
-%></span></strong></p>
+        <p id='songAdded'>Added on <strong><span id='songAddedDate'><%= @song.added_on_text %></span></strong></p>
       </div>
       <div id='songBurble'>
         <h2>Related songs</h2>
@@ -24,7 +23,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
         <% end %>
         <button id="refresh_comments"> Refresh comments </button>
         <div id="all_comments" data-type="Song" data-id='<%= @song.id %>' class="DJAX">
-          <%= render 'layouts/all_comments', comments: @comments %>
+          <%= render 'layouts/all_comments', comments: @comments, replyable: !@user.blank? %>
         </div>
       </div>
     </div>
