@@ -60,14 +60,17 @@ function updateBarLoading() {
 
 function changePlayButton(name) {
   function n() {
-    $('#playPauseBtn').text(name);
     if (name == 'Pause') {
       $(songControlsID()).find('.PauseIcon').first().css('display', 'inline-block');
       $(songControlsID()).find('.PlayIcon').first().css('display', 'none');
+      $('#playPauseBtn .PlayIcon').css('display', 'none');
+      $('#playPauseBtn .PauseIcon').css('display', 'inline-block');
     }
     else if (name == 'Resume') {
       $(songControlsID()).find('.PauseIcon').first().css('display', 'none');
       $(songControlsID()).find('.PlayIcon').first().css('display', 'inline-block');
+      $('#playPauseBtn .PlayIcon').css('display', 'inline-block');
+      $('#playPauseBtn .PauseIcon').css('display', 'none');
     }
   }
   return n;

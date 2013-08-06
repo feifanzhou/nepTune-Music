@@ -78,12 +78,12 @@ class SongsController < ApplicationController
   private
   def authenticate_editing
     artist = get_artist_from_params(params)
-    curr_user = current_user
-    if curr_user.blank? || artist.blank?
+    @user = current_user
+    if @user.blank? || artist.blank?
       redirect_to artist_main_path(artist.route)
       return
     end
-    bm = BandMember.find_by_user_id_and_artist_id(curr_user.id, artist.id)
+    bm = BandMember.find_by_user_id_and_artist_id(@user.id, artist.id)
     redirect_to artist_main_path(artist.route) if bm.blank?
   end
 end

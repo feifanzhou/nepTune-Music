@@ -115,53 +115,79 @@
 
   #playbar {
     color: $white;
-    //  align: center;
-    //font-size: 18px;
-    // height: 18px !important;
     height: 100%;
+    margin: auto;
     text-align: center;
-    //display: inline-block;
-    display: none;
     width: 500px !important;
     .statusbar {
-      border-radius: 4px;
+      // background: rgb(20,20,20);
+      // border: 1px solid transparentize(white, 0.5);
+      // border-radius: 4px;
       display: inline-block;
-      width: 100px;
+      height: 3px;
       margin: auto;
-      background: rgb(20,20,20);
       position: relative;
-      ///border-color: white;
-      border: 1px solid transparentize(white, 0.5);
-      height: 8px;
+      top: -6px;
+      width: 100%;
       .loading {
-        background-color: rgb(100, 100, 100);
-        border-radius: 0px;
-        //border-color: rgb(102, 102, 102);
-          position: absolute;
-          top: 1px;
+        background-color: transparentize(gray, 0.5);
         height: 100%;
+        position: absolute;
+        top: 0;
       }
       .position {
-        background-color: $blue;
-        border-radius: 0px;
-        //border-color: rgb(102, 102, 102);
-          position: absolute;
-          top: 1px;
+        background-color: transparentize(black, 0.2);
         height: 100%;
+        position: absolute;
+        top: 0;
+        @include vendor-prefix(transition, width 0.5s);
       }
     }
-    
-  .songbar {
+    #playPauseBtn {
+      border-right: 1px solid transparentize(white, 0.6);
+      display: inline-block;
+      margin: 4px 6px 0 0;
+      padding-top: 4px;
+      text-align: center;
+      vertical-align: top;
+      width: 36px;
+      &:hover {
+        cursor: pointer;
+      }
+      span {
+        font-size: 28px;
+        &.PauseIcon {
+          display: none;
+        }
+      }
+    }
+    .songbar {
       /* position: absolute; */
       /* top: 4px; */
       display: inline-block;
+      font-family: $OpenSans;
+      margin: auto;
+      width: 200px;
+      #nowPlaying {
+        height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
     }
-
-    #playPauseBtn {
-      display: inline-block !important;
-      position: absolute;
-      top: 8px;
-      margin: 0 0 0 20px; //top right bottom left
+    #playlistBtn {
+      border-left: 1px solid transparentize(white, 0.6);
+      display: inline-block;
+      margin: 4px 0 0 6px;
+      padding-top: 4px;
+      text-align: center;
+      vertical-align: top;
+      width: 36px;
+      &:hover {
+        cursor: pointer;
+      }
+      span {
+        font-size: 26px;
+      }
     }
   }
   #headerLogin {
