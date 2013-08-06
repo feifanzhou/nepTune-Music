@@ -872,7 +872,6 @@ function refresh_comments() {
     all_comments = $("#all_comments");
     type = all_comments.data('type');
     id = all_comments.data('id');
-    console.log('hello ' + type + id);
     path = '/comments/by_type_id/' + type + '/' + id;
 
     $.ajax({
