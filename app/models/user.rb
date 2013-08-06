@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :events, through: :attendees
   has_many :play_counts
   has_many :media, through: :play_counts
-  has_many :comments, as: :commenter
+  has_many :comments, as: :commentable
   has_many :band_members
   has_many :artists, through: :band_members
 

@@ -18,28 +18,33 @@
 #
 
 class Comment < ActiveRecord::Base
-  attr_accessible :text, :upvotes, :location, :commenter, :parent, :comment_id, :commentable_id, :commentable_type, :commentings, :artists
+  attr_accessible :text, :upvotes, :location, :commentable, :parent, :comment_id, :commentable_id, :commentable_type, :user, :rating #:commentings, :artists
   after_initialize :defaults
 
-  # belongs_to :user
-  belongs_to :commenter, polymorphic: true
+  before_save :process_text
+  belongs_to :user
+  #belongs_to :commenter, polymorphic: true
   has_many :media, as: :media_holder
   belongs_to :comment
   has_many :comments
-  # belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, polymorphic: true
   # Need many-to-many polymorphic relation between comments and media/events/anything else
   # http://stackoverflow.com/questions/12287869/many-to-many-polymorphic-association-in-ruby-on-rails
-  has_many :commentings
+  # has_many :commentings
 
-  with_options :through => :commentings, :source => :commentable do |c|
-    c.has_many :media, source_type: 'Media'
-    c.has_many :events, source_type: 'Event'
-    c.has_many :songs, source_type: 'Song'
-    c.has_many :albums, source_type: 'Album'
-    c.has_many :artists, source_type: 'Artist'
+  # with_options :through => :commentings, :source => :commentable do |c|
+  #   c.has_many :media, source_type: 'Media'
+  #   c.has_many :events, source_type: 'Event'
+  #   c.has_many :songs, source_type: 'Song'
+  #   c.has_many :albums, source_type: 'Album'
+  #   c.has_many :artists, source_type: 'Artist'
+  # end
+  validates :text, presence: true
+  validates :user, presence: true
+
+  def process_text
+    self.text.gsub!("\r\n", "<br/>")
   end
-
-  # validates :user, presence: true
 
   def defaults
     self.upvotes ||= 1
@@ -62,11 +67,8 @@ class Comment < ActiveRecord::Base
   end
 
   def sorted_children
-    self.children.sort { |a,b| a.created_at <=> b.created_at }
-  end
-
-  def sorted_replies
-    return sorted_children
+    # sort in reverse chronological order
+    self.children.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   # returns comments sorted so that top comments show first in list
@@ -80,7 +82,13 @@ class Comment < ActiveRecord::Base
   end
 
   def self.sorted_for_commentable(c)
-    Comment.sort_comments(c.comments)
+    opts = {
+      commentable_type: c.class.to_s,
+      commentable_id: c.id,
+      comment_id: nil
+    }
+    comments = Comment.where(opts)
+    Comment.sort_comments(comments)
   end
 
   def self.sort_comments(c)

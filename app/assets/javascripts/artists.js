@@ -102,7 +102,6 @@ function primeClick() {
   });
 }
 
-
 function returnToMusicGrid() {
   $('#musicGridContainer').removeClass('MusicGridDetails');
   $('#musicGridFilter').removeClass('Hidden');
@@ -478,7 +477,7 @@ $('body').on('click', '#saveImage', function() {
     }
   });
 });
-$('body').on('keydown', '.AddVideoURL', function() {
+$('body').on('keydown', '.AddVideoURL', function(event) {
   // $('.AddVideoURL').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -584,7 +583,7 @@ function updateCaptionForGalleryItem(newText, m_id) {
     }
   });
 }
-$(document).on('keydown', '.TitleTextEdit', function() {
+$(document).on('keydown', '.TitleTextEdit', function(event) {
   // $('.TitleTextEdit').keydown(function(event){
   if (event.keyCode !== 13)  // Check for Return key
     return;
@@ -614,7 +613,7 @@ function updateStoryForArtist(newText) {
     }
   });
 }
-$(document).on('keydown', '.ArtistStory', function() {
+$(document).on('keydown', '.ArtistStory', function(event) {
   // $('.ArtistStory').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -641,7 +640,7 @@ function updateContactInfoForArtist(field, value) {
     }
   });
 }
-$(document).on('keydown', '.ContactText', function() {
+$(document).on('keydown', '.ContactText', function(event) {
   // $('.ContactText').keydown(function(event) {
   if (event.keyCode !== 13)
     return;
@@ -865,7 +864,6 @@ function refresh_comments() {
     all_comments = $("#all_comments");
     type = all_comments.data('type');
     id = all_comments.data('id');
-    console.log('hello ' + type + id);
     path = '/comments/by_type_id/' + type + '/' + id;
 
     $.ajax({
@@ -884,20 +882,26 @@ $('body').on('click', '#refresh_comments', function(event) {
     refresh_comments();
 });
 
-$('body').on('click', ".Comment-form > .buttons > #submit", function() {
-    form = $(this).closest('.Comment-form').find('#new_comment');
+$('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() {
+    form = $(this).closest('.NewCommentForm').find('#new_comment');
     handle_comment_form(form);
 });
 
-$('body').on('click', ".Comment-form > .buttons > #cancel", function() {
-  $(this).closest('.Reply').hide();
-});
-
 function reply_to(a) {
-  comment = $(a).parent().parent()
-  parent_id = comment.attr("data-id");
-  r = comment.find('> .Reply');
-  r.show();
+    comment = $(a).closest('.CommentContainer');
+    $(a).css('display', 'none');
+  // parent_id = comment.attr("data-id");
+    r = comment.find('> .CommentReply');
+    r.show();
+    // submit = r.find('> .Comment-form > .new_comment > #comment_text');
+    // text = comment.find('.CommentContent').first()
+    // modal = $("#showMusic > .m-body").first();
+    // if(modal.length > 0) {
+    //     scrolly = modal;
+    // } else {
+    //     scrolly = $("#artistPageContent");
+    // }
+    // scrolly.scrollTo(comment, {offsetTop : 100});
   //  r.css("display", "block");
 }
 
@@ -908,10 +912,14 @@ function reply_to(a) {
 // variable to hold request
 var request;
 // bind to the submit event of our form
-$('body').on("submit", "#new_comment", function(event){
+$('body').on("submit", ".NewCommentForm", function(event){
     // prevent default posting of form
     event.preventDefault();
     handle_comment_form($(this));
+});
+$('body').on('submit', '.CommentReplyForm', function(event) {
+  event.preventDefault();
+  handle_comment_form($(this));
 });
 
 function handle_comment_form(form) {
@@ -926,6 +934,7 @@ function handle_comment_form(form) {
     var inputs = form.find("input, select, button, textarea");
     // serialize the data in the form
     var serializedData = form.serialize();
+    console.log('Serialized: ' + serializedData);
 
     // let's disable the inputs for the duration of the ajax request
     inputs.prop("disabled", true);
@@ -961,3 +970,11 @@ function handle_comment_form(form) {
     });
 
 }
+
+$('body').on('keydown', '.CommentReplyField', function(event) {
+  if (event.keyCode !== 13)
+    return;
+  event.preventDefault();
+  $(this).closest('.CommentReplyForm').submit();
+  return false;
+});

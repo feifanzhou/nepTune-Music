@@ -10,12 +10,18 @@ namespace :admin do
   desc "Populate DB with test data"
   task :fill_db => :environment do
     puts "Creating users..."	# Vanilla users
-    u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar')
-    u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar')
-    u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar')
-    u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar')
-    u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar')
-    u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar')
+    u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/beethoven.jpg"))
+    u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/haydn.jpg"))
+    u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_feifan%402x.png"))
+    u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_pierre%402x.jpg"))
+    u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_drew%402x.png"))
+    u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar',
+                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_bobby%402x.jpg"))
 
     puts "Discovering artists..."
     jon = Artist.new(artistname: 'The Piano Guys', route: 'thepianoguys')
@@ -59,11 +65,11 @@ the group really started to take off, producing a music video each week and post
     a2 = Album.create(name: 'Hits Volume 2', image: i2, artist: jon, year: 2012)
 
     puts "Writing songs..."
-    s1 = Song.create(name: 'Bring Him Home', artist: jon, image: i3,
+    s1 = Song.create(name: 'Bring Him Home', artist: jon, album: a1, #image: i3,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/8.%20Bring%20Him%20Home%20%28Les%20Miserables%29.mp3'))
     s2 = Song.create(name: 'Moonlight', track_number: 1, artist: jon, album: a1,
-                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/2.%20Moonlight.mp3'),
-                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/test2.png'))
+                     #image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/test2.png'),
+                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/2.%20Moonlight.mp3'))
     s3 = Song.create(name: 'More Than Words', track_number: 3, artist: jon, album: a1,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/The%20piano%20guys/12.%20More%20Than%20Words.mp3'))
     s4 = Song.create(name: 'All Of Me', track_number: 2, artist: jon, album: a1,
@@ -73,8 +79,8 @@ the group really started to take off, producing a music video each week and post
     s6 = Song.create(name: 'Titanium/Pavane', track_number: 1, artist: jon, album: a2,
                      audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/chirku/titanium.mp3'))
     s6 = Song.create(name: 'Next Stop Everywhere', artist: jon,
-                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3'),
-                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/tardis.jpg'))
+                     image: Image.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/tardis.jpg'),
+                     audio: Audio.create(custom_path: 'https://dl.dropboxusercontent.com/u/16963685/dr_who_next_stop_everywhere.mp3'))
 
     puts "Planning events..."
     e1 = Event.new(name: 'MusicFest', start_at: DateTime.new(2013, 7, 28, 16, 0, 0, '-4'), end_at: DateTime.new(2013, 7, 28, 20, 0, 0, '-4'))
@@ -100,13 +106,14 @@ the group really started to take off, producing a music video each week and post
     at10 = Attendee.create(user: u6, event: e1, status: :going)
 
     puts "Writing comments..."
-    c1 = Comment.create(text: "Why, this rivals some of my own work!", commenter: u1, artists: [jon])
-    c2 = Comment.create(text: "AMAZING!", commenter: u6, artists: [jon])
-    c3 = Comment.create(text: "Waka waka waka", commenter: u4, artists: [jon])
-    c4 = Comment.create(text: "Thanks for the feedback! It really means a lot coming from you!", commenter: u3, parent: c1, artists: [jon])
-    c5 = Comment.create(text: "No problem!", commenter: u1, parent: c4, artists: [jon])
-    c6 = Comment.create(text: "Waka.", commenter: u2, parent: c3, artists: [jon])
-    c7 = Comment.create(text: "I second this.", commenter: u2, parent: c1, artists: [jon])
+    c1 = Comment.create(text: "Why, this rivals some of my own work!", user: u1, commentable: jon)
+    c2 = Comment.create(text: "AMAZING!", user: u6, commentable: jon)
+    c3 = Comment.create(text: "Waka waka waka", user: u4, commentable: jon)
+    c4 = Comment.create(text: "Thanks for the feedback! It really means a lot coming from you!",
+                        user: u3, parent: c1, commentable: jon)
+    c5 = Comment.create(text: "No problem!", user: u1, parent: c4, commentable: jon)
+    c6 = Comment.create(text: "Waka.", user: u2, parent: c3, commentable: jon)
+    c7 = Comment.create(text: "I second this.", user: u2, parent: c1, commentable: jon)
 
     puts "Done!"
   end

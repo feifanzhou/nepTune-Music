@@ -1,33 +1,73 @@
 <% level ||= 0 %>
-<div class="CommentContainer CommentLevel<%= level %>">
-  
+<div class="CommentContainer CommentLevel<%= level %>" >
+
+  <% if false %>
   <div class='CommenterInfo'>
-    <%= image_tag(comment.commenter.avatar.url, size: "60x60", alt: comment.commenter.display_name, class: 'CommenterImage') %>
-    <h2 class='CommenterName'><%= comment.commenter.display_name %></h2>
+    <%= image_tag(comment.user.avatar.url, size: "60x60",
+        alt: comment.user.display_name, class: 'CommenterImage') %>
+    <h2 class='CommenterName'><%= comment.user.display_name %></h2>
+    
+    <div class='CommentActions'>
+      <ul>
+        <li>Reply</li>
+        <li>Share</li>
+      </ul>
+    </div>
   </div>
-  <div class='CommentContent'>
-    <div class='CommentText'><%= comment.text %></div>
-    <% if !comment.commentings.blank? %>
-      <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can only contain one type of media %>
-      <% partial_name = "comment_media_#{ commenting_name }" %>
-      <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
-        <% comment.commentings.each do |c| %>
-          <% if (defined? context) && context != commenting_name %>
-            <%= render "shared/#{ partial_name }", element: c %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <div class='CommentActions'>
-    <ul>
-      <li>Reply</li>
-      <li>Share</li>
-    </ul>
-  </div>
-  <% if !comment.replies.blank? %>
-    <% comment.sorted_replies.each do |r| %>
-      <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
-    <% end %>
   <% end %>
-</div>
+
+  <div class='CommentContent'>
+    <div class='CommenterImage'>
+      <%= image_tag(comment.user.avatar.url, size: "26x26",
+          alt: comment.user.display_name, class: 'CommenterImage') %>
+    </div>
+
+    <div class='CommentStuff'>
+      <div class='CommentHeader'>
+        <span class='CommenterName'><%= comment.user.display_name %></span>
+        <span class='CommentTime'><%= distance_of_time_in_words_to_now(comment.created_at)+" ago" %></span>
+      </div>
+      <div class='CommentText'><%= simple_format comment.text %></div>
+
+      <% if comment.rating %>
+      <div class='CommentRating'>
+        <span class='RatingLabel'>Rating:</span>
+        <span class='CommentRatingNumber'>
+          <%= comment.rating %>
+        </span>
+      </div>
+      <% end %>
+
+      <div class='CommentActions'>
+        <ul>
+          <li>
+            <a href='javascript:void(0)' onclick="reply_to(this)">reply</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <% if false #!comment.commentings.blank? %>
+    <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can only contain one type of media %>
+    <% partial_name = "comment_media_#{ commenting_name }" %>
+    <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
+      <% comment.commentings.each do |c| %>
+      <% if (defined? context) && context != commenting_name %>
+      <%= render "shared/#{ partial_name }", element: c %>
+      <% end %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="CommentReply" style="display:none;">
+    <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
+      <%= f.hidden_field :comment_id, value: comment.id %>
+      <%= f.text_field :text, class: 'CommentReplyField', placeholder: 'Write a reply' %>
+    <% end %>
+  </div>
+
+  <% comment.sorted_children.each do |r| %>
+  <%= render 'shared/comment_base', comment: r, level: (level + 1) %>
+  <% end %>
+</div>  
