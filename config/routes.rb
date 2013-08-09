@@ -16,6 +16,7 @@ NeptuneMusic::Application.routes.draw do
     resources :songs  # TODO: albums and songs should probably be subresources of artists
     resources :images
     resources :audio
+    resources :videos
     resources :events
     resources :comments
 

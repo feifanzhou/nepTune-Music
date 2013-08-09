@@ -16,4 +16,5 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
 	inflect.irregular 'audio', 'audio'
+	inflect.irregular 'media', 'media'
 end

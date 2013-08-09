@@ -269,3 +269,58 @@ $('body').on('click', '.CommentActionUncollapse', function() {
   $(p).children('.CommentContainer').slideDown();
   $(c).parent().children('.CommentActionCollapse').css('display', 'inline');
 });
+
+$('body').on('click', '.CommentMediaOption', function() {
+  var fi_id = '#' + $(this).data('field-id');
+  $(fi_id).click();
+});
+function waitForMediaTargetToFinish() {
+  setTimeout(function() {
+    if ($('#commentMediaTarget').contents().length > 0) {
+      mediaTargetDidFinishLoading();
+      return;
+    }
+  }, 250);  // Poll 4 times a second
+}
+function mediaTargetDidFinishLoading() {
+  var r = $('#commentMediaTarget').contents().find('body').html();
+  var el = r.indexOf('}');
+  console.log(r.slice(0, (el+1)));
+  var json = $.parseJSON(r.slice(0, (el + 1)));
+  var id = json[Object.keys(json)[0]];
+  console.log(id);
+  // Conveniently, Rails has single-table inheritance
+  // So AVI will all have unique IDs
+  // Because they're all out of the Media table
+  var curL = $('#comment_media_ids').val();
+  if (curL.length > 0)
+    curL += ',';
+  curL += id;
+  console.log('curL: ' + curL);
+  $('#comment_media_ids').val(curL);
+}
+$('body').on('change', '#audio_file', function() {
+  console.log('audio file changed');
+  $('#commentMediaAudio').addClass('Selected');
+});
+$('body').on('change', '#new_audio', function() {
+  console.log('new audio submit');
+  waitForMediaTargetToFinish();
+});
+$('body').on('change', '#image_file', function() {
+  console.log('image file changed');
+  $('#commentMediaImage').addClass('Selected');
+});
+$('body').on('submit', '#new_image', function(event) {
+  console.log('new image submit');
+  waitForMediaTargetToFinish();
+});
+$('body').on('change', '#video_file', function() {
+  console.log('video file changed');
+  $('#commentMediaVideo').addClass('Selected');
+  $('#new_video').submit();
+});
+$('body').on('submit', '#new_video', function() {
+  console.log('new video submit');
+  waitForMediaTargetToFinish()
+});

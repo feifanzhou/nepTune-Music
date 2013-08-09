@@ -1,8 +1,3 @@
-<% if replyable %>
-  <% puts '===== 1 replyable' %>
-<% else %>
-  <% puts '===== 1 not replayble' %>
-<% end %>
 <% comments.each do |c| %>
   <%= render 'shared/comment_base', comment: c, replyable: replyable %>
 <% end %>    
