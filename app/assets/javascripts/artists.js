@@ -861,6 +861,7 @@ $('body').on('click', '#showMusic .ModalDismiss', function() {
 /***** Comments *****/
 
 function refresh_comments() {
+
     all_comments = $("#all_comments");
     type = all_comments.data('type');
     id = all_comments.data('id');
@@ -951,6 +952,7 @@ function handle_comment_form(form) {
         // log a message to the console
         //console.log(jqXHR);
         refresh_comments();
+        $('.CommentMediaOption').removeClass('Selected');
     });
 
     // callback handler that will be called on failure
