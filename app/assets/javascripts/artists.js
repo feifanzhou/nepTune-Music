@@ -1,15 +1,15 @@
 var elm = $("#artistSidebar");
 if (elm.length > 0) {
   $(elm).scroll(function() {
-    if (elm.scrollTop() > 15)
-      $("#sidebarShadowTop").fadeTo(1.0, 1.0);
-    else
-      $("#sidebarShadowTop").fadeTo(1.0, 0.0);
+  if (elm.scrollTop() > 15)
+    $("#sidebarShadowTop").fadeTo(1.0, 1.0);
+  else
+    $("#sidebarShadowTop").fadeTo(1.0, 0.0);
 
-    if (elm.innerHeight() + elm.scrollTop() > (elm.scrollHeight - 5))
-      $("#sidebarShadowBottom").fadeTo(1.0, 0.0);
-    else
-      $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
+  if (elm.innerHeight() + elm.scrollTop() > (elm.scrollHeight - 5))
+    $("#sidebarShadowBottom").fadeTo(1.0, 0.0);
+  else
+    $("#sidebarShadowBottom").fadeTo(1.0, 1.0);
   });
 
   var left = $('#artistSidebar').position().left;
@@ -27,50 +27,50 @@ $('body').on('click', '#uneditButton', function() {
 });
 function filterMusic(tag) {
   $(".FilterItem").each(function() {
-    $(this).removeClass('SelectedFilter');
+  $(this).removeClass('SelectedFilter');
   });
   $(".MusicGridGroupHeader").each(function() {
-    $(this).css('display', 'none');
+  $(this).css('display', 'none');
   });
   $("#noFilterMatches").css('display', 'none');
   switch (tag) {
   case 0:
-    $(".MusicGridGroupHeader").each(function() {
-      $(this).css('display', 'block');
-    });
-    $("#filterAll").addClass('SelectedFilter');
-    $("#musicGridAlbums").css('display', 'block');
-    $("#musicGridSongs").css('display', 'block');
-    $("#noFilterMatches").css('display', 'none');
-    break;
+  $(".MusicGridGroupHeader").each(function() {
+    $(this).css('display', 'block');
+  });
+  $("#filterAll").addClass('SelectedFilter');
+  $("#musicGridAlbums").css('display', 'block');
+  $("#musicGridSongs").css('display', 'block');
+  $("#noFilterMatches").css('display', 'none');
+  break;
   case 1:
-    $("#filterSongs").addClass('SelectedFilter');
-    $("#musicGridAlbums").css('display', 'none');
-    $("#musicGridSongs").css('display', 'block');
-    break;
+  $("#filterSongs").addClass('SelectedFilter');
+  $("#musicGridAlbums").css('display', 'none');
+  $("#musicGridSongs").css('display', 'block');
+  break;
   case 2:
-    $("#filterAlbums").addClass('SelectedFilter');
-    $("#musicGridAlbums").css('display', 'block');
-    $("#musicGridSongs").css('display', 'none');
-    $("#noFilterMatches").css('display', 'none');
-    break;
+  $("#filterAlbums").addClass('SelectedFilter');
+  $("#musicGridAlbums").css('display', 'block');
+  $("#musicGridSongs").css('display', 'none');
+  $("#noFilterMatches").css('display', 'none');
+  break;
   case 3:
-    $("#filterVideos").addClass('SelectedFilter');
-    $("#musicGridAlbums").css('display', 'none');
-    $("#musicGridSongs").css('display', 'none');
-    $("#noFilterMatches").css('display', 'block');
-    break;
+  $("#filterVideos").addClass('SelectedFilter');
+  $("#musicGridAlbums").css('display', 'none');
+  $("#musicGridSongs").css('display', 'none');
+  $("#noFilterMatches").css('display', 'block');
+  break;
   case 4:
-    $("#filterOthers").addClass('SelectedFilter');
-    $("#musicGridAlbums").css('display', 'none');
-    $("#musicGridSongs").css('display', 'none');
-    $("#noFilterMatches").css('display', 'block');
-    break;
+  $("#filterOthers").addClass('SelectedFilter');
+  $("#musicGridAlbums").css('display', 'none');
+  $("#musicGridSongs").css('display', 'none');
+  $("#noFilterMatches").css('display', 'block');
+  break;
   default:
-    $("#musicGridAlbums").css('display', 'none');
-    $("#musicGridSongs").css('display', 'none');
-    $("#noFilterMatches").css('display', 'block');
-    break;
+  $("#musicGridAlbums").css('display', 'none');
+  $("#musicGridSongs").css('display', 'none');
+  $("#noFilterMatches").css('display', 'block');
+  break;
   }
 }
 
@@ -78,27 +78,27 @@ var contentScrollTop = 0;
 
 function primeClick() {
   $('.MediaDisplayLink').click(function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    $('#musicGridContainer').addClass('MusicGridDetails');
-    $('#musicGridFilter').addClass('Hidden');
-    $('#musicDetailsHeader').addClass('Visible');
+  $('#musicGridContainer').addClass('MusicGridDetails');
+  $('#musicGridFilter').addClass('Hidden');
+  $('#musicDetailsHeader').addClass('Visible');
 
-    $('#itemIcon').html($(this).attr('data-icon'));
-    $('#detailsHeaderTitle').html($(this).attr('data-name'));
+  $('#itemIcon').html($(this).attr('data-icon'));
+  $('#detailsHeaderTitle').html($(this).attr('data-name'));
 
-    contentScrollTop = $('#artistPageContent').scrollTop();
+  contentScrollTop = $('#artistPageContent').scrollTop();
 
-    var path = $(this).attr('href');
+  var path = $(this).attr('href');
+  setTimeout(function() {
+    $('#musicDetailsHeader').css('z-index', 2);
+    $('#musicDetailsContent').load(path + ' #mainPartial', function() {
     setTimeout(function() {
-      $('#musicDetailsHeader').css('z-index', 2);
-      $('#musicDetailsContent').load(path + ' #mainPartial', function() {
-        setTimeout(function() {
-          $('#albumTrackListing').addClass('Visible');
-        }, 300);
-      });
-    }, 750);
-    return false; //for good measure
+      $('#albumTrackListing').addClass('Visible');
+    }, 300);
+    });
+  }, 750);
+  return false; //for good measure
   });
 }
 
@@ -109,12 +109,12 @@ function returnToMusicGrid() {
   $('#musicDetailsHeader').removeClass('Visible');
   primeClick();
   setTimeout(function() {
-    $('#itemIcon').empty();
-    $('#detailsHeaderTitle').empty();
-    $('#musicDetailsContent').empty();
-    $('#artistPageContent').animate({
-      scrollTop: contentScrollTop
-    });
+  $('#itemIcon').empty();
+  $('#detailsHeaderTitle').empty();
+  $('#musicDetailsContent').empty();
+  $('#artistPageContent').animate({
+    scrollTop: contentScrollTop
+  });
   }, 750);
 }
 
@@ -126,11 +126,11 @@ $('body').on('mouseover', '.GridItem', function() {
   $(n).stop(true);  // Stop animation and clear queue
   var w = $(n).width();
   if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
-    return;
+  return;
   var diff = w - st;
   var t = diff * sm;
   $(n).animate({
-    left: ('-' + diff + 'px')
+  left: ('-' + diff + 'px')
   }, t);
 });
 $('body').on('mouseout', '.GridItem', function() {
@@ -138,11 +138,11 @@ $('body').on('mouseout', '.GridItem', function() {
   $(n).stop(true);
   var w = $(n).width();
   if (w < st) // Grid item width 220 – name margin-left 8 – 2 extra
-    return;
+  return;
   var diff = w - st;
   var t = diff * sm;
   $(n).animate({
-    left: ('0px')
+  left: ('0px')
   }, t);
 });
 
@@ -159,7 +159,7 @@ function setCalendarDisplayMode(cls) {
   $('#eventsCalendar').addClass(cls);
   var viewModeID = '#' + capitalizeFirstLetter(cls);
   $('.InlineViewMode').each(function() {
-    $(this).removeClass('ViewModeSelected');
+  $(this).removeClass('ViewModeSelected');
   });
   console.log(viewModeID);
   $(viewModeID).addClass('ViewModeSelected');
@@ -225,14 +225,14 @@ $(window).bind('djaxLoad', function() {
 function setGalleryNavStatus(currObj) {
   console.log('setGalleryNavStatus: ' + currObj);
   if ($(currObj)[0] === $('.SliderElement').first()[0])
-    $('#sliderNavLeft').addClass('SliderNavDisabled');
+  $('#sliderNavLeft').addClass('SliderNavDisabled');
   else
-    $('#sliderNavLeft').removeClass('SliderNavDisabled');
+  $('#sliderNavLeft').removeClass('SliderNavDisabled');
 
   if ($(currObj)[0] === $('.SliderElement').last()[0])
-    $('#sliderNavRight').addClass('SliderNavDisabled');
+  $('#sliderNavRight').addClass('SliderNavDisabled');
   else
-    $('#sliderNavRight').removeClass('SliderNavDisabled');
+  $('#sliderNavRight').removeClass('SliderNavDisabled');
 }
 
 function galleryToElement(index) {
@@ -240,9 +240,9 @@ function galleryToElement(index) {
   var elm;
   $('.SliderElementCurrent').removeClass('SliderElementCurrent');
   for (var i = 0; i <= index; i++) {
-    elm = $('#gallery' + i);
-    if (i < index)
-      prevWidths += $(elm).width();
+  elm = $('#gallery' + i);
+  if (i < index)
+    prevWidths += $(elm).width();
   }
   var centerOffset = ($('#sliderContainer').width() - $(elm).width()) / 2;
   var totalOffset = -1 * prevWidths + centerOffset;
@@ -254,7 +254,7 @@ function galleryToElement(index) {
 function galleryToHash() {
   var hash = window.location.hash.slice(1);
   if (isNaN(hash) || hash.length === 0) {
-    return;
+  return;
   }
   galleryToElement(hash);
 }
@@ -273,23 +273,23 @@ $(window).bind('hashchange', function () {
 function sliderNavClick(n) {
   console.log('slidernav click');
   if ($(n).hasClass('SliderNavDisabled'))
-    return false;
+  return false;
 
   var objId = $(n).attr('id');
   console.log('slider nav id: ' + objId);
   var hash = window.location.hash.slice(1);
   if (hash.length === 0 || isNaN(hash)) { // No hash, default to 0
-    window.location.hash = '#1';
-    return false;
+  window.location.hash = '#1';
+  return false;
   }
   hash = parseInt(hash, 10);
   if (objId == 'sliderNavLeft') {
-    console.log('Slider nav left');
-    hash -= 1;
+  console.log('Slider nav left');
+  hash -= 1;
   }
   else {
-    console.log('Slider nav right');
-    hash += 1;
+  console.log('Slider nav right');
+  hash += 1;
   }
   console.log('new hash: ' + hash);
   location.hash = ('#' + hash);
@@ -300,7 +300,7 @@ $('body').on('click.nav', '.SliderNav', function() {
 });
 $(window).bind('djaxLoad', function() {
   $('body').off('.nav').on('click.nav', '.SliderNav', function() {
-    sliderNavClick($(this));
+  sliderNavClick($(this));
   });
 });
 
@@ -309,7 +309,7 @@ function beginUpload(hideButton) {
   $('#imgUploadSpinner').addClass('Spinner');
   $('#imgUploadSpinner').css('display', 'inline-block');
   if (hideButton)
-    $('#selectImageButton').css('display', 'none');
+  $('#selectImageButton').css('display', 'none');
   $('.UploadImageForm').css('display', 'none');
 }
 function finishUpload() {
@@ -347,8 +347,8 @@ function profile_target_loaded() {
   finishProfilePictureUpload();
   var resp = JSON.parse(document.getElementById('profile_target').contentWindow.document.body.textContent);
   /* img_id = parseInt(resp['extra_data'], 10);
-     var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
-     $('#imageUploadPreview').append(i); */
+   var i = "<img class='ImagePreview' data-media-id='" + img_id + "' src='" + resp['obj_data'] + "' />";
+   $('#imageUploadPreview').append(i); */
   $('.ArtistProfilePic').attr('src', resp['obj_data']);
 }
 $('#profile_target').load(function() {
@@ -356,7 +356,7 @@ $('#profile_target').load(function() {
 });
 $(window).bind('djaxLoad', function() {
   $('#profile_target').load(function() {
-    profile_target_loaded();
+  profile_target_loaded();
   });
 });
 
@@ -364,16 +364,16 @@ $('body').on('click', '.AddElementFace', function() {
   // $('.AddElementFace').click(function() {
   var clicked = $(this);
   $('.AddElementOption').each(function() {
-    var face = $(this).children('.AddElementFace');
-    var info = $(this).children('.AddElementInfo');
-    if ($(face)[0] === $(clicked)[0]) {
-      $(face).css('display', 'none');
-      $(info).css('display', 'block');
-    }
-    else {
-      $(face).css('display', 'block');
-      $(info).css('display', 'none');
-    }
+  var face = $(this).children('.AddElementFace');
+  var info = $(this).children('.AddElementInfo');
+  if ($(face)[0] === $(clicked)[0]) {
+    $(face).css('display', 'none');
+    $(info).css('display', 'block');
+  }
+  else {
+    $(face).css('display', 'block');
+    $(info).css('display', 'none');
+  }
   });
 });
 var shouldDeleteImage = true;
@@ -384,30 +384,30 @@ $('body').on('click', '.AddElementCancel', function() {
   $(face).css('display', 'block');
   $(info).css('display', 'none');
   if ($(this).attr('id') == 'cancelImage') {
-    $('#selectImageButton').css('display', 'block');
-    $('#uploadImageForm').css('display', 'block');
-    if (shouldDeleteImage) {
-      var m_id = $('.ImagePreview').attr('data-media-id');
-      $.ajax({
-        url: '/' + getArtistNameFromURL() + '/update_content',
-        type: 'POST',
-        data: { location: 'AboutGalleryImageRemove',
-            m_id: m_id
-            },
-        success: function(resp) {
-          console.log('Successfully removed gallery image');
-        }
-      });
+  $('#selectImageButton').css('display', 'block');
+  $('#uploadImageForm').css('display', 'block');
+  if (shouldDeleteImage) {
+    var m_id = $('.ImagePreview').attr('data-media-id');
+    $.ajax({
+    url: '/' + getArtistNameFromURL() + '/update_content',
+    type: 'POST',
+    data: { location: 'AboutGalleryImageRemove',
+      m_id: m_id
+      },
+    success: function(resp) {
+      console.log('Successfully removed gallery image');
     }
-    shouldDeleteImage = true;
-    $('.ImagePreview').remove();
-    $('#addImageCaption').val('');
+    });
+  }
+  shouldDeleteImage = true;
+  $('.ImagePreview').remove();
+  $('#addImageCaption').val('');
   }
   else {
-    $('#videoURL').css('display', 'inline-block');
-    $('.VideoPreview').remove();
-    $('.youtube5placeholder').remove(); // Only for YouTube 5 extension
-    $('#addVideoCaption').val('');
+  $('#videoURL').css('display', 'inline-block');
+  $('.VideoPreview').remove();
+  $('.youtube5placeholder').remove(); // Only for YouTube 5 extension
+  $('#addVideoCaption').val('');
   }
 });
 $('body').on('click', '#selectImageButton', function() {
@@ -440,8 +440,8 @@ $(window).bind('djaxLoad', function() {
   // http://stackoverflow.com/a/11613013/472768
   $('#upload_target').off('load.upload');
   $('#upload_target').on('load.upload', function() {
-    console.log('djax load bound upload target');
-    upload_target_loaded();
+  console.log('djax load bound upload target');
+  upload_target_loaded();
   });
 });
 function createGalleryItemWithContent(ctc, caption, index, m_id) {
@@ -459,28 +459,28 @@ $('body').on('click', '#saveImage', function() {
   var caption = $('#addImageCaption').val();
   var order = $('.SliderElement').length;
   $.ajax({
-    url: '/' + getArtistNameFromURL() + '/update_content',
-    type: 'POST',
-    data: { location: 'AboutGalleryImage',
-        m_id: img_id,
-        caption: caption,
-        order: order
-        },
-    success: function(resp) {
-      console.log('Successfully added gallery image');
-      var img_tag = "<img src='" + resp['obj_data'] + "' />";
-      var m_id = resp['extra_data'];
-      createGalleryItemWithContent(img_tag, caption, order, m_id);
-      window.location.hash = '#' + order;
-      shouldDeleteImage = false;
-      $('#cancelImage').click();
-    }
+  url: '/' + getArtistNameFromURL() + '/update_content',
+  type: 'POST',
+  data: { location: 'AboutGalleryImage',
+    m_id: img_id,
+    caption: caption,
+    order: order
+    },
+  success: function(resp) {
+    console.log('Successfully added gallery image');
+    var img_tag = "<img src='" + resp['obj_data'] + "' />";
+    var m_id = resp['extra_data'];
+    createGalleryItemWithContent(img_tag, caption, order, m_id);
+    window.location.hash = '#' + order;
+    shouldDeleteImage = false;
+    $('#cancelImage').click();
+  }
   });
 });
 $('body').on('keydown', '.AddVideoURL', function(event) {
   // $('.AddVideoURL').keydown(function(event) {
   if (event.keyCode !== 13)
-    return;
+  return;
   event.preventDefault();
   $(this).blur();
   return false;
@@ -491,11 +491,11 @@ $('body').on('blur', '.AddVideoURL', function() {
   var URL = $(this).val();
   console.log('URL input text: ' + URL);
   if (URL.indexOf('youtube.com') >= 0) {
-    var iframe = youtubeIframeForURL(URL);
-    iframe = iframe.slice(0, 8) + "class='VideoPreview' " + iframe.slice(8);
-    console.log('iframe: ' + iframe);
-    $(input).css('display', 'none');
-    $('#videoUploadPreview').append(iframe);
+  var iframe = youtubeIframeForURL(URL);
+  iframe = iframe.slice(0, 8) + "class='VideoPreview' " + iframe.slice(8);
+  console.log('iframe: ' + iframe);
+  $(input).css('display', 'none');
+  $('#videoUploadPreview').append(iframe);
   }
 });
 $('body').on('click', '#saveVideo', function() {
@@ -504,36 +504,36 @@ $('body').on('click', '#saveVideo', function() {
   var caption = $('#addVideoCaption').val();
   var order = $('.SliderElement').length;
   $.ajax({
-    url: '/' + getArtistNameFromURL() + '/update_content',
-    type: 'POST',
-    data: { location: 'AboutGalleryVideo',
-        video_URL: URL,
-        caption: caption,
-        order: order
-        },
-    success: function(resp) {
-      console.log('Successfully added gallery media');
-      // Create gallery item
-      m_id = resp["obj_data"];
-      createGalleryItemWithContent(youtubeIframeForURL($('.AddVideoURL').val(), 640, 360), caption, order, m_id);
-      // Change hash
-      window.location.hash = '#' + order;
-      // Clear input
-      $('#cancelVideo').click();
-    }
+  url: '/' + getArtistNameFromURL() + '/update_content',
+  type: 'POST',
+  data: { location: 'AboutGalleryVideo',
+    video_URL: URL,
+    caption: caption,
+    order: order
+    },
+  success: function(resp) {
+    console.log('Successfully added gallery media');
+    // Create gallery item
+    m_id = resp["obj_data"];
+    createGalleryItemWithContent(youtubeIframeForURL($('.AddVideoURL').val(), 640, 360), caption, order, m_id);
+    // Change hash
+    window.location.hash = '#' + order;
+    // Clear input
+    $('#cancelVideo').click();
+  }
   });
 });
 
 function renumberGalleryElements() {
   var index = 0;
   $('.SliderElement').each(function() {
-    $(this).attr('id', ('gallery' + index));
-    index++;
+  $(this).attr('id', ('gallery' + index));
+  index++;
   });
   index = 0;
   $('.SliderElementRemove').each(function() {
-    $(this).attr('id', ('remove' + index));
-    index++;
+  $(this).attr('id', ('remove' + index));
+  index++;
   });
 }
 
@@ -543,50 +543,50 @@ $(document).on('click', '.SliderElementRemove', function() {
   var artistname = getArtistNameFromURL();
   var rm_el = $(this);
   $.ajax({
-    url: "/" + artistname + "/remove_media",
-    type: "POST",
-    data: { location: 'AboutGallery',
-        media_index: index
-        },
-    success: function(resp) {
-      if (!resp)
-        return;
-      var scs = parseInt(resp['success'], 10);
-      if (scs !== 1)
-        return;
+  url: "/" + artistname + "/remove_media",
+  type: "POST",
+  data: { location: 'AboutGallery',
+    media_index: index
+    },
+  success: function(resp) {
+    if (!resp)
+    return;
+    var scs = parseInt(resp['success'], 10);
+    if (scs !== 1)
+    return;
 
-      index = parseInt($(rm_el).attr('id').slice(6), 10);
-      $('#gallery' + index).fadeOut();
-      setTimeout(function() {
-        $('#gallery' + index).remove();
-        renumberGalleryElements();
-        var hash = parseInt(window.location.hash.slice(1), 10);
-        hash -= 1;
-        window.location.hash = '#' + hash;
-        // window.location.hash = '#' + window.location.hash.slice(1);
-        // galleryToHash();
-      }, 400);
-    }
+    index = parseInt($(rm_el).attr('id').slice(6), 10);
+    $('#gallery' + index).fadeOut();
+    setTimeout(function() {
+    $('#gallery' + index).remove();
+    renumberGalleryElements();
+    var hash = parseInt(window.location.hash.slice(1), 10);
+    hash -= 1;
+    window.location.hash = '#' + hash;
+    // window.location.hash = '#' + window.location.hash.slice(1);
+    // galleryToHash();
+    }, 400);
+  }
   });
 });
 
 function updateCaptionForGalleryItem(newText, m_id) {
   $.ajax({
-    url: '/' + getArtistNameFromURL() + '/update_content',
-    type: 'POST',
-    data: { location: 'AboutGalleryCaption',
-        mediaID: m_id,
-        newText: newText
-        },
-    success: function(resp) {
-      console.log('Successfully changed media caption');
-    }
+  url: '/' + getArtistNameFromURL() + '/update_content',
+  type: 'POST',
+  data: { location: 'AboutGalleryCaption',
+    mediaID: m_id,
+    newText: newText
+    },
+  success: function(resp) {
+    console.log('Successfully changed media caption');
+  }
   });
 }
 $(document).on('keydown', '.TitleTextEdit', function(event) {
   // $('.TitleTextEdit').keydown(function(event){
   if (event.keyCode !== 13)  // Check for Return key
-    return;
+  return;
 
   event.preventDefault();
   $(this).blur();
@@ -601,22 +601,22 @@ $(document).on('blur', '.TitleTextEdit', function() {
 
 function updateStoryForArtist(newText) {
   $.ajax({
-    url: '/' + getArtistNameFromURL() + '/update_content',
-    type: 'POST',
-    data: { location: 'AboutStory',
-        newText: newText
-        },
-    success: function(resp) {
-      // TODO: Should update text with stored version
-      // which may include stripped HTML tags
-      console.log('Successfully updated artist story');
-    }
+  url: '/' + getArtistNameFromURL() + '/update_content',
+  type: 'POST',
+  data: { location: 'AboutStory',
+    newText: newText
+    },
+  success: function(resp) {
+    // TODO: Should update text with stored version
+    // which may include stripped HTML tags
+    console.log('Successfully updated artist story');
+  }
   });
 }
 $(document).on('keydown', '.ArtistStory', function(event) {
   // $('.ArtistStory').keydown(function(event) {
   if (event.keyCode !== 13)
-    return;
+  return;
   event.preventDefault();
   $(this).blur();
   return false;
@@ -629,21 +629,21 @@ $(document).on('blur', '.ArtistStory', function() {
 
 function updateContactInfoForArtist(field, value) {
   $.ajax({
-    url: '/' + getArtistNameFromURL() + '/update_content',
-    type: 'POST',
-    data: { location: 'AboutContactInfo',
-        field: field,
-        value: value
-        },
-    success: function(resp) {
-      console.log('Successfully updated artist contact info');
-    }
+  url: '/' + getArtistNameFromURL() + '/update_content',
+  type: 'POST',
+  data: { location: 'AboutContactInfo',
+    field: field,
+    value: value
+    },
+  success: function(resp) {
+    console.log('Successfully updated artist contact info');
+  }
   });
 }
 $(document).on('keydown', '.ContactText', function(event) {
   // $('.ContactText').keydown(function(event) {
   if (event.keyCode !== 13)
-    return;
+  return;
   event.preventDefault();
   $(this).blur();
   return false;
@@ -661,9 +661,9 @@ $(window).bind('djaxLoad', function() {
 });
 $(window).bind('djaxLoad', function() {
   $('.Datepicker').datetimepicker({
-    format: 'MM/dd/yyyy HH:mm PP',
-    language: 'en',
-    pick12HourFormat: true
+  format: 'MM/dd/yyyy HH:mm PP',
+  language: 'en',
+  pick12HourFormat: true
   });
 });
 $('.Datepicker').datetimepicker({
@@ -695,7 +695,7 @@ $('body').on('click', '#uploadSongs .ModalDismiss', function() {
 });
 $('body').on('click', '#uploadSongsTarget', function() {
   if ($(this).hasClass('NoPointer'))
-    return;
+  return;
 
   $('#new_songs_input').click();
 });
@@ -706,7 +706,7 @@ var uploadQ = [];
 function fileAdded(file) {
   var l = uploadQ.push(1);
   if (l > 0)  // Files in the upload queue
-    $('#commitSongUploadButton').addClass('disabled');
+  $('#commitSongUploadButton').addClass('disabled');
 
   $('#uploadSongsPrompt').css('display', 'none');
   $('#uploadSongsTarget').css('border', 'none');
@@ -718,34 +718,34 @@ function fileAdded(file) {
   var songName = '';
   var trackNumber = '';
   if (re.test(fileName)) {
-    songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
-    trackNumber = (fileName.match(/^\d+/))[0];
+  songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+  trackNumber = (fileName.match(/^\d+/))[0];
   }
   re = /^\d+\s?-\s?[^0-9-\s][^.]+/;
   if (re.test(fileName)) {
-    songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
-    trackNumber = (fileName.match(/^\d+/))[0];
+  songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+  trackNumber = (fileName.match(/^\d+/))[0];
   }
   re = /^\d+\.\s?[^0-9-\s][^.]+/;
   if (re.test(fileName)) {
-    songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
-    trackNumber = (fileName.match(/^\d+/))[0];
+  songName = (fileName.match(/[^0-9-\s][^.]+/))[0];
+  trackNumber = (fileName.match(/^\d+/))[0];
   }
   re = /Track \d+/;
   if (re.test(fileName))
-    trackNumber = (fileName.match(/\d+/))[0];
+  trackNumber = (fileName.match(/\d+/))[0];
   re = /Track\s?-\s?\d+/;
   if (re.test(fileName))
-    trackNumber = (fileName.match(/\d+/))[0];
+  trackNumber = (fileName.match(/\d+/))[0];
   re = /Song \d+/;
   if (re.test(fileName))
-    trackNumber = (fileName.match(/\d+/))[0];
+  trackNumber = (fileName.match(/\d+/))[0];
   re = /Song\s?-\s?\d+/;
   if (re.test(fileName))
-    trackNumber = (fileName.match(/\d+/))[0];
+  trackNumber = (fileName.match(/\d+/))[0];
   re = /[^0-9-\s][^.]+/;
   if (re.test(fileName))
-    songName = (fileName.match(re))[0];
+  songName = (fileName.match(re))[0];
   trackNumber = trackNumber.replace(/^0+/, '');
 
   var nf = $(pe).find('.song_name');
@@ -762,7 +762,7 @@ function fileUploaded(file, resp) {
   $(aidf).val(resp['audio_id']);
   uploadQ.pop();
   if (uploadQ.length === 0)
-    $('#commitSongUploadButton').removeClass('disabled');
+  $('#commitSongUploadButton').removeClass('disabled');
 }
 $(window).bind('djaxLoad', function() {
   // TODO: Check for music page URL before proceeding
@@ -770,18 +770,18 @@ $(window).bind('djaxLoad', function() {
 });
 Dropzone.options.newSongForm = {
   init: function() {
-    this.on('addedfile', function(file) { fileAdded(file); });
-    this.on('success', function(file, resp) { fileUploaded(file, resp); });
+  this.on('addedfile', function(file) { fileAdded(file); });
+  this.on('success', function(file, resp) { fileUploaded(file, resp); });
   },
-  previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\"></span></div>\n  <div class=\"SoundmapPreview\">\n    <img data-dz-thumbnail=\"\">\n    <img class=\"SongDefaultImage\" alt=\"Song_default\" hidpi_src=\"/assets/song_default@2x.png\" src=\"/assets/song_default.png\">  </div>\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name=\"\"></span></div>\n    <div class=\"dz-filesize\"><span data-dz-size></span></div>\n    <form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" method=\"post\">\n    <input class=\"AudioID\" name=\"audio_id\" type=\"hidden\" />      <label for=\"song_name\">Name</label>\n      <input class=\"song_name\" name=\"song[name]\" placeholder=\"Song name\" required=\"required\" size=\"30\" type=\"text\">\n   <br />   <label for=\"song_track_number\">Track number</label>\n      <input class=\"song_track_number\" name=\"song[track_number]\" placeholder=\"Track number\" required=\"required\" size=\"30\" type=\"text\">\n</form>  </div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div>\n</div>"
+  previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress=\"\"></span></div>\n  <div class=\"SoundmapPreview\">\n  <img data-dz-thumbnail=\"\">\n  <img class=\"SongDefaultImage\" alt=\"Song_default\" hidpi_src=\"/assets/song_default@2x.png\" src=\"/assets/song_default.png\">  </div>\n  <div class=\"dz-details\">\n  <div class=\"dz-filename\"><span data-dz-name=\"\"></span></div>\n  <div class=\"dz-filesize\"><span data-dz-size></span></div>\n  <form accept-charset=\"UTF-8\" action=\"/songs\" class=\"new_song\" method=\"post\">\n  <input class=\"AudioID\" name=\"audio_id\" type=\"hidden\" />    <label for=\"song_name\">Name</label>\n    <input class=\"song_name\" name=\"song[name]\" placeholder=\"Song name\" required=\"required\" size=\"30\" type=\"text\">\n   <br />   <label for=\"song_track_number\">Track number</label>\n    <input class=\"song_track_number\" name=\"song[track_number]\" placeholder=\"Track number\" required=\"required\" size=\"30\" type=\"text\">\n</form>  </div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage=\"\"></span></div>\n</div>"
 };
 
 function addSongToMusicGrid(imgPath, imgCaption, songName, songPath) {
-  var s = "<div class='GridItem' data-path='" + songPath + "'><img src='" + imgPath + "' alt='" + imgCaption + "' />    <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
+  var s = "<div class='GridItem' data-path='" + songPath + "'><img src='" + imgPath + "' alt='" + imgCaption + "' />  <div class='GridItemDetails'><p class='GridItemName'><span class='GridItemIcon'>&#59406;</span>" + songName + "</p></div></div>";
   if ($('#musicGridSongs .GridItem').length == 0)
-    $('#musicGridSongs').append(s);
+  $('#musicGridSongs').append(s);
   else
-    $(s).insertBefore($('#musicGridSongs .GridItem').first());
+  $(s).insertBefore($('#musicGridSongs .GridItem').first());
 }
 function resetSongUpload() {
   $('#commitSongUploadButton').addClass('disabled');
@@ -798,25 +798,25 @@ $('body').on('click', '#commitSongUploadButton', function() {
   $('#saveSongsText').css('display', 'none');
   $('#saveSongsSpinner').css('display', 'inline');
   $('.dz-success').each(function() {
-    var f = $(this);
-    var n = $(f).find('.song_name').first().val();
-    var tn = $(f).find('.song_track_number').first().val();
-    var aid = $(f).find('.AudioID').first().val();
-    var p = '/' + getArtistNameFromURL() + '/songs';
-    $.ajax({
-      url: p,
-      type: 'POST',
-      data: {
-        song_name: n,
-        song_track_number: tn,
-        song_audio_id: aid
-      },
-      success: function(resp) {
-        var sp = '/' + getArtistNameFromURL() + '/songs/' + resp['song_id'];
-        addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name'], sp);
-        resetSongUpload();
-      }
-    });
+  var f = $(this);
+  var n = $(f).find('.song_name').first().val();
+  var tn = $(f).find('.song_track_number').first().val();
+  var aid = $(f).find('.AudioID').first().val();
+  var p = '/' + getArtistNameFromURL() + '/songs';
+  $.ajax({
+    url: p,
+    type: 'POST',
+    data: {
+    song_name: n,
+    song_track_number: tn,
+    song_audio_id: aid
+    },
+    success: function(resp) {
+    var sp = '/' + getArtistNameFromURL() + '/songs/' + resp['song_id'];
+    addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name'], sp);
+    resetSongUpload();
+    }
+  });
   });
   dismissNewSongModal();
 });
@@ -837,10 +837,10 @@ $('body').on('click', '.MusicGridGroup', function() {
 function showMusicModal(URL, id) {
   var m = $('#showMusic');
   $.get(URL, function(resp) {
-    var s = resp.indexOf('<!-- BEGIN_MODAL -->');
-    var e = resp.indexOf('<!-- END_MODAL -->');
-    $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
-    setupSongDisplay(id);
+  var s = resp.indexOf('<!-- BEGIN_MODAL -->');
+  var e = resp.indexOf('<!-- END_MODAL -->');
+  $(m).find('.Load').html(resp.slice(s, e).replace(/&#x27;/g,"\'"));
+  setupSongDisplay(id);
   });
   $('#backdrop').addClass('In');
   $(m).addClass('In');
@@ -862,47 +862,47 @@ $('body').on('click', '#showMusic .ModalDismiss', function() {
 
 function refresh_comments() {
 
-    all_comments = $("#all_comments");
-    type = all_comments.data('type');
-    id = all_comments.data('id');
-    path = '/comments/by_type_id/' + type + '/' + id;
+  all_comments = $("#all_comments");
+  type = all_comments.data('type');
+  id = all_comments.data('id');
+  path = '/comments/by_type_id/' + type + '/' + id;
 
-    $.ajax({
-        'url': path,
-        'success': function(data) {
-            all_comments.html(data);
-            // i don't know why this is necessary, but it is
-            load_djax();
-        }
-    });
+  $.ajax({
+    'url': path,
+    'success': function(data) {
+      all_comments.html(data);
+      // i don't know why this is necessary, but it is
+      load_djax();
+    }
+  });
 
 };
 
 $('body').on('click', '#refresh_comments', function(event) {
-    event.preventDefault();
-    refresh_comments();
+  event.preventDefault();
+  refresh_comments();
 });
 
 $('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() {
-    form = $(this).closest('.NewCommentForm').find('#new_comment');
-    handle_comment_form(form);
+  form = $(this).closest('.NewCommentForm').find('#new_comment');
+  handle_comment_form(form);
 });
 
 function reply_to(a) {
-    comment = $(a).closest('.CommentContainer');
-    $(a).css('display', 'none');
+  comment = $(a).closest('.CommentContainer');
+  $(a).css('display', 'none');
   // parent_id = comment.attr("data-id");
-    r = comment.find('> .CommentReply');
-    r.show();
-    // submit = r.find('> .Comment-form > .new_comment > #comment_text');
-    // text = comment.find('.CommentContent').first()
-    // modal = $("#showMusic > .m-body").first();
-    // if(modal.length > 0) {
-    //     scrolly = modal;
-    // } else {
-    //     scrolly = $("#artistPageContent");
-    // }
-    // scrolly.scrollTo(comment, {offsetTop : 100});
+  r = comment.find('> .CommentReply');
+  r.show();
+  // submit = r.find('> .Comment-form > .new_comment > #comment_text');
+  // text = comment.find('.CommentContent').first()
+  // modal = $("#showMusic > .m-body").first();
+  // if(modal.length > 0) {
+  //   scrolly = modal;
+  // } else {
+  //   scrolly = $("#artistPageContent");
+  // }
+  // scrolly.scrollTo(comment, {offsetTop : 100});
   //  r.css("display", "block");
 }
 
@@ -914,9 +914,9 @@ function reply_to(a) {
 var request;
 // bind to the submit event of our form
 $('body').on("submit", ".NewCommentForm", function(event){
-    // prevent default posting of form
-    event.preventDefault();
-    handle_comment_form($(this));
+  // prevent default posting of form
+  event.preventDefault();
+  handle_comment_form($(this));
 });
 $('body').on('submit', '.CommentReplyForm', function(event) {
   event.preventDefault();
@@ -925,57 +925,57 @@ $('body').on('submit', '.CommentReplyForm', function(event) {
 
 function handle_comment_form(form) {
 
-    // abort any pending request
-    if (request) {
-        request.abort();
-    }
+  // abort any pending request
+  if (request) {
+    request.abort();
+  }
 
-    // setup some local variables
-    // let's select and cache all the fields
-    var inputs = form.find("input, select, button, textarea");
-    // serialize the data in the form
-    var serializedData = form.serialize();
-    console.log('Serialized: ' + serializedData);
+  // setup some local variables
+  // let's select and cache all the fields
+  var inputs = form.find("input, select, button, textarea");
+  // serialize the data in the form
+  var serializedData = form.serialize();
+  console.log('Serialized: ' + serializedData);
 
-    // let's disable the inputs for the duration of the ajax request
-    inputs.prop("disabled", true);
+  // let's disable the inputs for the duration of the ajax request
+  inputs.prop("disabled", true);
 
-    // fire off the request to /form.php
-    request = $.ajax({
-        url: "/comments",
-        type: "post",
-        data: serializedData
-    });
+  // fire off the request to /form.php
+  request = $.ajax({
+    url: "/comments",
+    type: "post",
+    data: serializedData
+  });
 
-    // callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-        // log a message to the console
-        //console.log(jqXHR);
-        refresh_comments();
-        $('.CommentMediaOption').removeClass('Selected');
-    });
+  // callback handler that will be called on success
+  request.done(function (response, textStatus, jqXHR){
+    // log a message to the console
+    //console.log(jqXHR);
+    refresh_comments();
+    $('.CommentMediaOption').removeClass('Selected');
+  });
 
-    // callback handler that will be called on failure
-    request.fail(function (jqXHR, textStatus, errorThrown){
-        // log the error to the console
-        console.error(
-            "The following error occured: "+
-            textStatus, errorThrown
-        );
-    });
+  // callback handler that will be called on failure
+  request.fail(function (jqXHR, textStatus, errorThrown){
+    // log the error to the console
+    console.error(
+      "The following error occured: "+
+      textStatus, errorThrown
+    );
+  });
 
-    // callback handler that will be called regardless
-    // if the request failed or succeeded
-    request.always(function () {
-        // reenable the inputs
-        inputs.prop("disabled", false);
-    });
+  // callback handler that will be called regardless
+  // if the request failed or succeeded
+  request.always(function () {
+    // reenable the inputs
+    inputs.prop("disabled", false);
+  });
 
 }
 
 $('body').on('keydown', '.CommentReplyField', function(event) {
   if (event.keyCode !== 13)
-    return;
+  return;
   event.preventDefault();
   $(this).closest('.CommentReplyForm').submit();
   return false;

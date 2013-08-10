@@ -38,14 +38,12 @@
       </div>
     </div>
     
-    <% if false #!comment.commentings.blank? %>
-    <% commenting_name = comment.commentings.first.commentable_type.underscore # A comment can only contain one type of media %>
-    <% partial_name = "comment_media_#{ commenting_name }" %>
-    <div class="CommentMediaContainer Comment<%= commenting_name %>Container">
-      <% comment.commentings.each do |c| %>
-      <% if (defined? context) && context != commenting_name %>
-      <%= render "shared/#{ partial_name }", element: c %>
-      <% end %>
+    <% if !comment.media.blank? %>
+    <div class='CommentMediaGallery'>
+      <% comment.media.each do |m| %>
+        <% media_type = m.class.name.underscore # Using underscore to lowercase first letter%>
+        <% partial_name = "comment_media_#{ media_type }" %>
+        <%= render "shared/#{ partial_name }", element: m %>
       <% end %>
     </div>
     <% end %>
@@ -61,6 +59,6 @@
   <% end %>
 
   <% comment.sorted_children.each do |r| %>
-  <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable %>
+    <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable %>
   <% end %>
 </div>  

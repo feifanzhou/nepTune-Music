@@ -1303,6 +1303,14 @@ header {
         }
       }
     }
+    .CommentMediaGallery {
+      .CommentMedia {
+        display: inline-block;
+        height: 80px;
+        width: 80px;
+        vertical-align: top;
+      }
+    }
   }
   .CommentReply {
     margin: 6px 0 0 34px;
