@@ -1,9 +1,8 @@
 <div class='RelatedMedia'>
-  <p class='RelatedMediaCaption'><span class='RelatedMediaName'></span> <strong>&mdash; <span class='RelatedMediaCreator'></span></strong><span class='RelatedMediaFadeOut'></span></p>
   <div class='RelatedMediaGallery'>
     <% media.each do |m| %>
       <% m_name = m.class.name.underscore %>
-      <% partial_name = "comment_media_#{ m_name }" %>
+      <% partial_name = "comment_media_#{ m_name }_thin" %>
       <%= render "shared/#{ partial_name }", element: m %>
     <% end %>
   </div>

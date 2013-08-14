@@ -1,14 +1,13 @@
-#songBurble {
-  color: $black;
-  display: inline-block;
-  float: left;
-  margin-left: 220px;
-  width: 310px;
+#relatedGalleries {
+  h2 {
+    color: $black;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 4px 0;
+  }
   .RelatedMedia {
-    font-size: 0;
     margin: auto;
     position: relative;
-    width: 280px;
     .RelatedMediaCaption {
       color: $inactiveBlack;
       font-family: $OpenSans;
@@ -19,7 +18,6 @@
       text-align: center;
       text-shadow: 0 1px $inactiveWhite;
       white-space: nowrap;
-      width: 270px;
       @include vendor-prefix(transition, opacity 0.25s);
       &.In {
         opacity: 1;
@@ -75,14 +73,29 @@
       right: 0;
     }
     .RelatedMediaGallery {
-      max-height: 160px;
-      overflow-y: scroll;
       padding-bottom: 20px;
       position: relative;
-      width: 280px;
       .CommentSong {
         display: inline-block;
         margin: 4px;
+      }
+      .SongThin {
+        color: $black;
+        position: relative;
+        .SongControlsThin {
+          position: static;
+          .PlayPause {
+            background: none;
+            border-radius: 0;
+            position: static;
+            height: 12px;
+            width: 12px;
+            span {
+              font-size: 10px;
+              line-height: 10px;
+            }
+          }
+        }
       }
     }
   }
