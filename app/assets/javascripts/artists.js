@@ -77,29 +77,29 @@ function filterMusic(tag) {
 var contentScrollTop = 0;
 
 function primeClick() {
-  $('.MediaDisplayLink').click(function(event) {
-  event.preventDefault();
+    $('.MediaDisplayLink').click(function(event) {
+        event.preventDefault();
 
-  $('#musicGridContainer').addClass('MusicGridDetails');
-  $('#musicGridFilter').addClass('Hidden');
-  $('#musicDetailsHeader').addClass('Visible');
+        $('#musicGridContainer').addClass('MusicGridDetails');
+        $('#musicGridFilter').addClass('Hidden');
+        $('#musicDetailsHeader').addClass('Visible');
 
-  $('#itemIcon').html($(this).attr('data-icon'));
-  $('#detailsHeaderTitle').html($(this).attr('data-name'));
+        $('#itemIcon').html($(this).attr('data-icon'));
+        $('#detailsHeaderTitle').html($(this).attr('data-name'));
 
-  contentScrollTop = $('#artistPageContent').scrollTop();
+        contentScrollTop = $('#artistPageContent').scrollTop();
 
-  var path = $(this).attr('href');
-  setTimeout(function() {
-    $('#musicDetailsHeader').css('z-index', 2);
-    $('#musicDetailsContent').load(path + ' #mainPartial', function() {
-    setTimeout(function() {
-      $('#albumTrackListing').addClass('Visible');
-    }, 300);
+        var path = $(this).attr('href');
+        setTimeout(function() {
+            $('#musicDetailsHeader').css('z-index', 2);
+            $('#musicDetailsContent').load(path + ' #mainPartial', function() {
+                setTimeout(function() {
+                    $('#albumTrackListing').addClass('Visible');
+                }, 300);
+            });
+        }, 750);
+//        return false; //for good measure
     });
-  }, 750);
-  return false; //for good measure
-  });
 }
 
 function returnToMusicGrid() {
@@ -851,8 +851,9 @@ function dismissMusicModal() {
   $('#backdrop').removeClass('In');
 }
 $('body').on('click', '.GridItem', function(event) {
-  showMusicModal($(this).data('path'), $(this).data('id'));
-  event.stopPropagation();
+    showMusicModal($(this).data('path'), $(this).data('id'));
+    $('div.rateit, span.rateit').rateit();
+    event.stopPropagation();
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();
