@@ -4,6 +4,13 @@
     height: 100%;
     width: 100%;
   }
+  .SongControls {
+    .PlayPause {
+      left: 75px;
+      position: absolute;
+      top: 95px;
+    }
+  }
   #songName {
     color: $nepTuneOrange;
     font-size: 14px;
