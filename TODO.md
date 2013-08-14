@@ -1,0 +1,8 @@
+- [ ] Stylize rating for comments
+- [ ] Add payments
+- [ ] Port to backbone
+- [ ] Fix events
+- [ ] Fix comment gallery
+  - [ ] Get stuff using database
+- [ ] Fix about gallery
+- [ ] Figure out music sharing
