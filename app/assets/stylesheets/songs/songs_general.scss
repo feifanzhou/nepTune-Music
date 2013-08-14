@@ -1,0 +1,48 @@
+body {
+  background: $Txture;
+}
+
+header {
+  @include AppHeader;
+}
+
+#container {
+  @include AppContentLayerShadow;
+  background: $Txture;
+  bottom: 0;
+  margin-right: 0;
+  width: 960px;
+  #mainPartial {
+    height: auto;
+    overflow: auto;
+    white-space: normal;
+    width: 100%;
+    #songDetails {
+      display: inline-block;
+      float: left;
+      position: fixed;
+      width: 200px;
+      .SongImage {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+      }
+      #songName {
+        color: $nepTuneOrange;
+        font-size: 14px;
+        line-height: 20px;
+        width: 200px;
+      }
+      p {
+        color: $black;
+        margin-bottom: 4px;
+        &#songAlbum {
+          font-size: 11px;
+        }
+        &#songAdded {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}

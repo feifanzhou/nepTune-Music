@@ -1,0 +1,85 @@
+#eventInfo {
+  @include AppContentLayerShadow;
+  background: transparentize(white, 0.5);
+  box-sizing: border-box;
+  display: inline-block;
+  // float: left;
+  left: 200px;
+  position: absolute;
+  top: 60px;
+  vertical-align: top;
+  width: 880px;
+  #eventHeader {
+    height: 360px;
+    position: relative;
+    width: 880px;
+    img {
+      height: 360px;
+    }
+    #eventBasicInfo {
+      @include TranslucentBar;
+      bottom: 0;
+      z-index: 1;
+      #eventName {
+        color: white;
+        display: inline-block;
+        font-family: $OpenSans;
+        font-size: 24px;
+        font-weight: 400;
+        margin: 6px 8px;
+      }
+      #datetimepicker {
+        // display: none;
+      }
+      #eventLoc {
+        color: $white;
+        display: inline-block;
+        font-family: $OpenSans;
+        font-size: 18px;
+        font-weight: 300;
+        margin: 10px 8px;
+        #startTime, #endTime {
+          width: 180px;
+        }
+      }
+      #eventResponse {
+        color: transparentize(black, 0.45);
+        display: inline-block;
+        float: right;
+        margin: 8px;
+        padding: 6px;
+        top: -4px;
+        .btn {
+          color: inherit;
+          padding: 0;
+          &.SelectedButton {
+            color: transparentize(black, 0.15);
+            .EventStatusTrigger {
+              display: none;
+            }
+            .EventLeaveTrigger {
+              display: inline-block;
+            }
+          }
+          .EventStatusTrigger {
+            display: inline-block;
+          }
+          .EventLeaveTrigger {
+            display: none;
+          }
+          a {
+            color: inherit;
+            display: inline-block;
+            height: 28px;
+            line-height: 28px;
+            text-decoration: none;
+            width: 62px;
+            &:hover {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}

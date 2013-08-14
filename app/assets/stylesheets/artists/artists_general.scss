@@ -1,0 +1,254 @@
+html {
+  background: $Txture;
+}
+
+header {
+  @include AppHeader;
+}
+
+// Date picker inner styling
+.accordion-toggle {
+  background: transparentize($nepTuneOrange, 0.75);
+  color: white;
+}
+.bootstrap-datetimepicker-widget td.active, .bootstrap-datetimepicker-widget td.active:hover {
+  background: rgb(245,146,92); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(245,146,92,1) 0%, rgba(241,98,20,1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(245,146,92,1)), color-stop(100%,rgba(241,98,20,1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(245,146,92,1) 0%,rgba(241,98,20,1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(245,146,92,1) 0%,rgba(241,98,20,1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(245,146,92,1) 0%,rgba(241,98,20,1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(245,146,92,1) 0%,rgba(241,98,20,1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5925c', endColorstr='#f16214',GradientType=0 ); /* IE6-9 */
+}
+
+#artistSidebar {
+  background: $Txture;
+  bottom: 0;
+  color: $white;
+  overflow: auto;
+  padding: 0;
+  position: absolute;
+  top: 60px;
+  width: 238px;
+  transition: border 0.5s;
+  -webkit-transition: border 0.5s;
+  @media (min-width: 1200px) {
+    border-left: 2px inset rgba(100, 100, 100, 0.25);
+  }
+  @mixin SidebarShadowPosition {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    top: 125px;
+    width: 228px;
+  }
+  .ShadowTop {
+    @include SidebarShadowPosition;
+    box-shadow: inset 0px 8px 6px -6px black;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .ShadowBottom {
+    @include SidebarShadowPosition;
+    box-shadow: inset 0px -8px 6px -6px black;
+    opacity: 1;
+    pointer-events: none;
+  }
+  #artistProfile {
+    .ProfilePictureContainer {
+      margin: 0 32px;
+      &.ProfilePictureEdit {
+        position: relative;
+        &:hover {
+          cursor: pointer;
+        }
+        #profileDarken {
+          background-color: transparentize(black, 0.25);
+          display: none;
+          height: 160px;
+          left: 4px;
+          position: absolute;
+          top: 15px;
+          width: 160px;
+        }
+        #profileUploadSpinner {
+          color: $white;
+          display: none;
+          font-size: 36px;
+          left: 68px;
+          position: absolute;
+          top: 68px;
+        }
+        #changeProfilePic {
+          @include TranslucentBar;
+          color: $white;
+          font-family: $OpenSans;
+          height: 24px;
+          left: 4px;
+          position: absolute;
+          text-align: center;
+          top: 150px;
+          width: 160px;
+        }
+      }
+      .ArtistProfilePic {
+        border: 4px solid $white;
+        border-radius: 4px;
+        height: 160px;
+        margin: 10px 0;
+        max-height: 160px;
+        max-width: 160px;
+        min-height: 160px;
+        min-width: 160px;
+        width: 160px;
+      }
+    }
+    #profile_target {
+      display: none;
+    }
+    .UploadImageForm {
+      display: none;
+    }
+    .ArtistProfileName {
+      font-family: $OpenSans;
+      font-size: 24px;
+      font-weight: 400;
+      margin: 0 0 18px 0;
+      text-align: center;
+    }
+    h2.SidebarSubheading {
+      color: $halfWhite;
+      font-family: $Myriad;
+      font-size: 12px;
+      margin: 14px auto 4px 18px;
+    }
+    @mixin ArtistProfileText {
+      color: white;
+      font-family: $Myriad;
+      font-size: 12px;
+      font-weight: 400;
+      margin: 0 12px 1em 18px;
+    }
+    .ArtistProfileBio {
+      @include ArtistProfileText;
+    }
+  }
+  #artistActions {
+    margin: auto 18px;
+    button.ArtistAction {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid $nepTuneOrangeHighlight;
+      border-top: 1px solid $nepTuneOrangeHighlight;
+      color: $inactiveWhite;
+      display: inline-block;
+      font-family: $OpenSans;
+      font-weight: 600;
+      float: left;
+      margin: 0;
+      padding-top: 3px;
+      transition: background-color 0.5s, color 0.5s;
+      -webkit-transition: background-color 0.5s, color 0.5s;
+      width: 50%;
+      &:hover {
+        background-color: desaturate(darken($nepTuneOrange, 25%), 35%);
+        color: $partialActiveWhite;
+      }
+      &.ArtistActionOn {
+        background-color: $nepTuneOrangeHighlight;
+        color: white;
+      }
+    }
+  }
+  #editButtonBlock {
+    text-align: center;
+    width: 100%;
+    .EditButton {
+      width: 180px;
+    }
+  }
+  .ArtistNav {
+    margin-top: 80px;
+    &.ArtistNavSmallTop {
+      margin-top: 30px;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      a {
+        color: $white;
+        text-decoration: none;
+        li {
+          font-family: $Myriad;
+          font-size: 24px;
+          font-weight: 400;
+          padding: 6px 0 6px 22px;
+          text-align: left;
+          transition: background-color 0.5s;
+          -webkit-transition: background-color 0.5s;
+          &:hover {
+            background-color: transparentize(#666, 0.5);
+            color: white;
+            cursor: pointer;
+          }
+          &.ArtistNavLast {
+            border: none;
+          }
+          &.ArtistNavCurrent {
+            background-color: $nepTuneOrangeHighlight;
+          }
+          .ArtistNavIcon {
+            background: -webkit-linear-gradient(left, rgba(242,245,246,1) 0%,rgba(220,220,220,1) 50%,rgba(242,245,246,1) 100%);
+            display: inline-block;
+            font-size: 20px;
+            margin-right: 8px;
+            text-align: center;
+            vertical-align: center;
+            width: 24px;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          // @media(max-height: 879px)
+          @media(max-height: 599px) {
+            display: inline-block;
+            float: left;
+            padding: 11px;
+            .ArtistNavIcon {
+              margin-right: 0;
+              text-align: center;
+            }
+            .ArtistNavText {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#container {
+  background: $Txture;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  width: 1200px;
+
+  #artistPageContent {
+    @include AppContentLayerShadow;
+    background: #565656;
+    bottom: 0;
+    color: $white;
+    margin-left: 240px;
+    overflow-y: scroll;
+    position: absolute;
+    text-align: left;
+    top: 60px;
+    white-space: nowrap;
+    width: 960px;
+    z-index: 2;
+    &.XHidden {
+      overflow-x: hidden;
+    } 
+  }
+}
