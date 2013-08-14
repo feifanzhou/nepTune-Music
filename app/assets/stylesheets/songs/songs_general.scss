@@ -17,32 +17,25 @@ header {
     overflow: auto;
     white-space: normal;
     width: 100%;
-    #songDetails {
-      display: inline-block;
-      float: left;
-      position: fixed;
-      width: 200px;
-      .SongImage {
-        display: inline-block;
-        height: 100%;
-        width: 100%;
-      }
-      #songName {
-        color: $nepTuneOrange;
-        font-size: 14px;
-        line-height: 20px;
-        width: 200px;
-      }
-      p {
-        color: $black;
-        margin-bottom: 4px;
-        &#songAlbum {
-          font-size: 11px;
-        }
-        &#songAdded {
-          font-size: 11px;
-        }
-      }
-    }
   }
+}
+
+#comments {
+  color: $black;
+  display: inline-block;
+  float: left;
+}
+
+#left {
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+  width: 200px;
+}
+#right {
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+  vertical-align: top;
+  width: 310px;
 }
