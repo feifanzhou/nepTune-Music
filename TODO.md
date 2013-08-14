@@ -1,6 +1,7 @@
 - Stylize rating for comments
 - Add payments
 - Port to backbone
+- Add upvotes to comments
 - Fix events
 - Fix comment gallery
 - Fix about gallery
