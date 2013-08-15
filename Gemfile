@@ -14,6 +14,10 @@ end
 
 group :development, :production do
   gem 'retina_tag'
+  gem 'rails-backbone'
+  gem 'react-rails'
+  gem 'tilt'
+  gem 'underscore-rails'
 end
 
 group :development, :test do

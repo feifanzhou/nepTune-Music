@@ -13,7 +13,12 @@
 //= require plugins
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require underscore
+//= require backbone
+//= require backbone_rails_sync
+//= require backbone_datalink
 //= require_tree ../../../vendor/assets/javascripts/.
+//= require backbone/neptune_music
+//= require_tree .
 //= require bootstrap
 // require retina_tag

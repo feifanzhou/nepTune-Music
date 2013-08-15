@@ -1,4 +1,5 @@
 NeptuneMusic::Application.routes.draw do
+
   get "albums/new"
 
   get "albums/show"
@@ -23,6 +24,10 @@ NeptuneMusic::Application.routes.draw do
   # post 'users/make-beta-tester' => 'users#make_beta_tester', as: :make_beta_tester
 
   resources :users
+
+  constraints subdomain: "beta" do
+    root to: 'burble#home'
+  end
   
   root to: 'static_pages#home'
   
