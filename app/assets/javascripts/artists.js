@@ -798,25 +798,25 @@ $('body').on('click', '#commitSongUploadButton', function() {
   $('#saveSongsText').css('display', 'none');
   $('#saveSongsSpinner').css('display', 'inline');
   $('.dz-success').each(function() {
-  var f = $(this);
-  var n = $(f).find('.song_name').first().val();
-  var tn = $(f).find('.song_track_number').first().val();
-  var aid = $(f).find('.AudioID').first().val();
-  var p = '/' + getArtistNameFromURL() + '/songs';
-  $.ajax({
-    url: p,
-    type: 'POST',
-    data: {
-    song_name: n,
-    song_track_number: tn,
-    song_audio_id: aid
-    },
-    success: function(resp) {
-    var sp = '/' + getArtistNameFromURL() + '/songs/' + resp['song_id'];
-    addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name'], sp);
-    resetSongUpload();
-    }
-  });
+    var f = $(this);
+    var n = $(f).find('.song_name').first().val();
+    var tn = $(f).find('.song_track_number').first().val();
+    var aid = $(f).find('.AudioID').first().val();
+    var p = '/' + getArtistNameFromURL() + '/songs';
+    $.ajax({
+        url: p,
+        type: 'POST',
+        data: {
+        song_name: n,
+        song_track_number: tn,
+      song_audio_id: aid
+      },
+      success: function(resp) {
+        var sp = '/' + getArtistNameFromURL() + '/songs/' + resp['song_id'];
+        addSongToMusicGrid('/assets/soundmap_loading.png', 'Loading Soundmap', resp['song_name'], sp);
+        resetSongUpload();
+      }
+    });
   });
   dismissNewSongModal();
 });
