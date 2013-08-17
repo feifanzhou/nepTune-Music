@@ -9,9 +9,7 @@ body {
   padding: 0;
   width: 100%;
 }
-input, textarea {
-  font-family: $Sans !important;
-}
+
 #header {
   background: $nepTuneOrange;
   color: white;
@@ -30,6 +28,14 @@ input, textarea {
       line-height: 50px;
     }
   }
+}
+
+.Icon {
+  font-family: $Zonda !important;   
+}
+
+input, textarea {
+  font-family: $Sans !important;
 }
 
 /***** Mixins *****/

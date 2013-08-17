@@ -14,7 +14,7 @@
   width: 100%;
   #mapContainer {
     background: #CCC;
-    height: 800px;
+    min-height: 600px;
     opacity: 0.65;
     position: relative;
     width: 100%;
@@ -54,6 +54,24 @@
             margin-right: 8px;
             width: 40px;
           }
+        }
+      }
+    }
+  }
+  #contentWrapper {
+    width: 100%;
+    #content {
+      background: $nepTuneOrange;
+      width: 100%;
+      #scrollDownIndicator {
+        color: white;
+        font-size: 32px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 100%;
+        &:hover {
+          cursor: pointer;
         }
       }
     }
