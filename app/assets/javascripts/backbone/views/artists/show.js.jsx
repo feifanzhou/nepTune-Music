@@ -48,7 +48,11 @@ HomeBottomView = React.createBackboneClass({
     return (
       <div id='content'>
         <p class='Icon' id='scrollDownIndicator'>&#59397;</p>
-        <p>Lorem ipsum son dolore et sit amit</p>
+        <div class='btn-group' id='contentGroupButtons' data-toggle="buttons-radio">
+          <button class='btn'>Beta</button>
+          <button class='btn'>Resources</button>
+          <button class='btn'>Mobile</button>
+        </div>
       </div>
     )
   }

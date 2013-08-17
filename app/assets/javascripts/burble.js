@@ -26,6 +26,7 @@ function showMap(position) {
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     panControl: false,
+    scrollwheel: false,
     streetViewControl: false,
     zoom: 10,
     zoomControl: false
