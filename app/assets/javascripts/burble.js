@@ -25,9 +25,10 @@ function showMap(position) {
     center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
     mapTypeControl: false,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    panControl: false,
     streetViewControl: false,
     zoom: 10,
-    zoomControl: true
+    zoomControl: false
   };
   map = new google.maps.Map(document.getElementById('mapContainer'),
       mapOptions);

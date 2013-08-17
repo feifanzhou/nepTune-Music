@@ -6,15 +6,22 @@ var AppRouter = Backbone.Router.extend({
 });
 var app_router = new AppRouter;
 app_router.on('route:rootPath', function() {
-	React.renderComponent(
-		MainMapView({}),
-		document.getElementById('container')
-	);
+	// Load Google Maps
 	var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
       'callback=loadLocation';
     document.body.appendChild(script);
+
+    var data = [
+		{ img_url: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/s160x160/943566_492642090789944_356694603_a.jpg', text: 'Hello 1' },
+		{ img_url: 'http://icons.iconarchive.com/icons/walrick/openphone/256/Calendar-icon.png', text: 'Concert tonight' },
+		{ img_url: 'https://cdn0.iconfinder.com/data/icons/cosmo-mobile/40/location_1-128.png', text: 'ThePianoGuys checked in at Five Guys' }
+	];
+    React.renderComponent(
+    	BurbleBox({ data: data }),
+    	document.getElementById('burbleBoxContainer')
+    );
 });
 app_router.on('route:artistPath', function(an) {
 	var artist = new Artist({ artistname: an });

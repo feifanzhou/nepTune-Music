@@ -1,0 +1,42 @@
+@import "fonts";
+@import "variables";
+
+body {
+  font-family: $Sans !important;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+input, textarea {
+  font-family: $Sans !important;
+}
+#header {
+  background: $nepTuneOrange;
+  color: white;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  #headerContainer {
+    background: green;
+    height: 50px;
+    margin: auto;
+    width: 1280px;
+    div {
+      display: inline-block;
+      line-height: 50px;
+    }
+  }
+}
+
+/***** Mixins *****/
+@mixin vendor-prefix($name, $argument) {
+  #{$name}: #{ $argument };
+  -webkit-#{$name}: #{ $argument };
+  -ms-#{$name}: #{ $argument };
+  -moz-#{$name}: #{ $argument };
+  -o-#{$name}: #{ $argument };
+}
