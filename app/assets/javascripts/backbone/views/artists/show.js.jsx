@@ -4,3 +4,9 @@ ArtistShowView = React.createBackboneClass({
 		return (<div>{ this.getModel().get('artistname') }</div>);
 	}
 });
+
+MainMapView = React.createBackboneClass({
+	render: function() {
+		return (<div id='mapContainer'></div>);
+	}
+});

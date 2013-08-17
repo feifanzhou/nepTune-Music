@@ -27,6 +27,11 @@ NeptuneMusic::Application.routes.draw do
 
   constraints subdomain: "beta" do
     root to: 'burble#home'
+
+    resources :artists do
+      resources :songs, :albums
+    end
+    resources :events
   end
   
   root to: 'static_pages#home'

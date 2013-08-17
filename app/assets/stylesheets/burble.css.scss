@@ -1,3 +1,26 @@
 // Place all the styles related to the Burble controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+#container {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  #mapContainer {
+    height: 100%;
+    opacity: 0.65;
+    width: 100%;
+  }
+}

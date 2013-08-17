@@ -5,7 +5,15 @@ var Artist = Backbone.Model.extend({
 		};
 	},
 	paramRoot: 'artist',
-	urlRoot: '/'
+	urlRoot: function() {
+		if (this.isNew()) {
+			// Create new artist URL
+			return '/login/create';
+		}
+		else {
+			return '/' + this.artistname;
+		}
+	}
 });
 
 // class NeptuneMusic.Models.Artist extends Backbone.Model
