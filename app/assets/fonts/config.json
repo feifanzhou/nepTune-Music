@@ -47,6 +47,12 @@
       "src": "fontawesome"
     },
     {
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "download",
+      "code": 59430,
+      "src": "fontawesome"
+    },
+    {
       "uid": "41087bc74d4b20b55059c60a33bf4008",
       "css": "edit",
       "code": 59425,
@@ -125,6 +131,12 @@
       "src": "entypo"
     },
     {
+      "uid": "6274e0601f2feef7eced89146e708de0",
+      "css": "user-add",
+      "code": 59426,
+      "src": "entypo"
+    },
+    {
       "uid": "bf45c39702763f1803b550c36a0ceb12",
       "css": "cancel-squared",
       "code": 59407,
@@ -200,6 +212,24 @@
       "uid": "e36d581e4f2844db345bddc205d15dda",
       "css": "group",
       "code": 59410,
+      "src": "elusive"
+    },
+    {
+      "uid": "9e0404ba55575a540164db9a5ad511df",
+      "css": "doc-new",
+      "code": 59427,
+      "src": "elusive"
+    },
+    {
+      "uid": "7acc2dfe18c6f4548626696fab27ba8a",
+      "css": "play-circled2",
+      "code": 59429,
+      "src": "elusive"
+    },
+    {
+      "uid": "326b529aa8b8913d3bc4a632f3dcec69",
+      "css": "slideshare",
+      "code": 59428,
       "src": "elusive"
     },
     {
