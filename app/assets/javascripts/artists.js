@@ -843,7 +843,12 @@ function showMusicModal(URL, id) {
   setupSongDisplay(id);
   });
   $('#backdrop').addClass('In');
-  $(m).addClass('In');
+    $(m).addClass('In');
+
+    setTimeout(function() {
+        $('div.rateit, span.rateit').rateit();
+    }, 750);
+
 }
 function dismissMusicModal() {
   $('#showMusic .m-body Load').html('');
@@ -852,7 +857,6 @@ function dismissMusicModal() {
 }
 $('body').on('click', '.GridItem', function(event) {
     showMusicModal($(this).data('path'), $(this).data('id'));
-    $('div.rateit, span.rateit').rateit();
     event.stopPropagation();
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
