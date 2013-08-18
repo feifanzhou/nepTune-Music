@@ -186,6 +186,28 @@
         #resourcesLeft {
           display: inline-block;
           width: 500px;
+          a {
+            color: $nepTuneBlue;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+          #resourcesSocial {
+            p {
+              width: 250px;
+              .Icon {
+                margin-right: 6px;
+              }
+            }
+          }
+          #resourcesContact {
+            p {
+              width: 250px;
+              .Icon {
+                margin-right: 6px;
+              }
+            }
+          }
         }
         #resourcesRight {
           display: inline-block;

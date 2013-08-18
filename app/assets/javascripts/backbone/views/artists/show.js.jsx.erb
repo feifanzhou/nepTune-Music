@@ -81,8 +81,6 @@ HomeBottomView = React.createBackboneClass({
               <span>Spread the word</span>
               <span>Join our team</span>
             </div>
-            <button class='btn BetaInlineButton' id='betaFacebookButton'><span class='Icon'>&#59393;</span>Facebook</button>
-            <button class='btn BetaInlineButton' id='betaTwitterButton'><span class='Icon'>&#59395;</span>Twitter</button>
           </div>
           <div id='betaRight'>
             <h2>Status</h2>
@@ -109,9 +107,17 @@ HomeBottomView = React.createBackboneClass({
             <h2>What is nepTune?</h2>
             <p>nepTune is <a href='http://neptune.com:3000/market'>a farmer's market</a> for music from around the world. Built by <a href='http://neptune.com:3000/team'>a team</a> from around the country, <a href='http://neptune.com:3000/team#mission'>our mission</a> is to liberate human creativity by removing friction and increasing personal engagement.</p>
             <h2>In the loop</h2>
-            <p>Like us on Facebook</p>
-            <p>Follow us on Twitter</p>
+            <div class='OptionsGroup' id='resourcesSocial'>
+              <p><span class='Icon'>&#59393;</span>Like us on Facebook</p>
+              <p><span class='Icon'>&#59395;</span>Follow us on Twitter</p>
+            </div>
             <p>For the latest news, or help if something goes wrong.</p>
+            <h2>Get in touch</h2>
+            <div class='OptionsGroup' id='resourcesContact'>
+              <p><span class='Icon'>&#xE804;</span>Send us an email</p>
+              <p><span class='Icon'>&#xE821;</span>Provide feedback</p>
+            </div>
+            <p>If you run into any problems, or have a suggestion for us, you can also get in touch through Facebook or Twitter.</p>
           </div>
           <div id='resourcesRight'>
             <a class="twitter-timeline" href="https://twitter.com/nepTuneTech" data-widget-id="368904990116421634">Tweets by @nepTuneTech</a>

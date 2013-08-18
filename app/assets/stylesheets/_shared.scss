@@ -45,6 +45,20 @@ input, textarea {
   font-family: $Sans !important;
 }
 
+.OptionsGroup {
+  border-bottom: 1px solid #DEDEDE;
+  border-top: 1px solid #DEDEDE;
+  box-shadow: 0 8px 6px -6px transparentize(black, 0.75), 0 -8px 6px -6px transparentize(black, 0.75);
+  margin-bottom: 12px;
+  div, p {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    text-align: center;
+  }
+}
+
 .SuccessIcon {
   color: $success;
 }
