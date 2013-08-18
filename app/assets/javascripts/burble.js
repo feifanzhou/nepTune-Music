@@ -55,7 +55,7 @@ $('body').on('click', '#contentGroupButtons .btn', function() {
 });
 
 $('body').on('click', '#scrollDownIndicator', function() {
-  $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+  $("html, body").animate({ scrollTop: $(window).height() });
 });
 
 // var scrDel = 0.5;   // Amount background should move per scroll of container

@@ -75,14 +75,33 @@ HomeBottomView = React.createBackboneClass({
                 <li>Make sure you're familiar with our terms of use</li>
               </ul>
             </div>
+            <button class='btn' id='getStartedButton'>Get started</button>
+            <div id='betaActionLinks'>
+              <span>Provide feedback</span>
+              <span>Spread the word</span>
+              <span>Join our team</span>
+            </div>
+            <button class='btn BetaInlineButton' id='betaFacebookButton'><span class='Icon'>&#59393;</span>Facebook</button>
+            <button class='btn BetaInlineButton' id='betaTwitterButton'><span class='Icon'>&#59395;</span>Twitter</button>
           </div>
           <div id='betaRight'>
-            <button class='btn' id='getStartedButton'>Get started</button><br />
-            <button class='btn' id='betaFeedbackButton'>Provide feedback</button><br />
-            <button class='btn' id='betaShareButton'>Spread the word</button><br />
-            <button class='btn' id='betaJoinTeamButton'>Join our team</button><br />
-            <button class='btn' id='betaFacebookButton'><span class='Icon'>&#59393;</span>Facebook</button>
-            <button class='btn' id='betaTwitterButton'><span class='Icon'>&#59395;</span>Twitter</button>
+            <h2>Status</h2>
+            <table id='systemStatus'>
+              <tr>
+                <td id='statusSite'><span class='Icon SuccessIcon'>&#xe81e;</span>Website</td>
+                <td id='statusDatabase'><span class='Icon SuccessIcon'>&#xe81e;</span>Database</td>
+                <td id='statusDevelopment'><span class='Icon SuccessIcon'>&#xe81e;</span>Development</td>
+              </tr>
+            </table>
+            <p id='nextMilestone'><span id='nextMilestoneHeader'>Next milestone:</span> First beta release <span id='milestoneDate'>&mdash; Sept. 1 (two weeks)</span></p>
+            <h2>Roadmap</h2>
+            <p id='roadmapExplanation'>Here's what we're up to for the month:</p>
+            <ul id='roadmap'>
+              <li><span class='Icon'>&#xE81F;</span>Stripe payments for songs</li>
+              <li><span class='Icon'>&#xE81F;</span>Clean up events page</li>
+              <li><span class='Icon'>&#xE81F;</span>Show new songs, albums, and events on home page feed</li>
+              <li><span class='Icon'>&#xE81F;</span>Add markers to home page map</li>
+            </ul>
           </div>
         </section>
         <section class='ContentSection Hidden' id='resources'>

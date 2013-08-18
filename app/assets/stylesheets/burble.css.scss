@@ -93,40 +93,85 @@
         #betaLeft {
           display: inline-block;
           width: 500px;
+          #getStartedButton {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            height: 50px;
+            margin: 30px 0;
+            width: 500px;
+          }
+          #betaActionLinks {
+            margin-bottom: 50px;
+            span {
+              border-right: 1px solid white;
+              display: inline-block;
+              font-size: 18px;
+              font-weight: 600;
+              text-align: center;
+              width: 166px;
+              &:last-child {
+                border-right: none;
+              }
+            }
+          }
+          .BetaInlineButton {
+            display: none;
+            font-size: 18px;
+            height: 50px;
+            margin: 0 20px 50px 0;
+            width: 240px;
+            span {
+              margin-right: 20px;
+            }
+          }
+          #betaTwitterButton {
+            margin: 0 0 50px 0;
+          }
         }
         #betaRight {
           display: inline-block;
           margin-left: 100px;
-          padding-top: 150px;
           vertical-align: top;
           width: 500px;
-          .btn {
+          #systemStatus {
+            background: white;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px 1px #BBB;
             color: #666;
-            font-size: 18px;
-            font-weight: 600;
-            height: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             width: 100%;
-            &#getStartedButton {
-              height: 100px;
-              margin-bottom: 50px;
-            }
-            &#betaJoinTeamButton {
-              margin-bottom: 50px;
-            }
-            &#betaFacebookButton {
-              display: inline-block;
-              margin-right: 20px;
-              width: 240px;
-              span {
-                margin-right: 20px;
+            tr {
+              height: 50px;
+              td {
+                border-right: 1px solid #BBB;
+                line-height: 50px;
+                text-align: center;
+                width: 166px;
+                .Icon {
+                  margin-right: 12px;
+                }
+                &:last-child {
+                  border-right: none;
+                }
               }
             }
-            &#betaTwitterButton {
-              display: inline-block;
-              width: 240px;
-              span {
-                margin-right: 15px;
+          }
+          #nextMilestone {
+            #nextMilestoneHeader {
+              color: transparentize(white, 0.35);
+              font-weight: 600;
+            }
+            #milestoneDate {
+              color: transparentize(white, 0.35);
+            }
+          }
+          #roadmap {
+            list-style: none;
+            margin: 0;
+            li {
+              .Icon {
+                margin-right: 6px;
               }
             }
           }
