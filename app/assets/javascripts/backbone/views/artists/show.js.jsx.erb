@@ -1,0 +1,107 @@
+/** @jsx React.DOM */
+ArtistShowView = React.createBackboneClass({
+  render: function() {
+    return (<div>{ this.getModel().get('artistname') }</div>);
+  }
+});
+
+BurbleSearch = React.createBackboneClass({
+  render: function() {
+    return (<form id='discoverForm'><input type='text' id='discoverBox' placeholder='Search for artists, events, and music' /></form>);
+  }
+});
+BurbleMainFeedItem = React.createBackboneClass({
+  render: function() {
+    return(
+      <li class='BurbleMainFeedItem'>
+        <img class='BurbleFeedProfile' height='40' width='40' src={ this.props.img_url } />
+        { this.props.children }
+      </li>
+    );
+  }
+});
+BurbleMainFeed = React.createBackboneClass({
+  render: function() {
+    var feedNodes = this.props.data.map(function(item) {
+      return <BurbleMainFeedItem img_url={ item.img_url }>{ item.text }</BurbleMainFeedItem>
+    });
+    return (
+      <ol id='mainFeed'>
+        { feedNodes }
+      </ol>
+    );
+  }
+});
+BurbleBox = React.createBackboneClass({
+  render: function() {
+    return (
+      <div id='burbleBox'>
+        <BurbleSearch />
+        <BurbleMainFeed data={ this.props.data } />
+      </div>
+    );
+  }
+});
+
+HomeBottomView = React.createBackboneClass({
+  render: function() {
+    return (
+      <div id='content'>
+        <p class='Icon' id='scrollDownIndicator'>&#59397;</p>
+        <div class='btn-group' id='contentGroupButtons' data-toggle="buttons-radio">
+          <button class='btn' data-show='beta'>Beta</button>
+          <button class='btn' data-show='resources'>Resources</button>
+          <button class='btn' data-show='mobile'>Mobile</button>
+        </div>
+        <section class='ContentSection' id='beta'>
+          <div id='betaLeft'>
+            <div id='betaOverview'>
+              <h2>Welcome</h2>
+              <p>Thanks for being one of the first people to experience nepTune. Our team is hard at work building the future of music, but we invite you to experience what we have so far and have a say in the development of our platform.</p>
+              <p>So go forth, explore, and break things. And when something does break, let us know, and we'll let you know when it's fixed. If you want to see a new feature, or if something should work differently, also let us know. Thank you!</p>
+            </div>
+            <div id='betaImportant'>
+              <h2>Important information</h2>
+              <p>Before we get started, there are a few things you should be aware of. In order to build the best product possible, we cannot be responsible for loss of data or any personal inconvenience that results during the beta period. We hope you understand!</p>
+              <ul id='betaInfoList'>
+                <li>We will try to keep your data as much as possible</li>
+                <li>We may need to clear our databases to support a new feature, to improve an existing feature, or to make things faster</li>
+                <li>If we need to clear our databases, we will give you at least 24 hours notice, and likely 48 hours notice</li>
+                <li>We cannot ensure 100% uptime. We will give you at least 12 hours notice for <em>scheduled</em> downtime, as well as an estimate of the downtime if we can.</li>
+                <li>Unfortunately, we will not be able to notify you of unscheduled/unexpected downtime</li>
+                <li>We will update the site rather frequently to improve our product, add features, and fix problems</li>
+                <li>We try not to introduce issues in our updates, but we cannot guarantee that anything will be bug-free</li>
+                <li>We may email you updates about what we're up to. If you provide feedback (please do!), we may be in touch over email. Please check your email</li>
+                <li>Make sure you're familiar with our terms of use</li>
+              </ul>
+            </div>
+          </div>
+          <div id='betaRight'>
+            <button class='btn' id='getStartedButton'>Get started</button><br />
+            <button class='btn' id='betaFeedbackButton'>Provide feedback</button><br />
+            <button class='btn' id='betaShareButton'>Spread the word</button><br />
+            <button class='btn' id='betaJoinTeamButton'>Join our team</button><br />
+            <button class='btn' id='betaFacebookButton'><span class='Icon'>&#59393;</span>Facebook</button>
+            <button class='btn' id='betaTwitterButton'><span class='Icon'>&#59395;</span>Twitter</button>
+          </div>
+        </section>
+        <section class='ContentSection Hidden' id='resources'>
+          <div id='resourcesLeft'>
+            <h2>What is nepTune?</h2>
+            <p>nepTune is <a href='http://neptune.com:3000/market'>a farmer's market</a> for music from around the world. Built by <a href='http://neptune.com:3000/team'>a team</a> from around the country, <a href='http://neptune.com:3000/team#mission'>our mission</a> is to liberate human creativity by removing friction and increasing personal engagement.</p>
+            <h2>In the loop</h2>
+            <p>Like us on Facebook</p>
+            <p>Follow us on Twitter</p>
+            <p>For the latest news, or help if something goes wrong.</p>
+          </div>
+          <div id='resourcesRight'>
+            <a class="twitter-timeline" href="https://twitter.com/nepTuneTech" data-widget-id="368904990116421634">Tweets by @nepTuneTech</a>
+          </div>
+        </section>
+        <section class='ContentSection Hidden' id='mobile'>
+          <%= image_tag('app_construction.png', id: 'mobileConstruction', size: '300x604') %>
+        </section>
+      </div>
+    )
+  }
+})

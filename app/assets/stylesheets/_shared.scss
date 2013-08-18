@@ -9,6 +9,10 @@ body {
   width: 100%;
 }
 
+.btn {
+  font-family: $Sans !important;
+}
+
 #header {
   background: $nepTuneOrange;
   color: white;
@@ -27,6 +31,10 @@ body {
       line-height: 50px;
     }
   }
+}
+
+.Hidden {
+  display: none;
 }
 
 .Icon {

@@ -40,3 +40,36 @@ function handleLocationError(err) {
   // err.code 2: POSITION_UNAVAILABLE
   // err.code 3: TIMEOUT
 }
+
+$('body').on('click', '#contentGroupButtons .btn', function() {
+  var viewID = '#' + $(this).data('show');
+  $('.ContentSection').addClass('Hidden');
+  $(viewID).removeClass('Hidden');
+  // Scroll to bottom
+  // http://stackoverflow.com/a/11715670/472768
+  window.scrollTo(0, document.body.scrollHeight);
+
+  // Load Twitter feed if necessary
+  if ($(this).data('show') == 'resources')
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+});
+
+$('body').on('click', '#scrollDownIndicator', function() {
+  $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
+});
+
+// var scrDel = 0.5;   // Amount background should move per scroll of container
+// var ls = $(window).scrollTop();
+// $(window).scroll(function() {
+//   var sd = scrDel;
+//   var st = $(window).scrollTop();
+//   if (st - ls > 0)
+//     sd = scrDel * -1;
+//   ls = st;
+//   var currTop = parseFloat($('.gm-style').css('top').slice(0, -2), 10);
+//   var newTop = currTop + sd;
+//   if (newTop > 0)
+//     newTop = 0;
+//   newTop += 'px';
+//   $('.gm-style').css('top', newTop);
+// });
