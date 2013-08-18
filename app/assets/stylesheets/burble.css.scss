@@ -62,6 +62,10 @@
     background: $nepTuneOrange;
     color: white;
     width: 100%;
+    @include vendor-prefix(transition, background 1.0s);
+    &:hover {
+      background: darken($nepTuneOrange, 40%);
+    }
     #content {
       margin: auto;
       width: 1280px;
