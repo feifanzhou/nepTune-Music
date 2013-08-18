@@ -217,7 +217,16 @@
         }
       }
       #mobile {
-        text-align: center;
+        padding: 20px 40px;
+        #mobileContainer {
+          margin: auto;
+          width: 650px;
+          #mobileExplanation {
+            display: inline-block;
+            margin-left: 50px;
+            width: 300px;
+          }
+        }
       }
     }
   }
