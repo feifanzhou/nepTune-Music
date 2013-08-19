@@ -9,15 +9,22 @@ $nepTuneOrangeHighlight: darken($nepTuneOrange, 20%);
 $nepTuneTeal: rgb(13, 115, 147);
 $white: rgba(255, 255, 255, 0.85);
 
+$Dashed: image-url('dashed.png');
+$Debut: image-url('debut.png');
+$Txture: image-url('txture.png');
+$Wallhash: image-url('wallhash.png');
+
 $halfWhite: rgba(255, 255, 255, 0.5);
 $inactiveWhite: rgba(255, 255, 255, 0.55);
 $partialActiveWhite: rgba(255, 255, 255, 0.75);
 
-$Dashed: image-url('dashed.png');
-<<<<<<< HEAD
-$Debut: image-url('debut.png');
-$Txture: image-url('txture.png');
-$Wallhash: image-url('wallhash.png');
+$Sans: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
+$Heading: 'PT Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+$Zonda: 'Zonda';
+
+$success: rgb(138, 230, 138);
+$warn: rgb(252, 248, 227);
+$err: rgb(242, 222, 222);
 
 /***** Music colors *****/
 $albumOverlayOuter: transparentize(black, 0.1);
@@ -30,14 +37,3 @@ $otherMonthBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 45%), 10%)
 $otherMonthDayColor: transparentize(#676767, 0.50);
 $otherMonthHasEventBackgroundColor: desaturate(darken(lighten($nepTuneOrange, 15%), 5%), 30%);
 $otherMonthHasEventDayColor: transparentize(white, 0.25);
-=======
-$Wallhash: image-url('wallhash.png');
-
-$Sans: 'Lato', 'Helvetica Neue', 'Helvetica', sans-serif;
-$Heading: 'PT Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-$Zonda: 'Zonda';
-
-$success: rgb(138, 230, 138);
-$warn: rgb(252, 248, 227);
-$err: rgb(242, 222, 222);
->>>>>>> migrate-backbone

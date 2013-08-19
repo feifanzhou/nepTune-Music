@@ -1,5 +1,5 @@
 require 'tempfile'
-require 'RMagick'
+# require 'RMagick'
 require 'echonest'
 #require 'mini_magick'
 
@@ -124,7 +124,7 @@ module SoundmapHelper
   def generate_soundmap(numbers, mood_color,
                         opts={})
     default_opts = { width: 500, height: 500, mood_circle_width: 40, start_angle: 0,
-      filetype: "png",
+      filetype: "svg",
       # colorblind color palette, looks nice =D
       # from http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/
       colors: ["#E69F00", "#56B4E9", "#009E73", "#F0E442",
