@@ -23,18 +23,18 @@ BurbleMainFeedItem = React.createBackboneClass({
 BurbleMainFeed = React.createBackboneClass({
   render: function() {
     var feedNodes = this.props.data.map(function(item) {
-      return <BurbleMainFeedItem img_url={ item.img_url }>{ item.text }</BurbleMainFeedItem>
+      return <BurbleMainFeedItem img_url={ item.get('img_url') }>{ item.get('text') }</BurbleMainFeedItem>
     });
-    return (
+    return(
       <ol id='mainFeed'>
         { feedNodes }
       </ol>
-    );
+    )
   }
 });
 BurbleBox = React.createBackboneClass({
   render: function() {
-    return (
+    return(
       <div id='burbleBox'>
         <BurbleSearch />
         <BurbleMainFeed data={ this.props.data } />

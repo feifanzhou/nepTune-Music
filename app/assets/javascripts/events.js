@@ -1,4 +1,4 @@
-$('.SelectedButton').button('toggle');
+$(function() { $('.SelectedButton').button('toggle'); } );
 
 function event_status_trigger_success(trigger) {
   $('.SelectedButton').button('toggle');
