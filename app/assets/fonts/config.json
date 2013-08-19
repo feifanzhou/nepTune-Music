@@ -35,6 +35,36 @@
       "src": "fontawesome"
     },
     {
+      "uid": "1400d5103edd2fa6d2d61688fee79a5a",
+      "css": "ok-squared",
+      "code": 59422,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "0f4cae16f34ae243a6144c18a003f2d8",
+      "css": "cancel-circled",
+      "code": 59421,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "download",
+      "code": 59430,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "41087bc74d4b20b55059c60a33bf4008",
+      "css": "edit",
+      "code": 59425,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "c76b7947c957c9b78b11741173c8349b",
+      "css": "attention",
+      "code": 59420,
+      "src": "fontawesome"
+    },
+    {
       "uid": "9f7e588c66cfd6891f6f507cf6f6596b",
       "css": "phone",
       "code": 59398,
@@ -83,9 +113,27 @@
       "src": "fontawesome"
     },
     {
+      "uid": "dd6c6b221a1088ff8a9b9cd32d0b3dd5",
+      "css": "check",
+      "code": 59424,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4b900d04e8ab8c82f080c1cfbac5772c",
+      "css": "check-empty",
+      "code": 59423,
+      "src": "fontawesome"
+    },
+    {
       "uid": "fda731b5a4026685e1a9c7e64228e2b2",
       "css": "note-beamed",
       "code": 59406,
+      "src": "entypo"
+    },
+    {
+      "uid": "6274e0601f2feef7eced89146e708de0",
+      "css": "user-add",
+      "code": 59426,
       "src": "entypo"
     },
     {
@@ -164,6 +212,24 @@
       "uid": "e36d581e4f2844db345bddc205d15dda",
       "css": "group",
       "code": 59410,
+      "src": "elusive"
+    },
+    {
+      "uid": "9e0404ba55575a540164db9a5ad511df",
+      "css": "doc-new",
+      "code": 59427,
+      "src": "elusive"
+    },
+    {
+      "uid": "7acc2dfe18c6f4548626696fab27ba8a",
+      "css": "play-circled2",
+      "code": 59429,
+      "src": "elusive"
+    },
+    {
+      "uid": "326b529aa8b8913d3bc4a632f3dcec69",
+      "css": "slideshare",
+      "code": 59428,
       "src": "elusive"
     },
     {

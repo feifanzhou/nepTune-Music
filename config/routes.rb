@@ -1,5 +1,7 @@
 NeptuneMusic::Application.routes.draw do
 
+  get "albums/new"
+
   get "audio/create"
 
   get "images/new"
@@ -81,6 +83,17 @@ NeptuneMusic::Application.routes.draw do
     match '/logout', to: 'login_#destroy', as: :logout
   end
 
+  resources :users
+
+  constraints subdomain: "beta" do
+    root to: 'burble#home'
+
+    resources :artists do
+      resources :songs, :albums
+    end
+    resources :events
+  end
+  
   root to: 'static_pages#home'
 
   # Any routes that aren't defined go to 404

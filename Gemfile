@@ -6,7 +6,7 @@ gem 'rails-boilerplate'
 gem 'bootstrap-sass', '~> 2.3.1.2'
 gem 'pg'
 gem 'paperclip', '~> 3.0'
-gem 'rmagick'
+# gem 'rmagick'
 gem 'ruby-echonest'
 gem 'sidekiq'
 #gem 'mini_magick'
@@ -30,7 +30,9 @@ group :development, :production do
   gem 'aws-sdk', '~> 1.5.7'
   gem 'fb-channel-file'
   gem 'tilt'
-  gem 'react-rails', '~> 0.4.1.0'
+  gem 'rails-backbone'
+  gem 'react-rails'
+  gem 'underscore-rails'
 end
 
 group :development, :test do
