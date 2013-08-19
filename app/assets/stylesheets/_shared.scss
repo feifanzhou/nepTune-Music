@@ -1,6 +1,7 @@
 @import "fonts";
 @import "variables";
 
+<<<<<<< HEAD
 
 /***** Mixins *****/
 @mixin RowShadowBottom {
@@ -263,10 +264,28 @@
 @mixin TranslucentBar {
   background: rgba(0, 0, 0, 0.70);
   display: inline-block;
+=======
+body {
+  font-family: $Sans !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.btn {
+  font-family: $Sans !important;
+}
+
+#header {
+  background: $nepTuneOrange;
+  color: white;
+>>>>>>> migrate-backbone
   height: 50px;
   left: 0;
   position: absolute;
   right: 0;
+<<<<<<< HEAD
   transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
   -webkit-transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
   @include AnimationEase;
@@ -427,6 +446,17 @@ textarea.Autoresize {
     -webkit-transition: background 0.25s, color 0.25s;
     * {
       color: $partialActiveBlack !important;
+=======
+  top: 0;
+  #headerContainer {
+    background: green;
+    height: 50px;
+    margin: auto;
+    width: 1280px;
+    div {
+      display: inline-block;
+      line-height: 50px;
+>>>>>>> migrate-backbone
     }
   }
 }
@@ -436,6 +466,7 @@ textarea.Autoresize {
 }
 
 .Icon {
+<<<<<<< HEAD
 	font-family: $Zonda;
 }
 
@@ -629,3 +660,38 @@ ul {
 #artistPageContent {
   font-family: $OpenSans !important;
 }
+=======
+  font-family: $Zonda !important;   
+}
+
+input, textarea {
+  font-family: $Sans !important;
+}
+
+.OptionsGroup {
+  border-bottom: 1px solid #DEDEDE;
+  border-top: 1px solid #DEDEDE;
+  box-shadow: 0 8px 6px -6px transparentize(black, 0.75), 0 -8px 6px -6px transparentize(black, 0.75);
+  margin-bottom: 12px;
+  div, p {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.SuccessIcon {
+  color: $success;
+}
+
+/***** Mixins *****/
+@mixin vendor-prefix($name, $argument) {
+  #{$name}: #{ $argument };
+  -webkit-#{$name}: #{ $argument };
+  -ms-#{$name}: #{ $argument };
+  -moz-#{$name}: #{ $argument };
+  -o-#{$name}: #{ $argument };
+}
+>>>>>>> migrate-backbone
