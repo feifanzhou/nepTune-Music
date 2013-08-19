@@ -57,19 +57,3 @@ $('body').on('click', '#contentGroupButtons .btn', function() {
 $('body').on('click', '#scrollDownIndicator', function() {
   $("html, body").animate({ scrollTop: $(window).height() });
 });
-
-// var scrDel = 0.5;   // Amount background should move per scroll of container
-// var ls = $(window).scrollTop();
-// $(window).scroll(function() {
-//   var sd = scrDel;
-//   var st = $(window).scrollTop();
-//   if (st - ls > 0)
-//     sd = scrDel * -1;
-//   ls = st;
-//   var currTop = parseFloat($('.gm-style').css('top').slice(0, -2), 10);
-//   var newTop = currTop + sd;
-//   if (newTop > 0)
-//     newTop = 0;
-//   newTop += 'px';
-//   $('.gm-style').css('top', newTop);
-// });
