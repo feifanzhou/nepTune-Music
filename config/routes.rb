@@ -22,7 +22,7 @@ NeptuneMusic::Application.routes.draw do
     resources :events
     resources :comments
 
-    root to: 'home#home'
+    root to: 'burble#home'
 
     get "/login" => "login#login", as: :login
     post "/login" => "login#sign_in_user", as: :sign_in
