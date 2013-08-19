@@ -833,6 +833,13 @@ $('body').on('click', '.MusicGridGroup', function() {
   $('#showMusic').removeClass('In');
 });
 
+function fillRatings() {
+    setTimeout(function() {
+        $('div.rateit, span.rateit').html("");
+        $('div.rateit, span.rateit').rateit();
+    }, 750);
+}
+
 /***** Music grid navigation *****/
 function showMusicModal(URL, id) {
   var m = $('#showMusic');
@@ -845,10 +852,7 @@ function showMusicModal(URL, id) {
   $('#backdrop').addClass('In');
     $(m).addClass('In');
 
-    setTimeout(function() {
-        $('div.rateit, span.rateit').rateit();
-    }, 750);
-
+    fillRatings();
 }
 function dismissMusicModal() {
   $('#showMusic .m-body Load').html('');
@@ -878,6 +882,7 @@ function refresh_comments() {
       all_comments.html(data);
       // i don't know why this is necessary, but it is
       load_djax();
+        fillRatings();
     }
   });
 
@@ -890,6 +895,7 @@ $('body').on('click', '#refresh_comments', function(event) {
 
 $('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() {
   form = $(this).closest('.NewCommentForm').find('#new_comment');
+
   handle_comment_form(form);
 });
 
@@ -934,6 +940,9 @@ function handle_comment_form(form) {
   if (request) {
     request.abort();
   }
+
+    var rating = form.find("#rateit-range-2").attr("aria-valuenow");
+    form.find("#comment_rating").val(rating);
 
   // setup some local variables
   // let's select and cache all the fields

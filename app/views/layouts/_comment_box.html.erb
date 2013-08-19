@@ -6,8 +6,8 @@
     <input type='hidden' id='comment_media_ids' name='comment[media_ids]' />
     <%= f.text_area :text, class: 'Autoresize', placeholder: 'Say something about this song' %> <br>
     <% if !commentable.blank? # Should also check if commentable supports rating %>
+      <%= f.hidden_field :rating, placeholder: 'Rating (optional)' %>
       <div class="rateit"></div>
-      <%= f.text_field :rating, placeholder: 'Rating (optional)' %>
     <% end %>
     <div class='CommentFormFooter'>
       <% if !commentable.blank? %>
@@ -37,4 +37,4 @@
       <iframe id='commentMediaTarget' src=''></iframe>
     </div>
   <% end %>
-</div> 
+</div>  
