@@ -16,11 +16,14 @@ app_router.on('route:rootPath', function() {
       'callback=loadLocation';
     document.body.appendChild(script);
 
-    var data = [
-		{ img_url: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/s160x160/943566_492642090789944_356694603_a.jpg', text: 'Hello 1' },
-		{ img_url: 'http://icons.iconarchive.com/icons/walrick/openphone/256/Calendar-icon.png', text: 'Concert tonight' },
-		{ img_url: 'https://cdn0.iconfinder.com/data/icons/cosmo-mobile/40/location_1-128.png', text: 'ThePianoGuys checked in at Five Guys' }
-	];
+    var feed = new Feed;
+    feed.fetch();
+    var data = feed.models;
+ //    var data = [
+	// 	{ img_url: 'https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/s160x160/943566_492642090789944_356694603_a.jpg', text: 'Hello 1' },
+	// 	{ img_url: 'http://icons.iconarchive.com/icons/walrick/openphone/256/Calendar-icon.png', text: 'Concert tonight' },
+	// 	{ img_url: 'https://cdn0.iconfinder.com/data/icons/cosmo-mobile/40/location_1-128.png', text: 'ThePianoGuys checked in at Five Guys' }
+	// ];
     React.renderComponent (
     	BurbleBox({ data: data }),
     	document.getElementById('burbleBoxContainer')

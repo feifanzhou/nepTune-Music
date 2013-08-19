@@ -59,6 +59,7 @@ NeptuneMusic::Application.routes.draw do
 
     match '/comments/by_type_id/:type/:id', to: 'comments#by_type_id', as: :all_comments_by_type_id
 
+    match '/burble/:location', to: 'burble#feed', as: :burble_feed_for_location
   end
 
   # Routes for landing site
