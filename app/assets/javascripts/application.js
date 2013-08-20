@@ -21,7 +21,6 @@
 //= require backbone/neptune_music
 //= require_tree .
 //= require bootstrap
-//= require_tree .
 // require retina_tag
 // require jquery.fileupload
 // require react

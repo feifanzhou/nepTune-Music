@@ -3,6 +3,21 @@ $('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave']);
 }
 load_djax();
 
+// Going back to home page from artist page will cause problems
+// Because home page is loaded entirely with Backbone router
+// Hack to manually trigger the JS to reload home page
+$(window).bind('djaxLoad', function(e, data) {
+    var urlPieces = document.URL.split('/');
+    var pLast = urlPieces[urlPieces.length - 1];
+    if (pLast.indexOf('.com') == -1 && pLast.length > 0)  // If not home page
+        return;
+
+    rootPath();
+    var mc = $('#mapContainer').detach();
+    $(mc).insertBefore('#contentWrapper');
+    loadLocation();
+});
+
 function createCookie(name, value, days) {
     if (days) {
         var date = new Date();
