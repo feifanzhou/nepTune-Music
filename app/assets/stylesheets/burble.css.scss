@@ -54,6 +54,22 @@
             margin-right: 8px;
             width: 40px;
           }
+
+          .BurbleText {
+            display: inline-block;
+          }
+          
+          .BurbleDates {
+            display: inline-block;
+            float: right;
+            .BurbleDateTop {
+              text-align: right;
+            }
+            .BurbleDateBottom {
+              text-align: right;
+            }
+          }
+          
         }
       }
     }

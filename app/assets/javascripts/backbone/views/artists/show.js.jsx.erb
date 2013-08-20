@@ -11,11 +11,23 @@ BurbleSearch = React.createBackboneClass({
   }
 });
 BurbleMainFeedItem = React.createBackboneClass({
-  render: function() {
+    render: function() {
+        f = this.props.feed_item;
     return(
       <li class='BurbleMainFeedItem'>
-        <img class='BurbleFeedProfile' height='40' width='40' src={ this.props.img_url } />
-        { this.props.children }
+            <img class='BurbleFeedProfile' height='40' width='40' src={ f.get('icon') } />
+            <div class='BurbleText'>
+            { f.get('text') }
+        </div>
+
+            <div class='BurbleDates'>
+            <div class='BurbleDateTop'>
+            { f.get('top_date') }
+            </div>
+            <div class='BurbleDateBottom'>
+            { f.get('bottom_date') }
+            </div>
+            </div>
       </li>
     );
   }
@@ -23,7 +35,7 @@ BurbleMainFeedItem = React.createBackboneClass({
 BurbleMainFeed = React.createBackboneClass({
   render: function() {
     var feedNodes = this.props.data.map(function(item) {
-      return <BurbleMainFeedItem img_url={ item.get('img_url') }>{ item.get('text') }</BurbleMainFeedItem>
+        return BurbleMainFeedItem( {feed_item: item })
     });
     return(
       <ol id='mainFeed'>
