@@ -1,5 +1,5 @@
-<% link_path = song_for_artist_path(artist_route: params[:artist_route], song: element.id) %>
+<% link_path = song_for_artist_path(artist_route: element.artist.artistname, song: element.id) %>
 <div class='SongThin' data-path='<%= link_path %>' data-name='<%= element.name %>' data-creator='<%= element.artist.display_name %>'>
   <%= render 'shared/song_controls', song: element, is_thin: true %>
   <p class='SongName'><%= element.name %></p>
-</div>
+</div> 
