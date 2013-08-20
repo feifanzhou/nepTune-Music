@@ -1,7 +1,7 @@
 <div id='pageHeader'>
   <div id='pageHeaderContainer'>
     <ul id='headerNavLinks'>
-      <li><strong><%= link_to 'Karmonix', root_path %></strong></li>
+      <li><strong><%= link_to 'Tunetap', root_path %></strong></li>
       <% if !cookies[:current_user].blank? %>
         <% cu = User.find_by_remember_token(cookies[:current_user]) %>
         <% unless cu.blank? %>

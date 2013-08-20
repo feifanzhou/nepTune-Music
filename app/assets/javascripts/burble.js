@@ -1,5 +1,9 @@
 // Geolocation API guide: http://diveintohtml5.info/geolocation.html
 function loadLocation() {
+  var urlPieces = document.URL.split('/');
+  var pLast = urlPieces[urlPieces.length - 1];
+  if (pLast.indexOf('.com') == -1 && pLast.length > 0)
+    return;
   // Check if geolocation API is supported
   if (Modernizr.geolocation) {
     navigator.geolocation.getCurrentPosition(showMap, handleLocationError);

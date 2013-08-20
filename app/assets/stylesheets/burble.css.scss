@@ -8,8 +8,12 @@
 @import "custom_bootstrap";
 @import "bootstrap";
 
+#header {
+  @include AppHeader;
+}
+
 #container {
-  margin-top: 50px;
+  margin-top: 45px;
   position: relative;
   width: 100%;
   #mapContainer {
