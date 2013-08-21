@@ -14,6 +14,8 @@
 #
 
 class Event < ActiveRecord::Base
+  include EventsHelper
+  
   attr_accessible :creator_id, :end_at, :name, :start_at, :creator, :location, :details
 
   belongs_to :creator, class_name: 'Artist', foreign_key: :creator_id
@@ -38,29 +40,7 @@ class Event < ActiveRecord::Base
   end
 
   def display_time_string
-    date_end_string = 'th'
-    case self.start_at.day % 10
-    when 1
-      date_end_string = 'st'
-    when 2
-      date_end_string = 'nd'
-    when 3
-      date_end_string = 'rd'
-    end
-    date_end_string = 'th' if self.start_at.day == 11 || self.start_at.day == 12 || self.start_at.day == 13
-    display_string = self.start_at.strftime("%b. %-d#{ date_end_string }")
-    d = self.start_at.to_date
-    t = self.start_at.strftime("%l:%M %P")
-    if d == Date.today
-      display_string = "Today, #{ t }"
-    elsif d == Date.tomorrow
-      display_string = "Tomorrow, #{ t }"
-    elsif d < Date.today
-      display_string = "Already passed"
-    elsif d <= Date.today.end_of_week
-      display_string = d.strftime("%A") + ", #{ t }"
-    end
-    return display_string
+    display_date(self.start_at)
   end
 
   def cover_image
