@@ -17,9 +17,12 @@ module UsersHelper
   end
 
   def save_user_to_cookie(a_user)
+    puts 'save user to cookie 1'
     if a_user.has_temp_password && !has_facebook_id(a_user)
+      puts 'setting new user cookie'
       cookies[:new_user] = { value: a_user.id, expires: 20.years.from_now }
     else
+      puts 'setting current user cookie'
       cookies[:current_user] = { value: a_user.remember_token, expires: 20.years.from_now }
     end
   end
@@ -63,39 +66,56 @@ module UsersHelper
   end
 
   def create_user(params)
+    puts 'create user 1'
     input = params[:user]
     if input.blank?
       input = params[:login]
     end
+    puts 'create user 2'
 
     fullAccountCreate = input[:fullAccountCreate].to_i
+    puts 'create user 3'
 
     isArtist = input[:isArtist].to_i
+    puts 'create user 4'
 
     @user = User.new(input.except(:fullAccountCreate, :artistname))
     @user.isArtist = (isArtist == 1)
+    puts 'create user 5'
+    if fullAccountCreate.blank? or fullAccountCreate == 0
+      @user.password = temporary_password
+      @user.has_temp_password = true
+    end
 
     should_save = @user.valid?
+    puts 'create user 6'
+    puts 'should save' if @user.valid?
 
     # TODO: check for artist name duplicates
 
-    session[:new_user] = @user.id
+    # session[:new_user] = @user.id
     if should_save && @user.save
+      puts 'create user 7'
       save_user_to_cookie(@user)
       if isArtist == 1
+        puts 'create user 8'
         route = route_from_artistname(input[:artistname])
         contact_info = ContactInfo.create
         artist = Artist.create(artistname: input[:artistname], route: route, contact_info: contact_info)
         member = BandMember.create(user_id: @user.id, artist_id: artist.id)
       end
     elsif fullAccountCreate.blank? or fullAccountCreate == 0
+      puts 'create user 9'
       email = input[:email]
       # TODO: This is an awful security hole. Needs to be fixed!
-      if (!email.blank?)  # If they enter an existing email, sign them in
-        @user = User.find_by_email(email)
-        if @user
-          save_user_to_cookie(@user)
-        end
+      # if (!email.blank?)  # If they enter an existing email, sign them in
+      #   @user = User.find_by_email(email)
+      #   if @user
+      #     save_user_to_cookie(@user)
+      #   end
+      # end
+      if !User.find_by_email(email).blank?
+        cookies[:new_user] = { value: @user.id, expires: 20.years.from_now }
       end
     end
 
