@@ -26,7 +26,9 @@ class CommentsController < ApplicationController
   def update
     # TODO: Authenticate
     comment = Comment.find(params[:id])
-    comment.upvotes = params[:upvotes]
+    # Prevent users from hacking JS to set upvotes to any value
+    # Only increment upvotes by 1, as long as upvotes param is 'true'
+    comment.upvotes = comment.upvotes + 1 if params[:upvotes] >= 1
     comment.save
   end
 
