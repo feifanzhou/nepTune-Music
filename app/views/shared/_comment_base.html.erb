@@ -9,7 +9,7 @@
             alt: comment.user.display_name, class: 'CommenterImage') %>
       </div>
       <div class='CommentVotes'>
-        <span class='CommentUpvotes'><%= comment.upvotes %></span>
+        <span class='CommentUpvotes'><%= comment.upvotes if comment.upvotes > 0 %></span>
         <span class='CommentUpvoteArrow' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes %>'>^</span>
       </div>
     </div>
