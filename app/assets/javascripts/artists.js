@@ -980,3 +980,19 @@ $('body').on('keydown', '.CommentReplyField', function(event) {
   $(this).closest('.CommentReplyForm').submit();
   return false;
 });
+
+$('body').on('click', '.CommentUpvoteArrow', function() {
+  var clicked = $(this);
+  var newUpvotes = parseInt($(clicked).data('upvotes'), 10) + 1;
+  var commentID = $(clicked).data('id');
+  var url = '/comments/' + commentID;
+  $.ajax({
+    url: url,
+    type: 'PUT',
+    data: { upvotes: newUpvotes },
+    success: function() {
+      console.log('increment upvotes works');
+      $(clicked).prev().html('' + newUpvotes);
+    }
+  });
+});

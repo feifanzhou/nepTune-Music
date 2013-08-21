@@ -23,4 +23,11 @@ class CommentsController < ApplicationController
     @comments = Comment.sort_comments(@comments)
   end
 
+  def update
+    # TODO: Authenticate
+    comment = Comment.find(params[:id])
+    comment.upvotes = params[:upvotes]
+    comment.save
+  end
+
 end

@@ -14,14 +14,31 @@
   .CommentContent {
     overflow: hidden;
     position: relative;
-    .CommenterImage {
+    .CommentMeta {
+      display: inline-block;
       float: left;
       margin-left: 1px;
       position: relative;
       top: 4px;
+      .CommentVotes {
+        margin-top: 4px;
+        .CommentUpvotes {
+          display: inline-block;
+          font-size: 10px;
+          font-weight: 600;
+          text-align: right;
+          width: 16px;
+        }
+        .CommentUpvoteArrow {
+          display: inline-block;
+          font-size: 10px;
+          margin-left: 1px;
+          width: 8px;
+        }
+      }
     }
     .CommentStuff {
-      margin-left: 34px;
+      margin-left: 38px;
       position: relative;
       .CommentHeader {
         border-bottom: 1px solid #DDD;
