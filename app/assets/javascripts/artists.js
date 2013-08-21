@@ -77,29 +77,29 @@ function filterMusic(tag) {
 var contentScrollTop = 0;
 
 function primeClick() {
-  $('.MediaDisplayLink').click(function(event) {
-  event.preventDefault();
+    $('.MediaDisplayLink').click(function(event) {
+        event.preventDefault();
 
-  $('#musicGridContainer').addClass('MusicGridDetails');
-  $('#musicGridFilter').addClass('Hidden');
-  $('#musicDetailsHeader').addClass('Visible');
+        $('#musicGridContainer').addClass('MusicGridDetails');
+        $('#musicGridFilter').addClass('Hidden');
+        $('#musicDetailsHeader').addClass('Visible');
 
-  $('#itemIcon').html($(this).attr('data-icon'));
-  $('#detailsHeaderTitle').html($(this).attr('data-name'));
+        $('#itemIcon').html($(this).attr('data-icon'));
+        $('#detailsHeaderTitle').html($(this).attr('data-name'));
 
-  contentScrollTop = $('#artistPageContent').scrollTop();
+        contentScrollTop = $('#artistPageContent').scrollTop();
 
-  var path = $(this).attr('href');
-  setTimeout(function() {
-    $('#musicDetailsHeader').css('z-index', 2);
-    $('#musicDetailsContent').load(path + ' #mainPartial', function() {
-    setTimeout(function() {
-      $('#albumTrackListing').addClass('Visible');
-    }, 300);
+        var path = $(this).attr('href');
+        setTimeout(function() {
+            $('#musicDetailsHeader').css('z-index', 2);
+            $('#musicDetailsContent').load(path + ' #mainPartial', function() {
+                setTimeout(function() {
+                    $('#albumTrackListing').addClass('Visible');
+                }, 300);
+            });
+        }, 750);
+//        return false; //for good measure
     });
-  }, 750);
-  return false; //for good measure
-  });
 }
 
 function returnToMusicGrid() {
@@ -833,6 +833,13 @@ $('body').on('click', '.MusicGridGroup', function() {
   $('#showMusic').removeClass('In');
 });
 
+function fillRatings() {
+    setTimeout(function() {
+        $('div.rateit, span.rateit').html("");
+        $('div.rateit, span.rateit').rateit();
+    }, 750);
+}
+
 /***** Music grid navigation *****/
 function showMusicModal(URL, id) {
   var m = $('#showMusic');
@@ -843,7 +850,9 @@ function showMusicModal(URL, id) {
   setupSongDisplay(id);
   });
   $('#backdrop').addClass('In');
-  $(m).addClass('In');
+    $(m).addClass('In');
+
+    fillRatings();
 }
 function dismissMusicModal() {
   $('#showMusic .m-body Load').html('');
@@ -851,8 +860,8 @@ function dismissMusicModal() {
   $('#backdrop').removeClass('In');
 }
 $('body').on('click', '.GridItem', function(event) {
-  showMusicModal($(this).data('path'), $(this).data('id'));
-  event.stopPropagation();
+    showMusicModal($(this).data('path'), $(this).data('id'));
+    event.stopPropagation();
 });
 $('body').on('click', '#showMusic .ModalDismiss', function() {
   dismissMusicModal();
@@ -873,6 +882,7 @@ function refresh_comments() {
       all_comments.html(data);
       // i don't know why this is necessary, but it is
       load_djax();
+        fillRatings();
     }
   });
 
@@ -885,6 +895,7 @@ $('body').on('click', '#refresh_comments', function(event) {
 
 $('body').on('click', ".NewCommentForm > .buttons > #submitComment", function() {
   form = $(this).closest('.NewCommentForm').find('#new_comment');
+
   handle_comment_form(form);
 });
 
@@ -929,6 +940,9 @@ function handle_comment_form(form) {
   if (request) {
     request.abort();
   }
+
+    var rating = form.find("#rateit-range-2").attr("aria-valuenow");
+    form.find("#comment_rating").val(rating);
 
   // setup some local variables
   // let's select and cache all the fields

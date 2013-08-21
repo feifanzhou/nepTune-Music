@@ -27,7 +27,7 @@ is_following: @is_following, is_band_member: @is_band_member %>
             <%= render 'layouts/comment_box', reply_id: nil, commentable: @song %>
           <% end %>
           <button id="refresh_comments"> Refresh comments </button>
-          <div id="all_comments" data-type="Song" data-id='<%= @song.id %>' class="DJAX">
+          <div id="all_comments" data-type="Song" data-id='<%= @song.id %>'>
             <%= render 'layouts/all_comments', comments: @comments, replyable: !@user.blank? %>
           </div>
         </div>
