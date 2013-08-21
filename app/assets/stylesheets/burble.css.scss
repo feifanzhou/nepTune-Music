@@ -32,7 +32,7 @@
       border-radius: 6px;
       margin: auto;
       position: relative;
-      top: 200px;
+      top: 100px;
       width: 500px;
       #discoverForm {
         margin: 10px;
@@ -44,29 +44,64 @@
         }
       }
       #mainFeed {
+        height: 300px;
         list-style: none;
-        margin: 10px;
+        margin: 10px 0 0 0;
+        overflow: scroll;
         .BurbleMainFeedItem {
           border-top: 1px solid #CCC;
-          padding: 8px 0;
+          height: 57px;
+          padding: 0 10px;
+          @include vendor-prefix(transition, background 0.5s);
+          &:hover {
+            background: white;
+            cursor: pointer;
+          }
           .BurbleFeedProfile {
             height: 40px;
-            margin-right: 8px;
+            margin: 8px 8px 8px 0;
+            vertical-align: middle;
             width: 40px;
           }
 
           .BurbleText {
             display: inline-block;
+            line-height: 1.3em;
+            max-width: 325px;
+            vertical-align: middle;
+            white-space: normal;
+            width: 325px;
           }
           
           .BurbleDates {
+            background: transparentize(white, 0.4);
+            background: -moz-linear-gradient(left, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0.6)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+            background: linear-gradient(to right, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+            box-shadow: -8px 0 6px -6px transparentize(black, 0.75);
+            color: #666;
             display: inline-block;
             float: right;
-            .BurbleDateTop {
-              text-align: right;
-            }
-            .BurbleDateBottom {
-              text-align: right;
+            font-size: 12px;
+            height: 57px;
+            max-width: 100px;
+            position: relative;
+            vertical-align: middle;
+            width: 100px;
+            .BurbleDateText {
+              display: inline-block;
+              margin-top: 9px;
+              width: 100%;
+              .BurbleDateTop {
+                text-align: right;
+              }
+              .BurbleDateBottom {
+                text-align: right;
+              }
             }
           }
           

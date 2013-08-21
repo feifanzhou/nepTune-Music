@@ -14,6 +14,8 @@
 #
 
 class Event < ActiveRecord::Base
+  include EventsHelper
+  
   attr_accessible :creator_id, :end_at, :name, :start_at, :creator, :location, :details
 
   belongs_to :creator, class_name: 'Artist', foreign_key: :creator_id

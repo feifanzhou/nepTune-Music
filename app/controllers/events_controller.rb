@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     date_format = "%m/%d/%Y %I:%M %p"
     event.start_at = DateTime.strptime(params[:event][:start_at], date_format)
     event.end_at = DateTime.strptime(params[:event][:end_at], date_format)
-    artist = Artist.find_by_artistname(artistname)
+    artist = Artist.find_by_route(artistname)
     event.creator_id = artist.id
     event.save
     attendee = Attendee.create(artist: artist, status: :performing, event: event)
