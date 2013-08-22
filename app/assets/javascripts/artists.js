@@ -840,6 +840,8 @@ function fillRatings() {
     }, 750);
 }
 
+fillRatings();
+
 /***** Music grid navigation *****/
 function showMusicModal(URL, id) {
   var m = $('#showMusic');

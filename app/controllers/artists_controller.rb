@@ -22,6 +22,7 @@ class ArtistsController < ApplicationController
 
   def burble
     @comments = Comment.sorted_for_commentable(@artist)
+    @user = @current_user
   end
 
   def events

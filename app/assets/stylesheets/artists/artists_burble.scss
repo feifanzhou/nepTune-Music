@@ -4,6 +4,7 @@
   font-family: $OpenSans;
   margin: 2px 0 auto 34px;
   padding-top: 4px;
+  color: $black; 
   &.CommentLevel0 {
     background: lighten($nepTuneOrange, 47%);
     border-radius: 4px;
@@ -205,4 +206,9 @@
 }
 .CommentBoxFileFields {
   display: none;
+}
+
+#burbleBody {
+  margin-left: 10px;
+  margin-top: 15px;
 }

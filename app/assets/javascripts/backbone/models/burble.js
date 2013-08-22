@@ -8,7 +8,8 @@ var FeedItem = Backbone.Model.extend({
             icon: '',
             text: '',
             top_date: '',
-            bottom_date: ''
+            bottom_date: '',
+            url: '#'
         };
     },
     url: function() {

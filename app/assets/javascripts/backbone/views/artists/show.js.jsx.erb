@@ -13,7 +13,8 @@ BurbleSearch = React.createBackboneClass({
 BurbleMainFeedItem = React.createBackboneClass({
     render: function() {
         f = this.props.feed_item;
-    return(
+        return(
+                <a href={ f.get('url') }>
       <li class='BurbleMainFeedItem'>
         <img class='BurbleFeedProfile' height='40' width='40' src={ f.get('icon') } />
         <div class='BurbleText'>
@@ -30,7 +31,8 @@ BurbleMainFeedItem = React.createBackboneClass({
             </div>
           </div>
         </div>
-      </li>
+                </li>
+                </a>
     );
   }
 });

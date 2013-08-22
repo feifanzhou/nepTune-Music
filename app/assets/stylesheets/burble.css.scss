@@ -48,22 +48,24 @@
       #mainFeed {
         // Shadows when scrolling
         // http://lea.verou.me/2012/04/background-attachment-local/
-        background:
-          /* Shadow covers */
-          linear-gradient(white 30%, rgba(255,255,255,0)),
-          linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+
+        /* background: */
+        /*   /\* Shadow covers *\/ */
+        /*   linear-gradient(white 30%, rgba(255,255,255,0)), */
+        /*   linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, */
           
-          /* Shadows */
-          radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)),
-          radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
-        background:
-          /* Shadow covers */
-          linear-gradient(white 30%, rgba(255,255,255,0)),
-          linear-gradient(rgba(255,255,255,0), white 70%) 0 100%,
+        /*   /\* Shadows *\/ */
+        /*   radial-gradient(50% 0, farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)), */
+        /*   radial-gradient(50% 100%,farthest-side, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%; */
+        /* background: */
+        /*   /\* Shadow covers *\/ */
+        /*   linear-gradient(white 30%, rgba(255,255,255,0)), */
+        /*   linear-gradient(rgba(255,255,255,0), white 70%) 0 100%, */
           
-          /* Shadows */
-          radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)),
-          radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%;
+        /*   /\* Shadows *\/ */
+        /*   radial-gradient(farthest-side at 50% 0, rgba(0,0,0,.2), rgba(0,0,0,0)), */
+        /*   radial-gradient(farthest-side at 50% 100%, rgba(0,0,0,.2), rgba(0,0,0,0)) 0 100%; */
+
         background-repeat: no-repeat;
         background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
         
@@ -80,7 +82,7 @@
           padding: 0 10px;
           @include vendor-prefix(transition, background 0.5s);
           &:hover {
-            background: white;
+            background: transparentize($nepTuneOrange, 0.76);
             cursor: pointer;
           }
           .BurbleFeedProfile {
@@ -97,18 +99,19 @@
             vertical-align: middle;
             white-space: normal;
             width: 310px;
+            color: black;
           }
           
           .BurbleDates {
-            background: transparentize(white, 0.4);
-            background: -moz-linear-gradient(left, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
-            background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0.6)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-            background: -webkit-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
-            background: -o-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
-            background: -ms-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
-            background: linear-gradient(to right, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /* W3C */
+            /* background: transparentize(white, 0.4); */
+            /* background: -moz-linear-gradient(left, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 100%); /\* FF3.6+ *\/ */
+            /* background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0.6)), color-stop(100%,rgba(255,255,255,0))); /\* Chrome,Safari4+ *\/ */
+            /* background: -webkit-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* Chrome10+,Safari5.1+ *\/ */
+            /* background: -o-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* Opera 11.10+ *\/ */
+            /* background: -ms-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* IE10+ *\/ */
+            /* background: linear-gradient(to right, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* W3C *\/ */
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
-            box-shadow: -8px 0 6px -6px transparentize(black, 0.75);
+            // box-shadow: -8px 0 6px -6px transparentize(black, 0.75);
             color: #666;
             display: inline-block;
             float: right;
