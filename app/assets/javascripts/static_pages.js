@@ -89,9 +89,20 @@ $(window).resize(function() {
 	resizeTimer = setTimeout(onResize, 50);
 });
 
+if (!window.mobilecheck)
+	console.log('not window mobilecheck');
+
+if (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))
+	console.log('not modernizrs');
+if (Modernizr.csstransitions)
+	console.log('modernizr csstransitions');
+if (Modernizr.csstransforms3d)
+	console.log('modernizr csstransforms3d');
+
 if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
 	// If transitions aren't supported, make sure everything appears without animation
 	$(".AppearCard").each(function() {
+		console.log('forcing appearcard');
 		$(this).addClass('appeared');
 	});
 	setHeroHeight();

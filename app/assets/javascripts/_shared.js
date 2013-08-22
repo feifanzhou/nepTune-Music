@@ -1,5 +1,5 @@
 function load_djax() {
-$('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave']);
+$('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave', 'market', 'team', 'news', 'careers', 'contact', 'beta', 'terms']);
 }
 load_djax();
 
