@@ -1,6 +1,15 @@
 # -*- coding: utf-8 -*-
 module UsersHelper
   # TODO: Organize methods in alphabetical order
+  def can_edit
+    curr_user = current_user
+    if not curr_user
+      return false
+    else
+      return curr_user.id == params[:id].to_i
+    end
+  end
+
   def get_user_from_params
     # TODO: Find by other parameters, including id, facebook_id, and email
     # TODO: Don't use username anymore

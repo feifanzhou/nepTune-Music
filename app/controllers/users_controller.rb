@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   include UsersHelper
 
   before_filter :signed_in_user, only: [:update, :upload]
+  before_filter :authenticate_editing, only: [:show]
 
   def self.user=(u)
     @user = u
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @media_shared = Song.all
   end
 
   def new
@@ -21,6 +23,21 @@ class UsersController < ApplicationController
 
   def edit
   end
+
+  def authenticate_editing
+    @is_editing = false
+    if params[:edit] == '0'
+      redirect_to_current_page_without_params
+      return
+    end
+    can = can_edit()
+    @is_editing = true if can && params[:edit].to_i == 1
+
+    if !@is_editing
+      redirect_to_current_page_without_params if !params[:edit].blank?
+    end
+  end
+
 
   def create
     sign_out

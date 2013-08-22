@@ -1,1 +1,21 @@
-<%= image_tag @user.avatar.url if @user%>  
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='container'>
+  <%= render 'layouts/user_sidebar', user: @user, curr_nav: 1, is_editing: @is_editing,      
+is_following: @is_following %>
+  <div class='DJAX XHidden' id='artistPageContent'>
+    <div class='span8'>
+      Shared songs
+      <div id='relatedGalleries'>
+      <%= render 'shared/related_media', media: Song.all %>
+      </div>
+      50 credits
+    </div>
+  </div>
+</div>
+
+
+
+

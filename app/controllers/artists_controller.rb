@@ -110,9 +110,9 @@ class ArtistsController < ApplicationController
       redirect_to_current_page_without_params
       return
     end
-    can_edit = can_edit()
-    @is_editing = true if can_edit && params[:edit].to_i == 1
-    @is_editing = true if can_edit && cookies[:is_editing] == '1'
+    can = can_edit()
+    @is_editing = true if can && params[:edit].to_i == 1
+    @is_editing = true if can && cookies[:is_editing] == '1'
 
     if !@is_editing
       cookies[:is_editing] = '0'
