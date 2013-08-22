@@ -10,18 +10,24 @@ namespace :admin do
   desc "Populate DB with test data"
   task :fill_db => :environment do
     puts "Creating users..."	# Vanilla users
-    u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/beethoven.jpg"))
-    u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/haydn.jpg"))
-    u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_feifan%402x.png"))
-    u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_pierre%402x.jpg"))
-    u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_drew%402x.png"))
-    u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar',
-                     avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_bobby%402x.jpg"))
+    u1 = User.create(fname: 'Ludwig', lname: 'van Beethoven', email: 'beethoven@me.com', isArtist: false, password: 'foobar'
+                     # , avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/beethoven.jpg")
+                     )
+    u2 = User.create(fname: 'Joseph', lname: 'Haydn', email: 'joe@haydn.com', isArtist: false, password: 'foobar'
+                     # , avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/haydn.jpg")
+                     )
+    u3 = User.create(fname: 'Feifan', lname: 'Zhou', email: 'feifan@me.com', isArtist: false, password: 'foobar'
+                     # , avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_feifan%402x.png")
+                     )
+    u4 = User.create(fname: 'Pierre', lname: 'Karashchuk', email: 'pierre@getneptune.com', isArtist: false, password: 'foobar'
+                     #, avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_pierre%402x.jpg")
+                     )
+    u5 = User.create(fname: 'Drew', lname: 'Toma', email: 'dtoma@getneptune.com', isArtist: false, password: 'foobar'
+                     #, avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_drew%402x.png")
+                     )
+    u6 = User.create(fname: 'Robert', lname: 'Robertson', email: 'robert@getneptune.com', isArtist: false, password: 'foobar'
+                     #, avatar: URI.parse("https://dl.dropboxusercontent.com/u/16963685/chirku/team/team_bobby%402x.jpg")
+                     )
 
     puts "Discovering artists..."
     jon = Artist.new(artistname: 'The Piano Guys', route: 'thepianoguys')
@@ -33,7 +39,7 @@ started making videos together of Jon Schmidt. It was not too long after
 that they did their first collaboration with Jon Schmidt, Steven Sharp Nelson,
 and Al van der Beek as the studio and music technician. After the five of them started collaborating
 the group really started to take off, producing a music video each week and posting it to YouTube."""
-    jon.avatar = URI.parse('https://dl.dropboxusercontent.com/u/16963685/chirku/pianoguys.jpg')
+    #jon.avatar = URI.parse('https://dl.dropboxusercontent.com/u/16963685/chirku/pianoguys.jpg')
     jon.save
     ci = ContactInfo.create(email: 'jon@thepianoguys.com',
                             phone: '(401) 123-4567', website: 'thepianoguys.com')

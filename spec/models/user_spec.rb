@@ -14,12 +14,14 @@
 #  password_digest     :string(255)
 #  has_temp_password   :boolean
 #  remember_token      :string(255)
+#  username            :string(255)
 #  is_group            :boolean          default(FALSE)
 #  facebook_id         :integer
 #  avatar_file_name    :string(255)
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  credits             :integer          default(0)
 #
 
 require 'spec_helper'

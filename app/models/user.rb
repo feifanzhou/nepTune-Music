@@ -14,16 +14,17 @@
 #  password_digest     :string(255)
 #  has_temp_password   :boolean
 #  remember_token      :string(255)
+#  username            :string(255)
 #  is_group            :boolean          default(FALSE)
 #  facebook_id         :integer
 #  avatar_file_name    :string(255)
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  credits             :integer          default(0)
 #
 
 class User < ActiveRecord::Base
-  # FIXME: Password should not be mass-assignable
   attr_accessible :email, :fname, :lname, :password, :willingToBetaTest, :isArtist, :has_temp_password, :facebook_id, :avatar
 
   attr_accessor :artistname, :facebook_id
@@ -42,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :inverse_followers, :through => :inverse_followings, :source => :user
 
   has_attached_file :avatar, s3_protocol: 'http'
+
+  before_create :defaults
 
 
   # before_save { |user| user.email = email.downcase }
@@ -64,6 +67,10 @@ class User < ActiveRecord::Base
   # validates :artistname, uniqueness: { case_sensitive: false }, allow_nil: true;
 
   validate :should_not_have_profanities
+
+  def defaults
+    self.credits ||= 0
+  end
 
 
   def should_not_have_profanities

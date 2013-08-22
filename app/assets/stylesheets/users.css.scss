@@ -19,3 +19,39 @@
 @import "albums.css"; 
 @import "songs.css"; 
 @import "events.css"; 
+
+.usersPage {
+  .creditsDiv {
+    margin-top: 10px;
+    display: block;
+    .userCredits {
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+  }
+
+  #relatedGalleries {
+    margin-top: 10px;
+  }
+  
+  .RelatedMedia {
+    .RelatedMediaCaption {
+      color: $inactiveWhite;
+    }
+  }
+
+  .RelatedMediaGallery {
+    .SongThin {
+      color: $white;
+      .SongName {
+      }
+    }
+  }
+
+  .GalleryTitle {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 4px 0;
+  }
+}

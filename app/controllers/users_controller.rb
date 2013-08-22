@@ -30,8 +30,8 @@ class UsersController < ApplicationController
       redirect_to_current_page_without_params
       return
     end
-    can = can_edit()
-    @is_editing = true if can && params[:edit].to_i == 1
+    @can_edit = can_edit()
+    @is_editing = true if @can_edit && params[:edit].to_i == 1
 
     if !@is_editing
       redirect_to_current_page_without_params if !params[:edit].blank?

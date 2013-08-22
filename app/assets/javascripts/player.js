@@ -34,7 +34,7 @@ var currentID = false;
 
 var songUIID = false;
 function songControlsID() {
-  return '#songControls' + songUIID;
+    return '*[data-songid="'+ songUIID + '"]';
 }
 
 function resetOnClickForCurrent() {
@@ -61,14 +61,14 @@ function updateBarLoading() {
 function changePlayButton(name) {
   function n() {
     if (name == 'Pause') {
-      $(songControlsID()).find('.PauseIcon').first().css('display', 'inline-block');
-      $(songControlsID()).find('.PlayIcon').first().css('display', 'none');
+      $(songControlsID()).find('.PauseIcon').css('display', 'inline-block');
+      $(songControlsID()).find('.PlayIcon').css('display', 'none');
       $('#playPauseBtn .PlayIcon').css('display', 'none');
       $('#playPauseBtn .PauseIcon').css('display', 'inline-block');
     }
     else if (name == 'Resume') {
-      $(songControlsID()).find('.PauseIcon').first().css('display', 'none');
-      $(songControlsID()).find('.PlayIcon').first().css('display', 'inline-block');
+      $(songControlsID()).find('.PauseIcon').css('display', 'none');
+      $(songControlsID()).find('.PlayIcon').css('display', 'inline-block');
       $('#playPauseBtn .PlayIcon').css('display', 'inline-block');
       $('#playPauseBtn .PauseIcon').css('display', 'none');
     }
@@ -123,7 +123,7 @@ function playStuff(name, url) {
 
 function togglePause() {
   soundManager.togglePause('sound');
-  $(songControlsID()).find('.PlayIcon').first().attr('onclick', "togglePause()");
+  $(songControlsID()).find('.PlayIcon').attr('onclick', "togglePause()");
 }
 
 function setupSongDisplay(id) {
@@ -132,10 +132,10 @@ function setupSongDisplay(id) {
   if (songUIID) // Don't create circular progress for small players…too busy
     createPlayerProgress();
   if(currentID == playingID) {
-    $(songControlsID()).find('.PlayIcon').first().attr('onclick', "togglePause()");
+    $(songControlsID()).find('.PlayIcon').attr('onclick', "togglePause()");
     if(!currentSound.paused) {
-      $(songControlsID()).find('.PauseIcon').first().css('display', 'inline-block');
-      $(songControlsID()).find('.PlayIcon').first().css('display', 'none');
+      $(songControlsID()).find('.PauseIcon').css('display', 'inline-block');
+      $(songControlsID()).find('.PlayIcon').css('display', 'none');
     }
     updateBarPlaying();
   }

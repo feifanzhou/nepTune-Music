@@ -3,7 +3,7 @@
 # Table name: comments
 #
 #  id               :integer          not null, primary key
-#  text             :string(255)
+#  text             :text
 #  upvotes          :integer
 #  location         :string(255)
 #  user_id          :integer
@@ -28,6 +28,7 @@ class Comment < ActiveRecord::Base
   belongs_to :comment
   has_many :comments
   belongs_to :commentable, polymorphic: true
+  before_create :defaults
   # Need many-to-many polymorphic relation between comments and media/events/anything else
   # http://stackoverflow.com/questions/12287869/many-to-many-polymorphic-association-in-ruby-on-rails
   # has_many :commentings
@@ -47,7 +48,7 @@ class Comment < ActiveRecord::Base
   end
 
   def defaults
-    self.upvotes ||= 1
+    self.upvotes ||= 0
   end
 
   def parent

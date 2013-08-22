@@ -1,6 +1,7 @@
 <% is_small ||= false %>
 <% is_thin ||= false %>
-<div class="SongControls <%= 'SongControlsSmall' if is_small %> <%= 'SongControlsThin' if is_thin %>" id="songControls<%= song.id %>">
+<div class="SongControls <%= 'SongControlsSmall' if is_small %> <%= 'SongControlsThin' if is_thin
+%>" data-songid="<%= song.id %>">
   <div class='PlayPause'>
   <span class='Icon PlayIcon'
       data-url='<%= escape_data_url song.audio.path %>'
@@ -10,4 +11,4 @@
   </span>
   <span class='Icon PauseIcon' onclick="togglePause()">&#59417;</span>
   </div>
-</div>
+</div>  

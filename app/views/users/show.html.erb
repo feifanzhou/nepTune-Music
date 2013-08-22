@@ -2,16 +2,33 @@
   <%= render 'layouts/app_header' %>
   <%= render 'layouts/playbar' %>
 </header>
-<div id='container'>
+<div id='container' class='usersPage'>
   <%= render 'layouts/user_sidebar', user: @user, curr_nav: 1, is_editing: @is_editing,      
-is_following: @is_following %>
+      is_following: @is_following %>
   <div class='DJAX XHidden' id='artistPageContent'>
     <div class='span8'>
-      Shared songs
-      <div id='relatedGalleries'>
-      <%= render 'shared/related_media', media: Song.all %>
+
+      <% if @can_edit %>
+      <div class='creditsDiv span8'>
+        <span class='userCredits'> <b>Credits:</b> <%= @user.credits %> </span>
       </div>
-      50 credits
+      <% end %>
+
+      <div id='relatedGalleries'>
+        <div class='span3'>
+          <span class='GalleryTitle'>
+            Shared songs
+          </span>
+          <%= render 'shared/related_media', media: Song.all %>
+        </div>
+
+        <div class='span3'>
+          <span class='GalleryTitle'>
+            Recent plays/purchases
+          </span>
+          <%= render 'shared/related_media', media: Song.all %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
