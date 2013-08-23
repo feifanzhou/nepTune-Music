@@ -29,18 +29,14 @@
               <input type='text' name='amount' id='newCredits' placeholder='Add credits (value in cents)' />
               <input type='hidden' name='token' id='stripeToken' />
               <div class="form-row">
-                <input type="text" size="20" data-stripe="number" placeholder='Card number'/>
+                <input type="text" size="20" data-stripe="number" id='cardNumber' placeholder='Card number'/> <input type="text" size="4" data-stripe="cvc" id='cardCVC' placeholder='CVC'/>
               </div>
 
               <div class="form-row">
-                <input type="text" size="4" data-stripe="cvc" placeholder='CVC'/>
-              </div>
-
-              <div class="form-row">
-                <input type="text" size="2" data-stripe="exp-month" placeholder='Exp. MM'/>
+                <input type="text" size="2" data-stripe="exp-month" id='cardExpM' placeholder='Exp. MM'/>
 
                 <span> / </span>
-                <input type="text" size="4" data-stripe="exp-year" placeholder='Exp. YYYY'/>
+                <input type="text" size="4" data-stripe="exp-year" id='cardExpY' placeholder='Exp. YYYY'/>
               </div>
 
               <button class='btn btn-primary' id='submitCredits' type="submit">Submit Payment</button>

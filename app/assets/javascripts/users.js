@@ -88,3 +88,36 @@ $('body').on('click', '#addCreditButton', function() {
   $('#addCredit').addClass('In');
 });
 $('body').on('click', '#addCredit .ModalDismiss', dismissAddCreditsModal);
+
+function keyCode(event) {
+  return (event.keyCode ? event.keyCode : event.which);
+}
+function isNumberKey(keyCode) {
+  return ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 13 || (keyCode >= 37 && keyCode <= 40));
+}
+// $('body').on('keyup', '#cardNumber', function(event) {
+//   if ($(this).val().length == 4 || ($(this).val().length + 1) % 5 == 0)
+//     $(this).val($(this).val() + ' ');
+// });
+$('body').on('keydown', '#cardExpM', function(event) {
+  var kc = keyCode(event);
+  if (!isNumberKey(kc)) {
+    event.preventDefault();
+    return false;
+  }
+})
+$('body').on('keyup', '#cardExpM', function() {
+  if ($(this).val().length >= 2)
+    $('#cardExpY').focus();
+});
+$('body').on('keydown', '#cardExpY', function(event) {
+  // if ($(this).val().length >= 4) {
+  //   event.preventDefault();
+  //   return false;
+  // }
+  var kc = keyCode(event);
+  if (!isNumberKey(kc)) {
+    event.preventDefault();
+    return false;
+  }
+});

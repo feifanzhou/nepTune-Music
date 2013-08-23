@@ -37,6 +37,21 @@
   }
   #addCredit {
     @include Modal;
+    #newCredits {
+      margin-bottom: 20px;
+    }
+    #cardNumber {
+      width: 149px;
+    }
+    #cardCVC {
+      width: 40px;
+    }
+    #cardExpM {
+      width: 80px;
+    }
+    #cardExpY {
+      width: 101px;
+    }
     #submitCreditsSpinner {
       display: none;
       width: 127px;
