@@ -46,7 +46,7 @@ function stripeResponseHandler(status, response) {
   if (status != 200) {
     // https://stripe.com/docs/api#errors
     alert("Something went wrong: " + response.error.message + "\nYou weren't charged.");
-    $('#submitCredits').prop('disabled', false);
+    resetAddCredits(false);
     return false;
   }
 
@@ -68,20 +68,21 @@ function stripeResponseHandler(status, response) {
       $('#credits').addClass('Highlight');
       setTimeout(function() { $('#credits').removeClass('Highlight') }, 250);
     },
-    complete: resetAddCredits
+    complete: function() { resetAddCredits(true) }
   });
 }
 
-function resetAddCredits() {
+function resetAddCredits(shouldClear) {
   $('#submitCredits').prop('disabled', false);
   $('#submitCredits').css('display', 'inline-block');
   $('#submitCreditsSpinner').css('display', 'none');
-  $('#new_charge').find('input[type=text]').val('');
+  if (shouldClear)
+    $('#new_charge').find('input[type=text]').val('');
 }
 function dismissAddCreditsModal() {
   $('#backdrop').removeClass('In');
   $('#addCredit').removeClass('In');
-  resetAddCredits();
+  resetAddCredits(true);
 }
 $('body').on('click', '#addCreditButton', function() {
   $('#backdrop').addClass('In');
@@ -89,7 +90,9 @@ $('body').on('click', '#addCreditButton', function() {
 });
 $('body').on('click', '#addCredit .ModalDismiss', dismissAddCreditsModal);
 
+// Keycodes: http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
 function keyCode(event) {
+  // http://stackoverflow.com/a/302161/472768
   return (event.keyCode ? event.keyCode : event.which);
 }
 function isNumberKey(keyCode) {
