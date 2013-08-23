@@ -41,7 +41,6 @@ $('body').on('submit', '#new_charge', function() {
   return false;
 });
 function stripeResponseHandler(status, response) {
-  alert('stripe response handler');
   if (status != 200) {
     // https://stripe.com/docs/api#errors
     alert("Something went wrong: " + response.error.message + "\nYou weren't charged.");
@@ -60,12 +59,27 @@ function stripeResponseHandler(status, response) {
     dataType: 'JSON',
     data: formData,
     complete: function(jqXHR, textStatus) {
-      var currAmount = parseInt($('#credits').text(), 10);
+      dismissAddCreditsModal();
+      var currAmount = parseInt($('#credits').data('credits'), 10);
       var newAmount = parseInt(chargeAmount, 10);
       var totalAmount = currAmount + newAmount;
-      // $('#credits').html((totalAmount / 100).toFixed(2));
-      $('#credits').html(totalAmount);
+      $('#credits').html('$' + (totalAmount / 100).toFixed(2));
+      $('#credits').data('credits', totalAmount);
+      $('#credits').addClass('Highlight');
+      setTimeout(function() { $('#credits').removeClass('Highlight') }, 250);
+    },
+    done: function() {
+      $('#submitCredits').prop('disabled', false);
     }
   });
-  $('#submitCredits').prop('disabled', false); 
 }
+
+function dismissAddCreditsModal() {
+  $('#backdrop').removeClass('In');
+  $('#addCredit').removeClass('In');
+}
+$('body').on('click', '#addCreditButton', function() {
+  $('#backdrop').addClass('In');
+  $('#addCredit').addClass('In');
+});
+$('body').on('click', '#addCredit .ModalDismiss', dismissAddCreditsModal);

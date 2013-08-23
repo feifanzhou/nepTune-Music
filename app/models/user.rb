@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
   def display_credits
     over = self.credits / 100
     under = self.credits % 100
-    return "%d.%02d" % [over, under]
+    return "$%d.%02d" % [over, under]
   end
 
 

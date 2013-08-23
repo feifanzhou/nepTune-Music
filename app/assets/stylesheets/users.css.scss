@@ -27,8 +27,16 @@
     .userCredits {
       font-size: 20px;
       line-height: 25px;
+      #credits {
+        @include vendor-prefix(transition, color 0.25s);
+        &.Highlight {
+          color: $nepTuneOrange;
+        }
+      }
     }
-
+  }
+  #addCredit {
+    @include Modal;
   }
 
   #relatedGalleries {
