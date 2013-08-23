@@ -10,7 +10,8 @@ var FeedItem = Backbone.Model.extend({
             text: '',
             top_date: '',
             bottom_date: '',
-            url: '#'
+            url: '#',
+            performers: ''
         };
     },
     url: function() {

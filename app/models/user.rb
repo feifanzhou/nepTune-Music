@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
     self.credits ||= 0
   end
 
+  def display_credits
+    over = self.credits / 100
+    under = self.credits % 100
+    return "%d.%02d" % [over, under]
+  end
+
 
   def should_not_have_profanities
     if is_profane_name? fname or is_profane_name? lname

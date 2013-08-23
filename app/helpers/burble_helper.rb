@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module BurbleHelper
 
   include ActionView::Helpers::DateHelper
@@ -41,13 +42,40 @@ module BurbleHelper
         header = e.name
         text = e.location
         url = route_to(e)
+        performers_text = ""
+
+        performers = Attendee.where(event_id: e.id, status: :performing)
+        performers.map! { |p|
+          x = User.find(p.user_id) if p.user_id
+          x = Artist.find(p.artist_id) if p.artist_id
+          x.display_name
+        }
+        if performers.length > 0
+          t = 'Performer'
+          if performers.length >= 2
+            t = t.pluralize
+          end
+          if performers.length > 3
+            performers.shuffle!
+            performers[0..3]
+            final = ", and more!"
+          else
+            final = ""
+          end
+          performers_text = "%s: %s" % [t, performers.join(', ')]
+          performers_text += final
+        end
+
       elsif e.kind_of? Comment
         user = User.find(e.user_id)
         icon = user.avatar.url
         start_at = distance_of_time_in_words_to_now(e.created_at) + ' ago'
         end_at = nil
         header = "#{user.display_name} says:"
-        text = e.text
+        text = e.text[0..120]
+        if e.text.length > 120
+          text += '...'
+        end
         url = route_to(e.commentable, comment: true)
       end
       {
@@ -57,7 +85,8 @@ module BurbleHelper
         text: text,
         top_date: start_at,
         bottom_date: end_at,
-        url: url
+        url: url,
+        performers: performers_text
       }
 
 

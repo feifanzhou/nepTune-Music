@@ -81,7 +81,7 @@
         overflow: scroll;
         .BurbleMainFeedItem {
           border-top: 1px solid #CCC;
-          height: 57px;
+          // height: 57px;
           padding: 0 10px;
           @include vendor-prefix(transition, background 0.5s);
           &:hover {
@@ -103,6 +103,7 @@
             white-space: normal;
             width: 310px;
             color: black;
+            font-size: 14px;
 
             .BurbleHeader {
               display: block;
@@ -111,6 +112,18 @@
             .BurbleText {
               display: block;
             }
+
+            .BurblePerformers {
+              margin-top: 8px;
+              display: block;
+              font-size: 12px;
+              color: transparentize(black, 0.15);
+            }
+
+            .NoBurblePerformers {
+              display: none;
+            }
+            
           }
           
           .BurbleDates {
@@ -121,17 +134,17 @@
             /* background: -o-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* Opera 11.10+ *\/ */
             /* background: -ms-linear-gradient(left, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* IE10+ *\/ */
             /* background: linear-gradient(to right, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0) 100%); /\* W3C *\/ */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+            // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
             // box-shadow: -8px 0 6px -6px transparentize(black, 0.75);
             color: #666;
             display: inline-block;
             float: right;
             font-size: 12px;
             height: 57px;
-            max-width: 100px;
+            // max-width: 100px;
             position: relative;
             vertical-align: middle;
-            width: 95px;
+            // width: 95px;
             .BurbleDateText {
               display: inline-block;
               margin-top: 9px;

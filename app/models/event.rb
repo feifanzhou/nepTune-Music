@@ -15,7 +15,7 @@
 
 class Event < ActiveRecord::Base
   include EventsHelper
-  
+
   attr_accessible :creator_id, :end_at, :name, :start_at, :creator, :location, :details
 
   belongs_to :creator, class_name: 'Artist', foreign_key: :creator_id
@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   has_many :attendees
   has_many :users, through: :attendees
   has_many :artists, through: :attendees
-   has_many :comments, as: :commentable
+  has_many :comments, as: :commentable
   # has_many :commentings, :as => :commentable
   # has_many :comments, :through => :commentings
 

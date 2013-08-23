@@ -19,7 +19,7 @@
         <span class='CommenterName'><%= comment.user.display_name %></span>
         <span class='CommentTime'><%= distance_of_time_in_words_to_now(comment.created_at)+" ago" %></span>
       </div>
-      <div class='CommentText'><%= simple_format comment.text %></div>
+      <div class='CommentText'><%= sanitize_comment_text comment.text %></div>
 
       <% if comment.rating %>
       <div class='CommentRating'>

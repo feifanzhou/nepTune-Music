@@ -12,7 +12,7 @@
 #
 
 class Attendee < ActiveRecord::Base
-  attr_accessible :status, :user, :artist, :event
+  attr_accessible :status, :user, :artist, :event, :user_id, :artist_id, :event_id
   validates :status, presence: true
   validates_inclusion_of :status, in: [:performing, :invited, :going, :maybe]
   validates :event, presence: true

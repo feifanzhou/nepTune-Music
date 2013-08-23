@@ -21,7 +21,7 @@ class Comment < ActiveRecord::Base
   attr_accessible :text, :upvotes, :location, :commentable, :parent, :comment_id, :commentable_id, :commentable_type, :user, :rating #:commentings, :artists
   after_initialize :defaults
 
-  before_save :process_text
+  # before_save :process_text
   belongs_to :user
   #belongs_to :commenter, polymorphic: true
   has_many :media, as: :media_holder

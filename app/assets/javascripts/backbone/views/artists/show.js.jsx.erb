@@ -10,6 +10,31 @@ BurbleSearch = React.createBackboneClass({
     return (<form id='discoverForm'><input type='text' id='discoverBox' placeholder='Search for artists, events, and music' /></form>);
   }
 });
+
+
+BurbleFeedContent = React.createBackboneClass({
+    render: function() {
+        f = this.props.feed_item;
+        performers_class = "BurblePerformers";
+        if(f.get('performers') == null || f.get('performers').length == 0) {
+            performers_class = "NoBurblePerformers";
+        }
+        return (
+        <div class='BurbleContent'>
+          <div class='BurbleHeader'>
+            { f.get('header') }
+          </div>
+          <div class='BurbleText'>
+            { f.get('text') }
+          </div>
+          <div class={performers_class}>
+            { f.get('performers') }
+          </div>
+        </div>
+        );
+    }
+});
+
 BurbleMainFeedItem = React.createBackboneClass({
     render: function() {
         f = this.props.feed_item;
@@ -18,15 +43,8 @@ BurbleMainFeedItem = React.createBackboneClass({
       <li class='BurbleMainFeedItem'>
         <img class='BurbleFeedProfile' height='40' width='40' src={ f.get('icon') } />
 
-        <div class='BurbleContent'>
-          <div class='BurbleHeader'>
-            { f.get('header') }
-          </div>
-          <div class='BurbleText'>
-            { f.get('text') }
-          </div>
-        </div>
-
+        <BurbleFeedContent feed_item={f} />
+            
         <div class='BurbleDates'>
           <div class='BurbleDateText'>
             <div class='BurbleDateTop'>
