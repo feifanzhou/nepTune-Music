@@ -35,6 +35,8 @@ $('body').on('submit', '#new_charge', function() {
   var btn = $('#submitCredits');
 
   $(btn).prop('disabled', true);
+  $(btn).css('display', 'none');
+  $('#submitCreditsSpinner').css('display', 'inline-block');
   var form = $('#new_charge');
 
   Stripe.createToken(form, stripeResponseHandler);
@@ -66,16 +68,20 @@ function stripeResponseHandler(status, response) {
       $('#credits').addClass('Highlight');
       setTimeout(function() { $('#credits').removeClass('Highlight') }, 250);
     },
-    complete: function() {
-      $('#submitCredits').prop('disabled', false);
-      $('#new_charge').find('input[type=text]').val('');
-    }
+    complete: resetAddCredits
   });
 }
 
+function resetAddCredits() {
+  $('#submitCredits').prop('disabled', false);
+  $('#submitCredits').css('display', 'inline-block');
+  $('#submitCreditsSpinner').css('display', 'none');
+  $('#new_charge').find('input[type=text]').val('');
+}
 function dismissAddCreditsModal() {
   $('#backdrop').removeClass('In');
   $('#addCredit').removeClass('In');
+  resetAddCredits();
 }
 $('body').on('click', '#addCreditButton', function() {
   $('#backdrop').addClass('In');

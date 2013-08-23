@@ -37,6 +37,10 @@
   }
   #addCredit {
     @include Modal;
+    #submitCreditsSpinner {
+      display: none;
+      width: 127px;
+    }
   }
 
   #relatedGalleries {
