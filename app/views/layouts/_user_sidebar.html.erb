@@ -2,7 +2,7 @@
   <div class='ShadowTop' id='sidebarShadowTop'></div>
   <section id='artistProfile'>
     <div class="ProfilePictureContainer <%= 'ProfilePictureEdit' if is_editing %>">
-      <%= image_tag(user.avatar.url, size: "160x160", alt: "The Piano Guys", class:
+      <%= image_tag(user.avatar.url, size: "160x160", alt: user.display_name, class:
           "ArtistProfilePic") %>
       <% if is_editing %>
       <div id='profileDarken'></div>
