@@ -11,7 +11,7 @@
       <% if replyable %>
       <div class='CommentVotes'>
         <span class='CommentUpvotes'><%= comment.upvotes_total if comment.upvotes_total > 0 %></span>
-        <span class='CommentUpvoteArrow <%= "CommentUpvotedArrow" if already_voted(user, comment) %>' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes_total %>'>^</span>
+        <span class='CommentUpvoteArrow <%= "CommentUpvotedArrow" if already_voted(user, comment) %> Icon' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes_total %>'>&#xE827;</span>
       </div>
       <% end %>
     </div>

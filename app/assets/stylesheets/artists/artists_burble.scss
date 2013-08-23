@@ -35,8 +35,11 @@
           font-size: 10px;
           margin-left: 1px;
           width: 8px;
+          &:hover {
+            cursor: pointer;
+          }
           &.CommentUpvotedArrow {
-            color: red;
+            color: $nepTuneOrange;
           }
         }
       }
