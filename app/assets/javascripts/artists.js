@@ -1012,7 +1012,9 @@ $('body').on('click', '.CommentUpvoteArrow', function() {
           if(data.changed) {
               $(clicked).prev().html('' + newUpvotes);
           }
-          $(clicked).attr('class', 'CommentUpvoteArrow CommentUpvotedArrow');
+          if(!$(clicked).hasClass('CommentUpvotedArrow')) {
+              $(clicked).addClass('CommentUpvotedArrow');
+          }
     }
   });
 });
