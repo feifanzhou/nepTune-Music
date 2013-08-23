@@ -4,7 +4,7 @@ $('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave', 'market
 load_djax();
 
 function autogrow() {
-    $('.Autoresize').autogrow();
+    $('.Autoresize').autosize();
 }
 autogrow();
 
