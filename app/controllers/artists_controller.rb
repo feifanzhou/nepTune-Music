@@ -112,8 +112,9 @@ class ArtistsController < ApplicationController
       return
     end
     can = can_edit()
-    @is_editing = true if can && params[:edit].to_i == 1
-    @is_editing = true if can && cookies[:is_editing] == '1'
+    if can and (params[:edit].to_i == 1 or cookies[:is_editing] == '1')
+      @is_editing = true
+    end
 
     if !@is_editing
       cookies[:is_editing] = '0'

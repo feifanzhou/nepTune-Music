@@ -1,17 +1,15 @@
 # == Schema Information
 #
-# Table name: charges
+# Table name: votes
 #
 #  id         :integer          not null, primary key
-#  amount     :integer
-#  token      :string(255)
+#  comment_id :integer
 #  user_id    :integer
+#  is_upvote  :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-require 'spec_helper'
-
-describe Charge do
-  pending "add some examples to (or delete) #{__FILE__}"
+class Vote < ActiveRecord::Base
+  attr_accessible :comment_id, :is_upvote, :user_id
 end

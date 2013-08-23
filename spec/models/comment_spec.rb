@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  text             :text
-#  upvotes          :integer
+#  upvotes_total    :integer
 #  location         :string(255)
 #  user_id          :integer
 #  created_at       :datetime         not null

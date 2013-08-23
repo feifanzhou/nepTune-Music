@@ -15,7 +15,7 @@
           Refresh comments
         </button>
         <div id="all_comments" data-type="Artist" data-id='<%= @artist.id %>'>
-          <%= render 'layouts/all_comments', comments: @comments, replyable: !@user.blank? %>
+          <%= render 'layouts/all_comments', comments: @comments, user: @user %>
         </div>
       </div>
       <% if false %>
