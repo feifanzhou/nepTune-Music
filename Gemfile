@@ -33,6 +33,7 @@ group :development, :production do
   gem 'rails-backbone'
   gem 'react-rails'
   gem 'underscore-rails'
+  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 end
 
 group :development, :test do

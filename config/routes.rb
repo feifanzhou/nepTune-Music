@@ -21,6 +21,7 @@ NeptuneMusic::Application.routes.draw do
     resources :videos
     resources :events
     resources :comments
+    resources :charges
 
     root to: 'burble#home'
 

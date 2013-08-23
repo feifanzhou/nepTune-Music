@@ -9,9 +9,38 @@
     <div class='span8'>
 
       <% if @can_edit %>
-      <div class='creditsDiv span8'>
-        <span class='userCredits'> <b>Credits:</b> <%= @user.credits %> </span>
+      <div class='creditsDiv'>
+        <p class='userCredits'> <b>Credits:</b> <span id='credits'><%= @user.credits %></span> </p>
       </div>
+      <%= javascript_include_tag "https://https://js.stripe.com/v2/" %>
+      <script type="text/javascript">
+        // This identifies your website in the createToken call below
+        Stripe.setPublishableKey('pk_test_iMhOgbsH06IanFKtsyoHW2zW');
+      </script>
+      <form action="" method="POST" id="creditForm">
+        <span class="payment-errors"></span>
+        <input type='hidden' name='user_id' id='userID' value='<%= @user.id %>' />
+
+        <input type='text' name='new_credits' id='newCredits' placeholder='Add credits (value in cents)' />
+
+        <div class="form-row">
+          <input type="text" size="20" data-stripe="number" placeholder='Card number'/>
+        </div>
+
+        <div class="form-row">
+          <input type="text" size="4" data-stripe="cvc" placeholder='CVC'/>
+        </div>
+
+        <div class="form-row">
+          <input type="text" size="2" data-stripe="exp-month" placeholder='Exp. MM'/>
+
+          <span> / </span>
+          <input type="text" size="4" data-stripe="exp-year" placeholder='Exp. YYYY'/>
+        </div>
+
+        <button class='btn btn-primary' id='submitCredits' type="submit">Submit Payment</button>
+      </form>
+      <button class='btn btn-primary' id='addCredits'>Add credit</button>
       <% end %>
 
       <div id='relatedGalleries'>
