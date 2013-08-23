@@ -18,18 +18,34 @@ class CommentsController < ApplicationController
   def by_type_id
     type = params[:type]
     id = params[:id]
-    @replyable = !current_user.blank?
+    @user = current_user
     @comments = Comment.where(commentable_type: type, commentable_id: id, comment_id: nil)
     @comments = Comment.sort_comments(@comments)
   end
 
   def update
-    # TODO: Authenticate
+    cu = current_user
+    if cu.blank?
+      return
+    end
     comment = Comment.find(params[:id])
-    # Prevent users from hacking JS to set upvotes to any value
-    # Only increment upvotes by 1, as long as upvotes param is 'true'
-    comment.upvotes = comment.upvotes + 1 if params[:upvotes] >= 1
-    comment.save
+    vote = Vote.where(comment_id: comment.id, user_id: cu.id).take(1)[0]
+    changed = false
+    if vote
+
+    else
+      # Prevent users from hacking JS to set upvotes to any value
+      # Only increment upvotes by 1, as long as upvotes param is 'true'
+      if params[:upvotes].to_i >= 1
+        Vote.create(comment_id: comment.id, user_id: cu.id, is_upvote: true)
+        comment.upvotes_total += 1
+        changed = true
+      end
+      comment.save
+    end
+
+    render json: { changed: changed }
+
   end
 
 end

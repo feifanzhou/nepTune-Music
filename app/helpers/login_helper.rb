@@ -6,11 +6,15 @@ module LoginHelper
   end
 
   def is_logged_in
-    return !(cookies[:current_user].blank? or current_user.blank?)
+    return !(current_user.blank?)
   end
 
   def current_user
-    return User.find_by_remember_token(cookies[:current_user])
+    if !(cookies[:current_user].blank?)
+      User.find_by_remember_token(cookies[:current_user])
+    else
+      nil
+    end
   end
 
   def json_to_path(path)

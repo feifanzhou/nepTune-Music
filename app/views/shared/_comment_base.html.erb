@@ -1,5 +1,5 @@
 <% level ||= 0 %>
-<% replyable ||= false %>
+<% replyable ||= !user.blank? %>
 <div class="CommentContainer CommentLevel<%= level %>" >
 
   <div class='CommentContent'>
@@ -8,10 +8,12 @@
         <%= image_tag(comment.user.avatar.url, size: "26x26",
             alt: comment.user.display_name, class: 'CommenterImage') %>
       </div>
+      <% if replyable %>
       <div class='CommentVotes'>
-        <span class='CommentUpvotes'><%= comment.upvotes if comment.upvotes > 0 %></span>
-        <span class='CommentUpvoteArrow' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes %>'>^</span>
+        <span class='CommentUpvotes'><%= comment.upvotes_total if comment.upvotes_total > 0 %></span>
+        <span class='CommentUpvoteArrow <%= "CommentUpvotedArrow" if already_voted(user, comment) %>' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes_total %>'>^</span>
       </div>
+      <% end %>
     </div>
 
     <div class='CommentStuff'>
@@ -21,7 +23,7 @@
       </div>
       <div class='CommentText'><%= sanitize_comment_text comment.text %></div>
 
-      <% if comment.rating %>
+      <% if comment.rating and comment.rating > 0 %>
       <div class='CommentRating'>
         <div class="rateit" data-rateit-value="<%= comment.rating %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
       </div>
@@ -29,11 +31,11 @@
 
       <div class='CommentActions'>
         <ul>
-          <% if level != 0 %>
+          <% if level != 0 and replyable %>
             <li><a href='javascript:void(0)' onclick="reply_to(this)">reply</a></li>
           <% end %>
           <% if !comment.children.blank? %>
-            <% if level != 0 %>
+            <% if level != 0 and replyable %>
               <span class='ListSeparator'>&bull;</span>
             <% end %>
             <li><a class='CommentActionCollapse'>hide replies</a><a class='CommentActionUncollapse'>show replies</a></li>
@@ -63,6 +65,6 @@
   <% end %>
 
   <% comment.sorted_children.each do |r| %>
-    <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable %>
+    <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable, user: user %>
   <% end %>
 </div>   

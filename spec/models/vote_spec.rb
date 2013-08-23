@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: charges
+# Table name: votes
 #
 #  id         :integer          not null, primary key
-#  amount     :integer
-#  token      :string(255)
+#  comment_id :integer
 #  user_id    :integer
+#  is_upvote  :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'spec_helper'
 
-describe Charge do
+describe Vote do
   pending "add some examples to (or delete) #{__FILE__}"
 end

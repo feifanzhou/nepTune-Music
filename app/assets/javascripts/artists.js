@@ -1005,10 +1005,14 @@ $('body').on('click', '.CommentUpvoteArrow', function() {
   $.ajax({
     url: url,
     type: 'PUT',
-    data: { upvotes: newUpvotes },
-    success: function() {
-      console.log('increment upvotes works');
-      $(clicked).prev().html('' + newUpvotes);
+      data: { upvotes: newUpvotes },
+      datatype: "JSON",
+      success: function(data) {
+          console.log('increment upvotes works');
+          if(data.changed) {
+              $(clicked).prev().html('' + newUpvotes);
+          }
+          $(clicked).attr('class', 'CommentUpvoteArrow CommentUpvotedArrow');
     }
   });
 });

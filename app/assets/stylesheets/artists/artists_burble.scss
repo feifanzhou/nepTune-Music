@@ -35,6 +35,9 @@
           font-size: 10px;
           margin-left: 1px;
           width: 8px;
+          &.CommentUpvotedArrow {
+            color: red;
+          }
         }
       }
     }
