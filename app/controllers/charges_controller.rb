@@ -24,8 +24,9 @@ class ChargesController < ApplicationController
     end
 
     cookies[:current_user] = user.remember_token
-    respond_to do |format|
-      format.json { head :ok, credits: user.credits }
-    end
+    # respond_to do |format|
+    #   format.json { credits: user.credits }
+    # end
+    render json: { credits: user.credits }
   end
 end

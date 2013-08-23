@@ -58,18 +58,17 @@ function stripeResponseHandler(status, response) {
     type: 'POST',
     dataType: 'JSON',
     data: formData,
-    complete: function(jqXHR, textStatus) {
+    success: function(data) {
       dismissAddCreditsModal();
-      var currAmount = parseInt($('#credits').data('credits'), 10);
-      var newAmount = parseInt(chargeAmount, 10);
-      var totalAmount = currAmount + newAmount;
+      var totalAmount = data.credits;
       $('#credits').html('$' + (totalAmount / 100).toFixed(2));
       $('#credits').data('credits', totalAmount);
       $('#credits').addClass('Highlight');
       setTimeout(function() { $('#credits').removeClass('Highlight') }, 250);
     },
-    done: function() {
+    complete: function() {
       $('#submitCredits').prop('disabled', false);
+      $('#new_charge').find('input[type=text]').val('');
     }
   });
 }
