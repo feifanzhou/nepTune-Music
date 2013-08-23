@@ -617,6 +617,7 @@ input[type='submit'] {
 }
 
 textarea.Autoresize {
+  @include vendor-prefix(box-sizing, content-box);
   resize: none;
 }
 

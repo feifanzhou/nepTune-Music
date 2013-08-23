@@ -3,10 +3,17 @@ $('body').djax('.DJAX', ['login', 'logout', '#', 'join?status', 'leave', 'market
 }
 load_djax();
 
+function autogrow() {
+    $('.Autoresize').autogrow();
+}
+autogrow();
+
 // Going back to home page from artist page will cause problems
 // Because home page is loaded entirely with Backbone router
 // Hack to manually trigger the JS to reload home page
 $(window).bind('djaxLoad', function(e, data) {
+    autogrow();
+    
     var urlPieces = document.URL.split('/');
     var pLast = urlPieces[urlPieces.length - 1];
     if (pLast.indexOf('.com') == -1 && pLast.length > 0)  // If not home page

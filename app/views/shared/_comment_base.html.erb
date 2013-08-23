@@ -57,7 +57,7 @@
   <div class="CommentReply <%= 'Hidden' if level != 0 %>">
     <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
       <%= f.hidden_field :comment_id, value: comment.id %>
-      <%= f.text_field :text, class: 'CommentReplyField', placeholder: "Reply to #{ comment.user.fname }" %>
+      <%= f.text_area :text, class: 'CommentReplyField Autoresize', placeholder: "Reply to #{ comment.user.fname }" %>
     <% end %>
   </div>
   <% end %>
