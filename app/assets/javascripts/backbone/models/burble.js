@@ -6,6 +6,7 @@ var FeedItem = Backbone.Model.extend({
             // type: 'unknown'
             icon_type: 'img',
             icon: '',
+            header: '',
             text: '',
             top_date: '',
             bottom_date: '',

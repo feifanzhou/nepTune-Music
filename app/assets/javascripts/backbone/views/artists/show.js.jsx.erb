@@ -14,11 +14,17 @@ BurbleMainFeedItem = React.createBackboneClass({
     render: function() {
         f = this.props.feed_item;
         return(
-                <a href={ f.get('url') }>
+    <a href={ f.get('url') }>
       <li class='BurbleMainFeedItem'>
         <img class='BurbleFeedProfile' height='40' width='40' src={ f.get('icon') } />
-        <div class='BurbleText'>
-          { f.get('text') }
+
+        <div class='BurbleContent'>
+          <div class='BurbleHeader'>
+            { f.get('header') }
+          </div>
+          <div class='BurbleText'>
+            { f.get('text') }
+          </div>
         </div>
 
         <div class='BurbleDates'>
@@ -31,8 +37,8 @@ BurbleMainFeedItem = React.createBackboneClass({
             </div>
           </div>
         </div>
-                </li>
-                </a>
+      </li>
+    </a>
     );
   }
 });

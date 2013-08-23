@@ -38,18 +38,22 @@ module BurbleHelper
         start_at, end_at = display_date(e.start_at).split(', ')
         #end_at = display_date(e.end_at)
         icon = 'http://icons.iconarchive.com/icons/walrick/openphone/256/Calendar-icon.png'
-        text = e.name
+        header = e.name
+        text = e.location
         url = route_to(e)
       elsif e.kind_of? Comment
-        icon = User.find(e.user_id).avatar.url
+        user = User.find(e.user_id)
+        icon = user.avatar.url
         start_at = distance_of_time_in_words_to_now(e.created_at) + ' ago'
         end_at = nil
+        header = "#{user.display_name} says:"
         text = e.text
         url = route_to(e.commentable, comment: true)
       end
       {
         icon_type: 'img',
         icon: icon,
+        header: header,
         text: text,
         top_date: start_at,
         bottom_date: end_at,

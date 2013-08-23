@@ -20,6 +20,7 @@
     position: relative;
     top: 0px;
     width: 100%;
+    z-index: 0;
   }
   #burbleBoxContainer {
     height: 200px;
@@ -28,6 +29,8 @@
     position: absolute;
     top: 0;
     width: 100%;
+    z-index: 10;
+    
     #burbleBox {
       background: $Wallhash;
       border: 6px solid transparentize(black, 0.75);
@@ -92,7 +95,7 @@
             width: 40px;
           }
 
-          .BurbleText {
+          .BurbleContent {
             display: inline-block;
             line-height: 1.3em;
             max-width: 325px;
@@ -100,6 +103,14 @@
             white-space: normal;
             width: 310px;
             color: black;
+
+            .BurbleHeader {
+              display: block;
+              font-weight: bold;
+            }
+            .BurbleText {
+              display: block;
+            }
           }
           
           .BurbleDates {
