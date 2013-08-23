@@ -31,12 +31,11 @@ $('body').on('click', '#addCredits', function() {
   return false;
 });
 
-$('body').on('click', '#submitCredits', function(event) {
-  var btn = $(this);
-  event.preventDefault();
+$('body').on('submit', '#new_charge', function() {
+  var btn = $('#submitCredits');
 
   $(btn).prop('disabled', true);
-  var form = $('#creditForm');
+  var form = $('#new_charge');
 
   Stripe.createToken(form, stripeResponseHandler);
   return false;
@@ -49,15 +48,38 @@ function stripeResponseHandler(status, response) {
     return false;
   }
 
-  var taken = response.id;
+  var token = response.id;
+  $('#stripeToken').val(token);
   var chargeAmount = $('#newCredits').val();
   var userID = $('#userID').val();
+  var formData = $('#new_charge').serialize();
   $.ajax({
     url: '/charges',
-    type: 'POST', 
-    data: { token: token, amount: chargeAmount, user_id: userID },
+    type: 'POST',
+    dataType: 'JSON',
+    data: formData,
+    complete: function(jqXHR, textStatus) {
+      dismissAddCreditsModal();
+      var currAmount = parseInt($('#credits').data('credits'), 10);
+      var newAmount = parseInt(chargeAmount, 10);
+      var totalAmount = currAmount + newAmount;
+      $('#credits').html('$' + (totalAmount / 100).toFixed(2));
+      $('#credits').data('credits', totalAmount);
+      $('#credits').addClass('Highlight');
+      setTimeout(function() { $('#credits').removeClass('Highlight') }, 250);
+    },
     done: function() {
-      $('#credits').html((chargeAmount / 100).toFixed(2);
+      $('#submitCredits').prop('disabled', false);
     }
   });
 }
+
+function dismissAddCreditsModal() {
+  $('#backdrop').removeClass('In');
+  $('#addCredit').removeClass('In');
+}
+$('body').on('click', '#addCreditButton', function() {
+  $('#backdrop').addClass('In');
+  $('#addCredit').addClass('In');
+});
+$('body').on('click', '#addCredit .ModalDismiss', dismissAddCreditsModal);
