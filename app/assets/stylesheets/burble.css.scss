@@ -107,17 +107,18 @@
 
             .BurbleHeader {
               display: block;
-              font-weight: bold;
+              font-weight: 600;
             }
             .BurbleText {
               display: block;
             }
 
             .BurblePerformers {
-              margin-top: 8px;
               display: block;
-              font-size: 12px;
-              color: transparentize(black, 0.15);
+              font-size: 11px;
+              color: transparentize(black, 0.25);
+              line-height: 11px;
+              margin-top: 4px;
             }
 
             .NoBurblePerformers {

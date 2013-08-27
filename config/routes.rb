@@ -84,6 +84,26 @@ NeptuneMusic::Application.routes.draw do
     match '/terms', to: 'static_pages#terms', as: :terms
     match '/logout', to: 'login_#destroy', as: :logout
   end
+  constraints subdomain: '' do
+    get "errors/not_found"
+    get "errors/server_error"
+    get "errors/unprocessable"
+    get "errors/access_denied"
+    get "login/destroy"
+    get "login_controller/destroy"
+    match '/make_beta_tester' => 'users#make_beta_tester', via: :get, as: :make_beta_tester
+
+    root to: 'static_pages#home'
+
+    match '/market', to: 'static_pages#market', as: :market
+    match '/team', to: 'static_pages#team', as: :team
+    match '/news', to: 'static_pages#news', as: :news
+    match '/careers', to: 'static_pages#careers', as: :jobs
+    match '/contact', to: 'static_pages#contact', as: :contact
+    match '/beta', to: 'static_pages#beta', as: :beta
+    match '/terms', to: 'static_pages#terms', as: :terms
+    match '/logout', to: 'login_#destroy', as: :logout
+  end
 
   resources :users
 
