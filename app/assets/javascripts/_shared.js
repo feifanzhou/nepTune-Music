@@ -12,6 +12,9 @@ autogrow();
 // Because home page is loaded entirely with Backbone router
 // Hack to manually trigger the JS to reload home page
 $(window).bind('djaxLoad', function(e, data) {
+    var _gaq = _gaq || [];
+    _gaq.push(['_trackPageview']);
+
     autogrow();
     
     var urlPieces = document.URL.split('/');
