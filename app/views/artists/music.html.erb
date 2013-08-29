@@ -18,7 +18,7 @@
         </ul>
         <% if @is_band_member %>
         <div id='createNewMusic'>
-          <%= link_to 'Create New Album', new_album_for_artist_path(@artist.route) %>
+          <span id='createAlbumPrompt'>Create Album</span>
           <span class='SegmentDivider'>|</span>
           <span id='uploadSongPrompt'>Upload Song</span>
         </div>
@@ -65,8 +65,20 @@ onclick='returnToMusicGrid()'>&#59399;</span>
       </div>
       <div class="m-footer">
         <button class='btn ModalDismiss' id='cancelSongUploadButton'>Cancel</button>
-        <button class='btn btn-primary disabled' id='commitSongUploadButton'><span id='saveSongsText'>Save songs</span><span class='Icon Spinner animate-spin' id='saveSongsSpinner'>&#59392;</span></button>
+        <button class='btn btn-primary disabled' id='commitSongUploadButton'><span id='saveSongsText'>Save songs</span><div class='Icon Spinner' id='saveSongsSpinner'>&#59392;</div></button>
       </div>
     </div>
+    <div class='' id='createAlbum'>
+      <div class='m-header'>
+        <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>
+        <h3>Create album</h3>
+      </div>
+      <div class="m-body">
+        <%= render 'shared/create_album', artist: @artist %>
+      </div>
+      <div class="m-footer">
+        <button class='btn ModalDismiss' id='cancelSongUploadButton'>Cancel</button>
+        <button class='btn btn-primary disabled' id='commitAlbumButton'><span id='saveSongsText'>Save album</span><div class='Icon Spinner hidden' id='saveAlbumSpinner'>&#59392;</div></button>
+      </div>
   </div>
 </div> 

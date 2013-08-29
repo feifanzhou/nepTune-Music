@@ -677,6 +677,82 @@ $('body').on('click', '#finishEventButton', function() {
   $('#new_event').submit();
 });
 
+/***** Create album *****/
+function showNewAlbumModal() {
+  $('#backdrop').addClass('In');
+  $('#createAlbum').addClass('In');
+}
+function dismissNewAlbumModal() {
+  $('#backdrop').removeClass('In');
+  $('#createAlbum').removeClass('In');
+}
+$('body').on('click', '#createAlbumPrompt', function() {
+  showNewAlbumModal();
+});
+$('body').on('click', '#createAlbum .ModalDismiss', function() {
+  dismissNewAlbumModal();
+});
+
+$('body').on('click', '#newAlbumArt', function() {
+  $('#image_file').click();
+});
+$('body').on('change', '#image_file', function() {
+  $('#album_new_art').submit();
+});
+$('body').on('submit', '#album_new_art', function() {
+  waitForAlbumTargetToFinish();
+});
+function waitForAlbumTargetToFinish() {
+  setTimeout(function() {
+    if ($('#album_art_target').contents().length > 0) {
+      albumTargetDidFinishLoading();
+      return;
+    }
+  }, 250);  // Poll 4 times a second
+}
+function albumTargetDidFinishLoading() {
+  var r = $('#album_art_target').contents().find('body').html();
+  var el = r.indexOf('}');
+  console.log(r.slice(0, (el+1)));
+  var json = $.parseJSON(r.slice(0, (el + 1)));
+  var id = json[Object.keys(json)[0]];
+  console.log(id);
+  // Conveniently, Rails has single-table inheritance
+  // So AVI will all have unique IDs
+  // Because they're all out of the Media table
+  $('#album_image_id').val(id);
+
+  var src = json[Object.keys(json)[1]];
+  $('#selectCoverPrompt').css('display', 'none');
+  $('#album_art_img').attr('src', src);
+  $('#album_art_img').css('display', 'block');
+}
+
+$('body').on('keyup', '#album_name', function() {
+  if ($('#album_name').val().length > 0 && $('#album_image_id').val().length > 0)
+    $('#commitAlbumButton').removeClass('disabled');
+});
+$('body').on('click', '#commitAlbumButton', function(event) {
+  if ($(this).hasClass('disabled')) {
+    event.preventDefault();
+    return false;
+  }
+
+  var name = $('#album_name').val();
+  var year = new Date().getFullYear();
+  var art_id = $('#album_image_id').val();
+  var route = getArtistNameFromURL();
+  $.ajax({
+    url: '/albums',
+    type: 'POST',
+    dataType: 'JSON',
+    data: { album: { name: name, year: year, art_id: art_id , artist_route: route } },
+    success: function() {
+      alert('Album created successfully. Refresh to see it show up (really sorry about that, we\'re working on it!');
+    }
+  })
+})
+
 /***** Songs upload *****/
 function showNewSongModal() {
   $('#backdrop').addClass('In');

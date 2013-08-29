@@ -1,0 +1,9 @@
+<div id='newAlbumArt'><p id='selectCoverPrompt'>Click here to select album cover</p><img id='album_art_img' /></div>
+<%= form_for Image.new(), html: { id: 'album_new_art', target: 'album_art_target' } do |i| %>
+  <%= i.file_field :file %>
+<% end %>
+<iframe id='album_art_target' name='album_art_target' src=''></iframe>
+<%= form_tag '/album', method: "post", id: "new_album_form" do %>
+  <%= hidden_field_tag 'album[image_id]', nil, id: 'album_image_id' %>
+  <%= text_field_tag 'album[name]', nil, id: 'album_name', placeholder: 'Album name' %>
+<% end %>

@@ -332,7 +332,53 @@
   }
   #commitSongUploadButton {
     #saveSongsSpinner {
-      display: none;
+      display: inline-block;
+      margin-left: 8px;
     }
+  }
+}
+#createAlbum {
+  @include Modal;
+  #album_new_art {
+    display: none;
+  }
+  #album_art_target {
+    display: none;
+  }
+  #newAlbumArt {
+    background: #CCC;
+    border: 4px dashed #BBB;
+    border-radius: 6px;
+    @include vendor-prefix(box-sizing, border-box);
+    height: 180px;
+    margin: auto auto 10px auto;
+    padding: 20px;
+    width: 180px;
+    &:hover {
+      cursor: pointer;
+    }
+    p {
+      color: #666;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: normal;
+      width: 100%;
+    }
+    img {
+      display: none;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  #album_name {
+    @include vendor-prefix(box-sizing, border-box);
+    display: block;
+    height: 30px;
+    margin: auto;
+    width: 180px;
+  }
+  #saveAlbumSpinner {
+    display: inline-block;
+    margin-left: 8px;
   }
 }

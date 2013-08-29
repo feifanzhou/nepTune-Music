@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
     album = Album.new
     album.name = params[:album][:name]
     album.year = params[:album][:year].to_i
-    album.artist = Artist.find_by_artistname(params[:album][:artistname])
+    album.artist = Artist.find_by_route(params[:album][:artist_route])
     if (params[:album][:art_id].blank?)
       album.image = Image.default_album_image
     else
