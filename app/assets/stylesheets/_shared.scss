@@ -1,0 +1,670 @@
+@import "fonts";
+@import "variables";
+
+/***** Mixins *****/
+@mixin RowShadowBottom {
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.25);
+}
+@mixin RowShadowTop {
+  box-shadow: 0px -8px 6px -6px rgba(0, 0, 0, 0.25);
+}
+
+@mixin vendor-prefix($name, $argument) {
+  #{$name}: #{ $argument };
+  -webkit-#{$name}: #{ $argument };
+  -ms-#{$name}: #{ $argument };
+  -moz-#{$name}: #{ $argument };
+  -o-#{$name}: #{ $argument };
+}
+
+@mixin AnimateSideMargins {
+  transition: margin 0.75s;
+  -webkit-transition: margin 0.75s;
+  animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@mixin AnimateBackground {
+  transition: background 0.5s;
+  -webkit-transition: background 0.5s;
+}
+
+@mixin AppContentLayerShadow {
+  box-shadow: 0 0 8px 8px transparentize(black, 0.75);
+}
+
+@mixin AppHeader {
+  height: 45px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  #pageHeader {
+    background-color: $nepTuneOrange;
+    height: 45px;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    div#pageHeaderContainer {
+      margin: auto;
+      width: 1200px;
+      #headerNavLinks {
+        color: white;
+        display: inline-block;
+        list-style: none;
+        //  max-width: 1200px;
+        width: 400px;
+        margin: 0;
+        li {
+          color: $inactiveWhite;
+          display: inline-block;
+          float: left;
+          font-family: $OpenSans;
+          font-size: 20px;
+          font-weight: 400;
+          margin: 10px 0 10px 32px;
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
+        }
+      }
+      #headerSearch {
+        // display: inline-block;
+        display: none;
+        float: right;
+        // margin-right: 32px;
+        #headerSearchField {
+          background-color: darken($nepTuneOrange, 5%);
+          border: none;
+          box-sizing: border-box;
+          color: white;
+          font-family: $OpenSans;
+          font-size: 16px;
+          font-weight: 300;
+          height: 30px;
+          margin: 6px 0 2px 0;
+          width: 280px;
+          &::-webkit-input-placeholder {
+          color: $inactiveWhite;
+          }
+          &:-moz-placeholder {
+          color: $inactiveWhite;
+          }
+          &::-moz-placeholder {
+          color: $inactiveWhite;
+          }
+          &:-ms-input-placeholder {
+          color: $inactiveWhite;
+          }
+          &:focus {
+          background-color: darken($nepTuneOrange, 12%);
+          border: none !important;
+          box-shadow: none !important;
+          outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  #playbar {
+    color: $white;
+    display: none;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    width: 500px !important;
+    .statusbar {
+      // background: rgb(20,20,20);
+      // border: 1px solid transparentize(white, 0.5);
+      // border-radius: 4px;
+      display: inline-block;
+      height: 3px;
+      margin: auto;
+      position: relative;
+      top: -6px;
+      width: 100%;
+      .loading {
+        background-color: transparentize(black, 0.4);
+        height: 100%;
+        position: absolute;
+        top: 0;
+      }
+      .position {
+        background-color: transparentize(white, 0.2);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        @include vendor-prefix(transition, width 0.5s);
+      }
+    }
+    #playPauseBtn {
+      border-right: 1px solid transparentize(white, 0.6);
+      display: inline-block;
+      margin: 4px 6px 0 0;
+      padding-top: 4px;
+      text-align: center;
+      vertical-align: top;
+      width: 36px;
+      &:hover {
+        cursor: pointer;
+      }
+      span {
+        font-size: 28px;
+        &.PauseIcon {
+          display: none;
+        }
+      }
+    }
+    .songbar {
+      /* position: absolute; */
+      /* top: 4px; */
+      display: inline-block;
+      font-family: $OpenSans;
+      margin: auto;
+      width: 200px;
+      #nowPlaying {
+        height: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+    #playlistBtn {
+      border-left: 1px solid transparentize(white, 0.6);
+      display: inline-block;
+      margin: 4px 0 0 6px;
+      padding-top: 4px;
+      text-align: center;
+      vertical-align: top;
+      width: 36px;
+      &:hover {
+        cursor: pointer;
+      }
+      span {
+        font-size: 26px;
+      }
+    }
+  }
+  #headerLogin {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 7px;
+  }
+  #headerLogout {
+    display: inline-block;
+    position: absolute;
+    right: 10px;
+    top: 7px; 
+  }
+  #headerActions {
+    display: inline-block;
+    float: right;
+    position: relative;
+    top: 7px;
+    .Icon {
+      font-family: $Zonda !important;   
+    }
+    .dropdown-menu {
+      width: 100px;
+      li {
+        padding: 4px 8px;
+        @include vendor-prefix('transition', 'background 0.25s');
+        &:hover {
+          background: $nepTuneOrange;
+          color: white;
+          cursor: pointer;
+        }
+        a {
+          background: none;
+          color: inherit;
+          font-family: $OpenSans;
+          font-size: 16px;
+          font-weight: 600;
+          padding: 0px;
+          &:hover {
+            background: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin DarkEngrave {
+  color: transparentize(black, 0.25);
+  font-size: 28px;
+  font-weight: 600;
+  text-shadow: 0px 1px transparentize(white, 0.75);
+}
+
+@mixin InlineIcons {
+  color: $inactiveWhite;
+  display: inline-block;
+  font-family: $Zonda;
+  font-size: 22px;        
+  margin: 10px;
+  transition: color 0.5s;
+  -webkit-transition: color 0.5s;
+}
+
+@mixin AnimationEase {
+  animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@mixin TranslucentBar {
+  background: rgba(0, 0, 0, 0.70);
+  display: inline-block;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
+  -webkit-transition: bottom 0.75s, top 0.75s, left 0.75s, right 0.75s, background 0.75s;
+  @include AnimationEase;
+}
+
+@mixin EventNameStyle {
+  font-family: $OpenSans;
+  font-weight: 400;
+  margin: 0;
+}
+
+@mixin Modal {
+  @include vendor-prefix(transition, opacity 0.5s);
+  opacity: 0;
+  pointer-events: none;
+  &.In {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  z-index: 1050;
+  width: 560px;
+  margin-left: -280px;
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  *border: 1px solid #999;
+  /* IE6-7 */
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  outline: none;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: $OpenSans;
+  }
+  .m-header {
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    // Close icon
+    .close { margin-top: 2px; }
+    // Heading
+    h3 {
+      color: $nepTuneOrange;
+      font-family: $OpenSans;
+      margin: 0;
+      line-height: 30px;
+    }
+  }
+  .m-body {
+    background: transparentize(#ddd, 0.25);
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: 15px;
+  }
+  .m-footer {
+    padding: 14px 15px 15px;
+    margin-bottom: 0;
+    text-align: right; // right align buttons
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    @include border-radius(0 0 6px 6px);
+    @include box-shadow(inset 0 1px 0 $white);
+    @include clearfix(); // clear it in case folks use .pull-* classes on buttons
+
+    // Properly space out buttons
+    .btn + .btn {
+      margin-left: 5px;
+      margin-bottom: 0; // account for input[type="submit"] which gets the bottom margin like all other inputs
+    }
+    // but override that for button groups
+    .btn-group .btn + .btn {
+      margin-left: -1px;
+    }
+    // and override it for block buttons as well
+    .btn-block + .btn-block {
+      margin-left: 0;
+    }
+    p {
+      color: transparentize(black, 0.35);
+      display: inline-block;
+      float: left;
+      font-size: 11px;
+      font-weight: 400;
+      text-align: left;
+      width: 330px;
+    }
+  }
+}
+
+@mixin ModalBackdrop {
+  @include vendor-prefix(transition, opacity 0.5s);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: transparentize(black, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  &.In {
+    opacity: 1;
+  }
+}
+
+/***** Shared styles *****/
+#backdrop {
+  @include ModalBackdrop;
+}
+
+body {
+  font-family: $Sans !important;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.btn {
+  font-family: $Sans !important;
+  a {
+    color: inherit;
+    &:visited {
+      color: inherit;
+    }
+  }
+}
+
+.CheckboxLabel {
+  display: inline-block;
+  font-family: $Sans;
+  font-size: 16px;
+  line-height: 22px;
+  margin: 5px 10px 0 2px;
+  position: relative;
+  top: 2px;
+}
+
+.CommentSong {
+  position: relative;
+}
+
+*[contenteditable=true] {
+  &:hover {
+    // border: 1px solid #CCC;
+    @include vendor-prefix(box-shadow, inset 0 2px 3px transparentize(black, 0.5));
+    background: $white;
+    border-radius: 4px;
+    color: $partialActiveBlack;
+    padding: 0 2px;
+    transition: background 0.25s, color 0.25s;
+    -webkit-transition: background 0.25s, color 0.25s;
+    * {
+      color: $partialActiveBlack !important;
+    }
+  }
+}
+
+footer {
+  @include RowShadowBottom;
+  background-image: $Dashed;
+  color: $white;
+  padding: 30px;
+  z-index: -1;
+  ul {
+    list-style: none;
+    margin-bottom: 30px;
+    li {
+      font-family: $Signika;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5em;
+      &.FooterColHeading {
+        font-weight: 600;
+      }
+      a {
+        color: $white !important;
+      }
+    }
+  }
+  #footerLogo {
+    display: block;
+    height: 50px;
+    margin: 15px auto;
+    text-align: center;
+    width: 259px;
+  }
+}
+
+form label {
+  display: none;
+}
+
+#header {
+  background: $nepTuneOrange;
+  color: white;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  #headerContainer {
+    background: green;
+    height: 50px;
+    margin: auto;
+    width: 1280px;
+    div {
+      display: inline-block;
+      line-height: 50px;
+    }
+  }
+}
+
+.Hidden {
+  display: none;
+}
+
+.Icon {
+  font-family: $Zonda !important;   
+}
+
+input, textarea {
+  font-family: $Sans !important;
+}
+input[type='text'], input[type='password'], input[type='email'] {
+  border-radius: 3px;
+  font-family: $Sans;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 8px;
+}
+input[type='submit'] {
+  font-family: $Sans;
+  font-weight: bold;
+}
+
+.ListSeparator {
+  color: transparentize(gray, 0.5);
+  font-size: 8px;
+  position: relative;
+  top: -2px;
+}
+
+.modal-header {
+  h3 {
+    color: $nepTuneOrange;
+    font-family: $PTSans;
+    text-align: left;
+  }
+}
+
+.modal-body {
+  background-color: $white;
+  text-align: left;
+  @media (max-width: 767px) {
+    height: 300px;
+    max-height: 300px;
+  }
+  p {
+    font-size: 16px;
+    font-weight: 400;
+  }
+  ul {
+    margin-left: 25px;
+  }
+}
+
+.OptionsGroup {
+  border-bottom: 1px solid #DEDEDE;
+  border-top: 1px solid #DEDEDE;
+  box-shadow: 0 8px 6px -6px transparentize(black, 0.75), 0 -8px 6px -6px transparentize(black, 0.75);
+  margin-bottom: 12px;
+  div, p {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.SongControls {
+  .PlayPause {
+    background: transparentize(black, 0.45);
+    border-radius: 40px;
+    height: 80px;
+    left: 60px;
+    position: absolute;
+    top: 60px;
+    width: 80px;
+    @include vendor-prefix(transition, background 0.5s);
+    &:hover {
+      background: transparentize(black, 0.3);
+      cursor: pointer;
+    }
+    span {
+      display: inline-block;
+      font-size: 36px;
+      line-height: 80px;
+      text-align: center;
+      width: 100%;
+      &.PauseIcon {
+        display: none;
+      }
+    }
+  }
+  &.SongControlsSmall {
+    .PlayPause {
+      border-radius: 20px;
+      height: 40px;
+      left: 10px;
+      top: 10px;
+      width: 40px;
+      span {
+        color: $white;
+        font-size: 18px;
+        line-height: 40px;
+      }
+    }
+  }
+  canvas {
+    left: 52px;
+    pointer-events: none;
+    position: absolute;
+    top: 52px;
+  }
+}
+
+.Spinner {
+  -webkit-animation: spin 2s infinite linear;
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -ms-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  text-align: center;
+}
+
+.SuccessIcon {
+  color: $success;
+}
+
+textarea.Autoresize {
+  @include vendor-prefix(box-sizing, content-box);
+  resize: none;
+}
+
+.tooltip {
+  font-family: $Sans;
+  font-size: 13px;
+  font-weight: 400;
+  /* .tooltip-inner {
+    background-color: darken($nepTuneTeal, 5%);
+    border: 2px solid rgba(0, 0, 0, 0.75);
+  }
+  &.in {
+    filter: alpha(opacity=90);
+    opacity: 0.95;
+  } */
+}
+
+/***** Typography *****/
+h1, h2, h3, h4, h5, h6 {
+  font-family: $PTSans;
+  line-height: 1.15em;
+}
+
+h1 {
+  @media (min-width: 768px) {
+    font-size: 64px;
+    margin: 48px 0;
+  }
+}
+
+h2 {
+  @media (min-width: 768px) {
+    font-size: 48px;
+    margin: 36px 0;
+  }
+}
+
+p {
+  font-family: $Lato;
+  // @media (min-width: 768px) {
+  //   font-size: 22px;
+  // }
+  // font-weight: 300;
+  line-height: 1.35em;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0;
+}

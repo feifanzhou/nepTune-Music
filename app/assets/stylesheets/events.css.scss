@@ -1,0 +1,14 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+@import "shared";
+
+@import "custom_bootstrap";
+@import "bootstrap";
+
+@import "events/events_general";
+@import "events/events_attendees";
+@import "events/events_info";

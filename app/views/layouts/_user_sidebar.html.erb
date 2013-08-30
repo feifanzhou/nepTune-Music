@@ -1,0 +1,81 @@
+<div class='DJAX' id='artistSidebar'>
+  <div class='ShadowTop' id='sidebarShadowTop'></div>
+  <section id='artistProfile'>
+    <div class="ProfilePictureContainer <%= 'ProfilePictureEdit' if is_editing %>">
+      <%= image_tag(user.avatar.url, size: "160x160", alt: user.display_name, class:
+          "ArtistProfilePic") %>
+      <% if is_editing %>
+      <div id='profileDarken'></div>
+      <p class='Icon UploadSpinner' id='profileUploadSpinner'>&#59392;</p>
+      <div id='changeProfilePic'>Click to change picture</div>
+      <% end %>
+      <iframe id='profile_target' name='profile_target' src=''></iframe>
+    </div>
+    <form class='UploadImageForm' action="/<%= user.id                                          
+%>/update_content?location=ProfilePictureUpload" method='POST' enctype='multipart/form-data'          
+target='profile_target' id='uploadProfileForm'>
+      <input type='file' name='select_image' id='selectProfile' />
+    </form>
+    <p class='ArtistProfileName'><%= user.display_name %></p>
+  </section>
+
+  <% if can_edit %>
+  <section id='editButtonBlock'>
+    <% edit_param = (is_editing) ? '0' : '1' %>
+    <%= link_to params.merge(edit: edit_param) do %>
+    <button class='btn EditButton' id="<%= (is_editing) ? 'uneditButton' :                                       
+'editButton'%>"><%= (is_editing) ? 'Finish editing' : 'Edit profile'%></button>
+    <% end %>
+  </section>
+  <% end %>
+  
+  <% if false %>
+  <section class="ArtistNav <%='ArtistNavSmallTop' if is_band_member %>">
+    <ul>
+      <%= link_to artist_about_path(@artist.route) do %>
+      <li class="ArtistNavFirst <%= 'ArtistNavCurrent' if curr_nav == 1 %>" id='artistAbout'>
+        <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover'
+              data-title="About" title="About">&#59409;</span>
+        <span class='ArtistNavText'>About</span>
+      </li>
+      <% end %>
+      <%= link_to artist_music_path(@artist.route) do %>
+      <li class="<%= 'ArtistNavCurrent' if curr_nav == 2 %>" id='artistMusic'>
+        <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover'
+              data-title="Music" title="Music">&#59406;</span>
+        <span class='ArtistNavText'>Music</span>
+      </li>
+      <% end %>
+      <%= link_to artist_events_path(@artist.route) do %>
+      <li class="<%= 'ArtistNavCurrent' if curr_nav == 3 %>" id='artistEvents'>
+        <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover'
+              data-title="Events" title="Events">&#59412;</span>
+        <span class='ArtistNavText'>Events</span>
+      </li>
+      <% end %>
+      <%= link_to artist_burble_path(@artist.route) do %>
+      <li class="<%= 'ArtistNavCurrent' if curr_nav == 4 %>" id='artistBurble'>
+        <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover'
+              data-title="Burble" title="Burble">&#59411;</span>
+        <span class='ArtistNavText'>Burble</span>
+      </li>
+      <% end %>
+      <%= link_to artist_fans_path(@artist.route) do %>
+      <li class="ArtistNavLast <%= 'ArtistNavCurrent' if curr_nav == 5 %>" id='artistFans'>
+        <span class='Icon ArtistNavIcon' data-placement='top' data-trigger='hover'
+              data-title="Fans" title='Fans'>&#59410;</span>
+        <span class='ArtistNavText'>Fans</span>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+  <% end %>
+  
+  <div class='ShadowBottom' id='sidebarShadowBottom'></div>
+</div>    
+
+
+
+
+
+

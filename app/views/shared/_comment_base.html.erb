@@ -1,0 +1,70 @@
+<% level ||= 0 %>
+<% replyable ||= !user.blank? %>
+<div class="CommentContainer CommentLevel<%= level %>" >
+
+  <div class='CommentContent'>
+    <div class='CommentMeta'>
+      <div class='CommenterImage'>
+        <%= image_tag(comment.user.avatar.url, size: "26x26",
+            alt: comment.user.display_name, class: 'CommenterImage') %>
+      </div>
+      <% if replyable %>
+      <div class='CommentVotes'>
+        <span class='CommentUpvotes'><%= comment.upvotes_total if comment.upvotes_total > 0 %></span>
+        <span class='CommentUpvoteArrow <%= "CommentUpvotedArrow" if already_voted(user, comment) %> Icon' data-id='<%= comment.id %>' data-upvotes='<%= comment.upvotes_total %>'>&#xE827;</span>
+      </div>
+      <% end %>
+    </div>
+
+    <div class='CommentStuff'>
+      <div class='CommentHeader'>
+        <span class='CommenterName'><%= comment.user.display_name %></span>
+        <span class='CommentTime'><%= distance_of_time_in_words_to_now(comment.created_at)+" ago" %></span>
+      </div>
+      <div class='CommentText'><%= sanitize_comment_text comment.text %></div>
+
+      <% if comment.rating and comment.rating > 0 %>
+      <div class='CommentRating'>
+        <div class="rateit" data-rateit-value="<%= comment.rating %>" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+      </div>
+      <% end %>
+
+      <div class='CommentActions'>
+        <ul>
+          <% if level != 0 and replyable %>
+            <li><a href='javascript:void(0)' onclick="reply_to(this)">reply</a></li>
+          <% end %>
+          <% if !comment.children.blank? %>
+            <% if level != 0 and replyable %>
+              <span class='ListSeparator'>&bull;</span>
+            <% end %>
+            <li><a class='CommentActionCollapse'>hide replies</a><a class='CommentActionUncollapse'>show replies</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    
+    <% if !comment.media.blank? %>
+    <div class='CommentMediaGallery'>
+      <% comment.media.each do |m| %>
+        <% media_type = m.class.name.underscore # Using underscore to lowercase first letter%>
+        <% partial_name = "comment_media_#{ media_type }" %>
+        <%= render "shared/#{ partial_name }", element: m %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+
+  <% if replyable %>
+  <div class="CommentReply <%= 'Hidden' if level != 0 %>">
+    <%= form_for Comment.new, html: { id: '', class: 'CommentReplyForm' } do |f| %>
+      <%= f.hidden_field :comment_id, value: comment.id %>
+      <%= f.text_area :text, class: 'CommentReplyField Autoresize', placeholder: "Reply to #{ comment.user.fname }" %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <% comment.sorted_children.each do |r| %>
+    <%= render 'shared/comment_base', comment: r, level: (level + 1), replyable: replyable, user: user %>
+  <% end %>
+</div>   

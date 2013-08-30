@@ -1,0 +1,161 @@
+#newSongFeedback {
+  display: none;
+  margin: 24px auto auto auto;
+  width: 486px;
+}
+#newSongContainer {
+  text-align: center;
+}
+#newSong {
+  display: inline-block;
+  margin: 24px auto;
+  width: 486px;
+  #newSongPreview {
+    display: inline-block;
+    float: left;
+    height: 200px;
+    position: relative;
+    width: 200px;
+    &:hover {
+      cursor: pointer;
+    }
+    #albumImageDarken {
+      background: transparentize(black, 0.7);
+      bottom: 0;
+      left: 0;
+      opacity: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: opacity 0.25s;
+      -webkit-transition: opacity 0.25s;
+    }
+    #changeAlbumImageSpinner {
+      color: white;
+      display: none;
+      font-size: 36px;
+      left: 82px;
+      position: absolute;
+      top: 82px;
+    }
+    #changeAlbumArt {
+      @include TranslucentBar;
+      bottom: 0;
+      color: $white;
+      font-family: $OpenSans;
+      font-size: 16px;
+      font-weight: 600;
+      height: 30px;
+      left: 0;
+      padding-top: 6px;
+      position: absolute;
+      right: 0;
+    }
+  }
+  #newSongDetails {
+    display: inline-block;
+    // float: left;
+    margin-left: 12px;
+    position: relative;
+    top: 2px;
+    width: 274px;
+    #audio_target {
+      display: none;
+    }
+    #new_audio {
+      display: none;
+    }
+
+    #select_file_button {
+      @include vendor-prefix(box-sizing, border-box);
+      display: block;
+      margin-bottom: 6px;
+      width: 274px;
+          }
+          
+          #new_song {
+      display: block;
+      margin-bottom: 0;
+      #selectedFileName {
+        color: white;
+        font-family: $OpenSans;
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 auto 16px auto;
+      }
+      input[type='text'] {
+        @include vendor-prefix(box-sizing, border-box);
+        background-color: transparentize(white, 0.7);
+        border: none;
+        color: white;
+        font-size: 16px;
+        height: 32px;
+        width: 220px;
+        &::-webkit-input-placeholder {
+          color: $inactiveWhite;
+        }
+        &:-moz-placeholder {
+          color: $inactiveWhite;
+        }
+        &::-moz-placeholder {
+          color: $inactiveWhite;
+        }
+        &:-ms-input-placeholder {
+          color: $inactiveWhite;
+        }
+        &#song_name {
+          width: 274px;
+        }
+        &#song_album {
+          width: 150px;
+        }
+        &#song_track_number {
+          width: 120px;
+        }
+      }
+      #submit_song {
+        @include vendor-prefix(box-sizing, border-box);
+        position: relative;
+        top: 8px;
+        width: 274px;
+      }
+    }
+    #new_image {
+      display: none;
+    }
+    #album_target {
+      display: none;
+    }
+    #albumSuggestions {
+      background: transparentize(white, 0.1);
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+      left: 0px;
+      list-style: none;
+      margin: 0;
+      position: absolute;
+      top: 168px;
+      width: 150px;
+      .AlbumSuggestion {
+        color: transparentize(black, 0.15);
+        font-family: $OpenSans;
+        font-size: 14px;
+        font-weight: 600;
+        height: 1.5em;
+        line-height: 1.5em;
+        overflow: hidden;
+        padding: 4px;
+        transition: background 0.5s;
+        -webkit-transition: background 0.5s;
+        white-space: nowrap;
+        &:hover {
+          background: transparentize(black, 0.8);
+          cursor: pointer;
+        }
+        &.SelectedSuggestion {
+          background: transparentize(black, 0.8);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='container'>
+  <%= render 'layouts/artist_sidebar', artist: @artist, curr_nav: 3, is_band_member: @is_band_member, is_editing: @is_editing, is_following: @is_following  %>
+  <div class='DJAX' id='artistPageContent'>
+  	<div id='eventsCalendarHeader'>
+  		<div id='calendarNavigation'>
+	  		<span class='InlineNavigation'>&#59399;</span>
+	  		<span class='InlineNavigation'>&#59401;</span>
+	  	</div>
+  		<span id='calendarMonth'><%= Date.today.strftime("%B %Y") %></span>
+  		<div id='calendarViewMode'>
+  			<span class='InlineViewMode ViewModeSelected' id='calendarGrid' onclick="setCalendarDisplayMode('CalendarGrid')">&#59402;</span>
+  			<span class='InlineViewMode' id='calendarColumn' onclick="setCalendarDisplayMode('CalendarColumn')">&#59404;</span>
+  			<span class='InlineViewMode' id='calendarList' onclick="setCalendarDisplayMode('CalendarList')">&#59403;</span>
+  		</div>
+      <!-- <div id='newEventButton'>
+        <a href='#newEvent' id='createEventButton' class='btn'>Create new event</a>
+      </div> -->
+      <button href='#newEvent' class='btn' id='newEventButton'>Create new event</button>
+  	</div>
+  	<div class='CalendarGrid' id='eventsCalendar'>
+  		<div id='weekdayHeadings'>
+  			<div class='CalendarHeading'>
+  				<h2>Sunday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Monday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Tuesday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Wednesday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Thursday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Friday</h2>
+  			</div>
+  			<div class='CalendarHeading'>
+  				<h2>Saturday</h2>
+  			</div>
+  		</div>
+      <%= render 'layouts/events_calendar', month_start: Date.today.beginning_of_month, events: @events %>
+  	</div>
+    <div id='backdrop'></div>
+    <div class="" id='newEvent'>
+      <div class="m-header">
+        <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>
+        <h3>New event</h3>
+      </div>
+      <div class="m-body">
+        <%= form_for Event.new() do |e| %>
+          <input type='hidden' id='event_artistname' name='event[artistname]' />
+          <%= e.label :name %>
+          <%= e.text_field :name, placeholder: 'Event name' %>
+
+          <%= e.label :location %>
+          <%= e.text_field :location, placeholder: 'Add a place' %><br />
+
+          <%= e.label :details %>
+          <%= e.text_area :details, rows: '5', placeholder: 'More info about event', class: 'TextareaNoResize' %>
+          <br />
+
+          <div class='Datepicker input-append date'>
+            <!-- <%= e.label :start_at %> -->
+            <%= e.text_field :start_at, placeholder: 'Start time' %>
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+
+          <div class='Datepicker input-append date'>
+            <!-- <%= e.label :end_at %> -->
+            <%= e.text_field :end_at, placeholder: 'End time' %>
+            <span class="add-on">
+              <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+              </i>
+            </span>
+          </div>
+
+        <% end %>
+      </div>
+      <div class="m-footer">
+        <p id='createEventFollowers'>Your followers and subscribers will see this event in their Burble.<br />They can share this event with their friends.</p>
+        <a href="#" class="btn ModalDismiss" id='cancelCreateEventButton'>Cancel</a>
+        <a href="#" class="btn btn-primary" id='finishEventButton'>Create event</a>
+      </div>
+    </div>
+  </div>
+</div>

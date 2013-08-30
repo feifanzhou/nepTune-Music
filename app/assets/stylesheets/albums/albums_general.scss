@@ -1,0 +1,14 @@
+body {
+  background: $Txture;
+}
+
+header {
+  @include AppHeader;
+}
+
+#container {
+  @include AppContentLayerShadow;
+  background: $Txture;
+  bottom: 0;
+  width: 960px;
+}

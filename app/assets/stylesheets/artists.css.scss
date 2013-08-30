@@ -1,0 +1,21 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "fonts";
+@import "variables";
+@import "shared";
+
+@import "custom_bootstrap";
+
+@import "bootstrap";
+
+@import "artists/artists_general";
+@import "artists/artists_about";
+@import "artists/artists_music";
+@import "artists/artists_events";
+@import "artists/artists_burble";
+
+@import "albums.css";
+@import "songs.css";
+@import "events.css";

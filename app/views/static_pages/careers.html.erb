@@ -1,4 +1,4 @@
-<% provide(:title, "nepTune — Careers & Jobs") %>
+<% provide(:title, "Careers & Jobs &mdash; Tunetap".html_safe) %>
 <%= render 'layouts/page_hero', tagline: "Come build something amazing" %>
 <div class='row' id='workPhilosophy'>
 	<div class='container'>
@@ -42,13 +42,13 @@
 		<div class='span12'>
 			<h2 class='BackHeader'>Open positions</h2>
 			<div class='span4 CenterColumn'>
-				<h3 class='SectionHeader'>Software developer</h3>
-				<p class='BodyBlurb'>We're looking for web developers, as well as iOS, Android, OS X, and Windows developers. Our goal is to get nepTune on every platform. With an emphasis on beauty, craftsmanship, and usability, both in design and in development, you'll be building a platform that reaches millions of people around the world.</p>
+				<h3 class='SectionHeader'>Chief Technology Officer</h3>
+				<p class='BodyBlurb'>The Chief Technology Officer is a fusion of technical ability and leadership prowess. The CTO will lead a team to develop, test, and maintain our web and mobile platforms. The CTO must be able to make product (front-end) and technical (back-end) decisions to best suit our users' technical capability and the needs of our business. This role is based in the United States.</p>
 				<p class='HomeMore'><a href='#devDetails' data-toggle='modal'>Apply</a></p>
 			</div>
 			<div class='span4 CenterColumn'>
-				<h3 class='SectionHeader'>UX designer</h3>
-				<p class='BodyBlurb'>In our modern world, the quality of a product is ultimately decided by the user experience. We're looking to build a simple, beautiful, and delightful experience that makes it incredibly easy for users to discover, share, and enjoy great music. In doing so, we'll put a smile on their faces and they'll keep coming back.</p>
+				<h3 class='SectionHeader'>Design lead</h3>
+				<p class='BodyBlurb'>The Design Lead is a fusion of visual design and implementation with an emphasis on delivering a stunning user experience. The Design Lead will work with our CEO to design the product vision, and alongside our CTO and developers to build the product. The Design Lead must be able to decide when to incorporate user feedback, and to do so in a way that increases the value of our product.</p>
 				<p class='HomeMore'><a href='#uxDetails' data-toggle='modal'>Apply</a></p>
 			</div>
 			<div class='span4 CenterColumn'>
@@ -59,35 +59,46 @@
 		</div>
 	</div>
 </div>
-<%= render 'layouts/job_specs', pop_id: 'devDetails', header_label: 'devDetailsLabel', job_title: 'Software developer', job_reqs: [ 
-			"Fluent in HTML, CSS, and Javascript (jQuery)", 
-			"Enjoy the latest advances in HTML5 and CSS3", 
-			"Familiar with Ruby on Rails and RESTful APIs", 
-			"Experience using git (Github) and coding in a team environment", 
-			"Desire to create a great user experience, and an eye for detail" 
+<%= render 'layouts/job_specs', pop_id: 'devDetails', header_label: 'devDetailsLabel', job_title: 'Chief Technology Officer', job_responsibilities: [
+			'Design and shape product vision alongside CEO',
+			'Establish and enforce timelines and budgets along with founders',
+			'Lead developers and designers, and work alongside them, to build and test product',
+			'Ensure consistency of experience for users and as much uptime as possible',
+			'Recruit developer and designer talent, as needed',
+			'Develop and maintain internal tools for team operations and business functions'
+	], job_reqs: [ 
+			'Fluent in modern web technologies, including HTML5, CSS3, and Javascript',
+			'Experience with Rails, native iOS, ANdroid, Windows, and OS X &mdash; the more, the better!',
+			'Drive and ability to learn, explore, and use new technologies',
+			'Familiarity with git (Github) and coding in a team environment',
+			'A drive to create great user experiences and an eye for detail',
+			'Ability to use available data to make decisions, or to gather more data to make decisions'
 ], job_desirables: [ 
-			"Strong background in computer science", 
-			"Experience developing and understanding user metrics and analytics", 
-			"iOS developer: Experience building native iOS apps with great UIs", 
-			"Android developer: Experience building native Android apps with great UIs across various devices", 
-			"Windows developer: Experience building apps for Windows systems. Metro/Windows 8 apps experience a plus", 
-			"OS X developer: Experience building apps for Mac OS X with great UIs" 
-] %>
+			"Strong background in computer science or information science", 
+			'Internship or experience designing and building intuitive UIs with an emphasis on UX',
+			'Ability to understand and develop user metrics and analytics',
+			'Experience designing and building data visualization for metrics and audio'
+], file_link: 'tunetap-cto.pdf' %>
 
-<%= render 'layouts/job_specs', pop_id: 'uxDetails', header_label: 'uxDetailsLabel', job_title: 'UX designer', job_reqs: [
-			"Understand the process of designing something new, from concept to implementation and user feedback", 
-			"An intuition for usable design and an eye for detail",
-			"Understanding of how our users work and what they want to accomplish",
-			"Able to communicate design ideas to customers and developers, from concept, sketches, or a final product",
-			"Familiar with HTML, CSS, and Javascript (jQuery)",
-			"Enjoy the latest advances in HTML5 and CSS3"
+<%= render 'layouts/job_specs', pop_id: 'uxDetails', header_label: 'uxDetailsLabel', job_title: 'Design lead', job_responsibilities: [
+			'Design product alongside CEO',
+			'Translate vision into clear design specs for developers',
+			'Delight our users with intuitive, engaging user interfaces',
+			'Ensure consistency of experience for users across web, mobile, and desktop',
+			'Recruit designer and developer talent, as needed'
+	], job_reqs: [
+			'Internship or experience designing and building intuitive UIs with an emphasis on UX',
+			'Ability to translate goals into action steps',
+			'An eye for detail and an intuition for usable design',
+			'Experience with graphic design and Adobe Illustrator',
+			'Capable of rendering mockups in HTML and CSS'
 ], job_desirables: [
-			"A strong portfolio of beautiful design and intuitive workflows in web, desktop, or mobile apps",
-			"Familiar with Ruby on Rails and RESTful APIs",
-			"Background in computer science",
-			"Experience developing and understanding user metrics and analytics, and conducting usability studies",
-			"Interest in typography, psychology, music, and cultural diversity"
-] %>
+			'Background in computer science or information science',
+			'Experience with Javascript or Rails',
+			'Interest or experience in data and audio visualization',
+			'Comfortable analyzing user metrics and conducting usability studies',
+			'Interest in typography, psychology, music, or cultural diversity'
+], file_link: 'tunetap-dl.pdf' %>
 
 <%= render 'layouts/job_specs', pop_id: 'custdevDetails', header_label: 'custdevDetailsLabel', job_title: 'Customer development agent', job_reqs: [
 			"A desire to make users happy and provide excellent service",

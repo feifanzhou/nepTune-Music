@@ -1,0 +1,69 @@
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+<div id='container' class='usersPage'>
+  <%= render 'layouts/user_sidebar', user: @user, curr_nav: 1, is_editing: @is_editing,      
+      is_following: @is_following %>
+  <div class='DJAX XHidden' id='artistPageContent'>
+    <div class='span8'>
+
+      <% if @can_edit %>
+        <div class='creditsDiv'>
+          <p class='userCredits'> <b>Credits:</b> <span id='credits' data-credits='<%= @user.credits %>'><%= @user.display_credits %></span> </p>
+        </div>
+        <%= javascript_include_tag "https://js.stripe.com/v2/" %>
+        <script type="text/javascript">
+          // This identifies your website in the createToken call below
+          Stripe.setPublishableKey('pk_test_iMhOgbsH06IanFKtsyoHW2zW');
+        </script>
+        <div id='backdrop'></div>
+        <div class="" id='addCredit'>
+          <div class="m-header">
+            <button type="button" class="close ModalDismiss" aria-hidden="true">&times;</button>
+            <h3>Add credit</h3>
+          </div>
+          <div class="m-body">
+            <%= form_for Charge.new do |f| %>
+              <input type='hidden' name='user_id' id='userID' value='<%= @user.id %>' />
+              <input type='text' name='amount' id='newCredits' placeholder='Add credits (value in cents)' />
+              <input type='hidden' name='token' id='stripeToken' />
+              <div class="form-row">
+                <input type="text" size="20" data-stripe="number" id='cardNumber' placeholder='Card number'/> <input type="text" size="4" data-stripe="cvc" id='cardCVC' placeholder='CVC'/>
+              </div>
+
+              <div class="form-row">
+                <input type="text" size="2" data-stripe="exp-month" id='cardExpM' placeholder='Exp. MM'/>
+
+                <span> / </span>
+                <input type="text" size="4" data-stripe="exp-year" id='cardExpY' placeholder='Exp. YYYY'/>
+              </div>
+
+              <button class='btn btn-primary' id='submitCredits' type="submit">Submit Payment</button>
+              <button class='btn btn-primary' id='submitCreditsSpinner' disabled='true'><div class='Icon Spinner'>&#59392;</div></button>
+            <% end %>
+          </div>
+        </div>
+
+        <button class='btn btn-primary' id='addCreditButton'>Add credit</button>
+
+      <% end %>
+
+      <div id='relatedGalleries'>
+        <div class='span3'>
+          <span class='GalleryTitle'>
+            Shared songs
+          </span>
+          <%= render 'shared/related_media', media: Song.all %>
+        </div>
+
+        <div class='span3'>
+          <span class='GalleryTitle'>
+            Recent plays/purchases
+          </span>
+          <%= render 'shared/related_media', media: Song.all %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

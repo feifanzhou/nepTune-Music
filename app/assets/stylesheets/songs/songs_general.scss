@@ -1,0 +1,41 @@
+body {
+  background: $Txture;
+}
+
+header {
+  @include AppHeader;
+}
+
+#container {
+  @include AppContentLayerShadow;
+  background: $Txture;
+  bottom: 0;
+  margin-right: 0;
+  width: 960px;
+  #mainPartial {
+    height: auto;
+    overflow: auto;
+    white-space: normal;
+    width: 100%;
+  }
+}
+
+#comments {
+  color: $black;
+  display: inline-block;
+  float: left;
+}
+
+#left {
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+  width: 200px;
+}
+#right {
+  display: inline-block;
+  float: left;
+  margin-left: 20px;
+  vertical-align: top;
+  width: 295px;
+}

@@ -1,0 +1,91 @@
+<header>
+  <%= render 'layouts/app_header' %>
+  <%= render 'layouts/playbar' %>
+</header>
+
+<div id='container' class='DJAX m-body'>
+  <div class='DJAX' id='attendeesListBar'>
+  <%= render 'layouts/attendees_list', event: @event, can_invite: @is_bm, going_status: @going_status, curr_user: @curr_user %>
+    <div id='backdrop'></div>
+    <div class="" id='inviteModal'>
+      <div class="m-body">
+        <h3>Invite people</h3>
+        <div class="btn-group" data-toggle="buttons-radio">
+          <button class="btn InviteToggle" id='inviteNoOne'>No one</button>
+          <button class="btn InviteToggle" id='inviteTopFans'>Top fans</button>
+          <button class="btn InviteToggle" id='inviteChoose'>Choose:</button>
+          <!-- TODO: Add 'Email' option -->
+        </div>
+        <div class='btn-group-label' id='inviteExplanation'>
+          <p id='inviteNoOneLabel'>No one will be sent an invitation. However, this event will still show up in your followers' Burble.</p>
+          <p id='inviteTopFansLabel'>Your top fans will be sent an invitation. This event will also show up in all your followers' Burble.</p>
+          <p id='inviteChooseLabel'>Choose which followers you want to invite to this event.</p>
+        </div>
+        <div id='inviteSelect'>
+          <!-- TODO: Load followers via AJAX, when requested -->
+          <% @followers.each do |f| %>
+          <% puts "===== follower: #{ f.email } =====" %>
+            <div class='SelectFollower' id='follower<%= f.id %>'>
+              <!-- <img src='<%= f.avatar.url %>'  /> -->
+              <%= image_tag f.avatar.url %>
+              <p class='SelectFollowerName'><%= f.display_name %></p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="m-footer">
+        <p id='inviteFollowers'>Your followers and subscribers will see this event in their Burble.<br />They can share this event with their friends.</p>
+        <a href="#" class="btn ModalDismiss" id='cancelCreateEventButton'>Cancel</a>
+        <a href="#" class="btn btn-primary" id='finishEventButton'>Invite selected</a>
+      </div>
+    </div>
+  </div>
+
+  <div class='DJAX' id='eventInfo'>
+    <div id='eventHeader'>
+      <%= image_tag 'concert.jpg', size: '960x360' %>
+      <div id='eventBasicInfo'>
+        <p id='eventName' <%= 'contenteditable=true' if @is_editing %>><%= @event.name %></p>
+        <div id='eventLoc'>
+          <% if @is_editing %>
+            <div id="startPicker" class="input-append">
+              <span class='Hidden' id='start_time_text'><%= @event.start_at.strftime("%m/%d/%Y %I:%M %p") %></span>
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='Start: <%= @event.start_at.strftime("%m/%d/%Y %I:%M %p") %>' id='startTime' />
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+            <div id="endPicker" class="input-append">
+              <span class='Hidden' id='end_time_text'><%= @event.end_at.strftime("%m/%d/%Y %I:%M %p") %></span>
+              <input data-format="MM/dd/yyyy HH:mm PP" type="text" placeholder='End: <%= @event.end_at.strftime("%m/%d/%Y %I:%M %p") %>' id='endTime' />
+              <span class="add-on">
+                <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+              </span>
+            </div>
+          <% else %>
+            <span id='when' data-date-format='mm/dd/yyyy'><%= @date_string %></span>
+          <% end %>
+          <span> &bull; </span>
+          <span id='location' <%= 'contenteditable=true' if @is_editing %>><%= @event.location %></span>
+        </div>
+        <% if !@curr_user.blank? %>
+        <div class='btn-group' id='eventResponse'>
+          <!-- TODO: Include current user id in link path -->
+          <!-- TODO: Check current user's status, and change button status accordingly (may set status in :invited rather than :going or :maybe) -->
+          <button class='btn <%= "SelectedButton" if @going_status == :going %>' id='goingButton'>
+            <%= link_to "Going", join_event_path(@event, status: :going), data: { userid: @curr_user.id, status: 'going' }, class: 'EventStatusTrigger' %>
+            <%= link_to "Going", leave_event_path(@event), data: { userid: @curr_user.id, currstatus: 'going' }, class: 'EventLeaveTrigger' %>
+          </button>
+          <button class='btn <%= "SelectedButton" if @going_status == :maybe %>' id='maybeButton'>
+            <!-- <span data-href="<%= join_event_path(@event, status: :maybe) %>" class='EventLeaveTrigger' data-status='maybe' data-userid="<%= @curr_user.id %>">Going</span>
+            <span data-href="<%= leave_event_path(@event) %>" class='EventLeaveTrigger' data-currstatus='maybe' data-userid="<%= @curr_user.id %>">Going</span> -->
+            <%= link_to "Maybe", join_event_path(@event, status: :maybe), data: { userid: @curr_user.id, status: 'maybe' }, class: 'EventStatusTrigger' %>
+            <%= link_to "Maybe", leave_event_path(@event), data: { userid: @curr_user.id, currstatus: 'maybe' }, class: 'EventLeaveTrigger' %>
+          </button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <p>Event Info</p>
+  </div>
+</div>

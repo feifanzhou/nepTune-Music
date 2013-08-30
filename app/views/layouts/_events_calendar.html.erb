@@ -1,0 +1,36 @@
+<div class='CalendarUnitContainer'>
+<% display_start = month_start.beginning_of_week(:sunday);
+display_end = month_start.end_of_month.tomorrow.end_of_week(:sunday);
+(display_start..display_end).each do |d| %>
+	<%	curr_events = Array.new
+			events.each do |e|
+				if e.start_at >= d.to_datetime && e.start_at <= d.end_of_day.to_datetime
+					curr_events.push e
+				end
+				if e.end_at >= d.to_datetime && e.end_at <= d.end_of_day.to_datetime
+					# TODO: Be smart here…if an event ends before 12:30 or so, don't highlight…
+					curr_events.push e
+				end
+				# break if !curr_event.blank?
+			end 
+			curr_events.uniq!
+	%>
+	<div class="CalendarUnit <%= 'CalendarUnitOtherMonth' if d < month_start or d > month_start.end_of_month %> <%= 'CalendarUnitColLast' if d.wday == 6 %> <%= 'CalendarUnitRowLast' if d >= month_start.end_of_month.beginning_of_week %> <%= 'CalendarUnitHasEvent' unless curr_events.blank? %>">
+		<div class='CalendarUnitDate'>
+			<div class='CalendarUnitMonth'><%= d.strftime("%B") %></div>
+			<div class='CalendarUnitDay'>
+				<%= d.strftime("%d") %>
+				<div class='CalendarUnitWeekday'><%= d.strftime("%a") %></div>
+			</div>
+		</div>
+		<% curr_events.each do |e| %>
+		<%= link_to e do %>
+			<div class='CalendarUnitEventHeader'>
+				<%= image_tag e.cover_image.path %>
+				<div class='CalendarUnitEventName'><p><%= e.name %></p></div>
+			</div>
+		<% end %>
+		<% end %>
+	</div>
+<% end %>
+</div>
