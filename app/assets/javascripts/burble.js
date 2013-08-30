@@ -4,6 +4,10 @@ function loadLocation() {
   var pLast = urlPieces[urlPieces.length - 1];
   if (pLast.indexOf('.com') == -1 && pLast.length > 0)
     return;
+  var parts = location.hostname.split('.');
+  var subdomain = parts.shift();
+  if (subdomain != 'beta')
+    return;
   // Check if geolocation API is supported
   if (Modernizr.geolocation) {
     navigator.geolocation.getCurrentPosition(showMap, handleLocationError);
