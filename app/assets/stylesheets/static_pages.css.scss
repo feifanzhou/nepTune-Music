@@ -624,6 +624,44 @@ div#contact {
 div#terms {
 	@include BackBottom;
 	@include BackTop;
+	#termsTable {
+		border: none;
+		font-size: 14px;
+		font-weight: 300;
+		tr, td {
+			border: none;
+			vertical-align: top;
+		}
+		h3 {
+			font-size: 15px;
+			margin-bottom: 5px;
+		}
+		p, ol li {
+			font-size: 14px !important;
+			line-height: 19px;
+		}
+		.LegalTerms {
+			padding-right: 30px;
+			width: 740px;
+		}
+		.SimpleTerms {
+			background: #EEE;
+			height: 100%;
+			padding: 0 15px;
+			width: 370px;
+		}
+		tr {
+			border-radius: 4px;
+			transition: background 0.25s;
+			-webkit-transition:  background 0.25s;
+			-moz-transition: background 0.25s;
+			-o-transition: background 0.25s;
+			-ms-transition: background 0.25s;
+			&:hover {
+				background: transparentize($nepTuneOrange, 0.95) !important;
+			}
+		}
+	}
 }
 
 div#workPhilosophy {
