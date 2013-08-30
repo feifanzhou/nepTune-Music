@@ -1,4 +1,0 @@
-<% replyable = !user.blank? %>
-<% comments.each do |c| %>
-  <%= render 'shared/comment_base', comment: c, replyable: replyable, user: user %>
-<% end %>     

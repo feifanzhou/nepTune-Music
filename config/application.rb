@@ -61,7 +61,5 @@ module NeptuneMusic
     
     # Route to custom error pages
     config.exceptions_app = self.routes
-
-    # config.action_controller.session_store = :active_record_store
   end
 end

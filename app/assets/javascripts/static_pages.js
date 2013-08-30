@@ -1,7 +1,6 @@
 /* Place all the behaviors and hooks related to the matching controller here.
    All this logic will automatically be available in application.js. */
 
-
 window.mobilecheck = navigator.userAgent.match(/(iPhone|iPod|Android|BlackBerry)/);
 
 $(function() {
@@ -89,17 +88,22 @@ $(window).resize(function() {
 	resizeTimer = setTimeout(onResize, 50);
 });
 
-if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
-	// If transitions aren't supported, make sure everything appears without animation
-	$(".AppearCard").each(function() {
-		$(this).addClass('appeared');
-	});
-	setHeroHeight();
-}
-if (!window.mobilecheck) {
-	$(document.body).on('appear', '.AppearCard', function(e, $affected) {
-	// add class called “appeared” for each appeared element
-		$(this).addClass("appeared");
-	});
-	$('.AppearCard').appear({force_process: true});
-}
+$(function() {
+	if (!window.mobilecheck && (!(Modernizr.csstransitions && Modernizr.csstransitions && Modernizr.csstransforms3d))) {
+		// If transitions aren't supported, make sure everything appears without animation
+		$(".AppearCard").each(function() {
+			$(this).addClass('appeared');
+		})
+		setHeroHeight();
+		return;
+	}
+	if (window.mobilecheck) {
+		console.log('mobilecheck');
+		return;
+	}
+  $(document.body).on('appear', '.AppearCard', function(e, $affected) {
+    // add class called “appeared” for each appeared element
+    $(this).addClass("appeared");
+  });
+  $('.AppearCard').appear({force_process: true});
+});

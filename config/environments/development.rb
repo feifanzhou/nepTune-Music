@@ -34,16 +34,10 @@ NeptuneMusic::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
+  
   # Add fonts path
   # config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
+  
   # Precompile additional assets
   # config.assets.precompile += %w( .svg .eot .woff .ttf )
-
-  config.paperclip_defaults = {
-    storage: :filesystem
-  }
-
-
 end

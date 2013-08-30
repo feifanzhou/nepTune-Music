@@ -1,3 +1,0 @@
-$('.EventStatusTrigger').bind('ajax:success', function() {
-	$("#attendeesListBar").html('<%= escape_javascript(render :partial => "attendees_list", :locals => { :event => @event }) %>');
-});

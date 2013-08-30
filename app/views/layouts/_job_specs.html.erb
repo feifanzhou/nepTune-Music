@@ -1,33 +1,21 @@
 <div class='modal hide fade' id='<%= pop_id %>' tabindex='2' role='dialog' aria-labelledby='<%= header_label %>' aria-hidden='true' data-backdrop='static'>
-  <div class='modal-header'>
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id='<%= header_label %>'><%= job_title %></h3>
-  </div>
-  <div class='modal-body'>
-    <% if defined? file_link %>
-      <p><%= link_to 'Formal job description', file_link %></p>
-    <% end %>
-    
-    <% if defined? job_responsibilities %>
-      <h3 class='SectionHeader'>Responsibilities</h3>
-      <ul class='JobRequirements'>
-        <% job_responsibilities.each do |resp| %>
-          <li><%= resp %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    <h3 class='SectionHeader'>Requirements</h3>
-    <ul class='JobRequirements'>
-      <% job_reqs.each do |req| %>
-        <li><%= req %></li>
-      <% end %>
-    </ul>
-    <h3 class='SectionHeader'>Desirables</h3>
-    <ul class='JobDesirables'>
-      <% job_desirables.each do |des| %>
-        <li><%= des %></li>
-      <% end %>
-    </ul>
-    <%= render 'shared/how_to_apply' %>
-  </div>
+	<div class='modal-header'>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		<h3 id='<%= header_label %>'><%= job_title %></h3>
+	</div>
+	<div class='modal-body'>
+		<h3 class='SectionHeader'>Requirements</h3>
+		<ul class='JobRequirements'>
+			<% job_reqs.each do |req| %>
+				<li><%= req %></li>
+			<% end %>
+		</ul>
+		<h3 class='SectionHeader'>Desirables</h3>
+		<ul class='JobDesirables'>
+			<% job_desirables.each do |des| %>
+				<li><%= des %></li>
+			<% end %>
+		</ul>
+		<%= render 'shared/how_to_apply' %>
+	</div>
 </div>

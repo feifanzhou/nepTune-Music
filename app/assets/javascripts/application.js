@@ -20,7 +20,6 @@
 //= require_tree ../../../vendor/assets/javascripts/.
 // require backbone/neptune_music
 //= require_tree .
+//= require_tree ../../../vendor/assets/javascripts/.
 //= require bootstrap
 // require retina_tag
-// require jquery.fileupload
-// require react
