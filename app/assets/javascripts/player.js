@@ -13,6 +13,9 @@ soundManager.setup({
   }
 });
 
+console.log("player setup!");
+console.log(soundManager);
+
 var playerProgress;
 function createPlayerProgress() {
   console.log('Create player progress');

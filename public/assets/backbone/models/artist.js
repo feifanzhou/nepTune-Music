@@ -1,0 +1,1 @@
+var Artist=Backbone.Model.extend({defaults:function(){return{artistname:""}},paramRoot:"artist",urlRoot:function(){return this.isNew()?"/login/create":"/"+this.artistname}});
