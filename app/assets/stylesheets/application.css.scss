@@ -10,9 +10,10 @@
  *
  
  *= require_self
- * require_tree .
+ *= require import_all
  *= require_tree ../../../vendor/assets/stylesheets/.
  */
+
 
  a {
  	text-decoration: none;

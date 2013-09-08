@@ -62,6 +62,9 @@ module NeptuneMusic
     # Route to custom error pages
     config.exceptions_app = self.routes
 
+    # config.assets.precompile += ['*.js']
+    config.serve_static_assets = true
+    
     # config.action_controller.session_store = :active_record_store
   end
 end
